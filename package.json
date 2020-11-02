@@ -1,0 +1,23 @@
+{
+  "name": "create-phonegap-app",
+  "version": "1.0.0",
+  "description": "creates a simple phonegap app",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack --config webpack.config.js --mode production"
+  },
+  "author": "Ahmed Ayachi",
+  "license": "ISC",
+  "devDependencies": {
+    "css-loader": "^5.0.0",
+    "style-loader": "^2.0.0",
+    "url-loader": "^4.1.1",
+    "webpack": "^4.44.2",
+    "webpack-cli": "^3.3.12"
+  },
+  "dependencies": {},
+  "cordova": {
+    "plugins": {},
+    "platforms": []
+  }
+}

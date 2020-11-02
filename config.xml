@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="com.phonegap.helloworld" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
+    <name>Phonegap app</name>
+    <description>Simple phonegap app</description>
+    <author email="aayachi032@gmail.com" href="http://phonegap.com">Ahmed Ayachi</author>
+    <content src="index.html" />
+    <access origin="*" />
+</widget>
