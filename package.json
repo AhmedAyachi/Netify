@@ -1,10 +1,12 @@
 {
-  "name": "create-phonegap-app",
+  "name": "aflix",
   "version": "1.0.0",
-  "description": "creates a simple phonegap app",
+  "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "webpack --config webpack.config.js --mode production"
+    "start": "webpack --config webpack.config.js",
+    "build": "webpack --config webpack.config.js --mode production",
+    "gap": "phonegap"
   },
   "author": "Ahmed Ayachi",
   "license": "ISC",
@@ -15,9 +17,16 @@
     "webpack": "^4.44.2",
     "webpack-cli": "^3.3.12"
   },
-  "dependencies": {},
+  "dependencies": {
+    "cordova-android": "^8.1.0",
+    "cordova-plugin-statusbar": "2.4.3"
+  },
   "cordova": {
-    "plugins": {},
-    "platforms": []
+    "plugins": {
+      "cordova-plugin-statusbar": {}
+    },
+    "platforms": [
+      "android"
+    ]
   }
 }

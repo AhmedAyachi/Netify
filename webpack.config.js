@@ -9,6 +9,7 @@ module.exports={
         filename:"App.js",
         path:path.resolve(__dirname,"www"),
     },
+    devtool:"inline-source-map",
     module:{
         rules:[
             {
@@ -16,7 +17,7 @@ module.exports={
                 use:["style-loader","css-loader"],
             },
             {
-                test: /\.(jpe?g|png|gif|svg)$/i,
+                test: /\.(jpe?g|png|gif|svg|mp4)$/i,
                 use:"url-loader",
             },
         ]
@@ -33,7 +34,8 @@ module.exports={
             "estate":path.resolve(__dirname,"src/Estate.js"),
             "assets":path.resolve(__dirname,"src/Assets"),
             "components":path.resolve(__dirname,"src/Components"),
-            "plugins":path.resolve(__dirname,"plugins"),
+            "routes":path.resolve(__dirname,"src/Routes"),
+            "afile":path.resolve(__dirname,"src/Afile"),
         },
     },
 }

@@ -2,11 +2,14 @@ import "./index.css";
 import App from "./App";
 
 
-function onDeviceReady() {
+function onDeviceReady(){
+    //StatusBar.styleLightContent();
+    StatusBar.styleBlackOpaque();
     App({
         parent:document.getElementById("root"),
     });   
 };
-
+document.store={
+    name:"Ahmed Ayachi",
+};
 document.addEventListener("deviceready",onDeviceReady,false);
-window.addEventListener("load",onDeviceReady,false);

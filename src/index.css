@@ -15,6 +15,21 @@ body{
 
 @media(max-width:25cm){
     :root{
-        font-size:2vw;
+        font-size:3vw;
     }
+}
+
+@keyframes fadeIn{
+    from {opacity:0}
+    to {opacity:1}
+}
+
+@keyframes fadeOut{
+    from {opacity:1}
+    to {opacity:0}
+}
+
+@keyframes wave{
+    from {background-color:#57abff};
+    to {background-color:transparent};
 }
