@@ -1,11 +1,11 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="com.phonegap.helloworld" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
-    <name>aflix</name>
+    <name>Netlix</name>
     <description></description>
-    <author email="aayachi032@gmail.com" href="http://phonegap.com">Ahmed Ayachi</author>
+    <author email="aayachi032@gmail.com">Ahmed Ayachi</author>
     <content src="index.html" />
     <access origin="*" />
-    <plugin name="cordova-plugin-statusbar" spec="~2.4.3" />
+    <gap:plugin name="cordova-plugin-statusbar" version="~2.4.3" />
     <preference name="StatusBarOverlaysWebView" value="true" />
     <preference name="StatusBarBackgroundColor" value="#000000" />
     <preference name="StatusBarStyle" value="lightcontent"/>

@@ -1,3 +1,4 @@
+import App from "./src/App";
 
 
 export const map=(array=[],treatment)=>{
@@ -29,8 +30,8 @@ export const useCode=(length=10)=>{
 }
 
 export const useRef=(startwith="")=>{
-    let str=startwith,charindex;
-    for(let i=0;i<10;i++){
+    let str=startwith+"_",charindex;
+    for(let i=0;i<20;i++){
         switch(Math.floor(Math.random()*2)){
             case 0:
                 charindex=65+Math.floor(Math.random()*26);
@@ -42,4 +43,47 @@ export const useRef=(startwith="")=>{
         str+=String.fromCharCode(charindex);
     }
     return str;
+}
+
+export const useStore=(initializer={})=>{
+    window.store=new function Store(){
+        Object.keys(initializer).forEach(key=>{
+            this[key]=initializer[key];
+        })
+        this.get=()=>{
+            console.log("store");
+        };
+        return this;
+    };
+}
+
+export const Router=(routes=[{component:"",path:""}])=>{
+    const app=document.getElementById("app");
+    let data=null;
+    pushRoute();
+    window.onhashchange=()=>{
+        const hash=window.location.hash;
+        try{
+            pushRoute(hash);
+        }
+        catch(error){
+            console.log(error);
+        }
+    }
+    window.history.push=(hash="",state={})=>{
+        data=state;
+        window.location.hash=hash;
+    }
+    
+    function pushRoute(path=""){
+        const route=routes.find(route=>route.path===path);
+        app.innerHTML="";
+        if(route.component){
+            route.component({
+                parent:app,
+                state:data,
+            });
+        }
+        data=null;
+    }
 }

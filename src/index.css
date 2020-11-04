@@ -18,6 +18,10 @@ body{
         font-size:3vw;
     }
 }
+/*@font-face{
+    font-family:fredokaone;
+    src:url("./Assets/Fonts/FredokaOne-Regular.ttf");
+}*/
 
 @keyframes fadeIn{
     from {opacity:0}

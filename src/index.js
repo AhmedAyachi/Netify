@@ -1,15 +1,13 @@
+import {useStore} from "vanilla";
 import "./index.css";
 import App from "./App";
 
 
 function onDeviceReady(){
-    //StatusBar.styleLightContent();
     StatusBar.styleBlackOpaque();
+    useStore();
     App({
         parent:document.getElementById("root"),
-    });   
-};
-document.store={
-    name:"Ahmed Ayachi",
+    }); 
 };
 document.addEventListener("deviceready",onDeviceReady,false);

@@ -1,8 +1,7 @@
 import {map} from "vanilla";
 import css from "./Home.module.css";
-import {EntryAnimation} from "components";
 import {netflixlogo,googlelogo} from "assets";
-import {fadeIn,capitalize} from "afile";
+import {capitalize} from "afile";
 
 
 export default function Home(props){
@@ -25,21 +24,16 @@ export default function Home(props){
         </div>
         
     `;
-    
-    EntryAnimation({
-        parent:home,
-        onFadeOut:()=>{
-            const row0=home.querySelector(`.${css.row0}`);
-            row0.style.display="block";
-            fadeIn(row0);
-        },
-    });
+
+    home.querySelector(`.${css.signin}`).onclick=()=>{
+        history.push("#movies");
+    }
     
 }
 
 const styles={
     row0:`
-        display:none;
+        display:block;
     `,
 }
 

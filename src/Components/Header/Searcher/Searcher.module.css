@@ -1,0 +1,31 @@
+.searcher{
+    position:relative;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    border:3px solid #cc0000;
+    border-radius:10px;
+    width:60%;
+    height:30%;
+    min-height:30px;
+}
+.searcher input{
+    width:80%;
+    height:100%;
+    border:none;
+    border-radius:inherit;
+    padding:0 0.25em;
+    background-color:transparent;
+    color:white;
+    font-family:fredokaone;
+    font-size:1.25rem;
+}
+.searcher img{
+    max-width:2em;
+    margin-right:1%;
+    transition:0.5s;
+}
+
+.searcher>img:active{
+    filter:brightness(0.4);
+}
