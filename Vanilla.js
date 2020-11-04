@@ -1,4 +1,3 @@
-import App from "./src/App";
 
 
 export const map=(array=[],treatment)=>{
@@ -57,8 +56,8 @@ export const useStore=(initializer={})=>{
     };
 }
 
-export const Router=(routes=[{component:"",path:""}])=>{
-    const app=document.getElementById("app");
+export const Router=(target,routes=[{component:"",path:""}])=>{
+    const history=window.history;
     let data=null;
     pushRoute();
     window.onhashchange=()=>{
@@ -70,19 +69,22 @@ export const Router=(routes=[{component:"",path:""}])=>{
             console.log(error);
         }
     }
-    window.history.push=(hash="",state={})=>{
-        data=state;
+    history.pushState=(hash="",state={})=>{
+        data={
+            state,
+            location:{
+                hash,
+                url:`${window.location.origin}/${hash}`,
+            },
+        };
         window.location.hash=hash;
     }
     
     function pushRoute(path=""){
         const route=routes.find(route=>route.path===path);
-        app.innerHTML="";
+        target.innerHTML="";
         if(route.component){
-            route.component({
-                parent:app,
-                state:data,
-            });
+            route.component({parent:target,...data});
         }
         data=null;
     }

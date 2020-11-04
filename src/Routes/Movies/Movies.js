@@ -1,6 +1,6 @@
 import {} from "vanilla";
 import css from "./Movies.module.css";
-import {Header} from "components";
+import {Header,MovieList} from "components";
 
 
 export default function Movies(props){
@@ -9,7 +9,6 @@ export default function Movies(props){
     const movies=parent.querySelector(`.${css.movies}`);
 
     Header({parent:movies});
-    movies.insertAdjacentHTML("beforeend",`
-        
-    `);
+    MovieList({parent:movies});
+    
 }

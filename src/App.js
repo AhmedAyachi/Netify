@@ -1,7 +1,7 @@
-import {Router} from "vanilla";
+import {Router} from "../Vanilla";
 import css from "./App.module.css";
 import {EntryAnimation} from "components";
-import {Home,Movies} from "routes";
+import {Home,Movies,MovieDetails} from "routes";
 
 
 export default function App(props){
@@ -11,13 +11,11 @@ export default function App(props){
     app.innerHTML=`
     
     `;
-    EntryAnimation({
-        parent:app,
-        onFadeOut:()=>{
-            Router([
-                {component:Home,path:""},
-                {component:Movies,path:"#movies"},
-            ]);
-        },
-    });
+
+    //Movies({parent:app});
+    Router(app,[
+        {component:Home,path:""},
+        {component:Movies,path:"#movies"},
+        {component:MovieDetails,path:"#movies/#movie"},
+    ]);
 }

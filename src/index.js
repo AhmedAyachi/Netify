@@ -6,6 +6,7 @@ import App from "./App";
 function onDeviceReady(){
     StatusBar.styleBlackOpaque();
     useStore();
+    window.location.hash="";
     App({
         parent:document.getElementById("root"),
     }); 

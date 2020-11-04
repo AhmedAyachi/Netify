@@ -5,9 +5,8 @@
     align-items:center;
     border:3px solid #cc0000;
     border-radius:10px;
-    width:60%;
-    height:30%;
-    min-height:30px;
+    width:85%;
+    height:2.5rem;
 }
 .searcher input{
     width:80%;

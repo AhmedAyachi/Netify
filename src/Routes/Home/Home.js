@@ -1,7 +1,7 @@
-import {map} from "vanilla";
+import {map,useRef} from "vanilla";
 import css from "./Home.module.css";
 import {netflixlogo,googlelogo} from "assets";
-import {capitalize} from "afile";
+import {InputField} from "components";
 
 
 export default function Home(props){
@@ -10,23 +10,31 @@ export default function Home(props){
     const home=parent.querySelector(`.${css.home}`);
 
     home.innerHTML=`
-        <div class="${css.row0}" style="${styles.row0}">
+        <div class="${css.row0}">
             <img class="${css.applogo}" alt="Aflex" src="${netflixlogo}"/>
-            ${map(["email","password"],prop=>`
-                <input id="${prop}" class="${css.inputfield}" type="text" placeholder="${capitalize(prop)}"/>
-            `)}
+        </div>
+        <div class="${css.row1}"></div>
+        <div class="${css.row2}">
             <button class="${css.signin}">Sign in</button>
             <div class="${css.logos}">
                 ${map(logos,logo=>`
                     <img class="${css.logo}" alt="${logo.of}" src="${logo.src}" style="${logo.style}"/>
                 `)}
             </div>
-        </div>
-        
+        <div>
     `;
+    ["email","password"].forEach(prop=>{
+        InputField({
+            parent:home.querySelector(`.${css.row1}`),
+            placeholder:prop,
+            ref:useRef(prop),
+            type:prop,
+        });
+    });
+        
 
     home.querySelector(`.${css.signin}`).onclick=()=>{
-        history.push("#movies");
+        history.pushState("#movies");
     }
     
 }

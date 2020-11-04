@@ -9,7 +9,7 @@ module.exports={
         filename:"App.js",
         path:path.resolve(__dirname,"www"),
     },
-    devtool:"inline-source-map",
+    
     module:{
         rules:[
             {
@@ -17,7 +17,7 @@ module.exports={
                 use:["style-loader","css-loader"],
             },
             {
-                test: /\.(jpe?g|png|gif|svg|mp4)$/i,
+                test: /\.(jpe?g|png|gif|svg|mp4|ttf)$/i,
                 use:"url-loader",
             },
         ]
