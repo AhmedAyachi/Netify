@@ -1,6 +1,4 @@
 .movielist{
-    display:flex;
-    flex-direction:column;
     height:fit-content; 
     text-align:center;
 }

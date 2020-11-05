@@ -1,4 +1,4 @@
-import {} from "vanilla";
+import {useRef} from "vanilla";
 import css from "./Movies.module.css";
 import {Header,MovieList} from "components";
 
@@ -8,7 +8,8 @@ export default function Movies(props){
     parent.insertAdjacentHTML("beforeend",`<div class="${css.movies} activeroute"></div>`);
     const movies=parent.querySelector(`.${css.movies}`);
 
-    Header({parent:movies});
-    MovieList({parent:movies});
+    const movielistRef=useRef("movielist");
+    Header({parent:movies,movielistRef});
+    MovieList({parent:movies,ref:movielistRef});
     
 }

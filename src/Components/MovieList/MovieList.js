@@ -68,24 +68,3 @@ const Collection=new (function(){
         }
     }
 })();
-
-const getMovies=()=>[
-    {
-        id:"1254825",
-        title:"Money hiest",
-        vote_average:8,
-        poster_path:moneyhiestcover,
-    },
-    {
-        id:"1254825",
-        title:"Mr Robot",
-        vote_average:10,
-        poster_path:mrrobotcover,
-    },
-    {
-        id:"1254825",
-        title:"Spiderman Home Coming",
-        vote_average:10,
-        poster_path:spidercover,
-    },
-];
