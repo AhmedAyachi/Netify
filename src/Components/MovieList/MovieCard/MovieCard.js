@@ -19,7 +19,8 @@ export default function MovieCard(props){
     `;
 
     moviecard.onclick=()=>{
-        history.pushState("#movies/#movie",{movie});
+        //history.pushState("#movies/#movie",{movie});
+        console.log(store);
     }
     
 }
@@ -30,5 +31,5 @@ const getRateStars=(rate=3)=>{
     for(let i=0;i<length;i++){
         rating.push(`<img id="star_${i}" src="${fullstar}"/>`);
     }
-    return rating.join();
+    return rating.join("");
 }

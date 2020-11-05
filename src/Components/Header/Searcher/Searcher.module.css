@@ -4,9 +4,9 @@
     justify-content:space-between;
     align-items:center;
     border:3px solid #cc0000;
-    border-radius:10px;
+    border-radius:5px;
     width:85%;
-    height:2.5rem;
+    height:3rem;
 }
 .searcher input{
     width:80%;
@@ -17,7 +17,7 @@
     background-color:transparent;
     color:white;
     font-family:fredokaone;
-    font-size:1.25rem;
+    font-size:1.5rem;
 }
 .searcher img{
     max-width:2em;
@@ -25,6 +25,15 @@
     transition:0.5s;
 }
 
-.searcher>img:active{
-    filter:brightness(0.4);
+@media(any-hover){
+    .searcher>img:hover{
+        filter:brightness(0.65);
+        cursor:pointer;
+    }
+}
+
+@media(hover:none){
+    .searcher>img:active{
+        filter:brightness(0.65);
+    }
 }

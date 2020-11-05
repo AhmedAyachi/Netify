@@ -11,11 +11,10 @@ export default function App(props){
     app.innerHTML=`
     
     `;
-
-    //Movies({parent:app});
-    Router(app,[
+    Movies({parent:app});
+    /*Router(app,[
         {component:Home,path:""},
         {component:Movies,path:"#movies"},
         {component:MovieDetails,path:"#movies/#movie"},
-    ]);
+    ]);*/
 }

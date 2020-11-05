@@ -1,12 +1,12 @@
 import {useStore} from "vanilla";
 import "./index.css";
 import App from "./App";
+import Reducer from "./Store";
 
 
 function onDeviceReady(){
     StatusBar.styleBlackOpaque();
-    useStore();
-    window.location.hash="";
+    useStore(Reducer);
     App({
         parent:document.getElementById("root"),
     }); 

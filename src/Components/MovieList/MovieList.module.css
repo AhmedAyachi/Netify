@@ -11,16 +11,14 @@
     padding:5px;
 }
 .row0 img{
-    max-width:2rem;
-}
-.row0 img:nth-of-type(2){
-    order:3;
+    max-width:3rem;
 }
 .nomoviemsg{
     color:white;
     font-family:fredokaone;
     margin-top:10%;
     opacity:0.5;
+    font-size:4rem;
 }
 .filterbtn{
     position:absolute;
@@ -28,17 +26,15 @@
 }
 
 @media(max-width:25cm){
-    .nomoviemsg{
-        font-size:4rem;
-    }
     .row0 img{
-        max-width:5rem;
+        max-width:4rem;
     }
 }
+
 @media(any-hover){
     .arrows:hover{
+        filter:brightness(0.65);
         cursor:pointer;
-        filter:brightness(0.8);
     }
 }
 

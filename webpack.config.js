@@ -17,8 +17,12 @@ module.exports={
                 use:["style-loader","css-loader"],
             },
             {
-                test: /\.(jpe?g|png|gif|svg|mp4|ttf)$/i,
+                test: /\.(jpe?g|png|gif|svg)$/i,
                 use:"url-loader",
+            },
+            {
+                test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
+                use: "url-loader",
             },
         ]
     },
@@ -36,6 +40,7 @@ module.exports={
             "components":path.resolve(__dirname,"src/Components"),
             "routes":path.resolve(__dirname,"src/Routes"),
             "afile":path.resolve(__dirname,"src/Afile"),
+            "actions":path.resolve(__dirname,"src/Store/Actions"),
         },
     },
 }

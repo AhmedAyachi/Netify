@@ -26,6 +26,7 @@ export {default as playbtn1} from "./Images/PlayButton_1.png";
 
 //Gifs:
 export {default as netflixentry} from "./Gifs/Netflix_0.gif";
+export {default as loadinganim} from "./Gifs/Loading_1.gif";
 
 
 //videos:

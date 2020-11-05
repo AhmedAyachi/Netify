@@ -44,21 +44,21 @@ export const useRef=(startwith="")=>{
     return str;
 }
 
-export const useStore=(initializer={})=>{
-    window.store=new function Store(){
-        Object.keys(initializer).forEach(key=>{
-            this[key]=initializer[key];
-        })
+export const useStore=(Reducer={})=>{
+    const store=window.store=new function Store(){
+        Object.assign(this,Reducer);
         this.get=()=>{
             console.log("store");
         };
         return this;
     };
+    return store;
 }
 
 export const Router=(target,routes=[{component:"",path:""}])=>{
     const history=window.history;
     let data=null;
+    window.location.hash="";
     pushRoute();
     window.onhashchange=()=>{
         const hash=window.location.hash;

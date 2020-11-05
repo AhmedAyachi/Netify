@@ -15,16 +15,16 @@ body{
 
 @media(max-width:25cm){
     :root{
-        font-size:3vw;
+        font-size:2vw;
     }
 }
 @font-face{
-    font-family:fredokaone;
-    src:url("./Assets/Fonts/FredokaOne-Regular.ttf");
+    font-family:"fredokaone";
+    src:url("./Assets/Fonts/FredokaOne-Regular.ttf") format("opentype");
 }
 @font-face{
-    font-family:montserrat;
-    src:url("./Assets/Fonts/Montserrat-Black.ttf");
+    font-family:"montserrat";
+    src:url("./Assets/Fonts/Montserrat-Black.ttf") format("opentype");
 }
 @keyframes fadeIn{
     from {opacity:0}

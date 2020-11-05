@@ -2,8 +2,8 @@
     position:relative;
     display:inline-block;
     border:2px solid white;
-    width:30%;
-    height:15rem;
+    width:9%;
+    height:13rem;
     margin:5px;
     font-size:0.85rem;
 }
@@ -16,7 +16,7 @@
     flex-direction:column;
     align-items:center;
     position:absolute;
-    background-color:rgba(0, 0, 0, 0.541);
+    background-color:rgba(0,0,0,0.65); 
     font-family:fredokaone;
     font-size:1.5em;
     color:whitesmoke;
@@ -26,10 +26,6 @@
     margin:0 auto;left:0;right:0;
     text-align:center;
     transition:1s;
-}
-.details:active{
-    opacity:1;
-    transition:0.5s;
 }
 .title{
     max-width:100%;
@@ -41,13 +37,40 @@
 .title::-webkit-scrollbar{
     display:none;
 }
-/*.rating{
-    margin:5px 0;
-}*/
+.playbtn{
+    max-width:1.5em;
+}
 .rating img{
     max-width:1.25rem;
     margin:0 2px;
 }
-.playbtn{
-    max-width:1.5em;
+
+@media(max-width:20cm){
+    .moviecard{
+        width:30%;
+        height:20rem;
+        margin:2px;
+    }
+    .details{
+        font-size:2em;
+    }
+    .details:active{
+        opacity:1;
+        transition:0.5s;
+    }
+    .rating img{
+        max-width:2rem;
+    }
+}
+@media(any-hover){
+    .moviecard:hover{
+        cursor:pointer;
+    }
+    .details:hover{
+        opacity:1;
+        transition:0.5s;
+    }
+    .playbtn:hover{
+        filter:drop-shadow(0 0 5px black) brightness(0.7);
+    }
 }
