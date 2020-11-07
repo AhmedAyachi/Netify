@@ -31,6 +31,8 @@ export default function MovieDetails(props){
 
 const styles={
     loading:`
-        display:none;        
+        display:block;
+        max-width:5rem;
+        margin:0 auto;
     `,
 };
