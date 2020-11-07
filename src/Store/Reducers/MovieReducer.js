@@ -1,6 +1,7 @@
 
 const MovieReducer={
-    loaded:[],
+    searched:[],
+    searchvalue:null,
     movies:[],
     collections:[],
     collection:1,

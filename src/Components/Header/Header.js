@@ -5,7 +5,7 @@ import Searcher from "./Searcher/Searcher";
 
 
 export default function Header(props){
-    const {parent,movielistRef,ref=useRef("header")}=props;
+    const {parent,refs,ref=useRef("header")}=props;
     parent.insertAdjacentHTML("beforeend",`<div id="${ref}" class="${css.header}"></div>`);
     const header=parent.querySelector(`#${ref}`);
 
@@ -15,7 +15,7 @@ export default function Header(props){
         </div>
     `;
     const row0=header.querySelector(`.${css.row0}`);
-    Searcher({parent:row0,movielistRef});
+    Searcher({parent:row0,refs});
     row0.insertAdjacentHTML("beforeend",`
         <div class=${css.usericon}></div>
     `);

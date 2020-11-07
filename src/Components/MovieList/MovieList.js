@@ -6,7 +6,7 @@ import {loadMovies} from "actions";
 
 
 export default function MovieList(props){
-    const {parent,state={},ref=useRef("movielist")}=props;
+    const {parent,refs,ref=refs.movielist||useRef("movielist")}=props;
     parent.insertAdjacentHTML("beforeend",`<div id="${ref}" class="${css.movielist}"></div>`);
     const movielist=parent.querySelector(`#${ref}`);
 
@@ -18,13 +18,34 @@ export default function MovieList(props){
         </div>
         <div id="row1"></div>
     `;
-    
-    setMovieCards(movielist,store.movie);
+    const movieState=store.movie;
+    if(movieState.searchvalue){
+        const searcherInput=document.querySelector(`#${refs.searcher} input`);
+        searcherInput.value=movieState.searchvalue;
+        const searched=movieState.searched;
+        if(searched.length){
+            searched.forEach(movie=>{
+                MovieCard({parent:row1,movie});
+            });
+        };
+    }
+    else{
+        setMovieCards(movielist,store.movie);
+    }
+
     movielist.querySelector("#prevarrow").onclick=()=>{
         Collection.previous(movielist,store.movie);
+        const searcherInput=document.querySelector(`#${refs.searcher} input`);
+        if(searcherInput&&searcherInput.value){
+            searcherInput.value="";
+        }
     }
     movielist.querySelector("#nextarrow").onclick=()=>{
         Collection.next(movielist,store.movie);
+        const searcherInput=document.querySelector(`#${refs.searcher} input`);
+        if(searcherInput&&searcherInput.value){
+            searcherInput.value="";
+        }
     }
     
 }

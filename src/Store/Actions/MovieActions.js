@@ -8,9 +8,12 @@ export const setMovies=(movies=null)=>{
     store.movie.movies=movies;
 }
 
-export const setLoaded=(movies=null)=>{
-    store.movie.loaded=movies;
-    //store.movie.collections.push(movies);
+export const setSearched=(movies=null)=>{
+    store.movie.searched=movies;
+}
+
+export const setSearchValue=(value=null)=>{
+    store.movie.searchvalue=value;
 }
 
 export const setLoading=(value)=>{

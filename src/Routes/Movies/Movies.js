@@ -8,8 +8,11 @@ export default function Movies(props){
     parent.insertAdjacentHTML("beforeend",`<div class="${css.movies} activeroute"></div>`);
     const movies=parent.querySelector(`.${css.movies}`);
 
-    const movielistRef=useRef("movielist");
-    Header({parent:movies,movielistRef});
-    MovieList({parent:movies,ref:movielistRef});
+    const refs={
+        movielist:useRef("movielist"),
+        searcher:useRef("searcher"),
+    }
+    Header({parent:movies,refs});
+    MovieList({parent:movies,refs});
     
 }

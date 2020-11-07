@@ -10,11 +10,9 @@ export default function DetailsCard(props){
     parent.insertAdjacentHTML("beforeend",`<div id="${ref}" class="${css.detailscard}"></div>`);
     const detailscard=parent.querySelector(`#${ref}`);
 
-    const refs={
-        trailer:useRef("trailer"),
-    };
+
     detailscard.innerHTML=`
-        <img alt="backdrop" class="${css.backdrop}" src="${movie.backdrop_path}"/>
+        ${movie.backdrop_path?`<img alt="backdrop" class="${css.backdrop}" src="${movie.backdrop_path}"/>`:""}
         <div class="${css.col0}">
             <img class="${css.poster}" alt="" src="${movie.poster_path}"/>
         </div>

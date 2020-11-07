@@ -13,12 +13,15 @@ export default function Trailer(props){
     trailer.innerHTML=`
         <div class="${css.blur}"></div>
         <img id="closebtn" alt="X" src="${closer}"/>
-        <iframe src=""></iframe>
     `;
 
-    const iframe=trailer.querySelector("iframe");
     useTrailer(id,(video)=>{
-        iframe.setAttribute("src",`https://www.youtube.com/embed/${video.key}`);
+        if(video){
+            trailer.insertAdjacentHTML("beforeend",`<iframe src="https://www.youtube.com/embed/${video.key}"></iframe>`);
+        }
+        else{
+            trailer.insertAdjacentHTML("beforeend",`<p>Sorry trailer unavailable</p>`);
+        }
         fadeIn(trailer,"flex",1);
     })
 
