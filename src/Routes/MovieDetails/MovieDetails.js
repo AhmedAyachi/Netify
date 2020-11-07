@@ -3,6 +3,7 @@ import css from "./MovieDetails.module.css";
 import {DetailsCard,CreditsCard} from "components";
 import {Movie} from "estate";
 import * as H from "./Hooks";
+import {loadinganim} from "assets";
 
 
 export default function MovieDetails(props){
@@ -12,8 +13,10 @@ export default function MovieDetails(props){
 
     const {movie}=state;
     moviedetails.innerHTML=`
-        
+        <img id="loading" alt="Loading" style="${styles.loading}" src="${loadinganim}"/>
     `;
+    
+    const loading=moviedetails.querySelector("#loading");
     H.useDetails(movie.id,(details)=>{
         H.useCredits(movie.id,credits=>{
             DetailsCard({
@@ -21,7 +24,13 @@ export default function MovieDetails(props){
                 movie:new Movie(details),
             });
             CreditsCard({parent:moviedetails,credits});
+            loading.style.display="none";
         });
     });
 }
 
+const styles={
+    loading:`
+        display:none;        
+    `,
+};
