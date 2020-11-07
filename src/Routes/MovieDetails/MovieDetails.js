@@ -1,6 +1,6 @@
 import {} from "vanilla";
 import css from "./MovieDetails.module.css";
-import {DetailsCard} from "components";
+import {DetailsCard,CreditsCard} from "components";
 import {Movie} from "estate";
 import * as H from "./Hooks";
 
@@ -15,11 +15,13 @@ export default function MovieDetails(props){
         
     `;
     H.useDetails(movie.id,(details)=>{
-        DetailsCard({
-            parent:moviedetails,
-            movie:new Movie(details),
+        H.useCredits(movie.id,credits=>{
+            DetailsCard({
+                parent:moviedetails,
+                movie:new Movie(details),
+            });
+            CreditsCard({parent:moviedetails,credits});
         });
     });
-    console.log(state);
 }
 

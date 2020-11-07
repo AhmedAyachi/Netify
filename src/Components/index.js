@@ -6,3 +6,4 @@ export {default as InputField} from "./InputField/InputField";
 export {default as MovieList} from "./MovieList/MovieList";
 export {default as MovieCard} from "./MovieList/MovieCard/MovieCard";
 export {default as DetailsCard} from "./DetailsCard/DetailsCard";
+export {default as CreditsCard} from "./CreditsCard/CreditsCard";

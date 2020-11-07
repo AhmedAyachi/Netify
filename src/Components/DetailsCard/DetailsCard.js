@@ -1,7 +1,8 @@
 import {map,useRef} from "vanilla";
 import css from "./DetailsCard.module.css";
-import Trailer from "./Trailer/Trailer";
 import {playbtn} from "assets";
+import {fadeIn} from "afile";
+import Trailer from "./Trailer/Trailer";
 
 
 export default function DetailsCard(props){
@@ -34,7 +35,6 @@ export default function DetailsCard(props){
         </div>
     `;
     const playbutton=detailscard.querySelector(`.${css.trailerplayer}`);
-    const trailer=detailscard.querySelector(`#${refs.trailer}`);
     playbutton.onclick=()=>{
         Trailer({parent:detailscard,id:movie.id});
     }
