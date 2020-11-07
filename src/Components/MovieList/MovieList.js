@@ -1,13 +1,12 @@
 import {useRef} from "vanilla";
 import css from "./MovieList.module.css";
 import MovieCard from "./MovieCard/MovieCard";
-import {moneyhiestcover,mrrobotcover,spidercover,arrow,loadinganim} from "assets";
-import {loadMovies,setMovies} from "actions";
+import {arrow,loadinganim} from "assets";
+import {loadMovies} from "actions";
 
 
-let collection=1;
 export default function MovieList(props){
-    const {parent,ref=useRef("movielist")}=props;
+    const {parent,state={},ref=useRef("movielist")}=props;
     parent.insertAdjacentHTML("beforeend",`<div id="${ref}" class="${css.movielist}"></div>`);
     const movielist=parent.querySelector(`#${ref}`);
 
@@ -19,18 +18,16 @@ export default function MovieList(props){
         </div>
         <div id="row1"></div>
     `;
-
-    setMovieCards(movielist);
     
+    setMovieCards(movielist,store.movie);
     movielist.querySelector("#prevarrow").onclick=()=>{
-        Collection.previous(movielist);
+        Collection.previous(movielist,store.movie);
     }
     movielist.querySelector("#nextarrow").onclick=()=>{
-        Collection.next(movielist);
+        Collection.next(movielist,store.movie);
     }
     
 }
-
 const styles={
     prevarrow:`
         transform:scaleX(-1);
@@ -40,11 +37,26 @@ const styles={
     `,
 };
 
-const setMovieCards=(movielist)=>{
+const Collection=new (function(){
+    this.previous=(movielist,movieState)=>{
+        if(movieState.collection>1){
+            movieState.collection--;
+            setMovieCards(movielist,movieState);
+        }
+    }
+    this.next=(movielist,movieState)=>{
+        if(movieState.collection<250){
+            movieState.collection++;
+            setMovieCards(movielist,movieState);
+        }
+    }
+})();
+
+const setMovieCards=(movielist,movieState)=>{
     const row1=movielist.querySelector("#row1");
     const loading=movielist.querySelector("#loading");
     loading.style.display="block";
-    loadMovies(collection,(movies)=>{
+    loadMovies(movieState.collection,(movies)=>{
         row1.innerHTML="";
         movies.forEach(movie=>{
             MovieCard({parent:row1,movie});
@@ -52,19 +64,3 @@ const setMovieCards=(movielist)=>{
         loading.style.display="none";
     });
 }
-
-
-const Collection=new (function(){
-    this.previous=(movielist)=>{
-        if(collection>1){
-            collection--;
-            setMovieCards(movielist);
-        }
-    }
-    this.next=(movielist)=>{
-        if(collection<250){
-            collection++;
-            setMovieCards(movielist);
-        }
-    }
-})();

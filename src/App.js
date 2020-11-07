@@ -9,12 +9,11 @@ export default function App(props){
     parent.insertAdjacentHTML("beforeend",`<div id="app" class=${css.app}></div>`);
     const app=parent.querySelector(`.${css.app}`);
     app.innerHTML=`
-    
+        
     `;
-    Movies({parent:app});
-    /*Router(app,[
+    Router(app,[
         {component:Home,path:""},
         {component:Movies,path:"#movies"},
-        {component:MovieDetails,path:"#movies/#movie"},
-    ]);*/
+        {component:MovieDetails,path:"#movies#movie"},
+    ]);
 }

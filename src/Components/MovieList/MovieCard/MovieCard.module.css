@@ -45,21 +45,21 @@
     margin:0 2px;
 }
 
-@media(max-width:20cm){
+@media(max-width:25cm){
     .moviecard{
         width:30%;
-        height:20rem;
+        height:15rem;
         margin:2px;
     }
     .details{
-        font-size:2em;
+        font-size:1.5em;
     }
     .details:active{
         opacity:1;
         transition:0.5s;
     }
     .rating img{
-        max-width:2rem;
+        max-width:1.5rem;
     }
 }
 @media(any-hover){

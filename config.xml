@@ -5,8 +5,11 @@
     <author email="aayachi032@gmail.com">Ahmed Ayachi</author>
     <content src="index.html" />
     <access origin="*" />
-    <gap:plugin name="cordova-plugin-statusbar" version="~2.4.3" />
-    <preference name="StatusBarOverlaysWebView" value="true" />
-    <preference name="StatusBarBackgroundColor" value="#000000" />
-    <preference name="StatusBarStyle" value="lightcontent"/>
+    <plugin name="cordova-plugin-statusbar" version="~2.4.3" />
+        <preference name="StatusBarOverlaysWebView" value="true" />
+        <preference name="StatusBarBackgroundColor" value="#000000" />
+        <preference name="StatusBarStyle" value="lightcontent"/>
+    <plugin name="cordova-plugin-dialogs" version="2.0.2"/>
+    <gap:plugin name="cordova-plugin-sms" source="npm" />
+    
 </widget>

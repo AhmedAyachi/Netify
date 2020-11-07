@@ -5,7 +5,7 @@
     color:white;
     min-height:100vh;
     text-align:center;
-    font-size:3rem;
+    font-size:2rem;
 }
 .row0,.row2{
     font-size:1em;
@@ -16,12 +16,12 @@
     align-items:center;
 }
 .applogo{
-    max-width:100%;
+    max-width:25%;
 }
 .inputfield{
     width:80%;
-    height:5rem;
-    margin:1rem;
+    height:5em;
+    margin:1em;
     padding:0 5px;
     color:white;
     background-color:transparent;
@@ -31,8 +31,7 @@
     transition:0.5s;
 }
 .inputfield:focus{
-    background-color:rgba(255, 255, 255, 0.144);
-    
+    background-color:rgba(255, 255, 255, 0.144);  
 }
 .logos{
     display:flex;
@@ -40,7 +39,7 @@
     align-items:center;
 }
 .logo{
-    max-width:3rem;
+    max-width:1.5em;
     margin:5px;
 }
 .signin{
@@ -55,4 +54,22 @@
 }
 .signin:active{
     opacity:0.65;
+}
+
+@media(max-width:25cm){
+    .home{
+        font-size:1rem;
+    }
+    .applogo{
+        max-width:100%;
+    }
+    .logo{
+        max-width:3em;
+    }
+}
+@media(any-hover){
+    .signin:hover{
+        cursor:pointer;
+        filter:brightness(0.65);
+    }
 }

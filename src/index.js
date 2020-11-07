@@ -9,6 +9,6 @@ function onDeviceReady(){
     useStore(Reducer);
     App({
         parent:document.getElementById("root"),
-    }); 
+    });
 };
 document.addEventListener("deviceready",onDeviceReady,false);

@@ -19,8 +19,7 @@ export default function MovieCard(props){
     `;
 
     moviecard.onclick=()=>{
-        //history.pushState("#movies/#movie",{movie});
-        console.log(store);
+        history.pushState("#movies#movie",{movie});
     }
     
 }

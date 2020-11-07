@@ -1,3 +1,20 @@
 .moviedetails{
+    font-size:1rem;
+    font-family:fredokaone;
+}
+.row0{
+    border-bottom:1px solid white;
+}
+.row1{
+    border-top:1px solid white;
+}
+.loadinganim{
+    display:block;
+    margin:0 auto;
+    max-width:20em;
+}
+.casttext{
     color:white;
+    font-size:3em;
+    margin:5px;
 }
