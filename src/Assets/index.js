@@ -23,6 +23,7 @@ export {default as deathnotecover} from "./Images/DeathNote_cover.png";
 export {default as piratescover} from "./Images/Piratesofthecaribbeandeadmentellnotales_cover.png";
 export {default as teenwolfcover} from "./Images/TeenWolf_cover.png";
 export {default as playbtn1} from "./Images/PlayButton_1.png";
+export {default as closer} from "./Images/Closer_0.png";
 
 //Gifs:
 export {default as netflixentry} from "./Gifs/Netflix_0.gif";

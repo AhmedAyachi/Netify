@@ -1,7 +1,7 @@
 import {map,useRef} from "vanilla";
 import css from "./DetailsCard.module.css";
+import Trailer from "./Trailer/Trailer";
 import {playbtn} from "assets";
-import {fadeIn} from "afile";
 
 
 export default function DetailsCard(props){
@@ -27,16 +27,16 @@ export default function DetailsCard(props){
                 alt="see trailer"
                 src="${playbtn}"
             />
+            ${map(details(movie),([detail,type])=>`
+                <span class="${css[type]}">${detail}</span>
+            `)}
+            <div class="${css.overview}">${movie.overview}</div>
         </div>
-        ${map(details(movie),([detail,type])=>`
-            <span class="${css[type]}">${detail}</span>
-        `)}
-        <div class="${css.overview}">${movie.overview}</div>
     `;
     const playbutton=detailscard.querySelector(`.${css.trailerplayer}`);
     const trailer=detailscard.querySelector(`#${refs.trailer}`);
     playbutton.onclick=()=>{
-        fadeIn(trailer,"flex");
+        Trailer({parent:detailscard,id:movie.id});
     }
 }
 

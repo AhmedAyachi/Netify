@@ -25,6 +25,16 @@ export default function Searcher(props){
                 MovieCard({parent:movielistRow1,movie});
             });
         }
+        else{
+            movielistRow1.innerHTML=`<p style="${styles.noresults}">No results</p>`;
+        }
     }
 
+}
+
+const styles={
+    noresults:`
+        color:#cf0909;
+        font-weight:bold;
+    `,
 }
