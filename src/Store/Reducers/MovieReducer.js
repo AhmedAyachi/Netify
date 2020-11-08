@@ -1,10 +1,9 @@
 
 const MovieReducer={
     searched:[],
-    searchvalue:null,
+    searchvalues:[],
     movies:[],
-    collections:[],
+    tvshows:[],
     collection:1,
-    loading:false,
 }
 export default MovieReducer;

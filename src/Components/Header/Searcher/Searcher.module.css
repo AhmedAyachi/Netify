@@ -25,6 +25,10 @@
     transition:0.5s;
 }
 
+.searcher datalist{
+    opacity:0.5;
+}
+
 @media(any-hover){
     .searcher>img:hover{
         filter:brightness(0.65);

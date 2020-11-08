@@ -1,2 +1,5 @@
 //Movie Actions :
-export {setMovieState,setMovies,loadMovies,setSearchValue,setSearched} from "./MovieActions";
+export {setLoading} from "../index";
+export {
+    setMovieState,setMovies,loadMovies,setSearchValues,addSearchValue,setSearched,loadMoviesByTitle,
+} from "./MovieActions";

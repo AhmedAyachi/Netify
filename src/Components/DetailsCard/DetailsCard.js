@@ -1,7 +1,6 @@
 import {map,useRef} from "vanilla";
 import css from "./DetailsCard.module.css";
 import {playbtn} from "assets";
-import {fadeIn} from "afile";
 import Trailer from "./Trailer/Trailer";
 
 
