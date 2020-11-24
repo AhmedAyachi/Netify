@@ -1,16 +1,16 @@
 import {useRef} from "vanilla";
-import css from "./MovieList.module.css";
-import MovieCard from "./MovieCard/MovieCard";
+import css from "./ShowList.module.css";
+import ShowCard from "./ShowCard/ShowCard";
 import {arrow,loadinganim} from "assets";
 import {loadMovies} from "actions";
 
 
-export default function MovieList(props){
-    const {parent,refs,ref=refs.movielist||useRef("movielist")}=props;
-    parent.insertAdjacentHTML("beforeend",`<div id="${ref}" class="${css.movielist}"></div>`);
-    const movielist=parent.querySelector(`#${ref}`);
+export default function ShowList(props){
+    const {parent,refs,ref=refs.showlist||useRef("showlist")}=props;
+    parent.insertAdjacentHTML("beforeend",`<div id="${ref}" class="${css.showlist}"></div>`);
+    const showlist=parent.querySelector(`#${ref}`);
 
-    movielist.innerHTML=`
+    showlist.innerHTML=`
         <div class="${css.row0}">
            <img class="${css.arrows}" id="prevarrow" alt="Previous" title="Previous" style="${styles.prevarrow}" src="${arrow}"/>
            <img id="loading" alt="Loading" style="${styles.loading}" src="${loadinganim}"/>
@@ -25,23 +25,23 @@ export default function MovieList(props){
         const searched=movieState.searched;
         if(searched.length){
             searched.forEach(movie=>{
-                MovieCard({parent:row1,movie});
+                ShowCard({parent:row1,movie});
             });
         };
     }
     else{
-        setMovieCards(movielist,store.movie);
+        setMovieCards(showlist,store.movie);
     }
 
-    movielist.querySelector("#prevarrow").onclick=()=>{
-        Collection.previous(movielist,store.movie);
+    showlist.querySelector("#prevarrow").onclick=()=>{
+        Collection.previous(showlist,store.movie);
         const searcherInput=document.querySelector(`#${refs.searcher} input`);
         if(searcherInput&&searcherInput.value){
             searcherInput.value="";
         }
     }
-    movielist.querySelector("#nextarrow").onclick=()=>{
-        Collection.next(movielist,store.movie);
+    showlist.querySelector("#nextarrow").onclick=()=>{
+        Collection.next(showlist,store.movie);
         const searcherInput=document.querySelector(`#${refs.searcher} input`);
         if(searcherInput&&searcherInput.value){
             searcherInput.value="";
@@ -59,29 +59,30 @@ const styles={
 };
 
 const Collection=new (function(){
-    this.previous=(movielist,movieState)=>{
+    this.previous=(showlist,movieState)=>{
         if(movieState.collection>1){
             movieState.collection--;
-            setMovieCards(movielist,movieState);
+            setMovieCards(showlist,movieState);
         }
     }
-    this.next=(movielist,movieState)=>{
+    this.next=(showlist,movieState)=>{
         if(movieState.collection<250){
             movieState.collection++;
-            setMovieCards(movielist,movieState);
+            setMovieCards(showlist,movieState);
         }
     }
 })();
 
-const setMovieCards=(movielist,movieState)=>{
-    const row1=movielist.querySelector("#row1");
-    const loading=movielist.querySelector("#loading");
+const setMovieCards=(showlist,movieState)=>{
+    const row1=showlist.querySelector("#row1");
+    const loading=showlist.querySelector("#loading");
     loading.style.display="block";
     loadMovies(movieState.collection,(movies)=>{
         row1.innerHTML="";
         movies.forEach(movie=>{
-            MovieCard({parent:row1,movie});
+            ShowCard({parent:row1,movie});
         });
         loading.style.display="none";
+        console.log(movies);
     });
 }

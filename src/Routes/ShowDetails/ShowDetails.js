@@ -1,29 +1,29 @@
 import {} from "vanilla";
-import css from "./MovieDetails.module.css";
+import css from "./ShowDetails.module.css";
 import {DetailsCard,CreditsCard} from "components";
 import {Movie} from "estate";
 import * as H from "./Hooks";
 import {loadinganim} from "assets";
 
 
-export default function MovieDetails(props){
+export default function ShowDetails(props){
     const {parent,state}=props;
-    parent.insertAdjacentHTML("beforeend",`<div class="${css.moviedetails}"></div>`);
-    const moviedetails=parent.querySelector(`.${css.moviedetails}`);
+    parent.insertAdjacentHTML("beforeend",`<div class="${css.showdetails}"></div>`);
+    const showdetails=parent.querySelector(`.${css.showdetails}`);
 
     const {movie}=state;
-    moviedetails.innerHTML=`
+    showdetails.innerHTML=`
         <img id="loading" alt="Loading" style="${styles.loading}" src="${loadinganim}"/>
     `;
     
-    const loading=moviedetails.querySelector("#loading");
+    const loading=showdetails.querySelector("#loading");
     H.useDetails(movie.id,(details)=>{
         H.useCredits(movie.id,credits=>{
             DetailsCard({
-                parent:moviedetails,
+                parent:showdetails,
                 movie:new Movie(details),
             });
-            CreditsCard({parent:moviedetails,credits});
+            CreditsCard({parent:showdetails,credits});
             loading.style.display="none";
         });
     });

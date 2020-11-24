@@ -1,5 +1,5 @@
 
 
 export {default as Home} from "./Home/Home";
-export {default as Movies} from "./Movies/Movies";
-export {default as MovieDetails} from "./MovieDetails/MovieDetails";
+export {default as Shows} from "./Shows/Shows";
+export {default as ShowDetails} from "./ShowDetails/ShowDetails";

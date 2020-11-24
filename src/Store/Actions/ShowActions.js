@@ -34,12 +34,13 @@ export const loadMovies=(collection=1,then)=>{
     const end=start-2;
     for(let i=start;i>end;i--){
         fetchs.push(fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${apikey}&language=en&page=${i}`));
+        fetchs.push(fetch(`https://api.themoviedb.org/3/discover/tv?api_key=${apikey}&language=en&page=${i}`));
     }
     Promise.all(fetchs).
     then(responses=>responses.map(response=>response.json())).
     then(async function(promises){
         const movies=[];
-        for(let i=0;i<2;i++){
+        for(let i=0;i<fetchs.length;i++){
             const data=await promises[i];
             movies.push(...data.results);
         }
@@ -68,31 +69,3 @@ export const loadMoviesByTitle=(title="",then)=>{
         }
     });
 }
-
-export const loadTvShows=(collection=1,then)=>{
-    setLoading(true);
-    const fetchs=[];
-    const start=collection*2;
-    const end=start-2;
-    for(let i=start;i>end;i--){
-        fetchs.push(fetch(`https://api.themoviedb.org/3/discover/tvshow?api_key=${apikey}&language=en&page=${i}`));
-    }
-    Promise.all(fetchs).
-    then(responses=>responses.map(response=>response.json())).
-    then(async function(promises){
-        const movies=[];
-        for(let i=0;i<2;i++){
-            const data=await promises[i];
-            movies.push(...data.results);
-        }
-        return movies.map(movie=>new Movie(movie));
-    }).
-    then(data=>{
-        setMovies(data);
-        setLoading(false);
-        if(then){
-            then(data);
-        }
-    }).
-    catch(error=>console.error(error));
-};

@@ -1,15 +1,15 @@
 import {useRef} from "vanilla";
-import css from "./MovieCard.module.css";
+import css from "./ShowCard.module.css";
 import {playbtn1,fullstar} from "assets";
 
 
-export default function MovieCard(props){
-    const {parent,ref=useRef("moviecard"),movie}=props;
-    parent.insertAdjacentHTML("beforeend",`<div id="${ref}" class="${css.moviecard}"></div>`);
-    const moviecard=parent.querySelector(`#${ref}`);
+export default function ShowCard(props){
+    const {parent,ref=useRef("showcard"),movie}=props;
+    parent.insertAdjacentHTML("beforeend",`<div id="${ref}" class="${css.showcard}"></div>`);
+    const showcard=parent.querySelector(`#${ref}`);
 
     const {title,poster_path,vote_average,id}=movie;
-    moviecard.innerHTML=`
+    showcard.innerHTML=`
         <div class="${css.details}">
             <div class="${css.title}">${title}</div>
             <div class="${css.rating}">${getRateStars(vote_average/2)}</div>
@@ -18,7 +18,7 @@ export default function MovieCard(props){
         <img alt="" src="${poster_path}"/>
     `;
 
-    moviecard.onclick=()=>{
+    showcard.onclick=()=>{
         history.pushState("#movies#movie",{movie});
     }
     

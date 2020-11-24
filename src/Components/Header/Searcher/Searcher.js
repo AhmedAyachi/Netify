@@ -26,22 +26,22 @@ export default function Searcher(props){
         `;
     }
     input.onchange=()=>{
-        const movielist=document.getElementById(refs.movielist);
-        const movielistRow1=movielist.querySelector("#row1");
+        const showlist=document.getElementById(refs.showlist);
+        const showlistRow1=showlist.querySelector("#row1");
         const value=input.value.toLowerCase().trim();
-        movielistRow1.innerHTML="";
+        showlistRow1.innerHTML="";
         addSearchValue(value);
         if(value){
-            const loading=movielist.querySelector("#loading");
+            const loading=showlist.querySelector("#loading");
             loading.style.display="block";
             loadMoviesByTitle(value,(movies)=>{
                 if(movies.length){
                     movies.forEach(movie=>{
-                        MovieCard({parent:movielistRow1,movie});
+                        MovieCard({parent:showlistRow1,movie});
                     });
                 }
                 else{
-                    movielistRow1.innerHTML=`<p style="${styles.noresults}">No results</p>`;
+                    showlistRow1.innerHTML=`<p style="${styles.noresults}">No results</p>`;
                 }
                 loading.style.display="none";
                 setSearched(movies);
@@ -51,7 +51,7 @@ export default function Searcher(props){
             const movies=store.movie.movies;
             if(movies&&movies.length){
                 movies.forEach(movie=>{
-                    MovieCard({parent:movielistRow1,movie});
+                    MovieCard({parent:showlistRow1,movie});
                 });
             }
         }

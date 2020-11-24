@@ -5,41 +5,41 @@ import Trailer from "./Trailer/Trailer";
 
 
 export default function DetailsCard(props){
-    const {parent,movie,ref=useRef("detailscard")}=props;
+    const {parent,show,ref=useRef("detailscard")}=props;
     parent.insertAdjacentHTML("beforeend",`<div id="${ref}" class="${css.detailscard}"></div>`);
     const detailscard=parent.querySelector(`#${ref}`);
 
 
     detailscard.innerHTML=`
-        ${movie.backdrop_path?`<img alt="backdrop" class="${css.backdrop}" src="${movie.backdrop_path}"/>`:""}
+        ${show.backdrop_path?`<img alt="backdrop" class="${css.backdrop}" src="${show.backdrop_path}"/>`:""}
         <div class="${css.col0}">
-            <img class="${css.poster}" alt="" src="${movie.poster_path}"/>
+            <img class="${css.poster}" alt="" src="${show.poster_path}"/>
         </div>
         <div class="${css.col1}">
             <span class="${css.title}">
-                ${movie.title}
-                <span style="white-space:nowrap">${movie.release_date}</span>
+                ${show.title}
+                <span style="white-space:nowrap">${show.release_date}</span>
             </span>
             <img
                 class="${css.trailerplayer}"
                 alt="see trailer"
                 src="${playbtn}"
             />
-            ${map(details(movie),([detail,type])=>`
+            ${map(details(show),([detail,type])=>`
                 <span class="${css[type]}">${detail}</span>
             `)}
-            <div class="${css.overview}">${movie.overview}</div>
+            <div class="${css.overview}">${show.overview}</div>
         </div>
     `;
     const playbutton=detailscard.querySelector(`.${css.trailerplayer}`);
     playbutton.onclick=()=>{
-        Trailer({parent:detailscard,id:movie.id});
+        Trailer({parent:detailscard,id:show.id});
     }
 }
 
-const details=movie=>[
-    [movie.genres.map(genre=>genre.name+" "),"genders"],
-    [`${movie.title!==movie.original_title?`${movie.original_title} .`:""} ${getDuration(movie.runtime)}`,"duration"],
+const details=show=>[
+    [show.genres.map(genre=>genre.name+" "),"genders"],
+    [`${show.title!==show.original_title?`${show.original_title} .`:""} ${getDuration(show.runtime)}`,"duration"],
     ["Overview","overviewheader"],
 ]
 const getDuration=runtime=>{
