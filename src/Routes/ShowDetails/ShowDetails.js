@@ -17,8 +17,8 @@ export default function ShowDetails(props){
     `;
     
     const loading=showdetails.querySelector("#loading");
-    H.useDetails(show.id,(details)=>{
-        H.useCredits(show.id,credits=>{
+    H.useDetails(show,(details)=>{
+        H.useCredits(show,credits=>{
             DetailsCard({
                 parent:showdetails,
                 show:new Show(details),

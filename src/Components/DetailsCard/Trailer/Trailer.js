@@ -7,7 +7,7 @@ import {apikey} from "estate";
 
 
 export default function Trailer(props){
-    const {parent,id,ref=useRef("trailer")}=props;
+    const {parent,id,type,ref=useRef("trailer")}=props;
     parent.insertAdjacentHTML("beforeend",`<div id="${ref}" class="${css.trailer}" style="${styles.trailer}"></div>`);
     const trailer=parent.querySelector(`#${ref}`);
 
@@ -19,7 +19,7 @@ export default function Trailer(props){
 
     const loading=trailer.querySelector("#loading");
     loading.style.display="block";
-    useTrailer(id,(video)=>{
+    useTrailer({id,type},(video)=>{
         loading.remove();
         if(video){
             trailer.insertAdjacentHTML("beforeend",`<iframe src="https://www.youtube.com/embed/${video.key}"></iframe>`);
@@ -42,9 +42,9 @@ const styles={
     `,
 }
 
-const useTrailer=(id,then)=>{
+const useTrailer=({id,type},then)=>{
     setLoading();
-    fetch(`https://api.themoviedb.org/3/movie/${id}/videos?api_key=${apikey}&language=en-US`).
+    fetch(`https://api.themoviedb.org/3/${type}/${id}/videos?api_key=${apikey}&language=en-US`).
     then(response=>response.json()).
     then(data=>data.results).
     then(videos=>{

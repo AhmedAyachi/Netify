@@ -33,7 +33,7 @@ export default function DetailsCard(props){
     `;
     const playbutton=detailscard.querySelector(`.${css.trailerplayer}`);
     playbutton.onclick=()=>{
-        Trailer({parent:detailscard,id:show.id});
+        Trailer({parent:detailscard,id:show.id,type:show.type});
     }
 }
 

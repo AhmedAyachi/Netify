@@ -25,13 +25,7 @@ export const addSearchValue=(value)=>{
 
 export const loadShows=(collection=1,then)=>{
     setLoading(true);
-    const fetchs=[];
-    const start=collection*2;
-    const end=start-2;
-    for(let i=start;i>end;i--){
-        fetchs.push(fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${apikey}&language=en&page=${i}`));
-        fetchs.push(fetch(`https://api.themoviedb.org/3/discover/tv?api_key=${apikey}&language=en&page=${i}`));
-    }
+    const fetchs=["movie","tv"].map(type=>fetch(`https://api.themoviedb.org/3/discover/${type}?api_key=${apikey}&language=en&page=${collection}`));
     Promise.all(fetchs).
     then(responses=>responses.map(response=>response.json())).
     then(async function(promises){
