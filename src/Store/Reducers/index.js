@@ -1,2 +1,2 @@
 
-export {default as MovieReducer} from "./MovieReducer";
+export {default as ShowReducer} from "./ShowReducer";

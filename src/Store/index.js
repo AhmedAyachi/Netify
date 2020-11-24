@@ -1,8 +1,8 @@
-import {MovieReducer} from "./Reducers";
+import {ShowReducer} from "./Reducers";
 
 
 const Reducer={
-    movie:MovieReducer,
+    show:ShowReducer,
     loading:false,
 }
 

@@ -2,8 +2,8 @@ import {map,useRef} from "vanilla";
 import css from "./Searcher.module.css";
 import {filtericon} from "assets";
 import {MovieCard} from "components";
-import {Movie} from "estate";
-import {addSearchValue,setSearched,loadMoviesByTitle} from "actions";
+import {Show} from "estate";
+import {addSearchValue,setSearched,loadShowsByTitle} from "actions";
 
 
 export default function Searcher(props){
@@ -34,7 +34,7 @@ export default function Searcher(props){
         if(value){
             const loading=showlist.querySelector("#loading");
             loading.style.display="block";
-            loadMoviesByTitle(value,(movies)=>{
+            loadShowsByTitle(value,(movies)=>{
                 if(movies.length){
                     movies.forEach(movie=>{
                         MovieCard({parent:showlistRow1,movie});

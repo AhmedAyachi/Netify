@@ -1,5 +1,5 @@
 //Movie Actions :
 export {setLoading} from "../index";
 export {
-    setMovieState,setMovies,loadMovies,setSearchValues,addSearchValue,setSearched,loadMoviesByTitle,
+    setShowState,setShows,loadShows,setSearchValues,addSearchValue,setSearched,loadShowsByTitle,
 } from "./ShowActions";

@@ -1,7 +1,7 @@
 import {Router} from "../Vanilla";
 import css from "./App.module.css";
 import {EntryAnimation} from "components";
-import {Home,Movies,MovieDetails} from "routes";
+import {Home,Shows,ShowDetails} from "routes";
 
 
 export default function App(props){
@@ -13,7 +13,7 @@ export default function App(props){
     `;
     Router(app,[
         {component:Home,path:""},
-        {component:Movies,path:"#movies"},
-        {component:MovieDetails,path:"#movies#movie"},
+        {component:Shows,path:"#shows"},
+        {component:ShowDetails,path:"#shows#show"},
     ]);
 }

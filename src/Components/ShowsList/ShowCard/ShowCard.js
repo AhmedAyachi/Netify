@@ -4,11 +4,11 @@ import {playbtn1,fullstar} from "assets";
 
 
 export default function ShowCard(props){
-    const {parent,ref=useRef("showcard"),movie}=props;
+    const {parent,ref=useRef("showcard"),show}=props;
     parent.insertAdjacentHTML("beforeend",`<div id="${ref}" class="${css.showcard}"></div>`);
     const showcard=parent.querySelector(`#${ref}`);
 
-    const {title,poster_path,vote_average,id}=movie;
+    const {title,poster_path,vote_average,id}=show;
     showcard.innerHTML=`
         <div class="${css.details}">
             <div class="${css.title}">${title}</div>
@@ -19,7 +19,7 @@ export default function ShowCard(props){
     `;
 
     showcard.onclick=()=>{
-        history.pushState("#movies#movie",{movie});
+        history.pushState("#shows#show",{show});
     }
     
 }
