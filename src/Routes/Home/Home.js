@@ -23,6 +23,7 @@ export default function Home(props){
             </div>
         <div>
     `;
+
     ["email","password"].forEach(prop=>{
         InputField({
             parent:home.querySelector(`.${css.row1}`),
@@ -31,8 +32,8 @@ export default function Home(props){
             type:prop,
         });
     });
-        
-
+       
+    
     home.querySelector(`.${css.signin}`).onclick=()=>{
         history.pushState("#movies");
     }

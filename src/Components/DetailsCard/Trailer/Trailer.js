@@ -1,7 +1,8 @@
 import {useRef} from "vanilla";
 import css from "./Trailer.module.css";
 import {fadeIn} from "afile";
-import {closer} from "assets";
+import {closer,loadinganim} from "assets";
+import {setLoading} from "actions";
 import {apikey} from "estate";
 
 
@@ -13,9 +14,13 @@ export default function Trailer(props){
     trailer.innerHTML=`
         <div class="${css.blur}"></div>
         <img id="closebtn" alt="X" src="${closer}"/>
+        <img id="loading" class="${css.loading}" alt="loading" src="${loadinganim}" style="${styles.loading}"/>
     `;
 
+    const loading=trailer.querySelector("#loading");
+    loading.style.display="block";
     useTrailer(id,(video)=>{
+        loading.remove();
         if(video){
             trailer.insertAdjacentHTML("beforeend",`<iframe src="https://www.youtube.com/embed/${video.key}"></iframe>`);
         }
@@ -26,21 +31,24 @@ export default function Trailer(props){
     })
 
     trailer.querySelector("#closebtn").onclick=()=>{trailer.remove()};
-
-     
 }
 
 const styles={
     trailer:`
         display:none;
     `,
+    loading:`
+        display:none;
+    `,
 }
 
 const useTrailer=(id,then)=>{
+    setLoading();
     fetch(`https://api.themoviedb.org/3/movie/${id}/videos?api_key=${apikey}&language=en-US`).
     then(response=>response.json()).
     then(data=>data.results).
     then(videos=>{
+        setLoading(false);
         const video=videos.find(video=>video.type==="Trailer");
         then(video);
     });

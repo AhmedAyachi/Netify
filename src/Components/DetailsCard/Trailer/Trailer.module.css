@@ -35,6 +35,10 @@
     filter:drop-shadow(0 0 3px #cf0909);
 }
 
+.loading{
+    max-width:20%;
+}
+
 @media(max-width:25cm){
     .trailer{
         width:100%;

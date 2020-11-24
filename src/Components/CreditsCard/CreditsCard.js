@@ -14,5 +14,5 @@ export default function CreditsCard(props){
     casts.forEach(cast=>{
         CastCard({parent:creditscard,cast});
     });
-    console.log(crews);
+    //console.log(crews);
 }

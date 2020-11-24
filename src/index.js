@@ -7,6 +7,7 @@ import Reducer from "./Store";
 function onDeviceReady(){
     StatusBar.styleBlackOpaque();
     useStore(Reducer);
+    
     App({
         parent:document.getElementById("root"),
     });

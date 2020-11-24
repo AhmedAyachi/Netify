@@ -1,15 +1,14 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="com.phonegap.helloworld" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
     <name>Netlix</name>
-    <description></description>
+    <description />
     <author email="aayachi032@gmail.com">Ahmed Ayachi</author>
     <content src="index.html" />
     <access origin="*" />
     <plugin name="cordova-plugin-statusbar" version="~2.4.3" />
-        <preference name="StatusBarOverlaysWebView" value="true" />
-        <preference name="StatusBarBackgroundColor" value="#000000" />
-        <preference name="StatusBarStyle" value="lightcontent"/>
-    <plugin name="cordova-plugin-dialogs" version="2.0.2"/>
+    <preference name="StatusBarOverlaysWebView" value="true" />
+    <preference name="StatusBarBackgroundColor" value="#000000" />
+    <preference name="StatusBarStyle" value="lightcontent" />
     <gap:plugin name="cordova-plugin-sms" source="npm" />
-    
+    <gap:plugin name="cordova-plugin-email-composer" source="npm" version="1.2.7" />
 </widget>

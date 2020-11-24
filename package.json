@@ -27,8 +27,8 @@
   },
   "cordova": {
     "plugins": {
-      "cordova-plugin-dialogs": {},
-      "cordova-plugin-statusbar": {}
+      "cordova-plugin-statusbar": {},
+      "cordova-plugin-dialogs": {}
     },
     "platforms": [
       "android",
