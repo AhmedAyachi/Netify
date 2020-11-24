@@ -35,7 +35,7 @@ export default function Home(props){
        
     
     home.querySelector(`.${css.signin}`).onclick=()=>{
-        history.pushState("#movies");
+        history.pushState("#shows");
     }
     
 }

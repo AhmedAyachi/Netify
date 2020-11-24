@@ -1,6 +1,6 @@
 import {useRef} from "vanilla";
 import css from "./Shows.module.css";
-import {Header,MovieList} from "components";
+import {Header,ShowsList} from "components";
 
 
 export default function Shows(props){
@@ -9,10 +9,10 @@ export default function Shows(props){
     const shows=parent.querySelector(`.${css.shows}`);
 
     const refs={
-        showlist:useRef("showlist"),
+        showslist:useRef("showlist"),
         searcher:useRef("searcher"),
     }
     Header({parent:shows,refs});
-    MovieList({parent:shows,refs});
+    ShowsList({parent:shows,refs});
     
 }

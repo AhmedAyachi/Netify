@@ -7,7 +7,7 @@
     margin:5px;
     font-size:0.85rem;
 }
-.moviecard>img{
+.showcard>img{
     width:100%;
     height:100%;
 }
@@ -46,7 +46,7 @@
 }
 
 @media(max-width:25cm){
-    .moviecard{
+    .showcard{
         width:30%;
         height:15rem;
         margin:2px;
@@ -60,7 +60,7 @@
     }
 }
 @media(any-hover){
-    .moviecard:hover{
+    .showcard:hover{
         cursor:pointer;
     }
     .details:hover{

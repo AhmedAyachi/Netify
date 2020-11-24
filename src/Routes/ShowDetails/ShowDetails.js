@@ -1,7 +1,7 @@
 import {} from "vanilla";
 import css from "./ShowDetails.module.css";
 import {DetailsCard,CreditsCard} from "components";
-import {Movie} from "estate";
+import {Show} from "estate";
 import * as H from "./Hooks";
 import {loadinganim} from "assets";
 
@@ -11,17 +11,17 @@ export default function ShowDetails(props){
     parent.insertAdjacentHTML("beforeend",`<div class="${css.showdetails}"></div>`);
     const showdetails=parent.querySelector(`.${css.showdetails}`);
 
-    const {movie}=state;
+    const {show}=state;
     showdetails.innerHTML=`
         <img id="loading" alt="Loading" style="${styles.loading}" src="${loadinganim}"/>
     `;
     
     const loading=showdetails.querySelector("#loading");
-    H.useDetails(movie.id,(details)=>{
-        H.useCredits(movie.id,credits=>{
+    H.useDetails(show.id,(details)=>{
+        H.useCredits(show.id,credits=>{
             DetailsCard({
                 parent:showdetails,
-                movie:new Movie(details),
+                show:new Show(details),
             });
             CreditsCard({parent:showdetails,credits});
             loading.style.display="none";
