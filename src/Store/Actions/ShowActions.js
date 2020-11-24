@@ -18,8 +18,9 @@ export const setSearchValues=(values=[])=>{
 }
 
 export const addSearchValue=(value)=>{
-    if(!store.show.searchvalues.includes(value)){
-        store.show.searchvalues.unshift(value);
+    const showState=store.show;
+    if(!showState.searchvalues.includes(value)){
+        showState.searchvalues.unshift(value);
     }
 }
 
@@ -34,13 +35,14 @@ export const loadShows=(collection=1,then)=>{
             const data=await promises[i];
             shows.push(...data.results);
         }
-        return shows.map(show=>new Show(show));
+        return shows;
     }).
     then(data=>{
-        setShows(data);
+        const shows=data.map(show=>new Show(show));
+        setShows(shows);
         setLoading(false);
         if(then){
-            then(data);
+            then(shows);
         }
     }).
     catch(error=>console.error(error));
@@ -49,10 +51,19 @@ export const loadShows=(collection=1,then)=>{
 export const loadShowsByTitle=(title="",then)=>{
     setLoading(true);
     title=title.trim().replace(/" "/g,"+");
-    fetch(`https://api.themoviedb.org/3/search/movie?api_key=${apikey}&query=${title}`).
-    then(response=>response.json()).
+    const fetchs=["movie","tv"].map(type=>fetch(`https://api.themoviedb.org/3/search/${type}?api_key=${apikey}&query=${title}`))
+    Promise.all(fetchs).
+    then(responses=>responses.map(response=>response.json())).
+    then(async function(promises){
+        const shows=[];
+        for(let i=0;i<fetchs.length;i++){
+            const data=await promises[i];
+            shows.push(...data.results);
+        }
+        return shows;
+    }).
     then(data=>{
-        const shows=data.results.map(show=>new Show(show));
+        const shows=data.map(show=>new Show(show));
         setLoading(false);
         if(then){
             then(shows);

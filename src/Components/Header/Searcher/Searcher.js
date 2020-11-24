@@ -1,7 +1,7 @@
 import {map,useRef} from "vanilla";
 import css from "./Searcher.module.css";
 import {filtericon} from "assets";
-import {MovieCard} from "components";
+import {ShowCard} from "components";
 import {Show} from "estate";
 import {addSearchValue,setSearched,loadShowsByTitle} from "actions";
 
@@ -20,38 +20,38 @@ export default function Searcher(props){
     const datalist=searcher.querySelector("datalist");
  
     input.onkeyup=()=>{
-        const values=store.movie.searchvalues;
+        const values=store.show.searchvalues;
         datalist.innerHTML=`
             ${map(values,value=>`<option value="${value}"/>`)}
         `;
     }
     input.onchange=()=>{
-        const showlist=document.getElementById(refs.showlist);
-        const showlistRow1=showlist.querySelector("#row1");
+        const showslist=document.getElementById(refs.showslist);
+        const showslistRow1=showslist.querySelector("#row1");
         const value=input.value.toLowerCase().trim();
-        showlistRow1.innerHTML="";
-        addSearchValue(value);
+        showslistRow1.innerHTML="";
         if(value){
-            const loading=showlist.querySelector("#loading");
+            addSearchValue(value);
+            const loading=showslist.querySelector("#loading");
             loading.style.display="block";
-            loadShowsByTitle(value,(movies)=>{
-                if(movies.length){
-                    movies.forEach(movie=>{
-                        MovieCard({parent:showlistRow1,movie});
+            loadShowsByTitle(value,(shows)=>{
+                if(shows.length){
+                    shows.forEach(show=>{
+                        ShowCard({parent:showslistRow1,show});
                     });
                 }
                 else{
-                    showlistRow1.innerHTML=`<p style="${styles.noresults}">No results</p>`;
+                    showslistRow1.innerHTML=`<p style="${styles.noresults}">No results</p>`;
                 }
                 loading.style.display="none";
-                setSearched(movies);
+                setSearched(shows);
             })
         }
         else{
-            const movies=store.movie.movies;
-            if(movies&&movies.length){
-                movies.forEach(movie=>{
-                    MovieCard({parent:showlistRow1,movie});
+            const shows=store.show.shows;
+            if(shows&&shows.length){
+                shows.forEach(show=>{
+                    ShowCard({parent:showslistRow1,show});
                 });
             }
         }
