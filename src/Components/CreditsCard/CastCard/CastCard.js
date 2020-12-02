@@ -9,8 +9,12 @@ export default function CastCard(props){
 
     const {name,character,profile_path}=cast;
     catscard.innerHTML=`
-        <img alt="" class="${css.photo}" src="https://image.tmdb.org/t/p/w138_and_h175_face/${profile_path}"/>
-        <p class="${css.name}">${name}</p>
-        <p class="${css.character}" title="${character}">${character||"<br/>"}</p>
+        <div class="${css.col0}">
+            <img alt="" class="${css.photo}" src="https://image.tmdb.org/t/p/w138_and_h175_face/${profile_path}"/>
+        </div>
+        <div class="${css.col1}">
+            <p class="${css.name}">${name}</p>
+            <p class="${css.character}" title="${character}">${character}</p>
+        </div>
     `;
 }
