@@ -19,7 +19,7 @@ export default function DetailsCard(props){
         <div class="${css.col1}">
             <span class="${css.title}">
                 ${show.title}
-                <span style="white-space:nowrap">${show.release_date}</span>
+                <span style="white-space:nowrap">(${show.release_date})</span>
             </span>
             <img
                 class="${css.trailerplayer}"
