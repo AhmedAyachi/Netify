@@ -9,7 +9,7 @@ export default function ShowCard(props){
     parent.insertAdjacentHTML("beforeend",`<div id="${ref}" class="${css.showcard}"></div>`);
     const showcard=parent.querySelector(`#${ref}`);
 
-    const {title,poster_path,vote_average,id}=show;
+    const {title,poster_path,vote_average}=show;
     showcard.innerHTML=`
         <div class="${css.details}">
             <div class="${css.title}">${title}</div>

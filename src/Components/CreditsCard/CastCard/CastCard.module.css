@@ -36,9 +36,9 @@
     text-overflow:ellipsis;
 }
 .name{
-    font-size:0.8em;
+    font-size:80%;
     font-weight:bold;
 }
 .character{
-    font-size:0.6em;
+    font-size:0.55em;
 }
