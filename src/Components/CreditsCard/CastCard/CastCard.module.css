@@ -1,6 +1,7 @@
 .castcard{
     display:inline-block;
     width:10rem;
+    height:15rem;
     overflow:hidden;
     font-size:1rem;
     font-family:fredokaone;
@@ -9,8 +10,9 @@
     margin:10px 3px;
 }
 .col0{
-    max-width:100%;
-    height:100%;
+    display:block;
+    width:100%;
+    height:80%;
 }
 .photo{
     width:100%;
@@ -19,15 +21,13 @@
     border-bottom-right-radius:0;
     border-bottom-left-radius:0;
 }
-.castcard p{
-    padding:3px;
-    color:black;
-}
 .col1{
     display:flex;
     flex-direction:column;
     justify-content:center;
     align-items:center;
+    height:20%;
+    color:black;
 }
 .name{
     font-size:1em;
