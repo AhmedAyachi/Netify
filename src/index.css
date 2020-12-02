@@ -11,6 +11,7 @@
 }
 body{
     overflow-x:hidden;
+    background-color:black;
 }
 
 @media(max-width:25cm){
@@ -18,7 +19,14 @@ body{
         font-size:3vw;
     }
 }
-
+@font-face{
+    font-family:"fredokaone";
+    src:url("./Assets/Fonts/FredokaOne-Regular.ttf") format("opentype");
+}
+@font-face{
+    font-family:"montserrat";
+    src:url("./Assets/Fonts/Montserrat-Black.ttf") format("opentype");
+}
 @keyframes fadeIn{
     from {opacity:0}
     to {opacity:1}

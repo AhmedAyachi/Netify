@@ -1,12 +1,14 @@
 {
-  "name": "aflix",
+  "name": "netlix",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "start": "webpack --config webpack.config.js",
     "build": "webpack --config webpack.config.js --mode production",
-    "gap": "phonegap"
+    "gap": "phonegap",
+    "plugin": "phonegap plugin --save",
+    "platform": "phonegap platform"
   },
   "author": "Ahmed Ayachi",
   "license": "ISC",
@@ -19,14 +21,18 @@
   },
   "dependencies": {
     "cordova-android": "^8.1.0",
+    "cordova-browser": "^6.0.0",
+    "cordova-plugin-dialogs": "2.0.2",
     "cordova-plugin-statusbar": "2.4.3"
   },
   "cordova": {
     "plugins": {
-      "cordova-plugin-statusbar": {}
+      "cordova-plugin-statusbar": {},
+      "cordova-plugin-dialogs": {}
     },
     "platforms": [
-      "android"
+      "android",
+      "browser"
     ]
   }
 }

@@ -1,15 +1,18 @@
+import {useStore} from "vanilla";
 import "./index.css";
 import App from "./App";
+import Reducer from "./Store";
 
 
 function onDeviceReady(){
-    //StatusBar.styleLightContent();
-    StatusBar.styleBlackOpaque();
+    //StatusBar.styleBlackOpaque();
+    //StatusBar.hide();
+    StatusBar.overlaysWebView(true);
+    StatusBar.backgroundColorByHexString("#33000000");
+    useStore(Reducer);
+    
     App({
         parent:document.getElementById("root"),
-    });   
-};
-document.store={
-    name:"Ahmed Ayachi",
+    });
 };
 document.addEventListener("deviceready",onDeviceReady,false);

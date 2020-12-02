@@ -29,8 +29,8 @@ export const useCode=(length=10)=>{
 }
 
 export const useRef=(startwith="")=>{
-    let str=startwith,charindex;
-    for(let i=0;i<10;i++){
+    let str=startwith+"_",charindex;
+    for(let i=0;i<20;i++){
         switch(Math.floor(Math.random()*2)){
             case 0:
                 charindex=65+Math.floor(Math.random()*26);
@@ -42,4 +42,50 @@ export const useRef=(startwith="")=>{
         str+=String.fromCharCode(charindex);
     }
     return str;
+}
+
+export const useStore=(Reducer={})=>{
+    const store=window.store=new function Store(){
+        Object.assign(this,Reducer);
+        this.get=()=>{
+            console.log("store");
+        };
+        return this;
+    };
+    return store;
+}
+
+export const Router=(target,routes=[{component:"",path:""}])=>{
+    const history=window.history;
+    let data=null;
+    window.location.hash="";
+    pushRoute();
+    window.onhashchange=()=>{
+        const hash=window.location.hash;
+        try{
+            pushRoute(hash);
+        }
+        catch(error){
+            console.log(error);
+        }
+    }
+    history.pushState=(hash="",state={})=>{
+        data={
+            state,
+            location:{
+                hash,
+                url:`${window.location.origin}/${hash}`,
+            },
+        };
+        window.location.hash=hash;
+    }
+    
+    function pushRoute(path=""){
+        const route=routes.find(route=>route.path===path);
+        target.innerHTML="";
+        if(route.component){
+            route.component({parent:target,...data});
+        }
+        data=null;
+    }
 }

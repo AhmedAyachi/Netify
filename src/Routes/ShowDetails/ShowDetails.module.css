@@ -1,0 +1,14 @@
+.showdetails{
+    font-size:1rem;
+    font-family:fredokaone;
+}
+.loadinganim{
+    display:block;
+    margin:0 auto;
+    max-width:20em;
+}
+.casttext{
+    color:white;
+    font-size:3em;
+    margin:5px;
+}

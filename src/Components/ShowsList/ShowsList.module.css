@@ -1,0 +1,43 @@
+.showslist{
+    height:fit-content; 
+    text-align:center;
+}
+.row0{
+    display:flex;
+    justify-content:space-evenly;
+    align-items:center;
+    padding:5px;
+}
+.row0 img{
+    max-width:3rem;
+}
+.noshowmsg{
+    color:white;
+    font-family:fredokaone;
+    margin-top:10%;
+    opacity:0.5;
+    font-size:4rem;
+}
+.filterbtn{
+    position:absolute;
+    max-width:10rem;
+}
+
+@media(max-width:25cm){
+    .row0 img{
+        max-width:3rem;
+    }
+}
+
+@media(any-hover){
+    .arrows:hover{
+        filter:brightness(0.65);
+        cursor:pointer;
+    }
+}
+
+@media(hover:none){
+    .arrows:active{
+        filter:brightness(0.8);
+    }
+}
