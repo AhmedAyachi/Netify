@@ -6,6 +6,7 @@
     min-height:100vh;
     text-align:center;
     font-size:2rem;
+    padding-top:2%;
 }
 .row0,.row2{
     font-size:1em;
@@ -16,7 +17,7 @@
     align-items:center;
 }
 .applogo{
-    max-width:25rem;
+    max-width:10rem;
 }
 .inputfield{
     width:80%;
@@ -59,6 +60,7 @@
 @media(max-width:25cm){
     .home{
         font-size:1rem;
+        padding-top:10%;
     }
 }
 @media(any-hover){

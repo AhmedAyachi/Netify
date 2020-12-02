@@ -11,6 +11,7 @@
 }
 body{
     overflow-x:hidden;
+    background-color:black;
 }
 
 @media(max-width:25cm){

@@ -83,6 +83,9 @@
     .overview{
         text-align:center;
     }
+    .poster{
+        margin-top:7%;
+    }
 }
 
 @media(any-hover){

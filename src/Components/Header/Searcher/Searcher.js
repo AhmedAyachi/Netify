@@ -30,6 +30,7 @@ export default function Searcher(props){
         const showslistRow1=showslist.querySelector("#row1");
         const value=input.value.toLowerCase().trim();
         showslistRow1.innerHTML="";
+        store.show.searchvalue=value;
         if(value){
             addSearchValue(value);
             const loading=showslist.querySelector("#loading");

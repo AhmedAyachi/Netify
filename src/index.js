@@ -5,7 +5,10 @@ import Reducer from "./Store";
 
 
 function onDeviceReady(){
-    StatusBar.styleBlackOpaque();
+    //StatusBar.styleBlackOpaque();
+    //StatusBar.hide();
+    StatusBar.overlaysWebView(true);
+    StatusBar.backgroundColorByHexString("#33000000");
     useStore(Reducer);
     
     App({
