@@ -58,6 +58,7 @@
         flex-direction:column;
         font-size:0.8rem;
         text-align:center;
+        margin-top:-7%;
     }
     .backdrop{
         width:150%;
