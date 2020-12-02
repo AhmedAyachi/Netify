@@ -23,6 +23,10 @@
     padding:1rem;
     z-index:10;
 }
+.poster{
+    max-width:15em;
+    margin-bottom:10px;
+}
 .col1{
     display:flex;
     flex-direction:column;
@@ -50,9 +54,6 @@
 }
 .overview::-webkit-scrollbar{
     display:none;
-}
-.poster{
-    max-width:15em;
 }
 
 @media(max-width:25cm){
