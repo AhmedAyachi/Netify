@@ -19,7 +19,7 @@ export default function ShowCard(props){
     `;
 
     showcard.onclick=()=>{
-        history.pushState("#shows#show",{show});
+        history.pushState(".#show",{show});
     }
     
 }

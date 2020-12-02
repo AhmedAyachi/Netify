@@ -70,6 +70,9 @@ export const Router=(target,routes=[{component:"",path:""}])=>{
         }
     }
     history.pushState=(hash="",state={})=>{
+        if(hash.includes(".#")){
+            hash=hash.replace(".#",`${window.location.hash}#`);
+        }
         data={
             state,
             location:{

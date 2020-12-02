@@ -33,8 +33,6 @@ export default function ShowsList(props){
         setShowCards(showslist,store.show);
     }
 
-    console.log(showState.searchvalue);
-
     showslist.querySelector("#prevarrow").onclick=()=>{
         Collection.previous(showslist,store.show);
         const searcherInput=document.querySelector(`#${refs.searcher} input`);
