@@ -1,6 +1,7 @@
 import {useRef} from "vanilla";
 import css from "./ShowCard.module.css";
-import {playbtn1,fullstar} from "assets";
+import {playbtn1} from "assets";
+import RateStars from "../../RateStars/RateStars";
 
 
 export default function ShowCard(props){
@@ -12,23 +13,15 @@ export default function ShowCard(props){
     showcard.innerHTML=`
         <div class="${css.details}">
             <div class="${css.title}">${title}</div>
-            <div class="${css.rating}">${getRateStars(vote_average/2)}</div>
+            <div id="rating" class="${css.rating}"></div>
             <img class="${css.playbtn}" alt="" src="${playbtn1}"/>
         </div>
         <img alt="" src="${poster_path}"/>
     `;
+    RateStars({parent:showcard.querySelector(`#rating.${css.rating}`),rate:vote_average});
 
     showcard.onclick=()=>{
         history.pushState(".#show",{show});
     }
     
-}
-
-const getRateStars=(rate=3)=>{
-    const rating=[];
-    const length=Math.round(rate);
-    for(let i=0;i<length;i++){
-        rating.push(`<img id="star_${i}" src="${fullstar}"/>`);
-    }
-    return rating.join("");
 }

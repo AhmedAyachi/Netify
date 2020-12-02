@@ -1,9 +1,9 @@
 .ratestars{
     display:block;
-    margin-top:10px;
+    margin:2px 0;
 }
 .ratestars img{
     display:inline-block;
-    max-width:2em;
+    max-width:1.75rem;
     margin:0 2px;
 }
