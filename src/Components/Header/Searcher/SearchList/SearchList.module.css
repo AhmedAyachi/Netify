@@ -12,3 +12,9 @@
     font-family:fredokaone;
     font-size:1.5rem;
 }
+
+@media(any-hover){
+    .searchlist:hover{
+        cursor:default;
+    }
+}

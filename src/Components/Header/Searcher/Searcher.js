@@ -21,7 +21,7 @@ export default function Searcher(props){
         <div id="row1" class="${css.row1}"></div>
     `;
     const input=searcher.querySelector("input");
-    SearchList({parent:searcher.querySelector(`.${css.row1}`),input});
+    SearchList({parent:searcher.querySelector(`.${css.row1}`),inputfield:input});
     
     input.onchange=()=>{
         const showslist=document.getElementById(showslistRef);
@@ -33,18 +33,7 @@ export default function Searcher(props){
             addSearchValue(value);
             const loading=showslist.querySelector("#loading");
             loading.style.display="block";
-            loadShowsByTitle(value,(shows)=>{
-                if(shows.length){
-                    shows.forEach(show=>{
-                        ShowCard({parent:showslistRow1,show});
-                    });
-                }
-                else{
-                    showslistRow1.innerHTML=`<p style="${styles.noresults}">No results</p>`;
-                }
-                loading.style.display="none";
-                setSearched(shows);
-            })
+            loadSearchedShows(value,showslistRow1,loading);
         }
         else{
             const shows=store.show.shows;
@@ -63,4 +52,19 @@ const styles={
         color:#cf0909;
         font-weight:bold;
     `,
+}
+
+export const loadSearchedShows=(value,showslistRow1,loading)=>{
+    loadShowsByTitle(value,(shows)=>{
+        if(shows.length){
+            shows.forEach(show=>{
+                ShowCard({parent:showslistRow1,show});
+            });
+        }
+        else{
+            showslistRow1.innerHTML=`<p style="${styles.noresults}">No results</p>`;
+        }
+        loading.style.display="none";
+        setSearched(shows);
+    })
 }

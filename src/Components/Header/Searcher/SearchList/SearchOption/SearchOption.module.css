@@ -14,7 +14,7 @@
 }
 
 @media(any-hover){
-    .searchoption>img:hover{
+    .searchoption>input:hover,.searchoption>img:hover{
         filter:brightness(0.65);
         cursor:pointer;
     }

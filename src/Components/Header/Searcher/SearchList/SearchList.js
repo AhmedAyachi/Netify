@@ -4,8 +4,8 @@ import SearchOption from "./SearchOption/SearchOption";
 
 
 export default function SearchList(props){
-    const {parent,ref=useRef("searchlist"),input}=props;
-    input.onfocus=()=>{
+    const {parent,ref=useRef("searchlist"),inputfield}=props;
+    inputfield.onfocus=()=>{
         parent.insertAdjacentHTML("beforeend",`<div id="${ref}" class="${css.searchlist}"></div>`);
         const searchlist=parent.querySelector(`#${ref}`);
         searchlist.innerHTML="";
@@ -13,16 +13,16 @@ export default function SearchList(props){
             SearchOption({parent:searchlist,value});
         });
     }
-    input.onblur=()=>{
+    /*inputfield.onblur=()=>{
         parent.querySelector(`#${ref}`).remove();
-    };
-    input.onkeyup=()=>{
+    };*/
+    inputfield.onkeyup=()=>{
         const searchlist=parent.querySelector(`#${ref}`);
         const showState=store.show;
-        const values=showState.searchvalues.filter(value=>value.includes(input.value.trim()));
+        const values=showState.searchvalues.filter(value=>value.includes(inputfield.value.trim()));
         searchlist.innerHTML="";
         values.forEach(value=>{
-            SearchOption({parent:searchlist,value});
+            SearchOption({parent:searchlist,value,inputfield});
         });
     }
 }
