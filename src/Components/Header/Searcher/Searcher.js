@@ -2,8 +2,8 @@ import {map,useRef} from "vanilla";
 import css from "./Searcher.module.css";
 import {filtericon} from "assets";
 import {ShowCard} from "components";
-import {Show} from "estate";
 import {addSearchValue,setSearched,loadShowsByTitle} from "actions";
+import SearchList from "./SearchList/SearchList";
 
 
 export default function Searcher(props){
