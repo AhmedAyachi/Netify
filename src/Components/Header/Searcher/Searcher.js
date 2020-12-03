@@ -3,30 +3,30 @@ import css from "./Searcher.module.css";
 import {filtericon} from "assets";
 import {ShowCard} from "components";
 import {addSearchValue,setSearched,loadShowsByTitle} from "actions";
+import {fadeIn} from "afile";
 import SearchList from "./SearchList/SearchList";
 
 
 export default function Searcher(props){
-    const {parent,refs,ref=refs.searcher||useRef("searcher")}=props;
+    const {parent,showslistRef,ref=useRef("searcher")}=props;
     parent.insertAdjacentHTML("beforeend",`<div id="${ref}" class="${css.searcher}"></div>`);
     const searcher=parent.querySelector(`#${ref}`);
-
+    const refs={
+        searchlist:useRef("searchlist"),
+    }
     searcher.innerHTML=`
-        <input list="values" placeholder="Search for a movie" type="text"/>
-        <img alt="" src="${filtericon}"/>
-        <datalist id="values"></datalist>
+        <div id="row0" class="${css.row0}">
+            <input placeholder="Search for a movie" type="text"/>
+            <img alt="" src="${filtericon}"/>
+        </div>
+        <div id="row1" class="${css.row1}"></div>
     `;
     const input=searcher.querySelector("input");
-    const datalist=searcher.querySelector("datalist");
+    SearchList({parent:searcher.querySelector(`.${css.row1}`),input});
  
-    input.onkeyup=()=>{
-        const values=store.show.searchvalues;
-        datalist.innerHTML=`
-            ${map(values,value=>`<option value="${value}"/>`)}
-        `;
-    }
+  
     input.onchange=()=>{
-        const showslist=document.getElementById(refs.showslist);
+        const showslist=document.getElementById(showslistRef);
         const showslistRow1=showslist.querySelector("#row1");
         const value=input.value.toLowerCase().trim();
         showslistRow1.innerHTML="";

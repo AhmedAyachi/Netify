@@ -12,7 +12,7 @@ export default function Shows(props){
         showslist:useRef("showlist"),
         searcher:useRef("searcher"),
     }
-    Header({parent:shows,refs});
+    Header({parent:shows,showslistRef:refs.showslist,searcherRef:refs.searcher});
     ShowsList({parent:shows,refs});
     
 }

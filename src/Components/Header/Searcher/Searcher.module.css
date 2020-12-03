@@ -1,12 +1,18 @@
 .searcher{
     position:relative;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
     border:3px solid #cc0000;
     border-radius:5px;
     width:85%;
     height:3rem;
+}
+.row0{
+    height:inherit;
+    display:flex;
+    justify-content:space-between;
+    align-items:center; 
+}
+.row1{
+    display:block;
 }
 .searcher input{
     width:100%;
