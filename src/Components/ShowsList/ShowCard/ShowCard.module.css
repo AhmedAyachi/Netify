@@ -26,6 +26,7 @@
     margin:0 auto;left:0;right:0;
     text-align:center;
     transition:1s;
+    overflow:hidden;
 }
 .title{
     max-width:100%;
