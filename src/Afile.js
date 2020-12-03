@@ -189,14 +189,16 @@ export const shuffle=(array=[])=>{
     const shuffled=[];
     const length=array.length;
     const added=[];
-    let i;
+    let i=0;
     do{
         do{
             i=Math.floor(Math.random()*length);
         }
-        while(!added.includes(i));
+        while(added.includes(i));
+        added.push(i);
         shuffled.push(array[i]);
     }while(shuffled.length<length);
+    return shuffled;
 }
 
 export const reverse=(str="")=>{

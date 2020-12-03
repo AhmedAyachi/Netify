@@ -18,10 +18,21 @@ export const setSearchValues=(values=[])=>{
 }
 
 export const addSearchValue=(value)=>{
+    value=value.trim();
     const showState=store.show;
     if(!showState.searchvalues.includes(value)){
         showState.searchvalues.unshift(value);
     }
+    if(!showState.search.includes(value)){
+        showState.search.unshift(value);
+    }
+}
+
+export const deleteSearchValue=(value)=>{
+    value=value.trim();
+    const showState=store.show;
+    const index=showState.searchvalues.indexOf(value);
+    showState.searchvalues.splice(index,1);
 }
 
 export const loadShows=(collection=1,then)=>{

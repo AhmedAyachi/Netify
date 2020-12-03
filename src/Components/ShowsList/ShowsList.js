@@ -3,6 +3,7 @@ import css from "./ShowsList.module.css";
 import ShowCard from "./ShowCard/ShowCard";
 import {arrow,loadinganim} from "assets";
 import {loadShows} from "actions";
+import {shuffle} from "afile";
 
 
 export default function ShowsList(props){
@@ -79,7 +80,7 @@ const setShowCards=(showslist,showState)=>{
     loading.style.display="block";
     loadShows(showState.collection,(shows)=>{
         row1.innerHTML="";
-        shows.forEach(show=>{
+        shuffle(shows).forEach(show=>{
             ShowCard({parent:row1,show});
         });
         loading.style.display="none";

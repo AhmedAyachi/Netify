@@ -1,5 +1,6 @@
 import {map,useRef} from "vanilla";
 import css from "./SearchList.module.css";
+import SearchOption from "./SearchOption/SearchOption";
 
 
 export default function SearchList(props){
@@ -7,21 +8,22 @@ export default function SearchList(props){
     input.onfocus=()=>{
         parent.insertAdjacentHTML("beforeend",`<div id="${ref}" class="${css.searchlist}"></div>`);
         const searchlist=parent.querySelector(`#${ref}`);
-        searchlist.innerHTML=`
-        ${map(store.show.searchvalues,value=>`
-            <p>${value}</p>
-        `)}
-    `;
+        searchlist.innerHTML="";
+        store.show.searchvalues.forEach(value=>{
+            SearchOption({parent:searchlist,value});
+        });
     }
-    input.onblur=()=>{parent.querySelector(`#${ref}`).remove()};
+    input.onblur=()=>{
+        parent.querySelector(`#${ref}`).remove();
+    };
     input.onkeyup=()=>{
         const searchlist=parent.querySelector(`#${ref}`);
-        const values=store.show.searchvalues.filter(value=>value.includes(input.value.trim()));
-        searchlist.innerHTML=`
-            ${map(values,value=>`
-                <p>${value}</p>`
-            )}
-        `;
+        const showState=store.show;
+        const values=showState.searchvalues.filter(value=>value.includes(input.value.trim()));
+        searchlist.innerHTML="";
+        values.forEach(value=>{
+            SearchOption({parent:searchlist,value});
+        });
     }
 }
 

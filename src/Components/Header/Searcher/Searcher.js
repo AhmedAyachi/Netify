@@ -3,7 +3,6 @@ import css from "./Searcher.module.css";
 import {filtericon} from "assets";
 import {ShowCard} from "components";
 import {addSearchValue,setSearched,loadShowsByTitle} from "actions";
-import {fadeIn} from "afile";
 import SearchList from "./SearchList/SearchList";
 
 
@@ -17,14 +16,13 @@ export default function Searcher(props){
     searcher.innerHTML=`
         <div id="row0" class="${css.row0}">
             <input placeholder="Search for a movie" type="text"/>
-            <img alt="" src="${filtericon}"/>
+            <img class="${css.filter}" alt="" src="${filtericon}"/>
         </div>
         <div id="row1" class="${css.row1}"></div>
     `;
     const input=searcher.querySelector("input");
     SearchList({parent:searcher.querySelector(`.${css.row1}`),input});
- 
-  
+    
     input.onchange=()=>{
         const showslist=document.getElementById(showslistRef);
         const showslistRow1=showslist.querySelector("#row1");

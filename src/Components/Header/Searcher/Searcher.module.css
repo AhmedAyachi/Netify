@@ -25,7 +25,7 @@
     font-family:fredokaone;
     font-size:1.5rem;
 }
-.searcher img{
+.filter{
     max-width:2em;
     margin-right:1%;
     transition:0.5s;
@@ -36,14 +36,14 @@
 }
 
 @media(any-hover){
-    .searcher>img:hover{
+    .filter:hover{
         filter:brightness(0.65);
         cursor:pointer;
     }
 }
 
 @media(hover:none){
-    .searcher>img:active{
+    .filter:active{
         filter:brightness(0.65);
     }
 }

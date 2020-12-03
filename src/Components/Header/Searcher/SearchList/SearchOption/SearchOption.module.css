@@ -1,0 +1,26 @@
+.searchoption{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin:5px;
+    font-size:1rem;
+}
+.searchoption input{
+    height:inherit;
+    width:85%;
+}
+.searchoption>img{
+    max-width:1em;
+}
+
+@media(any-hover){
+    .searchoption>img:hover{
+        filter:brightness(0.65);
+        cursor:pointer;
+    }
+}
+@media(hover:none){
+    .searchoption>img:active{
+        filter:brightness(0.65);
+    }
+}
