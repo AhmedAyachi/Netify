@@ -15,7 +15,7 @@ export default function Header(props){
         </div>
     `;
     const row0=header.querySelector(`.${css.row0}`);
-    Searcher({parent:row0,ref:props.searcherRef,showslistRef:props.showslistRef});
+    Searcher({parent:row0,ref:props.searcherRef});
     row0.insertAdjacentHTML("beforeend",`
         <div class=${css.usericon}></div>
     `);

@@ -7,9 +7,9 @@ import {shuffle} from "afile";
 
 
 export default function ShowsList(props){
-    const {parent,refs,ref=refs.showslist||useRef("showslist")}=props;
+    const {parent,searcherRef,ref=useRef("showslist")}=props;
     parent.insertAdjacentHTML("beforeend",`<div id="${ref}" class="${css.showslist}"></div>`);
-    const showslist=parent.querySelector(`#${ref}`);
+    const showslist=store.elements.showslist=parent.querySelector(`#${ref}`);
 
     showslist.innerHTML=`
         <div class="${css.row0}">
@@ -21,12 +21,12 @@ export default function ShowsList(props){
     `;
     const showState=store.show;
     if(showState.searchvalue){
-        const searcherInput=document.querySelector(`#${refs.searcher} input`);
+        const searcherInput=document.querySelector(`#${searcherRef} input`);
         searcherInput.value=showState.searchvalue;
         const searched=showState.searched;
         if(searched.length){
             searched.forEach(show=>{
-                ShowCard({parent:row1,show});
+                ShowCard({parent:showslist.querySelector("#row1"),show});
             });
         };
     }

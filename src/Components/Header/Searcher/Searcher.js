@@ -7,12 +7,10 @@ import SearchList from "./SearchList/SearchList";
 
 
 export default function Searcher(props){
-    const {parent,showslistRef,ref=useRef("searcher")}=props;
+    const {parent,ref=useRef("searcher")}=props;
     parent.insertAdjacentHTML("beforeend",`<div id="${ref}" class="${css.searcher}"></div>`);
     const searcher=parent.querySelector(`#${ref}`);
-    const refs={
-        searchlist:useRef("searchlist"),
-    }
+    
     searcher.innerHTML=`
         <div id="row0" class="${css.row0}">
             <input placeholder="Search for a movie" type="text"/>
@@ -24,7 +22,7 @@ export default function Searcher(props){
     SearchList({parent:searcher.querySelector(`.${css.row1}`),inputfield:input});
     
     input.onchange=()=>{
-        const showslist=document.getElementById(showslistRef);
+        const showslist=store.elements.showslist;
         const showslistRow1=showslist.querySelector("#row1");
         const value=input.value.toLowerCase().trim();
         showslistRow1.innerHTML="";

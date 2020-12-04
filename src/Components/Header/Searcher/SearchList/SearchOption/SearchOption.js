@@ -21,6 +21,5 @@ export default function SearchOption(props){
     };
     searchoption.querySelector("input").onclick=()=>{
         inputfield.value=value;
-
     };
 }

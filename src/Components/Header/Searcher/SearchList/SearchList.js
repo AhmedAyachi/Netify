@@ -10,7 +10,7 @@ export default function SearchList(props){
         const searchlist=parent.querySelector(`#${ref}`);
         searchlist.innerHTML="";
         store.show.searchvalues.forEach(value=>{
-            SearchOption({parent:searchlist,value});
+            SearchOption({parent:searchlist,value,inputfield});
         });
     }
     /*inputfield.onblur=()=>{
