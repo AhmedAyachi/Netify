@@ -3,6 +3,7 @@ import css from "./SearchOption.module.css";
 import {closer} from "assets";
 import {deleteSearchValue} from "actions";
 import {loadSearchedShows} from "../../Searcher";
+import {fadeOut} from "afile";
 
 
 export default function SearchOption(props){
@@ -11,7 +12,7 @@ export default function SearchOption(props){
     const searchoption=parent.querySelector(`#${ref}`);
 
     searchoption.innerHTML=`
-        <input value="${value}" readonly/>
+        <input value="${value}" readonly spellcheck="false"/>
         <img alt="delete" src="${closer}"/>
     `;
 
@@ -20,12 +21,15 @@ export default function SearchOption(props){
         deleteSearchValue(value);
     };
     searchoption.querySelector("input").onclick=()=>{
-        inputfield.value=value;
-        const showslist=store.elements.showslist;
-        const showslistRow1=showslist.querySelector("#row1");
-        showslistRow1.innerHTML="";
-        const loading=showslist.querySelector("#loading");
-        loading.style.display="block";
-        loadSearchedShows(value,showslistRow1,loading);
+        if(inputfield.value.trim()!==value){
+            inputfield.value=value;
+            const showslist=store.elements.showslist;
+            const showslistRow1=showslist.querySelector("#row1");
+            showslistRow1.innerHTML="";
+            const loading=showslist.querySelector("#loading");
+            loading.style.display="block";
+            loadSearchedShows(value,showslistRow1,loading);
+        }
+        fadeOut(parent);
     };
 }

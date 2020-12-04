@@ -10,16 +10,20 @@ export default function Searcher(props){
     const {parent,ref=useRef("searcher")}=props;
     parent.insertAdjacentHTML("beforeend",`<div id="${ref}" class="${css.searcher}"></div>`);
     const searcher=parent.querySelector(`#${ref}`);
-    
+    const refs={
+        searchlist:useRef("searchlist"),
+    }
+
     searcher.innerHTML=`
         <div id="row0" class="${css.row0}">
-            <input placeholder="Search for a movie" type="text"/>
+            <input placeholder="Search for a movie" type="text" spellcheck="false"/>
             <img class="${css.filter}" alt="" src="${filtericon}"/>
         </div>
         <div id="row1" class="${css.row1}"></div>
     `;
     const input=searcher.querySelector("input");
-    SearchList({parent:searcher.querySelector(`.${css.row1}`),inputfield:input});
+    const row1=searcher.querySelector(`.${css.row1}`);
+    SearchList({parent:row1,ref:refs.searchlist,inputfield:input});
     
     input.onchange=()=>{
         const showslist=store.elements.showslist;
@@ -42,7 +46,6 @@ export default function Searcher(props){
             }
         }
     };
-
 }
 
 const styles={
