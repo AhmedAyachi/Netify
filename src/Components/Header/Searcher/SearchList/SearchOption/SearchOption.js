@@ -21,5 +21,11 @@ export default function SearchOption(props){
     };
     searchoption.querySelector("input").onclick=()=>{
         inputfield.value=value;
+        const showslist=store.elements.showslist;
+        const showslistRow1=showslist.querySelector("#row1");
+        showslistRow1.innerHTML="";
+        const loading=showslist.querySelector("#loading");
+        loading.style.display="block";
+        loadSearchedShows(value,showslistRow1,loading);
     };
 }

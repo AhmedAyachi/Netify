@@ -185,21 +185,7 @@ export const getInBetween=(startChar="",endChar="",from="")=>{
     return startIndex>-1?from.slice(startIndex+1,endIndex||length):"";
 }
 
-export const shuffle=(array=[])=>{
-    const shuffled=[];
-    const length=array.length;
-    const added=[];
-    let i=0;
-    do{
-        do{
-            i=Math.floor(Math.random()*length);
-        }
-        while(added.includes(i));
-        added.push(i);
-        shuffled.push(array[i]);
-    }while(shuffled.length<length);
-    return shuffled;
-}
+export const shuffle=(array=[])=>array.sort(()=>Math.random()-0.5);
 
 export const reverse=(str="")=>{
     let reversed="";

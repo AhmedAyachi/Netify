@@ -20,11 +20,12 @@ export const setSearchValues=(values=[])=>{
 export const addSearchValue=(value)=>{
     value=value.trim();
     const showState=store.show;
-    if(!showState.searchvalues.includes(value)){
+    const alreadysearched=!showState.searchvalues.includes(value);
+    if(alreadysearched){
         showState.searchvalues.unshift(value);
     }
-    if(!showState.search.includes(value)){
-        showState.search.unshift(value);
+    if(alreadysearched||!showState.search.includes(value)){
+        showState.search.push(value);
     }
 }
 
