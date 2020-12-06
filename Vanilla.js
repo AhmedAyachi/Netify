@@ -54,7 +54,7 @@ export const useStore=(Reducer={})=>{
     return store;
 }
 
-export const Router=(target,routes=[{component:"",path:""}])=>{
+export const Router=(target=new HTMLElement(),routes=[{component:()=>any,path:""}])=>{
     const history=window.history;
     let data=null;
     window.location.hash="";

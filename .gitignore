@@ -4,3 +4,4 @@ plugins
 platforms
 www
 hooks
+**/*.txt
