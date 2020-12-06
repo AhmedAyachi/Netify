@@ -1,6 +1,5 @@
 import {useRef} from "vanilla";
 import css from "./CastCard.module.css";
-import {defaultcover} from "assets";
 
 
 export default function CastCard(props){
@@ -11,11 +10,7 @@ export default function CastCard(props){
     const {name,character,profile_path}=cast;
     catscard.innerHTML=`
         <div class="${css.col0}">
-            <img 
-                alt=""
-                class="${css.photo}"
-                src="${profile_path?`https://image.tmdb.org/t/p/w138_and_h175_face/${profile_path}`:defaultcover}"
-            />
+            <img alt="" class="${css.photo}" src="https://image.tmdb.org/t/p/w138_and_h175_face/${profile_path}"/>
         </div>
         <div class="${css.col1}">
             <p class="${css.name}">${name}</p>

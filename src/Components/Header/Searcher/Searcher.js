@@ -16,7 +16,7 @@ export default function Searcher(props){
 
     searcher.innerHTML=`
         <div id="row0" class="${css.row0}">
-            <input placeholder="Search for a movie or a tv show" type="text" spellcheck="false"/>
+            <input placeholder="Search for a movie" type="text" spellcheck="false"/>
             <img class="${css.filter}" alt="" src="${filtericon}"/>
         </div>
         <div id="row1" class="${css.row1}"></div>
