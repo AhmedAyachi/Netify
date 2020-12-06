@@ -19,6 +19,7 @@ export {default as defaultcover} from "./Images/DefaultCover_1.png";
 //Gifs:
 export {default as netflixentry} from "./Gifs/Netflix_0.gif";
 export {default as loadinganim} from "./Gifs/Loading_1.gif";
+export {default as cryfuldog} from "./Gifs/Cry_0.gif";
 
 
 //videos:

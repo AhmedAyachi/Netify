@@ -20,12 +20,9 @@ export const setSearchValues=(values=[])=>{
 export const addSearchValue=(value)=>{
     value=value.trim();
     const showState=store.show;
-    const alreadysearched=!showState.searchvalues.includes(value);
-    if(alreadysearched){
+    if(!showState.searchvalues.includes(value)){
         showState.searchvalues.unshift(value);
-    }
-    if(alreadysearched||!showState.search.includes(value)){
-        showState.search.push(value);
+        localStorage.setItem("searchvalues",JSON.stringify(showState.searchvalues));
     }
 }
 
@@ -34,6 +31,7 @@ export const deleteSearchValue=(value)=>{
     const showState=store.show;
     const index=showState.searchvalues.indexOf(value);
     showState.searchvalues.splice(index,1);
+    localStorage.setItem("searchvalues",JSON.stringify(showState.searchvalues));
 }
 
 export const loadShows=(collection=1,then)=>{

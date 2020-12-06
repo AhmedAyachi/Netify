@@ -1,8 +1,12 @@
 
+const searchvalues=JSON.parse(localStorage.getItem("searchvalues"));
+if(!searchvalues){
+    localStorage.setItem("searchvalues","null");
+}
+
 const ShowReducer={
     searched:[],
-    searchvalues:[],
-    search:[],
+    searchvalues:searchvalues||[],
     shows:[],
     collection:1,
 }
