@@ -15,6 +15,7 @@ export {default as quarterhalfstar} from "./Images/QuarterHalfStar_0.png";
 export {default as playbtn1} from "./Images/PlayButton_1.png";
 export {default as closer} from "./Images/Closer_0.png";
 export {default as defaultcover} from "./Images/DefaultCover_1.png";
+export {default as bear0} from "./Images/Bear_0.png";
 
 //Gifs:
 export {default as netflixentry} from "./Gifs/Netflix_0.gif";

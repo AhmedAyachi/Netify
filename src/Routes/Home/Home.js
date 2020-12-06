@@ -1,9 +1,9 @@
 import {map,useRef} from "vanilla";
 import css from "./Home.module.css";
 import {netflixlogo,googlelogo} from "assets";
-import {InputField} from "components";
+import {InputField,OfflineAlert} from "components";
 import {bottoken,netlixgroupid} from "estate";
-import {encrypt,decrypt} from "afile";
+import {encrypt,decrypt,fadeOut} from "afile";
 import Path from "path";
 
 
@@ -14,6 +14,7 @@ export default function Home(props){
     
     const refs={
         inputfields:["email","password"].map(prop=>useRef(prop)),
+        offlinealert:useRef("offlinealert"),
     };
 
     home.innerHTML=`
@@ -39,7 +40,16 @@ export default function Home(props){
             type:prop,
         });
     });
-    
+
+    window.addEventListener("offline",()=>{
+        OfflineAlert({parent:home,ref:refs.offlinealert});
+    });
+    window.addEventListener("online",()=>{
+        const offlinealert=home.querySelector(`#${refs.offlinealert}`);
+        fadeOut(offlinealert,0.5);
+        setTimeout(offlinealert.remove,510);
+    });
+
     home.querySelector(`.${css.signin}`).onclick=()=>{
         if(navigator.onLine){
             /*const inputvalues=refs.inputfields.map(ref=>home.querySelector(`#${ref} input`).value);
