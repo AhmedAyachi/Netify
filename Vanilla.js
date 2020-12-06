@@ -46,10 +46,9 @@ export const useRef=(startwith="")=>{
 
 export const useStore=(Reducer={})=>{
     const store=window.store=new function Store(){
-        Object.assign(this,Reducer);
-        this.get=()=>{
-            console.log("store");
-        };
+        Object.assign(this,{...Reducer,
+            whoami:()=>"store",
+        });
         return this;
     };
     return store;

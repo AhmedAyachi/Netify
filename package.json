@@ -23,12 +23,14 @@
     "cordova-android": "^8.1.0",
     "cordova-browser": "^6.0.0",
     "cordova-plugin-dialogs": "2.0.2",
+    "cordova-plugin-network-information": "2.0.2",
     "cordova-plugin-statusbar": "2.4.3"
   },
   "cordova": {
     "plugins": {
       "cordova-plugin-statusbar": {},
-      "cordova-plugin-dialogs": {}
+      "cordova-plugin-dialogs": {},
+      "cordova-plugin-network-information": {}
     },
     "platforms": [
       "android",
