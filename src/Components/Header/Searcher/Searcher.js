@@ -1,9 +1,11 @@
-import {map,useRef} from "vanilla";
+import {useRef} from "vanilla";
 import css from "./Searcher.module.css";
 import {filtericon} from "assets";
 import {ShowCard} from "components";
 import {addSearchValue,setSearched,loadShowsByTitle} from "actions";
 import SearchList from "./SearchList/SearchList";
+import Filter from "./Filter/Filter";
+import {toggle,fadeOut} from "afile";
 
 
 export default function Searcher(props){
@@ -12,7 +14,8 @@ export default function Searcher(props){
     const searcher=parent.querySelector(`#${ref}`);
     const refs={
         searchlist:useRef("searchlist"),
-    }
+        filter:useRef("filter"),
+    };
 
     searcher.innerHTML=`
         <div id="row0" class="${css.row0}">
@@ -23,29 +26,20 @@ export default function Searcher(props){
     `;
     const input=searcher.querySelector("input");
     const row1=searcher.querySelector(`.${css.row1}`);
-    SearchList({parent:row1,ref:refs.searchlist,inputfield:input});
+    SearchList({parent:row1,ref:refs.searchlist,inputfield:input,filterRef:refs.filter});
+    Filter({parent:row1,ref:refs.filter});
     
-    input.onchange=()=>{
-        const showslist=store.elements.showslist;
-        const showslistRow1=showslist.querySelector("#row1");
-        const value=input.value.toLowerCase().trim();
-        showslistRow1.innerHTML="";
-        store.show.searchvalue=value;
-        if(value){
-            addSearchValue(value);
-            const loading=showslist.querySelector("#loading");
-            loading.style.display="block";
-            loadSearchedShows(value,showslistRow1,loading);
+    const filter=row1.querySelector(`#${refs.filter}`);
+    const searchlist=row1.querySelector(`#${refs.searchlist}`);
+    input.onchange=()=>{handleOnChange(input,store)};
+    searcher.querySelector(`.${css.filter}`).onclick=function(){
+        if(searchlist.style.display==="none"){
+            toggle(filter);
         }
         else{
-            const shows=store.show.shows;
-            if(shows&&shows.length){
-                shows.forEach(show=>{
-                    ShowCard({parent:showslistRow1,show});
-                });
-            }
+            setTimeout(()=>{toggle(filter)},200);
         }
-    };
+    }
 }
 
 const styles={
@@ -68,4 +62,26 @@ export const loadSearchedShows=(value,showslistRow1,loading)=>{
         loading.style.display="none";
         setSearched(shows);
     })
+}
+
+const handleOnChange=(input,store)=>{
+    const showslist=store.elements.showslist;
+    const showslistRow1=showslist.querySelector("#row1");
+    const value=input.value.toLowerCase().trim();
+    showslistRow1.innerHTML="";
+    store.show.searchvalue=value;
+    if(value){
+        addSearchValue(value);
+        const loading=showslist.querySelector("#loading");
+        loading.style.display="block";
+        loadSearchedShows(value,showslistRow1,loading);
+    }
+    else{
+        const shows=store.show.shows;
+        if(shows&&shows.length){
+            shows.forEach(show=>{
+                ShowCard({parent:showslistRow1,show});
+            });
+        }
+    }
 }

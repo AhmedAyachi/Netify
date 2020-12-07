@@ -15,6 +15,7 @@ export default function CastCard(props){
                 alt=""
                 class="${css.photo}"
                 src="${profile_path?`https://image.tmdb.org/t/p/w138_and_h175_face/${profile_path}`:defaultcover}"
+                draggable="false"
             />
         </div>
         <div class="${css.col1}">

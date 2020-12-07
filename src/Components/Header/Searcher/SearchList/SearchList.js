@@ -5,7 +5,7 @@ import {fadeIn,fadeOut} from "afile";
 
 
 export default function SearchList(props){
-    const {parent,ref=useRef("searchlist"),inputfield}=props;
+    const {parent,ref=useRef("searchlist"),inputfield,filterRef}=props;
     parent.insertAdjacentHTML("beforeend",`<div id="${ref}" class="${css.searchlist}" style="${styles.searchlist}"></div>`);
     const searchlist=parent.querySelector(`#${ref}`);
     
@@ -15,7 +15,14 @@ export default function SearchList(props){
         showState.searchvalues.forEach(value=>{
             SearchOption({parent:searchlist,value,inputfield});
         }); 
-        fadeIn(searchlist);
+        const filter=parent.querySelector(`#${filterRef}`);
+        if(filter.style.display==="none"){
+            fadeIn(searchlist);
+        }
+        else{
+            fadeOut(filter);
+            setTimeout(()=>{fadeIn(searchlist)},200);
+        }
     }
     inputfield.onblur=()=>{
         fadeOut(searchlist);
