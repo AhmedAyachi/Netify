@@ -4,8 +4,8 @@ import {fullstar,emptystar,halfstar,quarterstar,quarterhalfstar} from "assets";
 
 
 export default function RateStars(props){
-    const {parent,rate=6,ref=useRef("ratestars")}=props;
-    parent.insertAdjacentHTML("beforeend",`<div id="${ref}" class="${css.ratestars}"></div>`);
+    const {parent,rate=6,ref=useRef("ratestars"),style}=props;
+    parent.insertAdjacentHTML("beforeend",`<div id="${ref}" class="${css.ratestars}" style="${style}"></div>`);
     const ratestars=parent.querySelector(`#${ref}`);
 
     ratestars.innerHTML=`
@@ -20,14 +20,16 @@ const getRateStars=(rate=3)=>{
         rating.push(`<img id="star_${i}" src="${fullstar}"/>`);
     }
     const fraction=rate-length;
-    if(fraction<=0.25){
-        rating.push(`<img id="star_${length}" src="${quarterstar}"/>`);
-    }
-    else if(fraction<=0.5){
-        rating.push(`<img id="star_${length}" src="${halfstar}"/>`);
-    }
-    else{
-        rating.push(`<img id="star_${length}" src="${quarterhalfstar}"/>`);
+    if(fraction){
+        if(fraction<=0.25){
+            rating.push(`<img id="star_${length}" src="${quarterstar}"/>`);
+        }
+        else if(fraction<=0.5){
+            rating.push(`<img id="star_${length}" src="${halfstar}"/>`);
+        }
+        else{
+            rating.push(`<img id="star_${length}" src="${quarterhalfstar}"/>`);
+        }
     }
     return rating.join("");
 }
