@@ -12,6 +12,8 @@
     height:100vh;
     padding-top:5%;
     font-size:1.5rem;
+    color:white;
+    z-index:20;
 }
 .offlinealert img{
     display:block;
