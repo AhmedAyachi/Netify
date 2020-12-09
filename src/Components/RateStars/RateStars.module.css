@@ -7,3 +7,10 @@
     max-width:1.5rem;
     margin:0 2px;
 }
+
+@media(any-hover){
+    .ratestars img:hover{
+        cursor:pointer;
+        filter:brightness(0.65);
+    }
+}

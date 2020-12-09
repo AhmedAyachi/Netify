@@ -16,11 +16,22 @@
 }
 .list li{
     display:flex;
-    justify-content:space-around;
+    justify-content:space-between;
     align-items:center;
     margin:0.5em 0;
+    padding:0 5px;
+    font-size:1.25em;
+}
+.col0,.col2,.col4{
+    width:fit-content;
+}
+.col1,.col3,.col5{
+    display:flex;
+    width:85%;
+    justify-content:space-evenly;
 }
 table.categories{
+    width:100%;
     border-collapse:collapse;
     table-layout:fixed;
 }
@@ -33,5 +44,19 @@ table.categories td{
     .list label[for]:hover{
         cursor:pointer;
         filter:brightness(0.65);
+    }
+    table.categories td:hover{
+        cursor:pointer;
+        filter:brightness(0.65);
+    }
+}
+
+@media(max-width:25cm){
+    .category{
+        flex-direction:column;
+    }
+    .col4,.col5{
+        width:100%;
+        text-align:center;
     }
 }

@@ -11,28 +11,46 @@ export default function Filter(props){
     filter.innerHTML=`
         <ul class="${css.list}">
             <li id="show">
-                <label>Show :</label>
-                <label for="show">Movie</label>
-                <label for="show">Tv Show</label>
-            </li>
-            <li id="rate">Rate :</li>
-            <li id="category" style="flex-direction:column;">
-                <div id="row0">Categories</div>
-                <div id="row1">
-                    ${getCategoriesTable(categories)}
+                <div class="${css.col0}">
+                    <label>Show :</label>
                 </div>
+                <div class="${css.col1}">
+                    <label for="show">Movie</label>
+                    <label for="show">Tv Show</label>
+                </div>
+            </li>
+            <li id="rate">
+                <div class="${css.col2}">Rate :</div>
+                <div class="${css.col3}"></div>
+            </li>
+            <li class="${css.category}">
+                <div class="${css.col4}">Categories :</div>
+                <div class="${css.col5}">${getCategoriesTable(categories)}</div>
             </li>
         </ul>
     `;
-    RateStars({parent:filter.querySelector("#rate"),rate:10,style:styles.ratestars});
-    filter.querySelectorAll("#show label[for]").forEach((label,index,labels)=>{
-        label.value=false;
+    RateStars({
+        parent:filter.querySelector(`#rate .${css.col3}`),
+        style:styles.ratestars,
+        editable:true,
+    });
+    filter.querySelectorAll("#show label[for]").forEach((label)=>{
+        label.active=false;
         label.onclick=()=>{
-            label.value=!label.value;
-            label.style.color=label.value?"#cc0000":"white";
-            label.style.borderBottom=label.value?"2px solid #cc0000":"none";
+            label.active=!label.active;
+            label.style.color=label.active?"#cc0000":"white";
+            label.style.textDecoration=label.active?"underline":"none";
         }
     });
+    filter.querySelectorAll(`table.${css.categories} td`).forEach((td)=>{
+        td.active=false;
+        td.onclick=()=>{
+            td.active=!td.active;
+            td.style.color=td.active?"#cc0000":"white";
+            td.style.textDecoration=td.active?"underline":"none";
+        }
+    })
+
 }
 
 const styles={
@@ -49,9 +67,7 @@ const categories=["Action","Adventure","Comedy","Crime","Drama","Fantasy","Histo
 const getCategoriesTable=()=>{
     let str=`<table class="${css.categories}">`;
     for(let i=0;i<4;i++){
-        str+="<tr>"
-        str+=map(categories,(category,j)=>(i*3)<=j&&j<(3*(i+1))?`<td>${category}</td>`:"");
-        str+="</tr>"
+        str+=`<tr>${map(categories,(category,j)=>(i*3)<=j&&j<(3*(i+1))?`<td>${category}</td>`:"")}</tr>`;
     }
     str+="</table>"
     return str;
