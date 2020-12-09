@@ -12,25 +12,41 @@ export default function RateStars(props){
         ${getRateStars(Math.abs(rate/2))}
     `;
     if(editable){
+        const {state}=props;
         const stars=ratestars.querySelectorAll("img");
         stars.forEach((star,index)=>{
             star.setAttribute("src",emptystar);
-            star.active=false;
+            Object.assign(star,{
+                active:false,
+                value:2*(index+1),
+            });
             star.onclick=()=>{
-                for(let i=0;i<=index;i++){
-                    if(!stars[i].active){
-                        stars[i].active=true;
-                        stars[i].setAttribute("src",fullstar);
+                if(state.rate!==star.value){
+                    state.rate=star.value;
+                    for(let i=0;i<=index;i++){
+                        if(!stars[i].active){
+                            stars[i].active=true;
+                            stars[i].setAttribute("src",fullstar);
+                        }
+                    }
+                    for(let i=stars.length-1;i>index;i--){
+                        if(stars[i].active){
+                            stars[i].active=false;
+                            stars[i].setAttribute("src",emptystar);
+                        }
                     }
                 }
-                for(let i=stars.length-1;i>index;i--){
-                    if(stars[i].active){
-                        stars[i].active=false;
-                        stars[i].setAttribute("src",emptystar);
+                else{
+                    state.rate=0;
+                    for(let i=0;i<=index;i++){
+                        if(stars[i].active){
+                            stars[i].active=false;
+                            stars[i].setAttribute("src",emptystar);
+                        }
                     }
                 }
             }
-        })
+        });
     }
 }
 
