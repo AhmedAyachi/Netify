@@ -13,12 +13,20 @@
 }
 .icon{
     max-width:2em;
+    filter:brightness(0.65);
+}
+.active{
+    max-width:2em;
+    padding-bottom:3px;
+    filter:brightness(1);
+    border-bottom:2px solid #cc0000;
 }
 .usericon{
-    width:2.5em;max-width:2.5em;
-    height:2.5em;
-    border-radius:50px; 
+    width:2em;
+    height:2em;
+    border-radius:50%; 
     background-color:#cc0000;
+    overflow:hidden;
 }
 
 @media(any-hover){
