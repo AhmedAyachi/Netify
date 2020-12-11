@@ -1,6 +1,7 @@
 import {map,useRef} from "vanilla";
 import css from "./Filter.module.css";
 import {RateStars,ShowCard} from "components";
+import genresdata from "./Genres.json";
 
 
 export default function Filter(props){
@@ -9,9 +10,13 @@ export default function Filter(props){
     const filter=parent.querySelector(`#${ref}`);
     const state=filter.state={
         showselection:null,
-        rate:0,
-        categories:[],
-    }
+        filterparams:{
+            type:"tvmovie",
+            rate:0,
+            genres:[],
+        },
+    };
+    store.show.filter=state.filterparams;
 
     filter.innerHTML=`
         <ul class="${css.list}">
@@ -29,8 +34,8 @@ export default function Filter(props){
                 <div class="${css.col3}"></div>
             </li>
             <li class="${css.category}">
-                <div class="${css.col4}">Categories :</div>
-                <div class="${css.col5}">${getCategoriesTable(categories)}</div>
+                <div class="${css.col4}">Genres :</div>
+                <div class="${css.col5}">${getCategoriesTable()}</div>
             </li>
         </ul>
     `;
@@ -38,7 +43,7 @@ export default function Filter(props){
         parent:filter.querySelector(`#rate .${css.col3}`),
         style:styles.ratestars,
         editable:true,
-        state,
+        state:state.filter,
     });
 
 
@@ -60,31 +65,39 @@ export default function Filter(props){
             label.active=!label.active;
             label.style.color=label.active?"#cc0000":"white";
             label.style.textDecoration=label.active?"underline":"none";
+            state.filterparams.type=label.active?label.value:"tvmovie";
         }
     });
     filter.querySelectorAll(`table.${css.categories} td`).forEach((td,i)=>{
         td.active=false;
-        td.value=categories[i];
+        td.value=genresdata.genres[i];
+        const {filterparams:{genres}}=state;
         td.onclick=()=>{
             td.active=!td.active;
             if(td.active){
-                state.categories.push(td.value);
+                genres.push(td.value.id);
+                Object.assign(td.style,{color:"#cc0000",textDecoration:"underline"});
             }
             else{
-                state.categories.splice(state.categories.indexOf(td.value),1);
+                genres.splice(genres.indexOf(td.value.id),1);
+                Object.assign(td.style,{color:"white",textDecoration:"none"});
             }
-            td.style.color=td.active?"#cc0000":"white";
-            td.style.textDecoration=td.active?"underline":"none";
         }
     })
     filter.querySelectorAll("label,img,td").forEach(element=>{
         element.addEventListener("click",()=>{
             const {elements:{showslist},show:{shows}}=store;
+            const {filterparams}=state;
             const showslistRow1=showslist.querySelector("#row1");
             showslistRow1.innerHTML="";
-            shows.filter(show=>show.vote_average>=state.rate).forEach(show=>{
-                ShowCard({parent:showslistRow1,show});
-            });
+            shows.filter(show=>
+                show.vote_average>=filterparams.rate &&
+                filterparams.type.includes(show.type) &&
+                show.genre_ids.filter(id=>filterparams.genres.includes(id)).length
+                ).forEach(show=>{
+                    ShowCard({parent:showslistRow1,show});
+                }
+            );
         });
     });
 }
@@ -98,12 +111,13 @@ const styles={
     `,
 }
 
-const categories=["Action","Adventure","Comedy","Crime","Drama","Fantasy","Historical","Horror","Mystery","Fiction","Thriller","Cartoon"];
-
 const getCategoriesTable=()=>{
+    const genres=genresdata.genres;
+    const colsnumber=window.innerWidth>944.88200880403?4:3;
+    const rowsnumber=genres.length/colsnumber;
     let str=`<table class="${css.categories}">`;
-    for(let i=0;i<4;i++){
-        str+=`<tr>${map(categories,(category,j)=>(i*3)<=j&&j<(3*(i+1))?`<td>${category}</td>`:"")}</tr>`;
+    for(let i=0;i<rowsnumber;i++){
+        str+=`<tr>${map(genres,(genre,j)=>(i*colsnumber)<=j&&j<(colsnumber*(i+1))?`<td>${genre.name}</td>`:"")}</tr>`;
     }
     str+="</table>"
     return str;

@@ -1,6 +1,5 @@
 import {useRef} from "vanilla";
 import css from "./ShowCard.module.css";
-import {playbtn1} from "assets";
 import RateStars from "../../RateStars/RateStars";
 
 
@@ -14,7 +13,6 @@ export default function ShowCard(props){
         <div class="${css.details}">
             <div class="${css.title}">${title}</div>
             <div id="rating" class="${css.rating}"></div>
-            <img class="${css.playbtn}" alt="" src="${playbtn1}"/>
         </div>
         <img alt="" src="${poster_path}"/>
     `;

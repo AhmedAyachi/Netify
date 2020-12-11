@@ -38,9 +38,6 @@
 .title::-webkit-scrollbar{
     display:none;
 }
-.playbtn{
-    max-width:1.5em;
-}
 .rating img{
     max-width:1.25em;
     margin:0 2px;
@@ -67,8 +64,5 @@
     .details:hover{
         opacity:1;
         transition:0.5s;
-    }
-    .playbtn:hover{
-        filter:drop-shadow(0 0 5px black) brightness(0.7);
-    }
+    }   
 }
