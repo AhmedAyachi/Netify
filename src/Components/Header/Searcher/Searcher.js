@@ -3,7 +3,7 @@ import css from "./Searcher.module.css";
 import {filtericon} from "assets";
 import {addSearchValue,setSearchedShows,loadShowsByTitle,setSearchValue} from "actions";
 import SearchList from "./SearchList/SearchList";
-import Filter from "./Filter/Filter";
+import Filter,{getFilteredShows} from "./Filter/Filter";
 import {toggle} from "afile";
 
 
@@ -67,6 +67,6 @@ const handleOnChange=(input,store)=>{
         loadSearchedShows(value,showslist,loading);
     }
     else{
-        showslist.setShows(store.show.shows);
+        showslist.setShows(getFilteredShows(store.show));
     }
 }

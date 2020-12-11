@@ -35,7 +35,7 @@ export default function Filter(props){
             </li>
             <li class="${css.category}">
                 <div class="${css.col4}">Genres :</div>
-                <div class="${css.col5}">${getCategoriesTable()}</div>
+                <div class="${css.col5}">${getGenresTable()}</div>
             </li>
         </ul>
     `;
@@ -86,15 +86,7 @@ export default function Filter(props){
     })
     filter.querySelectorAll("label,img,td").forEach(element=>{
         element.addEventListener("click",()=>{
-            const {elements:{showslist},show:{shows}}=store;
-            const {filterparams}=state;
-            const filteredshows=shows.filter(show=>
-                show.vote_average>=filterparams.rate &&
-                filterparams.type.includes(show.type) &&
-                show.genre_ids.filter(id=>filterparams.genres.includes(id)).length===filterparams.genres.length
-            );
-            console.log(filteredshows);
-            showslist.setShows(filteredshows);
+            store.elements.showslist.setShows(getFilteredShows(store.show));
         });
     });
 }
@@ -108,7 +100,7 @@ const styles={
     `,
 }
 
-const getCategoriesTable=()=>{
+const getGenresTable=()=>{
     const genres=genresdata.genres;
     const colsnumber=window.innerWidth>944.88200880403?4:3;
     const rowsnumber=genres.length/colsnumber;
@@ -118,4 +110,14 @@ const getCategoriesTable=()=>{
     }
     str+="</table>"
     return str;
+}
+
+export const getFilteredShows=(showStore)=>{
+    const {shows,searched,searchvalue,filter}=showStore;
+    const filteredshows=(searchvalue?searched:shows).filter(show=>
+        show.vote_average>=filter.rate &&
+        filter.type.includes(show.type) &&
+        show.genre_ids.filter(id=>filter.genres.includes(id)).length===filter.genres.length
+    );
+    return filteredshows;
 }

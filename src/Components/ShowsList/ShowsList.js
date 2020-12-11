@@ -2,8 +2,8 @@ import {useRef} from "vanilla";
 import css from "./ShowsList.module.css";
 import ShowCard from "./ShowCard/ShowCard";
 import {arrow,loadinganim} from "assets";
-import {loadShows} from "actions";
-import {shuffle} from "afile";
+import {getFilteredShows} from "../Header/Searcher/Filter/Filter";
+import {loadShows,setSearchValue} from "actions";
 
 
 export default function ShowsList(props){
@@ -24,11 +24,10 @@ export default function ShowsList(props){
     if(showStore.searchvalue){
         const searcherInput=document.querySelector(`#${searcherRef} input`);
         searcherInput.value=showStore.searchvalue;
-        setShows(row1,showStore.searched);
-        console.log(store);
+        setShowsCards(row1,showStore.searched);
     }
     else{
-        setShowCards(showslist,store.show);
+        loadShowCards(showslist,showStore);
     }
 
     showslist.querySelector("#prevarrow").onclick=()=>{
@@ -46,7 +45,7 @@ export default function ShowsList(props){
         }
     }
 
-    showslist.setShows=(shows=showStore.shows)=>{setShows(row1,shows)};
+    showslist.setShows=(shows=showStore.shows)=>{setShowsCards(row1,shows)};
 }
 const styles={
     prevarrow:`
@@ -59,33 +58,32 @@ const styles={
 
 const Collection=new (function(){
     this.previous=(showslist,showStore)=>{
+        setSearchValue("");
         if(showStore.collection>1){
             showStore.collection--;
-            setShowCards(showslist,showStore);
+            loadShowCards(showslist,showStore);
         }
     }
     this.next=(showslist,showStore)=>{
+        setSearchValue("");
         if(showStore.collection<250){
             showStore.collection++;
-            setShowCards(showslist,showStore);
+            loadShowCards(showslist,showStore);
         }
     }
 })();
 
-const setShowCards=(showslist,showStore)=>{
+const loadShowCards=(showslist,showStore)=>{
     const row1=showslist.querySelector("#row1");
     const loading=showslist.querySelector("#loading");
     loading.style.display="block";
-    loadShows(showStore.collection,(shows)=>{
-        row1.innerHTML="";
-        shuffle(shows).forEach(show=>{
-            ShowCard({parent:row1,show});
-        });
+    loadShows(showStore.collection,()=>{
+        setShowsCards(row1,getFilteredShows(showStore));
         loading.style.display="none";
     });
 }
 
-const setShows=(row1,shows)=>{
+const setShowsCards=(row1,shows)=>{
     row1.innerHTML="";
     if(shows&&shows.length){
         shows.forEach(show=>{

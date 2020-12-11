@@ -4,7 +4,7 @@
 }
 .ratestars img{
     display:inline-block;
-    max-width:1.5rem;
+    max-width:1.4rem;
     margin:0 2px;
 }
 
@@ -12,5 +12,11 @@
     .ratestars img:hover{
         cursor:pointer;
         filter:brightness(0.65);
+    }
+}
+
+@media(max-width:25cm){
+    .ratestars img{
+        max-width:1.5rem;
     }
 }

@@ -1,5 +1,6 @@
 import {Show,apikey} from "estate";
 import {setLoading} from "../index";
+import {shuffle} from "afile";
 
 export const setShowStore=(key,value)=>{
     store.show[key]=value;
@@ -18,7 +19,10 @@ export const setSearchValues=(values=[])=>{
 }
 
 export const setSearchValue=(value=null)=>{
-    store.show.searchvalue=value;
+    const showStore=store.show;
+    if(showStore.searchvalue!==value){
+        showStore.searchvalue=value;
+    }
 }
 
 export const addSearchValue=(value)=>{
@@ -52,7 +56,7 @@ export const loadShows=(collection=1,then)=>{
         return shows;
     }).
     then(data=>{
-        const shows=data.map(show=>new Show(show));
+        const shows=shuffle(data.map(show=>new Show(show)));
         setShows(shows);
         setLoading(false);
         if(then){

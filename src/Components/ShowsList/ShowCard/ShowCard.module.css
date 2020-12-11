@@ -38,10 +38,6 @@
 .title::-webkit-scrollbar{
     display:none;
 }
-.rating img{
-    max-width:1.25em;
-    margin:0 2px;
-}
 
 @media(max-width:25cm){
     .showcard{
