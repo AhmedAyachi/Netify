@@ -1,6 +1,6 @@
 import {map,useRef} from "vanilla";
 import css from "./Filter.module.css";
-import {RateStars,ShowCard} from "components";
+import {RateStars,ShowsList} from "components";
 import genresdata from "./Genres.json";
 
 
@@ -43,7 +43,7 @@ export default function Filter(props){
         parent:filter.querySelector(`#rate .${css.col3}`),
         style:styles.ratestars,
         editable:true,
-        state:state.filter,
+        state:state.filterparams,
     });
 
 
@@ -88,16 +88,13 @@ export default function Filter(props){
         element.addEventListener("click",()=>{
             const {elements:{showslist},show:{shows}}=store;
             const {filterparams}=state;
-            const showslistRow1=showslist.querySelector("#row1");
-            showslistRow1.innerHTML="";
-            shows.filter(show=>
+            const filteredshows=shows.filter(show=>
                 show.vote_average>=filterparams.rate &&
                 filterparams.type.includes(show.type) &&
-                show.genre_ids.filter(id=>filterparams.genres.includes(id)).length
-                ).forEach(show=>{
-                    ShowCard({parent:showslistRow1,show});
-                }
+                show.genre_ids.filter(id=>filterparams.genres.includes(id)).length===filterparams.genres.length
             );
+            console.log(filteredshows);
+            showslist.setShows(filteredshows);
         });
     });
 }

@@ -7,7 +7,7 @@ import {shuffle} from "afile";
 
 
 export default function ShowsList(props){
-    const {parent,searcherRef,ref=useRef("showslist")}=props;
+    const {parent,ref=useRef("showslist"),searcherRef}=props;
     parent.insertAdjacentHTML("beforeend",`<div id="${ref}" class="${css.showslist}"></div>`);
     const showslist=store.elements.showslist=parent.querySelector(`#${ref}`);
 
@@ -19,14 +19,15 @@ export default function ShowsList(props){
         </div>
         <div id="row1"></div>
     `;
-    const showState=store.show;
+
+    const row1=showslist.querySelector("#row1"),showState=store.show;
     if(showState.searchvalue){
         const searcherInput=document.querySelector(`#${searcherRef} input`);
         searcherInput.value=showState.searchvalue;
         const searched=showState.searched;
         if(searched.length){
             searched.forEach(show=>{
-                ShowCard({parent:showslist.querySelector("#row1"),show});
+                ShowCard({parent:row1,show});
             });
         };
     }
@@ -46,6 +47,18 @@ export default function ShowsList(props){
         const searcherInput=document.querySelector(`#${refs.searcher} input`);
         if(searcherInput&&searcherInput.value){
             searcherInput.value="";
+        }
+    }
+
+    showslist.setShows=(shows=showState.shows)=>{
+        row1.innerHTML="";
+        if(shows&&shows.length){
+            shows.forEach(show=>{
+                ShowCard({parent:row1,show});
+            });
+        }
+        else{
+            
         }
     }
     
