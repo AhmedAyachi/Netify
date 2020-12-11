@@ -1,7 +1,6 @@
 import {useRef} from "vanilla";
-import CastCard from "./CastCard/CastCard";
 import css from "./CreditsCard.module.css";
-
+import CastsCard from "./CastsCard/CastsCard";
 
 
 export default function CreditsCard(props){
@@ -10,9 +9,7 @@ export default function CreditsCard(props){
     const creditscard=parent.querySelector(`#${ref}`);
 
     const crews=credits.crew;
+    CastsCard({parent:creditscard,casts:credits.cast});
     
-    credits.cast.forEach(cast=>{
-        CastCard({parent:creditscard,cast});
-    });
     //console.log(crews);
 }

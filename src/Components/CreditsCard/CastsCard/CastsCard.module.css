@@ -1,0 +1,16 @@
+.castscard{
+    display:block;
+    margin:5px 0;
+}
+.row0{
+    text-align:center;
+}
+.row1{
+    overflow-x:auto;
+    white-space:nowrap;
+    color:white;
+}
+.title{
+    color:#b8000f;
+    text-decoration:underline;
+}

@@ -17,12 +17,3 @@
     max-width:3rem;
     margin:5px 0;
 }
-.usericon{
-    position:absolute;
-    top:5px;
-    right:5px;
-    width:3em;
-    height:3em;
-    border-radius:50px; 
-    background-color:#cc0000;
-}

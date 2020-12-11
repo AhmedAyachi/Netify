@@ -10,3 +10,4 @@ export {default as DetailsCard} from "./DetailsCard/DetailsCard";
 export {default as CreditsCard} from "./CreditsCard/CreditsCard";
 export {default as RateStars} from "./RateStars/RateStars";
 export {default as OfflineAlert} from "./OfflineAlert/OfflineAlert";
+export {default as Navigator} from "./Navigator/Navigator";

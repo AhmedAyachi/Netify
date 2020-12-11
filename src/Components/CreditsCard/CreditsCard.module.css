@@ -1,5 +1,3 @@
 .creditscard{
-    overflow-x:auto;
-    white-space:nowrap;
-    color:white;
+    display:block;
 }
