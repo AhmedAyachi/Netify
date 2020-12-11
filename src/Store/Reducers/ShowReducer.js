@@ -7,6 +7,7 @@ if(!searchvalues){
 const ShowReducer={
     searched:[],
     searchvalues:searchvalues||[],
+    searchvalue:null,
     shows:[],
     filter:null,
     collection:1,

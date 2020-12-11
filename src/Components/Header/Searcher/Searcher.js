@@ -1,11 +1,10 @@
 import {useRef} from "vanilla";
 import css from "./Searcher.module.css";
 import {filtericon} from "assets";
-import {ShowCard} from "components";
-import {addSearchValue,setSearched,loadShowsByTitle} from "actions";
+import {addSearchValue,setSearchedShows,loadShowsByTitle,setSearchValue} from "actions";
 import SearchList from "./SearchList/SearchList";
 import Filter from "./Filter/Filter";
-import {toggle,fadeOut} from "afile";
+import {toggle} from "afile";
 
 
 export default function Searcher(props){
@@ -49,39 +48,25 @@ const styles={
     `,
 }
 
-export const loadSearchedShows=(value,showslistRow1,loading)=>{
+export const loadSearchedShows=(value,showslist,loading)=>{
+    loading.style.display="block";
     loadShowsByTitle(value,(shows)=>{
-        if(shows.length){
-            shows.forEach(show=>{
-                ShowCard({parent:showslistRow1,show});
-            });
-        }
-        else{
-            showslistRow1.innerHTML=`<p style="${styles.noresults}">No results</p>`;
-        }
+        showslist.setShows(shows);
         loading.style.display="none";
-        setSearched(shows);
+        setSearchedShows(shows);
     })
 }
 
 const handleOnChange=(input,store)=>{
     const showslist=store.elements.showslist;
-    const showslistRow1=showslist.querySelector("#row1");
     const value=input.value.toLowerCase().trim();
-    showslistRow1.innerHTML="";
-    store.show.searchvalue=value;
+    setSearchValue(value);
     if(value){
         addSearchValue(value);
         const loading=showslist.querySelector("#loading");
-        loading.style.display="block";
-        loadSearchedShows(value,showslistRow1,loading);
+        loadSearchedShows(value,showslist,loading);
     }
     else{
-        const shows=store.show.shows;
-        if(shows&&shows.length){
-            shows.forEach(show=>{
-                ShowCard({parent:showslistRow1,show});
-            });
-        }
+        showslist.setShows(store.show.shows);
     }
 }

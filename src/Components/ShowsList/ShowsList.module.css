@@ -27,6 +27,9 @@
     .row0 img{
         max-width:3rem;
     }
+    .noshowmsg{
+        font-size:2rem;
+    }
 }
 
 @media(any-hover){

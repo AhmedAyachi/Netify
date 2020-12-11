@@ -1,7 +1,7 @@
 import {useRef} from "vanilla";
 import css from "./SearchOption.module.css";
 import {closer} from "assets";
-import {deleteSearchValue} from "actions";
+import {setSearchValue,deleteSearchValue} from "actions";
 import {loadSearchedShows} from "../../Searcher";
 import {fadeOut} from "afile";
 
@@ -22,13 +22,11 @@ export default function SearchOption(props){
     };
     searchoption.querySelector("input").onclick=()=>{
         if(inputfield.value.trim()!==value){
+            setSearchValue(value);
             inputfield.value=value;
             const showslist=store.elements.showslist;
-            const showslistRow1=showslist.querySelector("#row1");
-            showslistRow1.innerHTML="";
             const loading=showslist.querySelector("#loading");
-            loading.style.display="block";
-            loadSearchedShows(value,showslistRow1,loading);
+            loadSearchedShows(value,showslist,loading);
         }
         fadeOut(parent);
     };

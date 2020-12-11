@@ -1,7 +1,7 @@
 import {Show,apikey} from "estate";
 import {setLoading} from "../index";
 
-export const setShowState=(key,value)=>{
+export const setShowStore=(key,value)=>{
     store.show[key]=value;
 }
 
@@ -9,7 +9,7 @@ export const setShows=(shows=[])=>{
     store.show.shows=shows;
 }
 
-export const setSearched=(shows=[])=>{
+export const setSearchedShows=(shows=[])=>{
     store.show.searched=shows;
 }
 
@@ -17,21 +17,25 @@ export const setSearchValues=(values=[])=>{
     store.show.searchvalues=values;
 }
 
+export const setSearchValue=(value=null)=>{
+    store.show.searchvalue=value;
+}
+
 export const addSearchValue=(value)=>{
     value=value.trim();
-    const showState=store.show;
-    if(!showState.searchvalues.includes(value)){
-        showState.searchvalues.unshift(value);
-        localStorage.setItem("searchvalues",JSON.stringify(showState.searchvalues));
+    const showStore=store.show;
+    if(!showStore.searchvalues.includes(value)){
+        showStore.searchvalues.unshift(value);
+        localStorage.setItem("searchvalues",JSON.stringify(showStore.searchvalues));
     }
 }
 
 export const deleteSearchValue=(value)=>{
     value=value.trim();
-    const showState=store.show;
-    const index=showState.searchvalues.indexOf(value);
-    showState.searchvalues.splice(index,1);
-    localStorage.setItem("searchvalues",JSON.stringify(showState.searchvalues));
+    const showStore=store.show;
+    const index=showStore.searchvalues.indexOf(value);
+    showStore.searchvalues.splice(index,1);
+    localStorage.setItem("searchvalues",JSON.stringify(showStore.searchvalues));
 }
 
 export const loadShows=(collection=1,then)=>{

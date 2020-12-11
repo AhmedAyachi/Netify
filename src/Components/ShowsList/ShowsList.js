@@ -20,16 +20,12 @@ export default function ShowsList(props){
         <div id="row1"></div>
     `;
 
-    const row1=showslist.querySelector("#row1"),showState=store.show;
-    if(showState.searchvalue){
+    const row1=showslist.querySelector("#row1"),showStore=store.show;
+    if(showStore.searchvalue){
         const searcherInput=document.querySelector(`#${searcherRef} input`);
-        searcherInput.value=showState.searchvalue;
-        const searched=showState.searched;
-        if(searched.length){
-            searched.forEach(show=>{
-                ShowCard({parent:row1,show});
-            });
-        };
+        searcherInput.value=showStore.searchvalue;
+        setShows(row1,showStore.searched);
+        console.log(store);
     }
     else{
         setShowCards(showslist,store.show);
@@ -37,31 +33,20 @@ export default function ShowsList(props){
 
     showslist.querySelector("#prevarrow").onclick=()=>{
         Collection.previous(showslist,store.show);
-        const searcherInput=document.querySelector(`#${refs.searcher} input`);
+        const searcherInput=document.querySelector(`#${searcherRef} input`);
         if(searcherInput&&searcherInput.value){
             searcherInput.value="";
         }
     }
     showslist.querySelector("#nextarrow").onclick=()=>{
         Collection.next(showslist,store.show);
-        const searcherInput=document.querySelector(`#${refs.searcher} input`);
+        const searcherInput=document.querySelector(`#${searcherRef} input`);
         if(searcherInput&&searcherInput.value){
             searcherInput.value="";
         }
     }
 
-    showslist.setShows=(shows=showState.shows)=>{
-        row1.innerHTML="";
-        if(shows&&shows.length){
-            shows.forEach(show=>{
-                ShowCard({parent:row1,show});
-            });
-        }
-        else{
-            
-        }
-    }
-    
+    showslist.setShows=(shows=showStore.shows)=>{setShows(row1,shows)};
 }
 const styles={
     prevarrow:`
@@ -73,29 +58,43 @@ const styles={
 };
 
 const Collection=new (function(){
-    this.previous=(showslist,showState)=>{
-        if(showState.collection>1){
-            showState.collection--;
-            setShowCards(showslist,showState);
+    this.previous=(showslist,showStore)=>{
+        if(showStore.collection>1){
+            showStore.collection--;
+            setShowCards(showslist,showStore);
         }
     }
-    this.next=(showslist,showState)=>{
-        if(showState.collection<250){
-            showState.collection++;
-            setShowCards(showslist,showState);
+    this.next=(showslist,showStore)=>{
+        if(showStore.collection<250){
+            showStore.collection++;
+            setShowCards(showslist,showStore);
         }
     }
 })();
 
-const setShowCards=(showslist,showState)=>{
+const setShowCards=(showslist,showStore)=>{
     const row1=showslist.querySelector("#row1");
     const loading=showslist.querySelector("#loading");
     loading.style.display="block";
-    loadShows(showState.collection,(shows)=>{
+    loadShows(showStore.collection,(shows)=>{
         row1.innerHTML="";
         shuffle(shows).forEach(show=>{
             ShowCard({parent:row1,show});
         });
         loading.style.display="none";
     });
+}
+
+const setShows=(row1,shows)=>{
+    row1.innerHTML="";
+    if(shows&&shows.length){
+        shows.forEach(show=>{
+            ShowCard({parent:row1,show});
+        });
+    }
+    else{
+        row1.innerHTML=`
+            <p class="${css.noshowmsg}">No shows found</p>
+        `;
+    }
 }
