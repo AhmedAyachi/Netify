@@ -19,7 +19,7 @@
     z-index:2;
 }
 .applogo{
-    max-width:7.5em;
+    max-width:4em;
 }
 .logos{
     display:flex;
@@ -48,6 +48,9 @@
     .home{
         font-size:1rem;
         padding-top:10%;
+    }
+    .applogo{
+        max-width:7.5em;
     }
 }
 @media(any-hover){

@@ -13,7 +13,7 @@ export default function ShowsBackground(props){
             <img class="${css.poster}" alt="" src="${image.src}"/>
         `)}
     `;
-    fadeIn(showsbackground,"block",1.25);
+    fadeIn(showsbackground,"flex",1.25);
 };
 
 const styles={
