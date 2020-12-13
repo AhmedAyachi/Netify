@@ -9,6 +9,7 @@
     border-bottom-left-radius:5px;
     transition:0.5s;
     font-size:1rem;
+    z-index:1;
 }
 .inputfield input{
     height:100%;

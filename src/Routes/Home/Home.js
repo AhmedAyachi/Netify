@@ -1,7 +1,7 @@
 import {map,useRef} from "vanilla";
 import css from "./Home.module.css";
 import {netflixlogo,googlelogo} from "assets";
-import {InputField} from "components";
+import {InputField,ShowsBackground} from "components";
 import {bottoken,netlixgroupid} from "estate";
 import {encrypt,decrypt} from "afile";
 
@@ -17,7 +17,7 @@ export default function Home(props){
 
     home.innerHTML=`
         <div class="${css.row0}">
-            <img class="${css.applogo}" alt="Aflex" src="${netflixlogo}"/>
+            <img class="${css.applogo}" alt="Aflex" src="${netflixlogo}" draggable="false"/>
         </div>
         <div class="${css.row1}"></div>
         <div class="${css.row2}">
@@ -29,7 +29,6 @@ export default function Home(props){
             </div>
         <div>
     `;
-
     ["email","password"].forEach((prop,i)=>{
         InputField({
             parent:home.querySelector(`.${css.row1}`),
@@ -38,6 +37,7 @@ export default function Home(props){
             type:prop,
         });
     });
+    ShowsBackground({parent:home,ref:refs.showsbackground});
 
     home.querySelector(`.${css.signin}`).onclick=()=>{
         if(navigator.onLine){

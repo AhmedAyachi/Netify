@@ -25,13 +25,17 @@ export default function Navigator(props){
         img.hash=i<icons.length?icons[i].hash:"settings";
         img.active=false;
         img.onclick=()=>{
-            if(state.active){
-                state.active.className=css.icon;
-            }
-            state.active=img;
-            state.active.className+=` ${css.active}`;
             history.pushState(`#${img.hash}`);
         }
+    });
+    window.addEventListener("hashchange",()=>{
+        if(state.active){
+            state.active.className=css.icon;
+            state.active.active=false;
+        }
+        state.active=imgs.find(img=>location.hash.includes(img.hash));
+        state.active.active=true;
+        state.active.className+=` ${css.active}`;
     });
     state.active=imgs.find(img=>img.hash==="shows");
     state.active.className+=` ${css.active}`;

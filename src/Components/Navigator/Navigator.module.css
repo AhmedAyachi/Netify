@@ -10,16 +10,17 @@
     border-top:2px solid #b8000f;
     overflow:hidden;
     font-size:1rem;
+    z-index:100;
 }
 .icon{
     max-width:2em;
-    filter:brightness(0.65);
+    filter:brightness(0.5);
+    transition:0.5s;
 }
 .active{
-    max-width:2em;
+    max-width:2.2em;
     padding-bottom:3px;
     filter:brightness(1);
-    border-bottom:2px solid #cc0000;
 }
 .usericon{
     width:2em;

@@ -1,0 +1,16 @@
+.showsbackground{
+    position:fixed;
+    top:0;
+    width:100vw;
+    height:100vh;
+    z-index:0;
+}
+.poster{
+    max-width:45%;
+    opacity:0.25;
+}
+@media(max-width:25cm){
+    .poster{
+        max-width:100%;
+    }
+}

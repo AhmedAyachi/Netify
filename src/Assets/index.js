@@ -1,5 +1,7 @@
 
 //Images:
+export {default as johnwick1} from "./Images/JohnWick_1.jpg";
+export {default as lucifer1} from "./Images/Lucifer_1.png";
 export {default as netflixlogo} from "./Images/Netflix_0.png";
 export {default as googlelogo} from "./Images/Google_0.png";
 export {default as filtericon} from "./Images/Filter_0.png";
