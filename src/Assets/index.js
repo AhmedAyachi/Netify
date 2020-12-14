@@ -1,5 +1,6 @@
 
 //Images:
+export {default as plusbtn} from "./Images/Check0.png";
 export {default as johnwick1} from "./Images/JohnWick_1.jpg";
 export {default as lucifer1} from "./Images/Lucifer_1.png";
 export {default as netflixlogo} from "./Images/Netflix_0.png";
@@ -25,7 +26,8 @@ export {default as heart0} from "./Images/Heart_0.png";
 //Gifs:
 export {default as netflixentry} from "./Gifs/Netflix_0.gif";
 export {default as loadinganim} from "./Gifs/Loading_1.gif";
-export {default as cryfuldog} from "./Gifs/Cry_0.gif";
+export {default as check2} from "./Gifs/Check_2.gif";
+export {default as check2reversed} from "./Gifs/Check_2_reversed.gif";
 
 
 //videos:

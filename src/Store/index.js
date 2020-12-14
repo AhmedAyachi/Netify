@@ -5,6 +5,8 @@ const Reducer={
     show:ShowReducer,
     loading:false,
     elements:{},
+    signedin:false,
+    skiped:false,
 }
 
 export default Reducer;

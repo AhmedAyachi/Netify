@@ -11,5 +11,5 @@ export default function CreditsCard(props){
     const crews=credits.crew;
     CastsCard({parent:creditscard,casts:credits.cast});
     
-    //console.log(crews);
+    console.log(crews);
 }

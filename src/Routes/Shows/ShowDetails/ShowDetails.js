@@ -17,15 +17,13 @@ export default function ShowDetails(props){
     `;
     
     const loading=showdetails.querySelector("#loading");
-    H.useDetails(show,(details)=>{
-        H.useCredits(show,credits=>{
-            DetailsCard({
-                parent:showdetails,
-                show:new Show(details),
-            });
-            CreditsCard({parent:showdetails,credits});
-            loading.style.display="none";
+    H.useCreditsAndDetails(show,({details,credits})=>{
+        DetailsCard({
+            parent:showdetails,
+            show:new Show(details),
         });
+        CreditsCard({parent:showdetails,credits});
+        loading.style.display="none";
     });
 }
 

@@ -8,7 +8,7 @@ export default function Navigator(props){
     parent.insertAdjacentHTML("beforeend",`<div id="${ref}" class="${css.navigator}" style="${style}"></div>`);
     const navigator=parent.querySelector(`#${ref}`);
     const state={
-        active:null,
+        activeicon:null,
     }
 
     navigator.innerHTML=`
@@ -28,19 +28,26 @@ export default function Navigator(props){
             history.pushState(`#${img.hash}`);
         }
     });
-    window.addEventListener("hashchange",()=>{
-        if(state.active){
-            state.active.className=css.icon;
-            state.active.active=false;
+    state.activeicon=imgs.find(img=>img.hash==="shows");
+    
+    const onHashChange=()=>{
+        if(state.activeicon){
+            state.activeicon.className=css.icon;
+            state.activeicon.active=false;
         }
-        state.active=imgs.find(img=>location.hash.includes(img.hash));
-        state.active.active=true;
-        state.active.className+=` ${css.active}`;
-    });
-    state.active=imgs.find(img=>img.hash==="shows");
-    state.active.className+=` ${css.active}`;
+        state.activeicon=imgs.find(img=>location.hash.startsWith(`#${img.hash}`));
+        state.activeicon.active=true;
+        state.activeicon.className+=` ${css.active}`;
+    }
+    window.addEventListener("hashchange",onHashChange);
 
-}
+    navigator.unmount=()=>{
+        window.removeEventListener("hashchange",onHashChange);
+        navigator.remove();
+    }
+
+    return navigator;
+};
 
 const icons=[
     {id:"toshows",alt:"shows",src:home1,hash:"shows"},
