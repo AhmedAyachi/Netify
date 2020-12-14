@@ -4,7 +4,7 @@ export {default as ShowsBackground} from "./ShowsBackground/ShowsBackground";
 export {default as EntryAnimation} from "./EntryAnimation/EntryAnimation";
 export {default as Header} from "./Header/Header";
 export {default as InputField} from "./InputField/InputField";
-export {default as BackButton} from "./BackButton/BackButton";
+export {default as SkipAlert} from "./SkipAlert/SkipAlert";
 export {default as ShowsList} from "./ShowsList/ShowsList";
 export {default as ShowCard} from "./ShowsList/ShowCard/ShowCard";
 export {default as DetailsCard} from "./DetailsCard/DetailsCard";
