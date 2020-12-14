@@ -6,7 +6,7 @@ import {home1,heart0,defaultcover} from "assets";
 export default function Navigator(props){
     const {parent,ref=useRef("navigator"),style}=props;
     parent.insertAdjacentHTML("beforeend",`<div id="${ref}" class="${css.navigator}" style="${style}"></div>`);
-    const navigator=parent.querySelector(`#${ref}`);
+    const navigator=store.elements.navigator=parent.querySelector(`#${ref}`);
     const state={
         activeicon:null,
     }

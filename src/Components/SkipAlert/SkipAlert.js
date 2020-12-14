@@ -21,8 +21,14 @@ export default function SkipAlert(props){
         </div>
     `
     
-    fadeIn(skipalert,"block",1);
+    fadeIn(skipalert,"block",0.4);
     skipalert.querySelector("#cancelbtn").onclick=()=>{
         skipalert.remove();
+    }
+    skipalert.querySelector("#proceedbtn").onclick=()=>{
+        setIsguest();
+        const appcontent=app.querySelector("#content");
+        appcontent.innerHTML="";
+        Home({parent:appcontent});
     }
 }

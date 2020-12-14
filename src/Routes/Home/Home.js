@@ -12,10 +12,9 @@ export default function Home(props){
     
     if(store.usertoken||store.isguest){
         Shows({parent:home});
-        const {elements}=store;
         app.style.paddingBottom="5rem";
-        if(!elements.navigator){
-            elements.navigator=Navigator({parent:app});
+        if(!store.elements.navigator){
+            Navigator({parent:app});
         }
     }
     else{
