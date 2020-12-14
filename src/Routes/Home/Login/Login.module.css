@@ -29,15 +29,6 @@
 .applogo{
     max-width:4em;
 }
-.logos{
-    display:flex;
-    justify-content:center;
-    align-items:center;
-}
-.logo{
-    max-width:2rem;
-    margin:5px;
-}
 .signin{
     width:60%;
     height:2.5em;
@@ -48,8 +39,32 @@
     font-size:2rem;
     background-color:#cf0909;
 }
+.tmdblogo{
+    display:block;
+    max-width:3rem;
+    margin:0 auto;
+}
 .signin:active{
     opacity:0.65;
+}
+.details{
+    font-family:fredokaone;
+    margin-top:20px;
+    color:#cc0000;
+    width:fit-content;
+    margin:50px auto;
+}
+.details ul{
+    list-style:none;
+    color:white;
+    font-size:0.7em;
+}
+.details li{
+    margin:3px;
+}
+.tmdblink{
+    color:#cc0000;
+    text-decoration:underline;
 }
 
 @media(max-width:25cm){
@@ -63,9 +78,13 @@
     .skipbtn{
         right:1.5rem;
     }
+    .details{
+        bottom:30px;
+        font-size:1.1em;
+    }
 }
 @media(any-hover){
-    .signin:hover,.skipbtn:hover{
+    .signin:hover,.skipbtn:hover,.details summary:hover{
         cursor:pointer;
         filter:brightness(0.65);
     }

