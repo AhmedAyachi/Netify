@@ -1,12 +1,13 @@
 
-const searchvalues=JSON.parse(localStorage.getItem("searchvalues"));
+//localStorage.clear();
+const searchvalues=localStorage.getItem("searchvalues");
 if(!searchvalues){
     localStorage.setItem("searchvalues","null");
 }
 
 const ShowReducer={
     searched:[],
-    searchvalues:searchvalues||[],
+    searchvalues:JSON.parse(searchvalues)||[],
     searchvalue:null,
     shows:[],
     filter:null,

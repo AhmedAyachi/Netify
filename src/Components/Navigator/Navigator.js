@@ -22,20 +22,22 @@ export default function Navigator(props){
 
     const imgs=[...navigator.querySelectorAll(`.${css.icon}`)];
     imgs.forEach((img,i)=>{
-        img.hash=i<icons.length?icons[i].hash:"settings";
+        img.hash=i<icons.length?icons[i].hash:"#settings";
         img.active=false;
         img.onclick=()=>{
-            history.pushState(`#${img.hash}`);
+            history.replace(img.hash);
         }
     });
-    state.activeicon=imgs.find(img=>img.hash==="shows");
+    state.activeicon=imgs.find(img=>!img.hash);
+    state.activeicon.active=true;
+    state.activeicon.className+=` ${css.active}`;
     
     const onHashChange=()=>{
         if(state.activeicon){
             state.activeicon.className=css.icon;
             state.activeicon.active=false;
         }
-        state.activeicon=imgs.find(img=>location.hash.startsWith(`#${img.hash}`));
+        state.activeicon=imgs.find((img,i)=>img.hash&&location.hash.startsWith(img.hash))||imgs[0];
         state.activeicon.active=true;
         state.activeicon.className+=` ${css.active}`;
     }
@@ -50,6 +52,6 @@ export default function Navigator(props){
 };
 
 const icons=[
-    {id:"toshows",alt:"shows",src:home1,hash:"shows"},
-    {id:"tofavourites",alt:"favourites",src:heart0,hash:"favourites"},
+    {id:"tohome",alt:"Home",src:home1,hash:""},
+    {id:"tofavourites",alt:"Favourites",src:heart0,hash:"#favourites"},
 ];

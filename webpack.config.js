@@ -35,6 +35,7 @@ module.exports={
     resolve:{
         alias:{
             "vanilla":path.resolve(__dirname,"Vanilla.js"),
+            "vanilla-router":path.resolve(__dirname,"Vanilla-router.js"),
             "estate":path.resolve(__dirname,"src/Estate.js"),
             "assets":path.resolve(__dirname,"src/Assets"),
             "components":path.resolve(__dirname,"src/Components"),

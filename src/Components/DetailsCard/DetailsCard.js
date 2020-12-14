@@ -10,7 +10,6 @@ export default function DetailsCard(props){
     parent.insertAdjacentHTML("beforeend",`<div id="${ref}" class="${css.detailscard}"></div>`);
     const detailscard=parent.querySelector(`#${ref}`);
 
-    console.log(show);
     detailscard.innerHTML=`
         ${show.backdrop_path?`<img alt="backdrop" class="${css.backdrop}" src="${show.backdrop_path}"/>`:""}
         <img alt="Add to watchlist" class="${css.watchlistbtn}" src="${plusbtn}"/>

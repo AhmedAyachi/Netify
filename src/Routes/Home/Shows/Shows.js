@@ -4,7 +4,7 @@ import {Header,ShowsList} from "components";
 
 
 export default function Shows(props){
-    const {parent,state}=props;
+    const {parent}=props;
     parent.insertAdjacentHTML("beforeend",`<div class="${css.shows} activeroute"></div>`);
     const shows=parent.querySelector(`.${css.shows}`);
     const refs={

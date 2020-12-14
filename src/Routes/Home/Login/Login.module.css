@@ -1,0 +1,71 @@
+.login{
+    position:relative;
+    display:block;
+    color:white;
+    background-color:black;
+    text-align:center;
+    font-size:1.5rem;
+    padding-top:2%;
+}
+.row0,.row2{
+    position:relative;
+    font-size:1em;
+    z-index:2;
+}
+.row1{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    z-index:2;
+}
+.skipbtn{
+    position:absolute;
+    display:none;
+    top:0;
+    right:5rem;
+    font-family:fredokaone;
+}
+.applogo{
+    max-width:4em;
+}
+.logos{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+.logo{
+    max-width:2rem;
+    margin:5px;
+}
+.signin{
+    width:60%;
+    height:2.5em;
+    margin:10px 0;
+    border:none;
+    color:white;
+    font-weight:bold;
+    font-size:2rem;
+    background-color:#cf0909;
+}
+.signin:active{
+    opacity:0.65;
+}
+
+@media(max-width:25cm){
+    .Login{
+        font-size:1rem;
+        padding-top:10%;
+    }
+    .applogo{
+        max-width:7.5em;
+    }
+    .skipbtn{
+        right:1.5rem;
+    }
+}
+@media(any-hover){
+    .signin:hover,.skipbtn:hover{
+        cursor:pointer;
+        filter:brightness(0.65);
+    }
+}

@@ -1,26 +1,25 @@
-import {Router,useRef} from "../Vanilla";
+import {useRef} from "vanilla";
+import {Router} from "vanilla-router";
 import css from "./App.module.css";
-import {EntryAnimation,OfflineAlert,Navigator} from "components";
-import {Home,Shows,ShowDetails} from "routes";
-import {fadeIn,fadeOut} from "afile";
+import {EntryAnimation,OfflineAlert} from "components";
+import {Home,ShowDetails} from "routes";
+import {fadeOut} from "afile";
 
 
 export default function App(props){
     const {parent}=props;
     parent.insertAdjacentHTML("beforeend",`<div id="app" class=${css.app}></div>`);
-    const app=parent.querySelector(`.${css.app}`);
+    const app=window.app=parent.querySelector(`.${css.app}`);
     const refs={
         offlinealert:useRef("offlinealert"),
-        navigator:useRef("navigator"),
     }
     app.innerHTML=`
-        <div id="row0"></div>
+        <div id="content"></div>
     `;
-
-    Router(app.querySelector("#row0"),[
+    
+    Router(app.querySelector("#content"),[
         {component:Home,path:""},
-        {component:Shows,path:"#shows"},
-        {component:ShowDetails,path:"#shows#show"},
+        {component:ShowDetails,path:".#show"},
     ]);
     
     window.addEventListener("offline",()=>{
@@ -32,7 +31,3 @@ export default function App(props){
         setTimeout(offlinealert.remove,510);
     });
 }
-
-const styles={
-    navigator:`display:none;`,
-};

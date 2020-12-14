@@ -8,7 +8,6 @@ function onDeviceReady(){
     StatusBar.overlaysWebView(true);
     StatusBar.backgroundColorByHexString("#00000000");
     useStore(Reducer);
-
     App({
         parent:document.getElementById("root"),
     });

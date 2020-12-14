@@ -15,5 +15,5 @@ export const useCreditsAndDetails=({id,type},then)=>{
     then(data=>{
         then(data);
     }).
-    catch(error=>console.log(error));
+    catch(error=>alert(error));
 }

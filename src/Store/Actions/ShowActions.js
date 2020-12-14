@@ -1,5 +1,5 @@
 import {Show,apikey} from "estate";
-import {setLoading} from "../index";
+import {setLoading} from "./index";
 import {shuffle} from "afile";
 
 export const setShowStore=(key,value)=>{

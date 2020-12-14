@@ -19,7 +19,7 @@ export default function ShowCard(props){
     RateStars({parent:showcard.querySelector(`#rating.${css.rating}`),rate:vote_average});
 
     showcard.onclick=()=>{
-        history.pushState(".#show",{show});
+        history.push("#show",{show});
     }
     
 }
