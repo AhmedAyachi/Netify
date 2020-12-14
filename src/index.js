@@ -13,3 +13,8 @@ function onDeviceReady(){
     });
 };
 document.addEventListener("deviceready",onDeviceReady,false);
+document.addEventListener("backbutton",()=>{
+    if(!location.hash){
+        navigator.app.exitApp();
+    }
+},false);

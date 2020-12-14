@@ -26,6 +26,9 @@ export default function ShowsList(props){
         searcherInput.value=showStore.searchvalue;
         setShowsCards(row1,showStore.searched);
     }
+    else if(showStore.shows.length){
+        setShowsCards(row1,showStore.shows);
+    }
     else{
         loadShowCards(showslist,showStore);
     }

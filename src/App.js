@@ -19,7 +19,7 @@ export default function App(props){
     
     Router(app.querySelector("#content"),[
         {component:Home,path:""},
-        {component:ShowDetails,path:".#show"},
+        {component:ShowDetails,path:"#show"},
     ]);
     
     window.addEventListener("offline",()=>{
