@@ -10,6 +10,18 @@ export const setShows=(shows=[])=>{
     store.show.shows=shows;
 }
 
+export const setWatchlist=(list=[])=>{
+    const showStore=store.show;
+    showStore.watchlist=list;
+    localStorage.setItem("watchlist",JSON.stringify(showStore.watchlist));
+}
+
+export const addToWatchlist=(show)=>{
+    const showStore=store.show;
+    showStore.watchlist.unshift(show);
+    localStorage.setItem("watchlist",JSON.stringify(showStore.watchlist));
+}
+
 export const setSearchedShows=(shows=[])=>{
     store.show.searched=shows;
 }

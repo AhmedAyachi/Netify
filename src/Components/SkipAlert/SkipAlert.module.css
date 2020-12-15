@@ -39,7 +39,7 @@
     height:5rem;
     margin:10px;
     background-color:transparent;
-    transition:0.5s;
+    transition:0.3s;
 }
 
 @media(max-width:25cm){

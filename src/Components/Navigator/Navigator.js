@@ -53,5 +53,5 @@ export default function Navigator(props){
 
 const icons=[
     {id:"tohome",alt:"Home",src:home1,hash:""},
-    {id:"tofavourites",alt:"Favourites",src:heart0,hash:"#favourites"},
+    {id:"tofavourites",alt:"Favourites",src:heart0,hash:"#watchlist"},
 ];

@@ -3,6 +3,7 @@ import css from "./DetailsCard.module.css";
 import {playbtn,check2,check2reversed,plusbtn} from "assets";
 import Trailer from "./Trailer/Trailer";
 import RateStars from "../RateStars/RateStars";
+import {addToWatchlist} from "actions";
 
 
 export default function DetailsCard(props){
@@ -43,6 +44,7 @@ export default function DetailsCard(props){
     addtowlbtn.onclick=()=>{
         addtowlbtn.active=!addtowlbtn.active;
         addtowlbtn.setAttribute("src",addtowlbtn.active?check2:check2reversed);
+        addToWatchlist(show);
     }
 }
 

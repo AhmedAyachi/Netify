@@ -7,9 +7,9 @@ import {loadinganim} from "assets";
 
 
 export default function ShowDetails(props){
-    const {parent,state}=props;
-    parent.insertAdjacentHTML("beforeend",`<div class="${css.showdetails}"></div>`);
-    const showdetails=parent.querySelector(`.${css.showdetails}`);
+    const {parent,ref="showdetails",state}=props;
+    parent.insertAdjacentHTML("beforeend",`<div id="${ref}" class="${css.showdetails}"></div>`);
+    const showdetails=parent.querySelector(`#${ref}.${css.showdetails}`);
 
     const {show}=state;
     showdetails.innerHTML=`

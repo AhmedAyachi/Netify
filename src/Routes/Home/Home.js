@@ -6,7 +6,7 @@ import {Navigator} from "components";
 
 
 export default function Home(props){
-    const {parent,ref=useRef("home")}=props;
+    const {parent,ref="home"}=props;
     parent.insertAdjacentHTML("beforeend",`<div id="${ref}"  class="${css.home} activeroute"></div>`);
     const home=parent.querySelector(`#${ref}`);
     
