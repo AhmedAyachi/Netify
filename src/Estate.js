@@ -21,3 +21,56 @@ export class Show{
         this.keywords=this.title+this.original_title+this.overview;
     }
 }
+
+export class File{
+    constructor(name="text.txt",location=cordova.file.cacheDirectory,resolve=()=>{},reject=()=>{}){
+        this.name=name;
+        this.location=location;
+        this.path=location+name;
+        this.created=false;
+        window.resolveLocalFileSystemURL(location,(dataDirectory)=>{
+            dataDirectory.getFile(name,{create:true},(file)=>{
+                this.created=true;
+                resolve(file);
+            },reject);
+        });
+    };
+    write(content="",resolve=()=>{},reject=()=>{}){
+        window.resolveLocalFileSystemURL(this.path,(file)=>{
+            file.createWriter(fileWriter=>{
+                fileWriter.onwriteend=resolve;
+                fileWriter.onerror=reject;
+                fileWriter.write(new Blob([content]),{type:"text/plain"});
+            });
+        });
+    };
+    append(content="",resolve=()=>{},reject=()=>{}){
+        window.resolveLocalFileSystemURL(this.path,(file)=>{
+            file.createWriter(fileWriter=>{
+                fileWriter.onwriteend=resolve;
+                fileWriter.onerror=reject;
+                try{
+                    fileWriter.seek(fileWriter.length);
+                }
+                catch{}
+                fileWriter.write(new Blob([content]),{type:"text/plain"});
+            });
+        });
+    };
+    onRead(resolve=()=>{},reject=()=>{}){
+        window.resolveLocalFileSystemURL(this.path,(file)=>{
+            file.file(file=>{
+                const reader=new FileReader();
+                reader.onloadend=function(){
+                    resolve(this.result);
+                }
+                reader.readAsText(file);
+            },reject);
+        });
+    };
+    remove(resolve=()=>{},reject=()=>{}){
+        window.resolveLocalFileSystemURL(this.path,(file)=>{
+            file.remove(resolve,reject);
+        });
+    };
+}

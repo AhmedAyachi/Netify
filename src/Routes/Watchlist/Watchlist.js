@@ -1,6 +1,8 @@
 import {} from "vanilla";
 import css from "./Watchlist.module.css";
 import {ShowCard} from "components";
+import {File} from "estate";
+import data from "./watchlist.json";
 
 
 export default function Watchlist(props){
@@ -9,11 +11,11 @@ export default function Watchlist(props){
     const watchlist=parent.querySelector(`#${ref}`);
 
     watchlist.innerHTML=`
-        <p>watchlist</p>
     `;
     
-    store.show.watchlist.forEach(show=>{
+    const file=new File("watchlist.json");
+    /*store.show.watchlist.forEach(show=>{
         ShowCard({parent:watchlist,show});
-    })
+    })*/
 
 }

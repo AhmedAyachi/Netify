@@ -16,6 +16,7 @@ const Reducer={
     elements:{},
     usertoken,
     isguest:JSON.parse(isguest),
+    number:0,
 }
 
 export default Reducer;
