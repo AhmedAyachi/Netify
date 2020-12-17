@@ -20,7 +20,7 @@ export const addToWatchlist=(show)=>{
     const showStore=store.show;
     showStore.watchlist.unshift(show);
     
-    store.files.watchlist.write(JSON.stringify(showStore.watchlist),()=>{
+    store.file.watchlist.write(JSON.stringify(showStore.watchlist),()=>{
         alert("show added to watchlist");
     },()=>{
         alert("show not added to watchlist");

@@ -39,8 +39,11 @@ export default function DetailsCard(props){
     playbutton.onclick=()=>{
         Trailer({parent:detailscard,id:show.id,type:show.type});
     }
+
+    const inWatchList=Boolean(store.show.watchlist.find(show=>show.id===props.show.id));
     const addtowlbtn=detailscard.querySelector(`.${css.watchlistbtn}`);
-    addtowlbtn.active=false;
+    addtowlbtn.active=inWatchList;
+    addtowlbtn.setAttribute("src",addtowlbtn.active?check2:plusbtn);
     addtowlbtn.onclick=()=>{
         addtowlbtn.active=!addtowlbtn.active;
         addtowlbtn.setAttribute("src",addtowlbtn.active?check2:check2reversed);

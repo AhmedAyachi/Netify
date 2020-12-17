@@ -1,9 +1,9 @@
 import {} from "vanilla";
-import css from "./Watchlist.module.css";
+import css from "./WatchList.module.css";
 import {ShowCard} from "components";
 
 
-export default function Watchlist(props){
+export default function WatchList(props){
     const {parent,ref="watchlist"}=props;
     parent.insertAdjacentHTML("beforeend",`<div id="${ref}" class="${css.watchlist}"></div>`);
     const watchlist=parent.querySelector(`#${ref}`);
