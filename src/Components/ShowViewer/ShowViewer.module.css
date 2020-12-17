@@ -53,6 +53,16 @@
     margin:10px 0;
 }
 
+@media(max-width:25cm){
+    .showviewer{
+        bottom:2rem;
+        margin-bottom:-2rem;
+    }
+    .row0{
+        padding-top:4rem;
+    }
+}
+
 @media(any-hover){
     .poster:hover{
         cursor:pointer;

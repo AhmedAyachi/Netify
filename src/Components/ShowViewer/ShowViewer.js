@@ -7,7 +7,6 @@ export default function ShowViewer(props){
     const {parent,ref=useRef("showviewer"),show={}}=props;
     parent.insertAdjacentHTML("beforeend",`<div id="${ref}" class="${css.showviewer}"></div>`);
     const showviewer=parent.querySelector(`#${ref}`);
-    console.log(show.backdrop_path);
 
     showviewer.innerHTML=`
         <div class="${css.background}" style="${styles.background(show.backdrop_path)}"></div>
