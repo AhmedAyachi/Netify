@@ -16,13 +16,15 @@ export default function WatchList(props){
                 <img alt="" class="${css.icon}" src="${squares0}"/>
             </div>
         </div>
-        <div class="${css.row1}"></div>
+        <div class="${css.row1}">
+            <div class="${css.row2}"></div>
+            <div class="${css.row3}"></div>
+        </div>
     `;
 
-    const row1=watchlist.querySelector(`.${css.row1}`);
     const watchlistshows=store.show.watchlist;
-    ShowViewer({parent:row1,show:watchlistshows[0]});
+    ShowViewer({parent:watchlist.querySelector(`.${css.row2}`),show:watchlistshows[0]});
     watchlistshows.forEach((show,i)=>{
-        i&&ShowCard({parent:row1,show});
+        i&&ShowCard({parent:watchlist.querySelector(`.${css.row3}`),show});
     });
 }

@@ -17,6 +17,9 @@
     background-size:cover;
     z-index:0;
 }
+.row1,.row2,.row3{
+    display:block;
+}
 .row0{
     position:relative;
     display:flex;
