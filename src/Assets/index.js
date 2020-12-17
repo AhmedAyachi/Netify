@@ -1,5 +1,7 @@
 
 //Images:
+export {default as squares0} from "./Images/Squares_0.png";
+export {default as list0} from "./Images/List_0.png"; 
 export {default as checked} from "./Images/Checked.png";
 export {default as tmdb1} from "./Images/TMDB_1.png";
 export {default as plusbtn} from "./Images/Check0.png";

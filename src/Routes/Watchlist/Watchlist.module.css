@@ -3,4 +3,31 @@
     color:white;
     font-family:fredokaone;
     text-align:center;
+    font-size:1rem;
+}
+.row0{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:1rem 0;
+    border-bottom:3px solid #cc0000;
+}
+.title{
+    font-size:2em;
+    margin-left:5px;
+    color:#cc0000;
+    text-transform:capitalize;
+    letter-spacing:0.15em;
+}
+.icons{
+    display:flex;
+    flex-direction:row;
+    align-items:center;
+}
+.icon{
+    max-width:1.5em;
+    margin:0 10px;
+}
+.row1{
+    display:block;
 }
