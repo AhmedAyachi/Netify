@@ -1,9 +1,9 @@
 import {map,useRef} from "vanilla";
 import css from "./DetailsCard.module.css";
-import {playbtn,check2,check2reversed,plusbtn} from "assets";
+import {playbtn,check2,check2reversed,plusbtn,checked} from "assets";
 import Trailer from "./Trailer/Trailer";
 import RateStars from "../RateStars/RateStars";
-import {addToWatchlist} from "actions";
+import {addToWatchlist,removeFromWatchList} from "actions";
 
 
 export default function DetailsCard(props){
@@ -43,11 +43,17 @@ export default function DetailsCard(props){
     const inWatchList=Boolean(store.show.watchlist.find(show=>show.id===props.show.id));
     const addtowlbtn=detailscard.querySelector(`.${css.watchlistbtn}`);
     addtowlbtn.active=inWatchList;
-    addtowlbtn.setAttribute("src",addtowlbtn.active?check2:plusbtn);
+    addtowlbtn.setAttribute("src",addtowlbtn.active?checked:plusbtn);
     addtowlbtn.onclick=()=>{
         addtowlbtn.active=!addtowlbtn.active;
-        addtowlbtn.setAttribute("src",addtowlbtn.active?check2:check2reversed);
-        addToWatchlist(show);
+        if(addtowlbtn.active){
+            addtowlbtn.setAttribute("src",check2);
+            addToWatchlist(show);
+        }
+        else{
+            addtowlbtn.setAttribute("src",check2reversed);
+            removeFromWatchList(show);
+        }
     }
 }
 
@@ -69,7 +75,7 @@ const details=show=>[
 const getDuration=show=>{
     switch(show.type){
         case "tv":
-            const seasonsnumber=show.seasons.length-1;
+            const seasonsnumber=show.seasons.filter(season=>season.name.toLowerCase().includes("season")).length;
             return seasonsnumber>1?`${seasonsnumber} seasons`:"One season";
         default:
             const {runtime}=show;

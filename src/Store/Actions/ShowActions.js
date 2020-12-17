@@ -18,13 +18,38 @@ export const setWatchlist=(list=[])=>{
 
 export const addToWatchlist=(show)=>{
     const showStore=store.show;
+    const fileStore=store.file;
     showStore.watchlist.unshift(show);
-    
-    store.file.watchlist.write(JSON.stringify(showStore.watchlist),()=>{
-        alert("show added to watchlist");
-    },()=>{
-        alert("show not added to watchlist");
-    });
+    if(fileStore.watchlist){
+        fileStore.watchlist.write(JSON.stringify(showStore.watchlist));
+    }
+    else{
+        localStorage.setItem("watchlist",JSON.stringify(showStore.watchlist));
+    }
+}
+
+export const removeFromWatchList=(show)=>{
+    const showStore=store.show;
+    let index=null;
+    const exists=Boolean(showStore.watchlist.find((wlshow,i)=>{
+        if(wlshow.id===show.id){
+            index=i;
+            return true;
+        }
+        else{
+            return false;
+        }
+    }));
+    if(exists){
+        showStore.watchlist.splice(index,1);
+        const fileStore=store.file;
+        if(fileStore.watchlist){
+            fileStore.watchlist.write(JSON.stringify(showStore.watchlist));
+        }
+        else{
+            localStorage.setItem("watchlist",JSON.stringify(showStore.watchlist));
+        }
+    }
 }
 
 export const setSearchedShows=(shows=[])=>{

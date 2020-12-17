@@ -1,5 +1,6 @@
 
 //Images:
+export {default as checked} from "./Images/Checked.png";
 export {default as tmdb1} from "./Images/TMDB_1.png";
 export {default as plusbtn} from "./Images/Check0.png";
 export {default as johnwick1} from "./Images/JohnWick_1.jpg";

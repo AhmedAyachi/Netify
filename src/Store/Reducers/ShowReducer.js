@@ -12,6 +12,6 @@ const ShowReducer={
     shows:[],
     filter:null,
     collection:1,
-    watchlist:null,
+    watchlist:[],
 }
 export default ShowReducer;
