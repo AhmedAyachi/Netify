@@ -14,9 +14,7 @@ export default function WatchList(props){
         <div class="${css.row1}">
             <div class="${css.row2}">
                 <h3 class="${css.title}">Watchlist</h3>
-                <div class="${css.icons}">
-                    <img alt="" class="${css.icon}" src="${squares0}"/>
-                </div>
+                <img alt="" class="${css.displayer}" src="${list0}"/>
             </div>
             <div class="${css.row3}"></div>
         </div>
@@ -27,4 +25,11 @@ export default function WatchList(props){
     watchlistshows.forEach((show,i)=>{
         i&&ShowCard({parent:watchlist.querySelector(`.${css.row3}`),show});
     });
+
+    const displayer=watchlist.querySelector(`.${css.displayer}`);
+    displayer.listmode=false;
+    displayer.onclick=()=>{
+        displayer.listmode=!displayer.listmode;
+        displayer.setAttribute("src",displayer.listmode?squares0:list0);
+    }
 };

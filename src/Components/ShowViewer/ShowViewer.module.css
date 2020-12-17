@@ -39,6 +39,7 @@
 }
 .poster{
     max-width:10em;
+    filter:drop-shadow(0 0 5px #2e2e2e);
 }
 .col1{
     display:flex;
