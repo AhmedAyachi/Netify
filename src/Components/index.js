@@ -7,6 +7,7 @@ export {default as InputField} from "./InputField/InputField";
 export {default as SkipAlert} from "./SkipAlert/SkipAlert";
 export {default as ShowsList} from "./ShowsList/ShowsList";
 export {default as ShowCard} from "./ShowsList/ShowCard/ShowCard";
+export {default as ShowRow} from "./ShowsList/ShowRow/ShowRow";
 export {default as DetailsCard} from "./DetailsCard/DetailsCard";
 export {default as ShowViewer} from "./ShowViewer/ShowViewer";
 export {default as CreditsCard} from "./CreditsCard/CreditsCard";

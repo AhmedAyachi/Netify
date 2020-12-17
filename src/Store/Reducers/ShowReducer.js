@@ -13,5 +13,6 @@ const ShowReducer={
     filter:null,
     collection:1,
     watchlist:[],
+    listdisplay:true,
 }
 export default ShowReducer;

@@ -1,6 +1,6 @@
 import {map} from "vanilla";
 import css from "./WatchList.module.css";
-import {ShowCard,ShowViewer} from "components";
+import {ShowCard,ShowRow,ShowViewer} from "components";
 import {squares0,list0} from "assets";
 
 
@@ -14,22 +14,36 @@ export default function WatchList(props){
         <div class="${css.row1}">
             <div class="${css.row2}">
                 <h3 class="${css.title}">Watchlist</h3>
-                <img alt="" class="${css.displayer}" src="${list0}"/>
+                <img alt="" class="${css.displayer}" src="${squares0}"/>
             </div>
             <div class="${css.row3}"></div>
         </div>
     `;
 
-    const watchlistshows=store.show.watchlist;
-    ShowViewer({parent:watchlist.querySelector(`.${css.row0}`),show:watchlistshows[0]});
-    watchlistshows.forEach((show,i)=>{
-        i&&ShowCard({parent:watchlist.querySelector(`.${css.row3}`),show});
-    });
+    const showStore=store.show;
+    const shows=showStore.watchlist;
+    shows.length&&ShowViewer({parent:watchlist.querySelector(`.${css.row0}`),show:shows[0]});
+    const row3=watchlist.querySelector(`.${css.row3}`);
+    setList(shows,row3,showStore.listdisplay);
 
     const displayer=watchlist.querySelector(`.${css.displayer}`);
-    displayer.listmode=false;
     displayer.onclick=()=>{
-        displayer.listmode=!displayer.listmode;
-        displayer.setAttribute("src",displayer.listmode?squares0:list0);
+        showStore.listdisplay=!showStore.listdisplay;
+        displayer.setAttribute("src",showStore.listdisplay?squares0:list0);
+        row3.innerHTML="";
+        setList(shows,row3,showStore.listdisplay);
     }
 };
+
+const setList=(shows,parent,display,)=>{
+    if(display){
+        shows.forEach((show,i)=>{
+            i&&ShowRow({parent,show});
+        }); 
+    }
+    else{
+        shows.forEach((show,i)=>{
+            i&&ShowCard({parent,show});
+        });
+    }
+}

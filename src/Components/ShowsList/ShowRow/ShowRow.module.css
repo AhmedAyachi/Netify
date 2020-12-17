@@ -1,0 +1,17 @@
+.showrow{
+    display:flex;
+    flex-direction:row;
+    justify-content:space-around;
+    align-items:center;
+    background-color:rgba(95,95,95,0.2);
+    font-size:1rem;
+    padding:1rem 0;
+    margin:5px 0;
+}
+
+@media(any-hover){
+    .showrow:hover{
+        cursor:pointer;
+        filter:brightness(0.8);
+    }
+}
