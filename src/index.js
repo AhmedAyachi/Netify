@@ -4,6 +4,8 @@ import App from "./App";
 import Reducer from "./Store";
 
 
+document.addEventListener("deviceready",onDeviceReady,false);
+
 function onDeviceReady(){
     StatusBar.overlaysWebView(true);
     StatusBar.backgroundColorByHexString("#00000000");
@@ -12,7 +14,7 @@ function onDeviceReady(){
         parent:document.getElementById("root"),
     });
 };
-document.addEventListener("deviceready",onDeviceReady,false);
+
 document.addEventListener("backbutton",()=>{
     if(!location.hash){
         navigator.app.exitApp();

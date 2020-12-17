@@ -1,6 +1,5 @@
 .app{
     position:relative;
     background-color:black;
-    overflow-x:hidden;
     max-width:100%;
 }

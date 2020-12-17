@@ -1,4 +1,4 @@
-import {ShowReducer} from "./Reducers";
+import {ShowReducer,FilesReducer} from "./Reducers";
 
 //localStorage.clear();
 const usertoken=localStorage.getItem("usertoken");
@@ -12,11 +12,11 @@ if(!isguest){
 
 const Reducer={
     show:ShowReducer,
+    files:FilesReducer,
     loading:false,
     elements:{},
     usertoken,
     isguest:JSON.parse(isguest),
-    number:0,
 }
 
 export default Reducer;

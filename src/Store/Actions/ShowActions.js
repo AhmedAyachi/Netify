@@ -19,7 +19,12 @@ export const setWatchlist=(list=[])=>{
 export const addToWatchlist=(show)=>{
     const showStore=store.show;
     showStore.watchlist.unshift(show);
-    localStorage.setItem("watchlist",JSON.stringify(showStore.watchlist));
+    
+    store.files.watchlist.write(JSON.stringify(showStore.watchlist),()=>{
+        alert("show added to watchlist");
+    },()=>{
+        alert("show not added to watchlist");
+    });
 }
 
 export const setSearchedShows=(shows=[])=>{

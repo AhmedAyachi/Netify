@@ -62,6 +62,7 @@ const details=show=>[
         detail:"Overview",
     },
 ]
+
 const getDuration=show=>{
     switch(show.type){
         case "tv":

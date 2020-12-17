@@ -23,14 +23,13 @@ export class Show{
 }
 
 export class File{
-    constructor(name="text.txt",location=cordova.file.cacheDirectory,resolve=()=>{},reject=()=>{}){
+    constructor({name="text.txt",location=cordova.file.cacheDirectory},resolve=()=>{},reject=()=>{}){
         this.name=name;
         this.location=location;
         this.path=location+name;
         this.created=false;
         window.resolveLocalFileSystemURL(location,(dataDirectory)=>{
-            dataDirectory.getFile(name,{create:true},(file)=>{
-                this.created=true;
+            dataDirectory.getFile(name,{create:true},(file)=>{  
                 resolve(file);
             },reject);
         });

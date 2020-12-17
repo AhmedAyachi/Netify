@@ -30,6 +30,6 @@ export default function App(props){
         const offlinealert=app.querySelector(`#${refs.offlinealert}`);
         fadeOut(offlinealert,0.5);
         setTimeout(offlinealert.remove,510);
-    });i
+    });
 }
 
