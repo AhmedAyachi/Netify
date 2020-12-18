@@ -1,6 +1,6 @@
 import {map} from "vanilla";
 import css from "./WatchList.module.css";
-import {ShowCard,ShowRow,ShowViewer} from "components";
+import {ShowCard,ShowRow,ShowView} from "components";
 import {squares0,list0,popcorn1} from "assets";
 
 
@@ -23,7 +23,7 @@ export default function WatchList(props){
 
     const shows=showStore.watchlist;
     if(shows.length){
-        ShowViewer({parent:watchlist.querySelector(`.${css.row0}`),show:shows[0]});
+        ShowView({parent:watchlist.querySelector(`.${css.row0}`),show:shows[0]});
     }
     const row3=watchlist.querySelector(`.${css.row3}`);
     setList(shows,row3,showStore.listdisplay);

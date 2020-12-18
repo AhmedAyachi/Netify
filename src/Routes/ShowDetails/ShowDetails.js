@@ -1,6 +1,6 @@
 import {} from "vanilla";
 import css from "./ShowDetails.module.css";
-import {DetailsCard,CreditsCard} from "components";
+import {ShowSlide,CreditsCard} from "components";
 import {Show} from "estate";
 import * as H from "./Hooks";
 import {loadinganim} from "assets";
@@ -16,14 +16,13 @@ export default function ShowDetails(props){
         <img id="loading" alt="Loading" style="${styles.loading}" src="${loadinganim}"/>
     `;
     
-    const loading=showdetails.querySelector("#loading");
     H.useCreditsAndDetails(show,({details,credits})=>{
-        DetailsCard({
+        ShowSlide({
             parent:showdetails,
             show:new Show(details),
         });
         CreditsCard({parent:showdetails,credits});
-        loading.style.display="none";
+        showdetails.querySelector("#loading").remove();
     });
 }
 

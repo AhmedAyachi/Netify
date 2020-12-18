@@ -1,17 +1,17 @@
 import {map,useRef} from "vanilla";
-import css from "./DetailsCard.module.css";
+import css from "./ShowSlide.module.css";
 import {playbtn,check2,check2reversed,plusbtn,checked} from "assets";
 import Trailer from "./Trailer/Trailer";
 import RateStars from "../RateStars/RateStars";
 import {addToWatchlist,removeFromWatchList} from "actions";
 
 
-export default function DetailsCard(props){
-    const {parent,show,ref=useRef("detailscard")}=props;
-    parent.insertAdjacentHTML("beforeend",`<div id="${ref}" class="${css.detailscard}"></div>`);
-    const detailscard=parent.querySelector(`#${ref}`);
+export default function ShowSlide(props){
+    const {parent,show,ref=useRef("showslide")}=props;
+    parent.insertAdjacentHTML("beforeend",`<div id="${ref}" class="${css.showslide}"></div>`);
+    const showslide=parent.querySelector(`#${ref}`);
 
-    detailscard.innerHTML=`
+    showslide.innerHTML=`
         ${show.backdrop_path?`<img alt="backdrop" class="${css.backdrop}" src="${show.backdrop_path}"/>`:""}
         <img alt="Add to watchlist" class="${css.watchlistbtn}" src="${plusbtn}"/>
         <div class="${css.col0}">
@@ -30,18 +30,18 @@ export default function DetailsCard(props){
             ${map(details(show),({detail,className})=>`
                 <span class="${css[className]}">${detail}</span>
             `)}
-            <div class="${css.overview}">${show.overview}</div>
+            <div class="${css.overviewbody}">${show.overview}</div>
         </div>
     `;
-    RateStars({parent:detailscard.querySelector(`.${css.col0}`),rate:show.vote_average});
+    RateStars({parent:showslide.querySelector(`.${css.col0}`),rate:show.vote_average});
 
-    const playbutton=detailscard.querySelector(`.${css.trailerplayer}`);
+    const playbutton=showslide.querySelector(`.${css.trailerplayer}`);
     playbutton.onclick=()=>{
-        Trailer({parent:detailscard,id:show.id,type:show.type});
+        Trailer({parent:showslide,id:show.id,type:show.type});
     }
 
     const inWatchList=Boolean(store.show.watchlist.find(show=>show.id===props.show.id));
-    const addtowlbtn=detailscard.querySelector(`.${css.watchlistbtn}`);
+    const addtowlbtn=showslide.querySelector(`.${css.watchlistbtn}`);
     addtowlbtn.active=inWatchList;
     addtowlbtn.setAttribute("src",addtowlbtn.active?checked:plusbtn);
     addtowlbtn.onclick=()=>{
