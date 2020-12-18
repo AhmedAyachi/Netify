@@ -10,22 +10,26 @@ export const setShows=(shows=[])=>{
     store.show.shows=shows;
 }
 
-export const setWatchlist=(list=[])=>{
-    const showStore=store.show;
-    showStore.watchlist=list;
-    localStorage.setItem("watchlist",JSON.stringify(showStore.watchlist));
-}
-
-export const addToWatchlist=(show)=>{
-    const showStore=store.show;
-    const fileStore=store.file;
-    showStore.watchlist.unshift(show);
+function saveWatchlist(){
+    const showStore=store.show,fileStore=store.file;
     if(fileStore.watchlist){
         fileStore.watchlist.write(JSON.stringify(showStore.watchlist));
     }
     else{
         localStorage.setItem("watchlist",JSON.stringify(showStore.watchlist));
     }
+}
+
+export const setWatchlist=(list=[])=>{
+    const showStore=store.show;
+    showStore.watchlist=list;
+    saveWatchlist();
+}
+
+export const addToWatchlist=(show)=>{
+    const showStore=store.show;
+    showStore.watchlist.unshift(show);
+    saveWatchlist();
 }
 
 export const removeFromWatchList=(show)=>{
@@ -42,13 +46,7 @@ export const removeFromWatchList=(show)=>{
     }));
     if(exists){
         showStore.watchlist.splice(index,1);
-        const fileStore=store.file;
-        if(fileStore.watchlist){
-            fileStore.watchlist.write(JSON.stringify(showStore.watchlist));
-        }
-        else{
-            localStorage.setItem("watchlist",JSON.stringify(showStore.watchlist));
-        }
+        saveWatchlist();
     }
 }
 
@@ -56,8 +54,20 @@ export const setSearchedShows=(shows=[])=>{
     store.show.searched=shows;
 }
 
+function saveSearchedValues(){
+    const showStore=store.show,fileStore=store.file;
+    if(fileStore.search){
+        fileStore.search.write(JSON.stringify(showStore.searchvalues));
+    }
+    else{
+        localStorage.setItem("searchvalues",JSON.stringify(showStore.searchvalues));
+    }
+}
+
 export const setSearchValues=(values=[])=>{
-    store.show.searchvalues=values;
+    const showStore=store.show;
+    showStore.searchvalues=values;
+    saveSearchedValues();
 }
 
 export const setSearchValue=(value=null)=>{
@@ -72,7 +82,7 @@ export const addSearchValue=(value)=>{
     const showStore=store.show;
     if(!showStore.searchvalues.includes(value)){
         showStore.searchvalues.unshift(value);
-        localStorage.setItem("searchvalues",JSON.stringify(showStore.searchvalues));
+        saveSearchedValues();
     }
 }
 
@@ -81,7 +91,7 @@ export const deleteSearchValue=(value)=>{
     const showStore=store.show;
     const index=showStore.searchvalues.indexOf(value);
     showStore.searchvalues.splice(index,1);
-    localStorage.setItem("searchvalues",JSON.stringify(showStore.searchvalues));
+    saveSearchedValues();
 }
 
 export const loadShows=(collection=1,then)=>{
@@ -105,7 +115,10 @@ export const loadShows=(collection=1,then)=>{
             then(shows);
         }
     }).
-    catch(error=>console.error(error));
+    catch(error=>{
+        setLoading(false);
+        alert(error);
+    });
 };
 
 export const loadShowsByTitle=(title="",then)=>{
@@ -128,5 +141,9 @@ export const loadShowsByTitle=(title="",then)=>{
         if(then){
             then(shows);
         }
+    }).
+    catch(error=>{
+        setLoading(false);
+        alert(error);
     });
 }

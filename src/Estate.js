@@ -23,7 +23,7 @@ export class Show{
 }
 
 export class File{
-    constructor({name="text.txt",location=cordova.file.cacheDirectory},resolve=()=>{},reject=()=>{}){
+    constructor({name="text.txt",location=cordova.file.cacheDirectory},resolve=()=>{},reject=(error)=>{alert(error)}){
         this.name=name;
         this.location=location;
         this.path=location+name;
@@ -34,7 +34,7 @@ export class File{
             },reject);
         });
     };
-    write(content="",resolve=()=>{},reject=()=>{}){
+    write(content="",resolve=()=>{},reject=(error)=>{alert(error)}){
         window.resolveLocalFileSystemURL(this.path,(file)=>{
             file.createWriter(fileWriter=>{
                 fileWriter.onwriteend=resolve;
@@ -43,7 +43,7 @@ export class File{
             });
         });
     };
-    append(content="",resolve=()=>{},reject=()=>{}){
+    append(content="",resolve=()=>{},reject=(error)=>{alert(error)}){
         window.resolveLocalFileSystemURL(this.path,(file)=>{
             file.createWriter(fileWriter=>{
                 fileWriter.onwriteend=resolve;
@@ -56,7 +56,7 @@ export class File{
             });
         });
     };
-    onRead(resolve=()=>{},reject=()=>{}){
+    onRead(resolve=()=>{},reject=(error)=>{alert(error)}){
         window.resolveLocalFileSystemURL(this.path,(file)=>{
             file.file(file=>{
                 const reader=new FileReader();
@@ -67,7 +67,7 @@ export class File{
             },reject);
         });
     };
-    remove(resolve=()=>{},reject=()=>{}){
+    remove(resolve=()=>{},reject=(error)=>{alert(error)}){
         window.resolveLocalFileSystemURL(this.path,(file)=>{
             file.remove(resolve,reject);
         });

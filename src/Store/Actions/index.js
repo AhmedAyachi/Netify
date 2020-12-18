@@ -6,7 +6,7 @@ export {
 
 
 export const setLoading=(value=true)=>{
-    store.loading=value;
+    store.loading=Boolean(value);
 }
 export const setUsertoken=(value="")=>{
     store.usertoken=value;
