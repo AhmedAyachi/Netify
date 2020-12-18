@@ -1,0 +1,1 @@
+{"plugins":["cordova-plugin-statusbar","cordova-plugin-dialogs","cordova-plugin-network-information","cordova-plugin-file"]}

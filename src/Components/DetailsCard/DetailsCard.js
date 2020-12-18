@@ -14,7 +14,7 @@ export default function DetailsCard(props){
     detailscard.innerHTML=`
         ${show.backdrop_path?`<img alt="backdrop" class="${css.backdrop}" src="${show.backdrop_path}"/>`:""}
         <img alt="Add to watchlist" class="${css.watchlistbtn}" src="${plusbtn}"/>
-        <div id="col0" class="${css.col0}">
+        <div class="${css.col0}">
             <img class="${css.poster}" alt="" src="${show.poster_path}"/>
         </div>
         <div class="${css.col1}">
@@ -33,7 +33,7 @@ export default function DetailsCard(props){
             <div class="${css.overview}">${show.overview}</div>
         </div>
     `;
-    RateStars({parent:detailscard.querySelector("#col0"),rate:show.vote_average});
+    RateStars({parent:detailscard.querySelector(`.${css.col0}`),rate:show.vote_average});
 
     const playbutton=detailscard.querySelector(`.${css.trailerplayer}`);
     playbutton.onclick=()=>{

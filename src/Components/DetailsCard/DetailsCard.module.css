@@ -11,7 +11,7 @@
 }
 .watchlistbtn{
     position:absolute;
-    top:2.5rem;
+    top:1rem;
     right:1.5rem;
     max-width:3em;
     z-index:3;
@@ -58,6 +58,7 @@
     font-family:Arial, Helvetica, sans-serif;
     overflow-y:auto;
     max-height:9.7rem;
+    text-align:left;
 }
 .overview::-webkit-scrollbar{
     display:none;
@@ -77,6 +78,7 @@
     .col0{
         display:flex;
         justify-content:center;
+        margin-top:5rem;
     }
     .col1{
         justify-content:center;
@@ -94,8 +96,8 @@
     .overview{
         text-align:center;
     }
-    .col0{
-        margin-top:7%;
+    .watchlistbtn{
+        top:5rem;
     }
 }
 

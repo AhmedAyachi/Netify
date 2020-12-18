@@ -7,7 +7,7 @@ import {Navigator} from "components";
 
 export default function Home(props){
     const {parent,ref="home"}=props;
-    parent.insertAdjacentHTML("beforeend",`<div id="${ref}"  class="${css.home} activeroute"></div>`);
+    parent.insertAdjacentHTML("beforeend",`<div id="${ref}" class="${css.home}" style="${styles.home}"></div>`);
     const home=parent.querySelector(`#${ref}`);
     
     if(store.usertoken||store.isguest){
@@ -21,4 +21,10 @@ export default function Home(props){
         Login({parent:home});
     }
     
+}
+
+const styles={
+    home:`
+        padding-top:${cordova.platformId!=="browser"?"2.5rem":"0"};
+    `,
 }
