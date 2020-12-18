@@ -1,7 +1,7 @@
 import {map} from "vanilla";
 import css from "./WatchList.module.css";
 import {ShowCard,ShowRow,ShowViewer} from "components";
-import {squares0,list0} from "assets";
+import {squares0,list0,popcorn1} from "assets";
 
 
 export default function WatchList(props){
@@ -9,20 +9,22 @@ export default function WatchList(props){
     parent.insertAdjacentHTML("beforeend",`<div id="${ref}" class="${css.watchlist}"></div>`);
     const watchlist=parent.querySelector(`#${ref}`);
 
+    const showStore=store.show;
     watchlist.innerHTML=`
         <div class="${css.row0}"></div>
-        <div class="${css.row1}">
+        <div class="${css.row1}" style="${styles.row1}">
             <div class="${css.row2}">
                 <h3 class="${css.title}">Watchlist</h3>
-                <img alt="" class="${css.displayer}" src="${squares0}"/>
+                <img alt="" class="${css.displayer}" src="${showStore.listdisplay?squares0:list0}"/>
             </div>
             <div class="${css.row3}"></div>
         </div>
     `;
 
-    const showStore=store.show;
     const shows=showStore.watchlist;
-    shows.length&&ShowViewer({parent:watchlist.querySelector(`.${css.row0}`),show:shows[0]});
+    if(shows.length){
+        ShowViewer({parent:watchlist.querySelector(`.${css.row0}`),show:shows[0]});
+    }
     const row3=watchlist.querySelector(`.${css.row3}`);
     setList(shows,row3,showStore.listdisplay);
 
@@ -35,15 +37,22 @@ export default function WatchList(props){
     }
 };
 
+const styles={
+    row1:`
+        margin-top:${cordova.platformId!=="browser"?"1.5rem":"0"};
+    `,
+}
+
 const setList=(shows,parent,display,)=>{
-    if(display){
-        shows.forEach((show,i)=>{
-            i&&ShowRow({parent,show});
-        }); 
+    if(shows.length>1){
+        if(display){
+            shows.forEach((show,i)=>{i&&ShowRow({parent,show})}); 
+        }
+        else{
+            shows.forEach((show,i)=>{i&&ShowCard({parent,show})});
+        }
     }
     else{
-        shows.forEach((show,i)=>{
-            i&&ShowCard({parent,show});
-        });
+        parent.innerHTML=`<img class="${css.emptylistsign}" alt="" src="${popcorn1}"/>`;
     }
 }

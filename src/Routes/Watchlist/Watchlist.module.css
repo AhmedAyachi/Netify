@@ -31,6 +31,12 @@
 .row1{
     display:block;
 }
+.emptylistsign{
+    max-width:50%;
+    margin:0 auto;
+    opacity:0.5;
+    transform:rotate(15deg);
+}
 
 @media(any-hover){
     .displayer:hover{
