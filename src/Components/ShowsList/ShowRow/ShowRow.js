@@ -9,9 +9,12 @@ export default function ShowRow(props){
     const showrow=parent.querySelector(`#${ref}`);
 
     showrow.innerHTML=`
-        <p>${show.title}</p>
+        <div class="${css.col0}">
+            <p>${show.title}</p>
+        </div>
+        <div class="${css.col1}"></div>
     `;
-    RateStars({parent:showrow,rate:show.vote_average});
+    RateStars({parent:showrow.querySelector(`.${css.col1}`),rate:show.vote_average});
 
     showrow.onclick=()=>{
         history.push("#show",{show});

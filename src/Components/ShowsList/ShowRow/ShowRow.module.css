@@ -1,12 +1,26 @@
 .showrow{
     display:flex;
     flex-direction:row;
-    justify-content:space-around;
+    justify-content:space-between;
     align-items:center;
     background-color:rgba(95,95,95,0.2);
     font-size:1rem;
     padding:1rem 0;
     margin:5px 0;
+}
+.col0{
+    width:60%;
+    height:100%;
+    display:flex;
+    justify-content:center;
+    align-content:center;
+}
+.col1{
+    width:40%;
+    height:100%;
+    display:flex;
+    justify-content:center;
+    align-content:center;
 }
 
 @media(any-hover){
