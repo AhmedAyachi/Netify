@@ -48,13 +48,15 @@ const styles={
     `,
 }
 
-export const loadSearchedShows=(value,showslist,loading)=>{
+export const loadSearchedShows=(value,store)=>{
+    const {showslist}=store.elements;
+    const loading=showslist.querySelector("#loading");
     loading.style.display="block";
     loadShowsByTitle(value,(shows)=>{
-        showslist.setShows(shows);
-        loading.style.display="none";
         setSearchedShows(shows);
-    })
+        showslist.setShows(getFilteredShows(store.show));
+        loading.style.display="none";
+    });
 }
 
 const handleOnChange=(input,store)=>{
@@ -63,8 +65,7 @@ const handleOnChange=(input,store)=>{
     setSearchValue(value);
     if(value){
         addSearchValue(value);
-        const loading=showslist.querySelector("#loading");
-        loadSearchedShows(value,showslist,loading);
+        loadSearchedShows(value,store);
     }
     else{
         showslist.setShows(getFilteredShows(store.show));

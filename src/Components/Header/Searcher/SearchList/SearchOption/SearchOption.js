@@ -24,9 +24,7 @@ export default function SearchOption(props){
         if(inputfield.value.trim()!==value){
             setSearchValue(value);
             inputfield.value=value;
-            const showslist=store.elements.showslist;
-            const loading=showslist.querySelector("#loading");
-            loadSearchedShows(value,showslist,loading);
+            loadSearchedShows(value,store);
         }
         fadeOut(parent);
     };
