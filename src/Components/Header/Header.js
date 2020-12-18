@@ -10,20 +10,11 @@ export default function Header(props){
     const header=parent.querySelector(`#${ref}`);
 
     header.innerHTML=`
-        <div class="${css.background}" style="${styles.background}"></div>
-        <div class="${css.row0}">
-            <img class="${css.logo}" alt="Netlix" src="${netflixlogo}"/>
-        </div>
+        <img class="${css.logo}" alt="Netlix" src="${netflixlogo}"/>
     `;
     const row0=header.querySelector(`.${css.row0}`);
-    Searcher({parent:row0,ref:props.searcherRef});
-    row0.insertAdjacentHTML("beforeend",`
+    Searcher({parent:header,ref:props.searcherRef});
+    /*row0.insertAdjacentHTML("beforeend",`
         
-    `);
-}
-
-const styles={
-    background:`
-        background-image:url('${img27}');
-    `,
+    `);*/
 }
