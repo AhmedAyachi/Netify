@@ -25,6 +25,6 @@ export default function Home(props){
 
 const styles={
     home:`
-        padding-top:${cordova.platformId!=="browser"?"2.5rem":"0"};
+        padding-top:${/*cordova.platformId!=="browser"?"2.5rem":"0"*/"0"};
     `,
 }
