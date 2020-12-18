@@ -1,5 +1,6 @@
 
 //Images:
+export {default as img27} from "./Images/IMG27.png";
 export {default as squares0} from "./Images/Squares_0.png";
 export {default as list0} from "./Images/List_0.png"; 
 export {default as checked} from "./Images/Checked.png";

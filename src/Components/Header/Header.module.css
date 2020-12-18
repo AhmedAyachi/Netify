@@ -1,17 +1,33 @@
 .header{
+    position:relative;
     background:linear-gradient(to right,#b8000f,#cc0000);
     font-size:1rem;
     height:10rem;
     padding-bottom:10px;
+    overflow:hidden;
+}
+.background{
+    position:absolute;
+    top:0;
+    left:0;right:0;margin:0 auto;
+    width:100%;
+    height:100%;
+    background-repeat:no-repeat;
+    background-size:cover;
+    
+    z-index:0;
 }
 .row0{
+    position:relative;
     display:flex;
     flex-direction:column;
     align-items:center;
     justify-content:space-around;
-    background-color:black;
     height:95%;
+    backdrop-filter:blur(5px);
+    -webkit-backdrop-filter:blur(5px);
     padding-bottom:10px;
+    z-index:1;
 }
 .logo{
     max-width:3rem;
