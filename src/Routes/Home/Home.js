@@ -10,7 +10,7 @@ export default function Home(props){
     parent.insertAdjacentHTML("beforeend",`<div id="${ref}" class="${css.home}" style="${styles.home}"></div>`);
     const home=parent.querySelector(`#${ref}`);
     
-    if(store.usertoken||store.isguest){
+    if(store.sessiontoken||store.isguest){
         Shows({parent:home});
         app.style.paddingBottom="5rem";
         if(!store.elements.navigator){

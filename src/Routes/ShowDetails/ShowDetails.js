@@ -31,6 +31,6 @@ const styles={
     loading:`
         display:block;
         max-width:5rem;
-        margin:0 auto;
+        margin:5rem auto;
     `,
 };

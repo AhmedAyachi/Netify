@@ -95,7 +95,7 @@ const setShowsCards=(row1,shows)=>{
     }
     else{
         row1.innerHTML=`
-            <p class="${css.noshowmsg}">No shows found</p>
+            <p class="${css.noshowmsg}">No shows found in this collection</p>
         `;
     }
 }

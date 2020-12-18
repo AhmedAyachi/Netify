@@ -1,6 +1,6 @@
 import {useRef} from "vanilla";
 import css from "./Header.module.css";
-import {netflixlogo,img27} from "assets";
+import {netflixlogo} from "assets";
 import Searcher from "./Searcher/Searcher";
 
 
@@ -12,9 +12,5 @@ export default function Header(props){
     header.innerHTML=`
         <img class="${css.logo}" alt="Netlix" src="${netflixlogo}"/>
     `;
-    const row0=header.querySelector(`.${css.row0}`);
     Searcher({parent:header,ref:props.searcherRef});
-    /*row0.insertAdjacentHTML("beforeend",`
-        
-    `);*/
 }

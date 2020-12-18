@@ -1,11 +1,12 @@
 import {map,useRef} from "vanilla";
 import css from "./Navigator.module.css";
 import {home1,heart0,defaultcover} from "assets";
+import {fadeIn} from "afile";
 
 
 export default function Navigator(props){
-    const {parent,ref=useRef("navigator"),style}=props;
-    parent.insertAdjacentHTML("beforeend",`<div id="${ref}" class="${css.navigator}" style="${style}"></div>`);
+    const {parent,ref=useRef("navigator")}=props;
+    parent.insertAdjacentHTML("beforeend",`<div id="${ref}" class="${css.navigator}" style="${styles.navigator}"></div>`);
     const navigator=store.elements.navigator=parent.querySelector(`#${ref}`);
     const state={
         activeicon:null,
@@ -47,9 +48,15 @@ export default function Navigator(props){
         window.removeEventListener("hashchange",onHashChange);
         navigator.remove();
     }
-
-    return navigator;
+    
+    fadeIn(navigator,"flex",2);
 };
+
+const styles={
+    navigator:`
+        display:none;
+    `,
+}
 
 const icons=[
     {id:"tohome",alt:"Home",src:home1,hash:""},
