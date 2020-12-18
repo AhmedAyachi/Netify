@@ -16,6 +16,7 @@
     max-width:2em;
     filter:brightness(0.5);
     transition:0.5s;
+    padding:5px;
 }
 .active{
     max-width:2.2em;

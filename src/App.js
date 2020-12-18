@@ -29,7 +29,7 @@ export default function App(props){
     window.addEventListener("online",()=>{
         const offlinealert=app.querySelector(`#${refs.offlinealert}`);
         fadeOut(offlinealert,0.5);
-        setTimeout(offlinealert.remove,510);
+        setTimeout(()=>{offlinealert.remove()},510);
     });
 }
 
