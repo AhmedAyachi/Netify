@@ -41,7 +41,9 @@ export default function ShowProber(props){
                     section.hook(show,(data)=>{
                         if(section.component){
                             showdetails.querySelector("#loading").remove();
-                            section.component({parent:row1,credits:data});
+                            const props={parent:row1};
+                            props[section.title]=data;
+                            section.component(props);
                         }
                     }); 
                 }
