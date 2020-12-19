@@ -22,17 +22,18 @@ export default function Navigator(props){
     `;
 
     const imgs=[...navigator.querySelectorAll(`.${css.icon}`)];
-    imgs.forEach((img,i)=>{
-        img.hash=i<icons.length?icons[i].hash:"#settings";
-        img.active=false;
-        img.onclick=()=>{
-            history.replace(img.hash);
-        }
-    });
-    state.activeicon=imgs.find(img=>!img.hash);
-    state.activeicon.active=true;
-    state.activeicon.className+=` ${css.active}`;
-    
+    setTimeout(()=>{
+        imgs.forEach((img,i)=>{
+            img.hash=i<icons.length?icons[i].hash:"#settings";
+            img.active=false;
+            img.onclick=()=>{
+                history.replace(img.hash);
+            }
+        });
+        state.activeicon=imgs.find(img=>!img.hash);
+        state.activeicon.active=true;
+        state.activeicon.className+=` ${css.active}`;
+    },2000)
     const onHashChange=()=>{
         if(state.activeicon){
             state.activeicon.className=css.icon;

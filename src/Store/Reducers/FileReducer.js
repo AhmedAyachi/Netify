@@ -14,7 +14,8 @@ setTimeout(()=>{
 function setWatchList(){
     const store=window.store;
     if(store&&store.isguest){
-        if(cordova.platformId!=="browser"&&cordova.file){
+        const cordova=window.cordova;
+        if(cordova&&cordova.file&&cordova.platformId!=="browser"){
             const file=new File({name:"watchlist.json"},()=>{
                 store.file.watchlist=file;
             });
@@ -38,7 +39,8 @@ function setWatchList(){
 function setSearch(){
     const store=window.store;
     if(store&&store.isguest){
-        if(cordova.platformId!=="browser"&&cordova.file){
+        const cordova=window.cordova;
+        if(cordova&&cordova.platformId!=="browser"&&cordova.file){
             const file=new File({name:"search.json"},()=>{
                 store.file.search=file;
             });
@@ -49,7 +51,7 @@ function setSearch(){
         else{
             const searchvalues=localStorage.getItem("searchvalues");
             if(searchvalues){
-                store.show.watchlist=JSON.parse(searchvalues);
+                store.show.searchvalues=JSON.parse(searchvalues);
             }
             else{
                 localStorage.setItem("searchvalues","null");

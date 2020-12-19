@@ -10,6 +10,7 @@ export {default as ShowCard} from "./ShowsList/ShowCard/ShowCard";
 export {default as ShowRow} from "./ShowsList/ShowRow/ShowRow";
 export {default as ShowSlide} from "./ShowSlide/ShowSlide";
 export {default as ShowView} from "./ShowView/ShowView";
+export {default as ShowProber} from "./ShowProber/ShowProber";
 export {default as CreditsCard} from "./ShowProber/CreditsCard/CreditsCard";
 export {default as RateStars} from "./RateStars/RateStars";
 export {default as OfflineAlert} from "./OfflineAlert/OfflineAlert";

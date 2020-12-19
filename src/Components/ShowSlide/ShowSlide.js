@@ -7,7 +7,7 @@ import {addToWatchlist,removeFromWatchList} from "actions";
 
 
 export default function ShowSlide(props){
-    const {parent,show,ref=useRef("showslide")}=props;
+    const {parent,ref=useRef("showslide"),show}=props;
     parent.insertAdjacentHTML("beforeend",`<div id="${ref}" class="${css.showslide}"></div>`);
     const showslide=parent.querySelector(`#${ref}`);
 

@@ -3,7 +3,7 @@ import {ShowReducer,FileReducer} from "./Reducers";
 //localStorage.clear();
 const sessiontoken=localStorage.getItem("sessiontoken");
 if(!sessiontoken){
-    localStorage.setItem("sessiontoken","null");
+    localStorage.setItem("sessiontoken","");
 }
 const isguest=localStorage.getItem("isguest");
 if(!isguest){
@@ -15,7 +15,7 @@ const Reducer={
     file:FileReducer,
     loading:false,
     elements:{},
-    sessiontoken:JSON.parse(sessiontoken),
+    sessiontoken,
     isguest:JSON.parse(isguest),
 }
 
