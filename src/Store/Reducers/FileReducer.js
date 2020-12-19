@@ -6,10 +6,14 @@ const FileReducer={
 }
 export default FileReducer;
 
-setTimeout(setWatchList,1000);
+setTimeout(()=>{
+    setWatchList();
+    setSearch();
+},1000);
 
 function setWatchList(){
-    if(window.store.isguest){
+    const store=window.store;
+    if(store&&store.isguest){
         if(cordova.platformId!=="browser"&&cordova.file){
             const file=new File({name:"watchlist.json"},()=>{
                 store.file.watchlist=file;
@@ -32,7 +36,8 @@ function setWatchList(){
 };
 
 function setSearch(){
-    if(store.isguest){
+    const store=window.store;
+    if(store&&store.isguest){
         if(cordova.platformId!=="browser"&&cordova.file){
             const file=new File({name:"search.json"},()=>{
                 store.file.search=file;

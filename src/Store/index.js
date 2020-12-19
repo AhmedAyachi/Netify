@@ -15,7 +15,7 @@ const Reducer={
     file:FileReducer,
     loading:false,
     elements:{},
-    sessiontoken,
+    sessiontoken:JSON.parse(sessiontoken),
     isguest:JSON.parse(isguest),
 }
 
