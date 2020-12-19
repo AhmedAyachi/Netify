@@ -72,14 +72,14 @@ const details=show=>[
     },
 ]
 
-const getDuration=show=>{
+const getDuration=(show)=>{
     switch(show.type){
         case "tv":
-            const seasonsnumber=show.seasons.filter(season=>season.name.toLowerCase().includes("season")).length;
-            return seasonsnumber>1?`${seasonsnumber} seasons`:"One season";
+            const seasonsnumber=show.number_of_seasons,episodesnumber=show.number_of_episodes;
+            return (seasonsnumber>1?`${seasonsnumber} seasons`:"One season")+(episodesnumber>1?` ${episodesnumber} episodes`:"One episode");
         default:
             const {runtime}=show;
-            const hours= Math.floor(runtime/60);
+            const hours=Math.floor(runtime/60);
             const minutes=runtime%60;
             return (hours?hours+"h ":"")+(minutes?minutes+"min":"");
     }

@@ -1,5 +1,6 @@
 import {defaultcover} from "assets";
 
+
 export const apikey="aae71d5d8af4086bbd44a5c4602200a5";
 export const guestsessionid="658c6fe570030590b466e8161795e685";
 
@@ -19,6 +20,20 @@ export class Show{
             this.backdrop_path=`https://image.tmdb.org/t/p/w1920_and_h800_multi_faces/${this.backdrop_path}`;   
         }
         this.keywords=this.title+this.original_title+this.overview;
+        if(this.production_companies){
+            this.production_companies.forEach(company=>{
+                if(company.logo_path){
+                    company.logo_path=`https://image.tmdb.org/t/p/w500/${company.logo_path}`;
+                }
+            });
+        }
+        if(this.type==="tv"&&this.seasons){
+            this.seasons.forEach(season=>{
+                if(season.poster_path){
+                    season.poster_path=`https://image.tmdb.org/t/p/w130_and_h195_bestv2/${season.poster_path}`;
+                }
+            });
+        }
     }
 }
 

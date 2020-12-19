@@ -29,7 +29,7 @@ export default function ShowProber(props){
     state.activebtn=showprober.querySelector(`.${css.row0} #detailsbtn`);
     showprober.querySelectorAll(`.${css.row0} .${css.sectiontitle}`).forEach((sectionbtn,i)=>{
         sectionbtn.section=sections[i];
-        sectionbtn.onclick=()=>{onSectionSelect({sectionbtn,row1,state,show})};
+        sectionbtn.onclick=()=>{onSectionSelect(sectionbtn,row1,state,show)};
     });
     console.log(show);
 }
@@ -49,7 +49,7 @@ const sections=[
     {title:"social",component:null},
 ];
 
-const onSectionSelect=({sectionbtn,row1,state,show})=>{
+const onSectionSelect=(sectionbtn,row1,state,show)=>{
     const {section}=sectionbtn;
     if(state.activebtn&&section.title!==state.activebtn.section.title){
         state.activebtn.className=css.sectiontitle;
