@@ -3,11 +3,11 @@ import {ShowReducer,FileReducer} from "./Reducers";
 //localStorage.clear();
 const sessiontoken=localStorage.getItem("sessiontoken");
 if(!sessiontoken){
-    localStorage.setItem("sessiontoken","");
+    localStorage.setItem("sessiontoken","null");
 }
 const isguest=localStorage.getItem("isguest");
 if(!isguest){
-    localStorage.setItem("isguest","");
+    localStorage.setItem("isguest","false");
 }
 
 const Reducer={

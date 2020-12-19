@@ -9,7 +9,7 @@ export default FileReducer;
 setTimeout(setWatchList,1000);
 
 function setWatchList(){
-    if(store.isguest){
+    if(window.store.isguest){
         if(cordova.platformId!=="browser"&&cordova.file){
             const file=new File({name:"watchlist.json"},()=>{
                 store.file.watchlist=file;

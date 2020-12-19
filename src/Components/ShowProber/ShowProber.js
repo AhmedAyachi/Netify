@@ -13,5 +13,4 @@ export default function ShowProber(props){
         </div>
         <div class="${css.row1}"></div>
     `;
-    CreditsCard
 }

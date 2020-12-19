@@ -11,7 +11,7 @@ export default function Login(props){
     parent.insertAdjacentHTML("beforeend",`<div class="${css.login} activeroute"></div>`);
     const login=parent.querySelector(`.${css.login}`);
     const refs={
-        inputfields:["email","password"].map(prop=>useRef(prop)),
+        inputfields:["username","password"].map(prop=>useRef(prop)),
     };
 
     login.innerHTML=`
@@ -33,7 +33,7 @@ export default function Login(props){
             </ul>
         </details>
     `;
-    ["email","password"].forEach((prop,i)=>{
+    ["username","password"].forEach((prop,i)=>{
         InputField({
             parent:login.querySelector(`.${css.row1}`),
             placeholder:prop,
@@ -62,14 +62,6 @@ export default function Login(props){
 
     }
 }
-
-const logos=[
-    {
-        of:"google",
-        src:googlelogo,
-        style:"transform:rotate(-5deg)",
-    }
-];
 
 const logincode=(account,password,type)=>`{
     account:${account},
