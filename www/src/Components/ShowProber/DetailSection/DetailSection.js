@@ -13,10 +13,13 @@ export default function DetailSection(props){
             <!--<h1 class="${css.showtype}">${details.type==="tv"?"Tv Show":"Movie"}</h1>-->
         </div>
         <div class="${css.row1}">
-            ${map(details.production_companies,(company)=>company.logo_path?`
-                <img alt="" class="${css.companylogo}" src="${company.logo_path}"/>`:`
-                <span class="${css.companyname}">${company.name}</span>
-            `)}
+            <h1>Prodcution Companies</h1>
+            <div class="${css.row2}">
+                ${map(details.production_companies,(company)=>company.logo_path?`
+                    <img alt="" class="${css.companylogo}" src="${company.logo_path}"/>`:`
+                    <span class="${css.companyname}">${company.name}</span>
+                `)}
+            </div>
         </div>
     `;
     

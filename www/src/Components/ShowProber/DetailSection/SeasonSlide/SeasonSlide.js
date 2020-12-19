@@ -14,7 +14,7 @@ export default function SeasonSlide(props){
         </div>
         <div class="${css.col1}">
             <ul class="${css.infolist}">
-               <li>Air data: ${season.air_date}</li>
+               <li>Air date: ${season.air_date}</li>
                <li>Number of episodes: ${season.episode_count}</li>
             </ul>
         </div>
