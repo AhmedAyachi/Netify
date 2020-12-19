@@ -17,12 +17,10 @@ export default function ShowDetails(props){
     `;
     
     if(show){
-        H.useCreditsAndDetails(show,({details,credits})=>{
-            ShowSlide({
-                parent:showdetails,
-                show:new Show(details),
-            });
-            ShowProber({parent:showdetails,credits});
+        H.useDetails(show,(details)=>{
+            const show=new Show(details);
+            ShowSlide({parent:showdetails,show});
+            ShowProber({parent:showdetails,show});
             showdetails.querySelector("#loading").remove();
         });
     }

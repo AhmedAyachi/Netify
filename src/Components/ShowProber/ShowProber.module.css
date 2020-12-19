@@ -13,7 +13,20 @@
 .sectiontitle{
     color:white;
     font-size:1.5em;
+    transition:0.25s;
+}
+.activebtn{
+    color:#cc0000;
+    text-decoration:underline;
 }
 .row1{
     display:block;
+}
+
+@media(any-hover){
+    .sectiontitle:hover{
+        cursor:pointer;
+        filter:brightness(0.65);
+        text-decoration:underline;
+    }
 }
