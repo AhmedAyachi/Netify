@@ -2,10 +2,13 @@ node_modules
 debug.log
 plugins
 platforms
-www
+www/App.js
+www/index.html
+www/fonts
 hooks
 **/*.txt
 Vanilla.js
 Vanilla-router.js
 typings
 jsconfig.json
+.vscode

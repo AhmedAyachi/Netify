@@ -1,0 +1,22 @@
+.showdetails{
+    font-size:1rem;
+    font-family:fredokaone;
+}
+.row0,.row1,.row3{
+    display:block;
+}
+.row2{
+    display:flex;
+    justify-content:space-evenly;
+    color:white;
+}
+.loadinganim{
+    display:block;
+    margin:0 auto;
+    max-width:20em;
+}
+.casttext{
+    color:white;
+    font-size:3em;
+    margin:5px;
+}

@@ -1,0 +1,31 @@
+.showprober{
+    display:block;
+    font-size:1rem;
+    /*border:1px solid blue;*/
+}
+.row0{
+    display:flex;
+    justify-content:space-evenly;
+    align-items:center;
+    padding:1em 0;
+}
+.sectiontitle{
+    color:white;
+    font-size:1.5em;
+    transition:0.25s;
+}
+.activebtn{
+    color:#cc0000;
+    text-decoration:underline;
+}
+.row1{
+    display:block;
+}
+
+@media(any-hover){
+    .sectiontitle:hover{
+        cursor:pointer;
+        filter:brightness(0.65);
+        text-decoration:underline;
+    }
+}

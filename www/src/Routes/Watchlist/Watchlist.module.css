@@ -1,0 +1,46 @@
+.watchlist{
+    display:block;
+    color:white;
+    font-family:fredokaone;
+    text-align:center;
+    font-size:1rem;
+}
+.row1{
+    display:block;
+}
+.row2{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:1rem 0;
+}
+.row3{
+   display:block;
+}
+.title{
+    font-size:2em;
+    margin-left:5px;
+    color:#cc0000;
+    text-transform:capitalize;
+    letter-spacing:0.15em;
+}
+.displayer{
+    max-width:1.5em;
+    margin:0 10px;
+}
+.row1{
+    display:block;
+}
+.emptylistsign{
+    max-width:50%;
+    margin:0 auto;
+    opacity:0.5;
+    transform:rotate(15deg);
+}
+
+@media(any-hover){
+    .displayer:hover{
+        cursor:pointer;
+        filter:brightness(0.65);
+    }
+}
