@@ -75,12 +75,14 @@ const details=show=>[
 const getDuration=(show)=>{
     switch(show.type){
         case "tv":
-            const seasonsnumber=show.number_of_seasons,episodesnumber=show.number_of_episodes;
-            return (seasonsnumber>1?`${seasonsnumber} seasons`:"One season")+(episodesnumber>1?` ${episodesnumber} episodes`:"One episode");
+            const seasonsnumber=show.number_of_seasons,episodesnumber=show.number_of_episodes,duration=show.episodeRuntime;
+            return (
+                (seasonsnumber>1?`${seasonsnumber} seasons`:"One season")+
+                (episodesnumber>1?` ${episodesnumber} episodes`:"One episode")+
+                (duration?` around ${getDuration({type:"movie",runtime:duration})} each`:"")
+            );
         default:
-            const {runtime}=show;
-            const hours=Math.floor(runtime/60);
-            const minutes=runtime%60;
+            const {runtime}=show,hours=Math.floor(runtime/60),minutes=Math.round(runtime%60);
             return (hours?hours+"h ":"")+(minutes?minutes+"min":"");
     }
 }

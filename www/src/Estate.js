@@ -15,9 +15,10 @@ export class Show{
             type:props.release_date?"movie":"tv",
             release_date:props.release_date||props.first_air_date,
             poster_path:props.poster_path?`https://image.tmdb.org/t/p/w500/${props.poster_path}`:defaultcover,
+            episodeRuntime:props.episode_run_time&&props.episode_run_time.length?props.episode_run_time.reduce((f,n)=>f+n)/props.episode_run_time.length:null,
         });
         if(props.backdrop_path){
-            this.backdrop_path=`https://image.tmdb.org/t/p/w1920_and_h800_multi_faces/${this.backdrop_path}`;   
+            this.backdrop_path=`https://image.tmdb.org/t/p/w1920_and_h800_multi_faces/${this.backdrop_path}`;  
         }
         this.keywords=this.title+this.original_title+this.overview;
         if(this.production_companies){
@@ -30,7 +31,7 @@ export class Show{
         if(this.type==="tv"&&this.seasons){
             this.seasons.forEach(season=>{
                 if(season.poster_path){
-                    season.poster_path=`https://image.tmdb.org/t/p/w130_and_h195_bestv2/${season.poster_path}`;
+                    season.poster_path=`https://image.tmdb.org/t/p/w500/${season.poster_path}`;
                 }
             });
         }
