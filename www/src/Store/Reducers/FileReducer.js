@@ -54,7 +54,8 @@ function setSearch(){
                 store.show.searchvalues=JSON.parse(searchvalues);
             }
             else{
-                localStorage.setItem("searchvalues","null");
+                console.log("setItemsearchvalues");
+                localStorage.setItem("searchvalues","");
                 store.show.searchvalues=[];
             }
         }
