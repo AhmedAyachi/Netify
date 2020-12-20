@@ -9,7 +9,7 @@ import {fadeOut} from "afile";
 export default function App(props){
     const {parent}=props;
     parent.insertAdjacentHTML("beforeend",`<div id="app" class=${css.app}></div>`);
-    const app=window.app=parent.querySelector(`.${css.app}`);
+    const app=window.app=parent.querySelector("#app");
     const refs={
         offlinealert:useRef("offlinealert"),
     }

@@ -1,6 +1,6 @@
 import {map,useRef} from "vanilla";
 import css from "./Login.module.css";
-import {netflixlogo,googlelogo,tmdb1} from "assets";
+import {netflixlogo,tmdb1} from "assets";
 import {InputField,ShowsBackground,SkipAlert} from "components";
 import {setUsertoken} from "actions";
 import Home from "../Home";
