@@ -25,7 +25,7 @@
     justify-content:center;
     align-items:center;
     margin:0.5rem;
-    max-width:40%;
+    max-width:30%;
 }
 .name{
     font-size:1.5em;
@@ -34,7 +34,7 @@
     word-wrap:normal;
 }
 .poster{
-    max-width:10em;
+    max-width:100%;
     margin-top:0.25rem;
     border-radius:5px;
 }
@@ -47,11 +47,24 @@
 }
 .infolist{
     list-style:none;
-    font-size:1.3em;
+    font-size:0.95em;
 }
 .infolist>li{
     margin:5px 0;
 }
+.overview{
+    color:#cc0000;
+    text-decoration:underline;
+}
+.overviewbody{
+    font-size:0.75em;
+    font-weight:500;
+    line-height:1.25rem;
+    font-family:Arial, Helvetica, sans-serif;
+    max-height:10rem;
+    overflow-y:auto;
+}
+
 
 @media(max-width:25cm){
     .seasonslide{

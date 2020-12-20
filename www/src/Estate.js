@@ -7,6 +7,13 @@ export const guestsessionid="658c6fe570030590b466e8161795e685";
 export const bottoken="1488125893:AAE0f-kShsXSVQUqnZWKzQ9IoqgT_tJ9wwo";
 export const netlixgroupid="465525889";
 
+
+const months=["January","February","March","April","May","June","July","August","September","October","November","December"];
+export const getFormatedDate=(date="")=>{
+    const slices=date.split("-");
+    return months[+slices[1]-1]+" "+slices[2]+","+" "+slices[0];
+}
+
 export class Show{
     constructor(props){
         Object.assign(this,{...props,
