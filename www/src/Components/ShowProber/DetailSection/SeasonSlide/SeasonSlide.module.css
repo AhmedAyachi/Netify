@@ -1,35 +1,25 @@
 .seasonslide{
-    display:block;
+    display:flex;
+    flex-direction:row;
+    justify-content:space-between;
+    align-items:center;
     width:30%;
     margin:0 auto;
     font-size:1rem;
+    margin:0.5rem 0;
     border-bottom:2px solid #cc0000;
-}
-.row0{
-    display:flex;
-    flex-direction:row;
-    justify-content:space-around;
-    align-items:center;
-}
-.row1{
-    text-align:left;
-    padding:5px;
-    padding-left:10px;
-    max-width:100%;
-    height:5rem;
-    overflow-y:auto;
 }
 .col0{
     display:flex;
     flex-direction:column;
     justify-content:center;
-    align-items:center;
+    align-items:flex-start;
     margin:0.5rem;
     max-width:40%;
 }
 .name{
     font-size:1.5em;
-    text-align:center;
+    align-self:center;
     margin-bottom:0.25rem;
     word-wrap:normal;
 }
@@ -39,11 +29,9 @@
     border-radius:5px;
 }
 .col1{
-    display:flex;
-    flex-direction:column;
-    justify-content:flex-start;
-    align-items:center;
+    text-align:left;
     margin:0.5rem;
+    width:60%;
 }
 .infolist{
     list-style:none;
@@ -54,7 +42,6 @@
 }
 .overview{
     color:#cc0000;
-    text-decoration:underline;
 }
 .overviewbody{
     font-size:0.75em;
@@ -70,7 +57,7 @@
     .seasonslide{
         width:95%;
     }
-    .row1{
+    .overviewbody{
         height:fit-content;
         max-height:5rem;
     }
