@@ -1,6 +1,7 @@
 import {useRef} from "vanilla";
 import css from "./SeasonSlide.module.css";
 import {capitalize} from "afile";
+import {getFormatedDate} from "estate";
 
 
 export default function SeasonSlide(props){
@@ -16,13 +17,12 @@ export default function SeasonSlide(props){
             </div>
             <div class="${css.col1}">
                 <ul class="${css.infolist}">
-                   <li>Air date: ${season.air_date}</li>
-                   <li>Number of episodes: ${season.episode_count}</li>
+                   <li>Premiered on ${getFormatedDate(season.air_date)}</li>
+                   <li>${season.episode_count>1?`${season.episode_count} episodes`:"One episode"}</li>
+                   <li class="${css.overview}">Overview</li>
+                   <li class="${css.overviewbody}">${season.overview||"No overview available at the moment"}</li>
                 </ul>
             </div> 
         </div>
-        <div class="${css.row1}">
-            ${season.overview||"No overview available at the moment"}
-        </div>
     `;
-} 
+}
