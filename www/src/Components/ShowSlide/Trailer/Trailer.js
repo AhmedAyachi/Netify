@@ -1,9 +1,8 @@
 import {useRef} from "vanilla";
 import css from "./Trailer.module.css";
+import * as H from "./Hooks";
 import {fadeIn} from "afile";
 import {closer,loadinganim} from "assets";
-import {setLoading} from "actions";
-import {apikey} from "estate";
 
 
 export default function Trailer(props){
@@ -19,7 +18,7 @@ export default function Trailer(props){
 
     const loading=trailer.querySelector("#loading");
     loading.style.display="block";
-    useTrailer({id,type},(video)=>{
+    H.useTrailer({id,type},(video)=>{
         loading.remove();
         if(video){
             trailer.insertAdjacentHTML("beforeend",`<iframe src="https://www.youtube.com/embed/${video.key}"></iframe>`);
@@ -40,16 +39,4 @@ const styles={
     loading:`
         display:none;
     `,
-}
-
-const useTrailer=({id,type},then)=>{
-    setLoading();
-    fetch(`https://api.themoviedb.org/3/${type}/${id}/videos?api_key=${apikey}&language=en-US`).
-    then(response=>response.json()).
-    then(data=>data.results).
-    then(videos=>{
-        setLoading(false);
-        const video=videos.find(video=>video.type==="Trailer");
-        then(video);
-    });
 }
