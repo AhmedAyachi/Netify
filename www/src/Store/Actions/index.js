@@ -4,6 +4,8 @@ export {
     setWatchlist,addToWatchlist,removeFromWatchList
 } from "./ShowActions";
 
+export {setSearch,setWatchList} from "./FileActions";
+
 
 export const setLoading=(value=true)=>{
     store.loading=Boolean(value);
