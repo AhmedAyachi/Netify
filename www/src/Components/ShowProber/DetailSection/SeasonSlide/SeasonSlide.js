@@ -1,5 +1,6 @@
 import {useRef} from "vanilla";
 import css from "./SeasonSlide.module.css";
+import {capitalize} from "afile";
 
 
 export default function SeasonSlide(props){
@@ -9,7 +10,7 @@ export default function SeasonSlide(props){
 
     seasonslide.innerHTML=`
         <div class="${css.col0}">
-            <h1 class="${css.name}">${season.name}</h1>
+            <h1 class="${css.name}">${capitalize(season.name)}</h1>
             <img alt="" class="${css.poster}" src="${season.poster_path}"/>
         </div>
         <div class="${css.col1}">

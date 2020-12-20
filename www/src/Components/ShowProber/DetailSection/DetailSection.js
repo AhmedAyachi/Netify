@@ -9,9 +9,7 @@ export default function DetailSection(props){
     const detailsection=parent.querySelector(`#${ref}`);
 
     detailsection.innerHTML=`
-        <div class="${css.row0}">
-            <!--<h1 class="${css.showtype}">${details.type==="tv"?"Tv Show":"Movie"}</h1>-->
-        </div>
+        <div class="${css.row0}"></div>
         <div class="${css.row1}">
             <h1>Prodcution Companies</h1>
             <div class="${css.row2}">
