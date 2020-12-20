@@ -1,6 +1,7 @@
 import {map,useRef} from "vanilla";
 import css from "./ShowSlide.module.css";
 import {playbtn,check2,check2reversed,plusbtn,checked} from "assets";
+import {getFormatedDate} from "estate";
 import Trailer from "./Trailer/Trailer";
 import RateStars from "../RateStars/RateStars";
 import {addToWatchlist,removeFromWatchList} from "actions";
@@ -8,44 +9,37 @@ import {addToWatchlist,removeFromWatchList} from "actions";
 
 export default function ShowSlide(props){
     const {parent,ref=useRef("showslide"),show}=props;
-    parent.insertAdjacentHTML("beforeend",`<div id="${ref}" class="${css.showslide}"></div>`);
+    parent.insertAdjacentHTML("beforeend",`<div id="${ref}" class="${css.showslide}" style="${styles.showslide(show.backdrop_path)}"></div>`);
     const showslide=parent.querySelector(`#${ref}`);
+    const state={
+        inWatchList:Boolean(store.show.watchlist.find(show=>show.id===props.show.id)),
+    };
 
     showslide.innerHTML=`
-        ${show.backdrop_path?`<img alt="backdrop" class="${css.backdrop}" src="${show.backdrop_path}"/>`:""}
-        <img alt="Add to watchlist" class="${css.watchlistbtn}" src="${plusbtn}"/>
-        <div class="${css.col0}">
-            <img class="${css.poster}" alt="" src="${show.poster_path}"/>
-        </div>
-        <div class="${css.col1}">
-            <span class="${css.title}">
-                ${show.title}
-                <span style="white-space:nowrap">(${show.release_date})</span>
-            </span>
-            <img
-                class="${css.trailerplayer}"
-                alt="see trailer"
-                src="${playbtn}"
-            />
-            ${map(details(show),({detail,className})=>`
-                <span class="${css[className]}">${detail}</span>
-            `)}
-            <div class="${css.overviewbody}">${show.overview}</div>
+        <img alt="Add to watchlist" class="${css.watchlistbtn}" src="${state.inWatchList?checked:plusbtn}"/>
+        <div class="${css.row0}">
+            <ul class="${css.list}">
+                <li class="${css.title}">${show.title}</li>
+                <li class="${css.rating}"></li>
+                <li>${getFormatedDate(show.release_date)} | ${show.genres.map(genre=>genre.name).join(", ")}</li>
+                <li>${getDuration(show)}</li>
+                <li class="${css.overview}">${show.overview}</li>
+            </ul>
         </div>
     `;
-    RateStars({parent:showslide.querySelector(`.${css.col0}`),rate:show.vote_average});
+    RateStars({parent:showslide.querySelector(`.${css.rating}`),rate:show.vote_average});
 
-    const playbutton=showslide.querySelector(`.${css.trailerplayer}`);
+    /*const playbutton=showslide.querySelector(`.${css.trailerplayer}`);
     playbutton.onclick=()=>{
         Trailer({parent:showslide,id:show.id,type:show.type});
-    }
+    }*/
 
-    const inWatchList=Boolean(store.show.watchlist.find(show=>show.id===props.show.id));
+
     const addtowlbtn=showslide.querySelector(`.${css.watchlistbtn}`);
-    addtowlbtn.active=inWatchList;
-    addtowlbtn.setAttribute("src",addtowlbtn.active?checked:plusbtn);
+    addtowlbtn.active=state.inWatchList;
     addtowlbtn.onclick=()=>{
         addtowlbtn.active=!addtowlbtn.active;
+        state.inWatchList=!state.inWatchList;
         if(addtowlbtn.active){
             addtowlbtn.setAttribute("src",check2);
             addToWatchlist(show);
@@ -56,6 +50,12 @@ export default function ShowSlide(props){
         }
     }
 }
+
+const styles={
+    showslide:(backdropath)=>`
+        background-image:url('${backdropath}');
+    `,
+};
 
 const details=show=>[
     {
@@ -86,3 +86,22 @@ const getDuration=(show)=>{
             return (hours?hours+"h ":"")+(minutes?minutes+"min":"");
     }
 }
+
+/*
+
+<img class="${css.poster}" alt="" src="${show.poster_path}"/>
+
+<span class="${css.title}">
+    ${show.title}
+    <span style="white-space:nowrap">(${show.release_date})</span>
+</span>
+<img
+    class="${css.trailerplayer}"
+    alt="see trailer"
+    src="${playbtn}"
+/>
+${map(details(show),({detail,className})=>`
+    <span class="${css[className]}">${detail}</span>
+`)}
+<div class="${css.overviewbody}">${show.overview}</div>
+*/
