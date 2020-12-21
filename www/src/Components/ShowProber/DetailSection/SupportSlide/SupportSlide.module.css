@@ -1,0 +1,27 @@
+.supportslide{
+    display:block;
+    font-size:1rem;
+    margin:2rem 0;
+    text-align:center;
+}
+.title{
+    color:#cc0000;
+    text-decoration:underline;
+}
+.logos{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:space-evenly;
+    align-items:center;
+    margin:1rem;
+}
+.logo{
+    max-width:5rem;
+    filter:invert() grayscale(100%) opacity(0.7);
+    margin:5px;
+}
+.name{
+    opacity:0.5;
+    color:white;
+    margin:5px;
+}

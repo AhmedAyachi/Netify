@@ -40,6 +40,13 @@ export class Show{
                 }
             });
         }
+        if(this.networks){
+            this.networks.forEach(network=>{
+                if(network.logo_path){
+                    network.logo_path=`https://image.tmdb.org/t/p/w500/${network.logo_path}`;
+                }
+            });
+        }
         if(this.type==="tv"&&this.seasons){
             this.seasons.forEach(season=>{
                 if(season.poster_path){

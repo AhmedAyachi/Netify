@@ -23,30 +23,7 @@
     text-align:center;
 }
 .row1{
-    margin:2rem 0;
-    text-align:center;
-    
-}
-.row1>h1{
-    color:#cc0000;
-    text-decoration:underline;
-}
-.row2{
-    display:flex;
-    flex-wrap:wrap;
-    justify-content:space-evenly;
-    align-items:center;
-    margin:1rem;
-}
-.companylogo{
-    max-width:5rem;
-    filter:invert() grayscale(100%) opacity(0.7);
-    margin:5px;
-}
-.companyname{
-    opacity:0.5;
-    color:white;
-    margin:5px;
+    display:block;
 }
 
 @media(max-width:25cm){
