@@ -1,6 +1,6 @@
 import {useRef} from "vanilla";
 import css from "./CreditSection.module.css";
-import CastsCard from "./CastsCard/CastsCard";
+import CastSlide from "./CastSlide/CastSlide";
 
 
 export default function CreditSection(props){
@@ -9,7 +9,7 @@ export default function CreditSection(props){
     const creditsection=parent.querySelector(`#${ref}`);
 
     const crews=credits.crew;
-    CastsCard({parent:creditsection,casts:credits.cast});
+    CastSlide({parent:creditsection,casts:credits.cast});
     
     //console.log(crews);
 }
