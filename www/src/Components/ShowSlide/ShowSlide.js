@@ -18,22 +18,16 @@ export default function ShowSlide(props){
     showslide.innerHTML=`
         <img alt="Add to watchlist" class="${css.watchlistbtn}" src="${state.inWatchList?checked:plusbtn}"/>
         <div class="${css.row0}">
+            <h3 class="${css.title}">${show.title}</h3>
             <ul class="${css.list}">
-                <li class="${css.title}">${show.title}</li>
                 <li class="${css.rating}"></li>
                 <li>${getFormatedDate(show.release_date)} | ${show.genres.map(genre=>genre.name).join(", ")}</li>
                 <li>${getDuration(show)}</li>
-                <li class="${css.overview}">${show.overview}</li>
             </ul>
+            <div class="${css.overview}">${show.overview}</div>
         </div>
     `;
     RateStars({parent:showslide.querySelector(`.${css.rating}`),rate:show.vote_average});
-
-    /*const playbutton=showslide.querySelector(`.${css.trailerplayer}`);
-    playbutton.onclick=()=>{
-        Trailer({parent:showslide,id:show.id,type:show.type});
-    }*/
-
 
     const addtowlbtn=showslide.querySelector(`.${css.watchlistbtn}`);
     addtowlbtn.active=state.inWatchList;
@@ -86,22 +80,3 @@ const getDuration=(show)=>{
             return (hours?hours+"h ":"")+(minutes?minutes+"min":"");
     }
 }
-
-/*
-
-<img class="${css.poster}" alt="" src="${show.poster_path}"/>
-
-<span class="${css.title}">
-    ${show.title}
-    <span style="white-space:nowrap">(${show.release_date})</span>
-</span>
-<img
-    class="${css.trailerplayer}"
-    alt="see trailer"
-    src="${playbtn}"
-/>
-${map(details(show),({detail,className})=>`
-    <span class="${css[className]}">${detail}</span>
-`)}
-<div class="${css.overviewbody}">${show.overview}</div>
-*/

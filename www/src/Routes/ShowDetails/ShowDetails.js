@@ -24,6 +24,7 @@ export default function ShowDetails(props){
             showdetails.querySelector("#loading").remove();
         });
     }
+    console.log(show);
 }
 
 const styles={
