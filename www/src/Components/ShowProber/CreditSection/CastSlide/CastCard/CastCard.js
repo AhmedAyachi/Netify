@@ -20,7 +20,7 @@ export default function CastCard(props){
         </div>
         <div class="${css.col1}">
             <p class="${css.name}">${name}</p>
-            <p class="${css.character}" title="${character}">${character}</p>
+            ${character?`<p class="${css.character}" title="${character}">${character}</p>`:""}
         </div>
     `;
 }

@@ -24,7 +24,7 @@ export default function ShowProber(props){
         <div class="${css.row1}"></div>
     `;
     const row1=showprober.querySelector(`.${css.row1}`);
-    DetailSection({parent:row1,details:show});
+    DetailSection({parent:row1,show});
     
     state.activebtn=showprober.querySelector(`.${css.row0} #detailsbtn`);
     showprober.querySelectorAll(`.${css.row0} .${css.sectiontitle}`).forEach((sectionbtn,i)=>{
@@ -33,17 +33,9 @@ export default function ShowProber(props){
     });
 }
 
-const styles={
-    loading:`
-        display:block;
-        max-width:3rem;
-        margin:1rem auto;
-    `,
-};
-
 const sections=[
-    {title:"details",component:DetailSection,hook:null},
-    {title:"credits",component:CreditSection,hook:H.useCredits},
+    {title:"details",component:DetailSection},
+    {title:"credits",component:CreditSection},
     {title:"media",component:null},
     {title:"social",component:null},
 ];
@@ -55,19 +47,8 @@ const onSectionSelect=(sectionbtn,row1,state,show)=>{
         state.activebtn=sectionbtn;
         sectionbtn.className+=` ${css.activebtn}`;
         row1.innerHTML="";
-        if(section.hook){
-            row1.innerHTML=`<img id="loading" alt="Loading" style="${styles.loading}" src="${loadinganim}"/>`;
-            section.hook(show,(data)=>{
-                if(section.component){
-                    row1.querySelector("#loading").remove();
-                    const props={parent:row1};
-                    props[section.title]=data;
-                    section.component(props);
-                }
-            }); 
-        }
-        else if(section.component){
-            section.component({parent:row1,details:show});
+        if(section.component){
+            section.component({parent:row1,show});
         }
     }
 }
