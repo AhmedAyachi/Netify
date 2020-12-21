@@ -10,8 +10,8 @@ export default function ShowSlide(props){
     const {parent,ref=useRef("showslide"),show}=props;
     parent.insertAdjacentHTML("beforeend",`<div id="${ref}" class="${css.showslide}" style="${styles.showslide(show.backdrop_path)}"></div>`);
     const showslide=parent.querySelector(`#${ref}`);
-    const state={
-        inWatchList:Boolean(store.show.watchlist.find(show=>show.id===props.show.id)),
+    const showStore=store.show,state={
+        inWatchList:Boolean(showStore.watchlist&&showStore.watchlist.find(show=>show.id===props.show.id)),
     };
 
     showslide.innerHTML=`
