@@ -7,8 +7,11 @@ import Reducer from "./Store";
 document.addEventListener("deviceready",onDeviceReady,false);
 
 function onDeviceReady(){
-    StatusBar.overlaysWebView(true);
-    StatusBar.backgroundColorByHexString("#00000000");
+    if(cordova.platformId!=="browser"){
+        window.screen.orientation.lock("portrait");
+        StatusBar.overlaysWebView(true);
+        StatusBar.backgroundColorByHexString("#00000000");
+    }
     useStore(Reducer);
     App({
         parent:document.getElementById("root"),

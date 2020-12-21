@@ -10,8 +10,12 @@ export const netlixgroupid="465525889";
 
 const months=["January","February","March","April","May","June","July","August","September","October","November","December"];
 export const getFormatedDate=(date="")=>{
-    const slices=date.split("-");
-    return months[+slices[1]-1]+" "+slices[2]+","+" "+slices[0];
+    let formated="";
+    if(date){
+        const slices=date.split("-");
+        formated=months[+slices[1]-1]+" "+slices[2]+","+" "+slices[0];
+    }
+    return formated;
 }
 
 export class Show{

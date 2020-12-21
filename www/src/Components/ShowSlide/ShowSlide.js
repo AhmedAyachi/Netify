@@ -21,7 +21,7 @@ export default function ShowSlide(props){
             <h3 class="${css.title}">${show.title}</h3>
             <ul class="${css.list}">
                 <li class="${css.rating}"></li>
-                <li>${getFormatedDate(show.release_date)} | ${show.genres.map(genre=>genre.name).join(", ")}</li>
+                <li>${show.release_date?getFormatedDate(show.release_date):""} | ${show.genres.map(genre=>genre.name).join(", ")}</li>
                 <li>${getDuration(show)}</li>
             </ul>
             <div class="${css.overview}">${show.overview}</div>

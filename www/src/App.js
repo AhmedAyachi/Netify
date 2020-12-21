@@ -17,7 +17,8 @@ export default function App(props){
         <div id="content"></div>
     `;
     
-    Router(app.querySelector("#content"),[
+    const appcontent=window.appcontent=app.querySelector("#content");
+    Router(appcontent,[
         {component:Home,path:""},
         {component:ShowDetails,path:"#show"},
         {component:WatchList,path:"#watchlist"},

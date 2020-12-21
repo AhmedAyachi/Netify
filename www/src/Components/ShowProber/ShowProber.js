@@ -31,7 +31,6 @@ export default function ShowProber(props){
         sectionbtn.section=sections[i];
         sectionbtn.onclick=()=>{onSectionSelect(sectionbtn,row1,state,show)};
     });
-    console.log(show);
 }
 
 const styles={

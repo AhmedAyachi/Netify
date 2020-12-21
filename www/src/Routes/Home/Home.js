@@ -12,7 +12,7 @@ export default function Home(props){
     
     if(store.sessiontoken||store.isguest){
         Shows({parent:home});
-        app.style.paddingBottom="5rem";
+        appcontent.style.paddingBottom="5rem";
         if(!store.elements.navigator){
             Navigator({parent:app});
         }
