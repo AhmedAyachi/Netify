@@ -51,6 +51,9 @@
     max-height:10rem;
     overflow-y:auto;
 }
+.overviewbody::-webkit-scrollbar{
+    display:none;
+}
 
 
 @media(max-width:25cm){

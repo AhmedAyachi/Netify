@@ -25,6 +25,7 @@
     right:2rem;
     font-family:fredokaone;
     filter:brightness(0.85);
+    opacity:0.5;
 }
 .applogo{
     max-width:4em;

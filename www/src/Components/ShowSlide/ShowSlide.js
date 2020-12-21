@@ -1,8 +1,7 @@
 import {map,useRef} from "vanilla";
 import css from "./ShowSlide.module.css";
-import {playbtn,check2,check2reversed,plusbtn,checked} from "assets";
+import {check2,check2reversed,plusbtn,checked} from "assets";
 import {getFormatedDate} from "estate";
-import Trailer from "./Trailer/Trailer";
 import RateStars from "../RateStars/RateStars";
 import {addToWatchlist,removeFromWatchList} from "actions";
 
@@ -50,21 +49,6 @@ const styles={
         background-image:url('${backdropath}');
     `,
 };
-
-const details=show=>[
-    {
-        className:"genders",
-        detail:show.genres.map(genre=>genre.name+" "),
-    },
-    {
-        className:"duration",
-        detail:getDuration(show),
-    },
-    {
-        className:"overviewheader",
-        detail:"Overview",
-    },
-]
 
 const getDuration=(show)=>{
     switch(show.type){
