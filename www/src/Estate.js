@@ -26,6 +26,7 @@ export class Show{
             type:props.release_date?"movie":"tv",
             release_date:props.release_date||props.first_air_date,
             poster_path:props.poster_path?`https://image.tmdb.org/t/p/w500/${props.poster_path}`:defaultcover,
+            seasons:props.seasons?props.seasons.reverse():null,
             episodeRuntime:props.episode_run_time&&props.episode_run_time.length?props.episode_run_time.reduce((f,n)=>f+n)/props.episode_run_time.length:null,
         });
         if(props.backdrop_path){

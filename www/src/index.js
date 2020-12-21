@@ -8,7 +8,12 @@ document.addEventListener("deviceready",onDeviceReady,false);
 
 function onDeviceReady(){
     if(cordova.platformId!=="browser"){
-        window.screen.orientation.lock("portrait");
+        if(screen.height>=screen.width){
+            screen.orientation.lock("portrait");
+        }
+        else{
+            screen.orientation.lock("landscape");
+        }
         StatusBar.overlaysWebView(true);
         StatusBar.backgroundColorByHexString("#00000000");
     }

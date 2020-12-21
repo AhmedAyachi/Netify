@@ -14,12 +14,14 @@ export default function ShowSlide(props){
         inWatchList:Boolean(showStore.watchlist&&showStore.watchlist.find(show=>show.id===props.show.id)),
     };
 
+    console.log(show);
     showslide.innerHTML=`
         <img alt="Add to watchlist" class="${css.watchlistbtn}" src="${state.inWatchList?checked:plusbtn}"/>
         <div class="${css.row0}">
             <h3 class="${css.title}">${show.title}</h3>
             <ul class="${css.list}">
                 <li class="${css.rating}"></li>
+                ${show.tagline?`<li class="${css.tagline}">${show.tagline}</li>`:""}
                 <li>${show.release_date?getFormatedDate(show.release_date):""} | ${show.genres.map(genre=>genre.name).join(", ")}</li>
                 <li>${getDuration(show)}</li>
             </ul>
