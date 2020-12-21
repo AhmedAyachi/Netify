@@ -1,8 +1,7 @@
 import {map} from "vanilla";
 import css from "./WatchList.module.css";
 import {ShowCard,ShowRow,ShowView} from "components";
-import {squares0,list0,popcorn1,loadinganim} from "assets";
-import {loadWatchList} from "actions";
+import {squares0,list0,popcorn1} from "assets";
 
 
 export default function WatchList(props){
@@ -12,7 +11,6 @@ export default function WatchList(props){
 
     const showStore=store.show;
     watchlist.innerHTML=`
-        ${!showStore.watchlist?`<img id="loading" alt="Loading" style="${styles.loading}" src="${loadinganim}"/>`:""}
         <div class="${css.row0}"></div>
         <div class="${css.row1}" style="${styles.row1}">
             <div class="${css.row2}">
@@ -23,22 +21,19 @@ export default function WatchList(props){
         </div>
     `;
 
+    const shows=showStore.watchlist;
+    if(shows.length){
+        ShowView({parent:watchlist.querySelector(`.${css.row0}`),show:shows[0]});
+    }
+    const row3=watchlist.querySelector(`.${css.row3}`);
+    setList(shows,row3,showStore.listdisplay);
 
-    if(showStore.watchlist){
-        setWatchList(watchlist,showStore); 
-    }
-    else{
-        loadWatchList(()=>{
-            setWatchList(watchlist,showStore,loading);
-            watchlist.querySelector("#loading").remove();
-        },(error)=>{alert(error)});
-    }
-    
     const displayer=watchlist.querySelector(`.${css.displayer}`);
     displayer.onclick=()=>{
         showStore.listdisplay=!showStore.listdisplay;
         displayer.setAttribute("src",showStore.listdisplay?squares0:list0);
-        setList(showStore.watchlist,watchlist,showStore.listdisplay);
+        row3.innerHTML="";
+        setList(shows,row3,showStore.listdisplay);
     }
 };
 
@@ -46,33 +41,18 @@ const styles={
     row1:`
         margin-top:${cordova.platformId!=="browser"?"1.5rem":"0"};
     `,
-    loading:`
-        display:block;
-        max-width:5rem;
-        margin:5rem auto;
-    `,
 }
 
-const setList=(shows,watchlist,listdisplay)=>{
-    const row3=watchlist.querySelector(`.${css.row3}`);
-    row3.innerHTML="";
-    if(shows&&shows.length>1){
-        if(listdisplay){
-            shows.forEach((show,i)=>{i&&ShowRow({parent:row3,show})}); 
+const setList=(shows,parent,display,)=>{
+    if(shows.length>1){
+        if(display){
+            shows.forEach((show,i)=>{i&&ShowRow({parent,show})}); 
         }
         else{
-            shows.forEach((show,i)=>{i&&ShowCard({parent:row3,show})});
+            shows.forEach((show,i)=>{i&&ShowCard({parent,show})});
         }
     }
     else{
-        row3.innerHTML=`<img class="${css.emptylistsign}" alt="" src="${popcorn1}"/>`;
+        parent.innerHTML=`<img class="${css.emptylistsign}" alt="" src="${popcorn1}"/>`;
     }
-}
-
-const setWatchList=(watchlist,showStore)=>{
-    const shows=showStore.watchlist;
-    if(shows&&shows.length){
-        ShowView({parent:watchlist.querySelector(`.${css.row0}`),show:shows[0]});
-    }
-    setList(shows,watchlist,showStore.listdisplay);
 }
