@@ -1,7 +1,7 @@
 import {File} from "estate";
 
 
-export function setWatchList(){
+export function loadWatchList(){
     const store=window.store;
     if(store&&store.isguest){
         const cordova=window.cordova;
@@ -26,7 +26,7 @@ export function setWatchList(){
     }
 };
 
-export function setSearch(){
+export function loadSearch(){
     const store=window.store;
     if(store){
         const cordova=window.cordova;
