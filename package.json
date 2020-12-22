@@ -1,6 +1,6 @@
 {
-  "name": "com.netlix.app",
-  "displayname": "Netlix",
+  "name": "com.netify.app",
+  "displayname": "Netify",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -26,6 +26,7 @@
     "cordova-browser": "^6.0.0",
     "cordova-plugin-dialogs": "2.0.2",
     "cordova-plugin-file": "6.0.2",
+    "cordova-plugin-imagedownloader": "1.0.3",
     "cordova-plugin-network-information": "2.0.2",
     "cordova-plugin-screen-orientation": "3.0.2",
     "cordova-plugin-statusbar": "2.4.3",

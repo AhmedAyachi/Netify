@@ -1,5 +1,11 @@
 
 //Images:
+export {default as list1} from "./Images/List_1.png";
+export {default as closer1} from "./Images/Closer_1.png";
+export {default as fullscreen0} from "./Images/Fullscreen_0.png";
+export {default as donwload0} from "./Images/Download_0.png";
+export {default as monitor1} from "./Images/Monitor_1.png";
+export {default as home2} from "./Images/Home_2.png";
 export {default as popcorn1} from "./Images/Popcorn_1.png";
 export {default as squares0} from "./Images/Squares_0.png";
 export {default as list0} from "./Images/List_0.png"; 

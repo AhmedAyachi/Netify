@@ -14,7 +14,7 @@ export default function App(props){
         offlinealert:useRef("offlinealert"),
     }
     app.innerHTML=`
-        <div id="content"></div>
+        <div id="content" class="${css.content}"></div>
     `;
     
     const appcontent=window.appcontent=app.querySelector("#content");
@@ -23,7 +23,7 @@ export default function App(props){
         {component:ShowDetails,path:"#show"},
         {component:WatchList,path:"#watchlist"},
     ]);
-    
+
     window.addEventListener("offline",()=>{
         OfflineAlert({parent:app,ref:refs.offlinealert});
     });

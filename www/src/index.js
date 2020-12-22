@@ -9,7 +9,7 @@ document.addEventListener("deviceready",onDeviceReady,false);
 function onDeviceReady(){
     if(cordova.platformId!=="browser"){
         if(screen.height>=screen.width){
-            screen.orientation.lock("portrait");
+            screen.orientation.lock("portrait-primary");
         }
         else{
             screen.orientation.lock("landscape");

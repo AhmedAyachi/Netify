@@ -21,21 +21,21 @@ export default function VideoSlider(props){
 
     const row0=videoslider.querySelector(`.${css.row0}`);
     const onTouchStart=(event)=>{
-        const {clientX}=event.touches[0];
-        state.touchX=clientX;
+        const {pageX}=event.touches[0];
+        state.touchX=pageX;
     }
     row0.addEventListener("touchstart",onTouchStart,{passive:true});
+
 
     const onTouchEnd=(event)=>{
         let i=index,forwards;
         if(cordova.platformId!=="browser"){
-            const {clientX}=event.changedTouches[0],{length}=videos;
-            
-            if(i&&state.touchX<clientX){
+            const {pageX}=event.changedTouches[0],{length}=videos;
+            if(i&&state.touchX<pageX){
                 i--;
                 forwards=false;
             }
-            else if(i<length-1&&clientX<state.touchX){
+            else if(i<length-1&&pageX<state.touchX){
                 i++;
                 forwards=true;
             }   
@@ -57,7 +57,6 @@ export default function VideoSlider(props){
         }
     }
     row0.addEventListener("touchend",onTouchEnd,{passive:true});
-    row0.querySelector(`.${css.playbtn}`).onclick=onTouchEnd;
 
     videoslider.removeEventListeners=()=>{
         row0.removeEventListener("touchstart",onTouchStart);
