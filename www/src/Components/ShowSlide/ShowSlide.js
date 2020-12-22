@@ -14,7 +14,6 @@ export default function ShowSlide(props){
         inWatchList:Boolean(showStore.watchlist&&showStore.watchlist.find(show=>show.id===props.show.id)),
     };
 
-    console.log(show);
     showslide.innerHTML=`
         <img alt="Add to watchlist" class="${css.watchlistbtn}" src="${state.inWatchList?checked:plusbtn}"/>
         <div class="${css.row0}">

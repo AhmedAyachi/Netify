@@ -1,0 +1,79 @@
+.videoslider{
+    position:relative;
+    display:inline-block;
+    font-size:1rem;
+    width:100%;
+    height:20rem;
+    margin:0.5rem 0;
+    background-size:cover;
+    background-repeat:no-repeat;
+    background-position:center;
+    border-top:3px solid #cc0000;
+    border-bottom:3px solid #cc0000;
+}
+.backdrop{
+    position:absolute;
+    top:0;
+    left:0;right:0;margin:0 auto;
+    width:100%;
+    height:100%;
+    background-color:black;
+    opacity:0.5;
+    z-index:0;
+}
+.row0{
+    position:relative;
+    width:100%;
+    height:100%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    z-index:1;
+}
+.playbtn{
+    max-width:5rem;
+    opacity:0.75;
+}
+
+@media(any-hover){
+    .playbtn:hover{
+        cursor:pointer;
+        filter:brightness(1.65);
+    }
+}
+
+@keyframes toLeft{
+    to{
+        transform:translateX(-100%);
+        opacity:0;
+    };
+}
+
+@keyframes fromLeft{
+    from{
+        opacity:0;
+        transform:translateX(-100%);
+    }
+    to{
+        transform:translateX(0);
+        opacity:1;
+    };
+}
+
+@keyframes toRight{
+    to{
+        transform:translateX(100%);
+        opacity:0;
+    };
+}
+
+@keyframes fromRight{
+    from{
+        opacity:0;
+        transform:translateX(100%);
+    }
+    to{
+        transform:translateX(0);
+        opacity:1;
+    };
+}

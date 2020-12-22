@@ -8,9 +8,9 @@ export default function CastCard(props){
     parent.insertAdjacentHTML("beforeend",`<div id="${ref}" class="${css.castcard}"></div>`);
     const catscard=parent.querySelector(`#${ref}`);
 
-    const {name,character,profile_path}=cast;
+    const {name,character,job,profile_path}=cast;
     catscard.innerHTML=`
-        <div class="${css.col0}">
+        <div class="${css.row0}">
             <img 
                 alt=""
                 class="${css.photo}"
@@ -18,9 +18,12 @@ export default function CastCard(props){
                 draggable="false"
             />
         </div>
-        <div class="${css.col1}">
-            <p class="${css.name}">${name}</p>
-            ${character?`<p class="${css.character}" title="${character}">${character}</p>`:""}
+        <div class="${css.row1}">
+            <ul class="${css.details}">
+                <li class="${css.name}">${name}</li>
+                ${character?`<li class="${css.detail}" title="${character}">${character}</li>`:""}
+                ${job?`<li class="${css.detail}" title="${job}">${job}</li>`:""}
+            </ul>
         </div>
     `;
 }

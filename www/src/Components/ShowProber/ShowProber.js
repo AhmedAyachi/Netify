@@ -1,10 +1,9 @@
 import {map,useRef} from "vanilla";
 import css from "./ShowProber.module.css";
-import {loadinganim} from "assets";
 import {capitalize} from "afile";
-import * as H from "./Hooks";
-import CreditSection from "./CreditSection/CreditSection";
 import DetailSection from "./DetailSection/DetailSection";
+import CreditSection from "./CreditSection/CreditSection";
+import MediaSection from "./MediaSection/MediaSection";
 
 
 export default function ShowProber(props){
@@ -36,7 +35,7 @@ export default function ShowProber(props){
 const sections=[
     {title:"details",component:DetailSection},
     {title:"credits",component:CreditSection},
-    {title:"media",component:null},
+    {title:"media",component:MediaSection},
     {title:"social",component:null},
 ];
 

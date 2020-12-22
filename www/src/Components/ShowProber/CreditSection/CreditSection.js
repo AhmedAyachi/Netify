@@ -14,15 +14,18 @@ export default function CreditSection(props){
         <img id="loading" alt="Loading" style="${styles.loading}" src="${loadinganim}"/>
     `;
     H.useCredits(show,credits=>{
-        const crews=credits.crew;
         creditsection.querySelector("#loading").remove();
-        CastSlide({parent:creditsection,title:"Cast",casts:credits.cast});
+        const casts=credits.cast,crews=credits.crew;
+        if(casts&&casts.length){
+            CastSlide({parent:creditsection,title:"Cast",casts});
+        }
+        if(crews&&crews.length){
+            CastSlide({parent:creditsection,title:"Crew",casts:crews});
+        }
         if(show.created_by&&show.created_by.length){
             CastSlide({parent:creditsection,title:"Created by",casts:show.created_by});
         }
     });
-    
-    //console.log(crews);
 }
 
 const styles={
