@@ -2,7 +2,8 @@ import {map,useRef} from "vanilla";
 import css from "./Item.module.css";
 import FullView from "./FullView/FullView";
 import {donwload0,fullscreen0} from "assets";
-//import DownloadImageToGallery from "../../../../../../../plugins/cordova-plugin-downloadimage-to-gallery/www/DownloadImageToGallery";
+import {Folder} from "estate";
+
 
 export default function Item(props){
     const {parent,ref=useRef("item"),view}=props;
@@ -26,6 +27,10 @@ export default function Item(props){
 
     const downloadbtn=item.querySelector(`#download.${css.icon}`);
     downloadbtn.onclick=()=>{
+        const imagesfolder=new Folder("Images");
+        imagesfolder.add(view.key,(image)=>{
+            alert("image saved successfully");
+        });
         alert("downloading");
     }
     //item.style FullView() Fullview()

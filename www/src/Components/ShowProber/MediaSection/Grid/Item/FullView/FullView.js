@@ -8,7 +8,7 @@ export default function FullView(props){
     parent.insertAdjacentHTML("beforeend",`<div id="${ref}" class="${css.fullview}" style="${styles.fullview}"></div>`);
     const fullview=parent.querySelector(`#${ref}`);
     const state={
-        fadeOutduration:1,
+        fadeOutduration:0.8,
     };
 
     fullview.innerHTML=`
@@ -28,7 +28,7 @@ export default function FullView(props){
     if(cordova.platformId!=="browser"){
         screen.orientation.unlock();
     }
-    fadeIn(fullview,"flex",1.5);
+    fadeIn(fullview,"flex",1);
 }
 
 const styles={

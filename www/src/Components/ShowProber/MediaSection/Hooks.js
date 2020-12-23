@@ -26,6 +26,7 @@ export const useImages=({id,type},then=()=>{})=>{
                 items.forEach(item=>{
                     item.type=type;
                     item.path=`https://image.tmdb.org/t/p/w1920_and_h800_multi_faces/${item.file_path}`;
+                    item.key=item.file_path.replace(/\//g,"");
                 });
                 images.push(...items);
             };

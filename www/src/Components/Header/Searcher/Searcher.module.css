@@ -1,6 +1,6 @@
 .searcher{
     position:relative;
-    border:3px solid #cc0000;
+    border:2px solid #cc0000;
     border-radius:5px;
     width:85%;
     height:3rem;
@@ -24,6 +24,7 @@
     color:white;
     font-family:fredokaone;
     font-size:1.5rem;
+    opacity:0.85;
 }
 .filter{
     max-width:2em;

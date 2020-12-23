@@ -58,7 +58,7 @@ export class Show{
 }
 
 export class File{
-    constructor({name="text.txt",location=cordova.file.dataDirectory},resolve=()=>{},reject=(error)=>{alert(error)}){
+    constructor({name="Newtext.txt",location=cordova.file.dataDirectory},resolve=()=>{},reject=(error)=>{alert(error)}){
         this.name=name;
         this.location=location;
         this.path=location+name;
@@ -105,6 +105,27 @@ export class File{
     remove(resolve=()=>{},reject=(error)=>{alert(error)}){
         window.resolveLocalFileSystemURL(this.path,(file)=>{
             file.remove(resolve,reject);
+        });
+    };
+}
+
+export class Folder{
+    constructor({name="Newfolder",location=cordova.file.dataDirectory},onFulfilled=()=>{},onRejected=alert){
+        this.name=name;
+        this.location=location;
+        this.path=location+name;
+        this.created=false;
+        window.resolveLocalFileSystemURL(location,(folder)=>{
+            folder.getDirectory(name,{create:true},(directory)=>{  
+                onFulfilled(directory);
+            },onRejected);
+        });
+    };
+    add(filename="",onFulfilled=()=>{},onRejected=alert){
+        window.resolveLocalFileSystemURL(this.path,(folder)=>{
+            folder.getFile(filename,{create:true},(file)=>{
+                onFulfilled(file);
+            },onRejected);
         });
     };
 }
