@@ -1,7 +1,7 @@
 import {useRef} from "vanilla";
 import css from "./MediaSection.module.css";
 import {loadinganim} from "assets";
-import Grid from "./Grid/Grid";
+import ImageGrid from "./ImageGrid/ImageGrid";
 import * as H from "./Hooks";
 
 
@@ -19,7 +19,7 @@ export default function MediaSection(props){
     H.useImages(show,images=>{
         const row0=mediasection.querySelector(`.${css.row0}`);
         mediasection.querySelector("#loading").remove();
-        Grid({parent:row0,title:"Posters",items:images});
+        ImageGrid({parent:row0,title:"Posters",images});
     });
 }
 

@@ -1,39 +1,39 @@
 import {map,useRef} from "vanilla";
-import css from "./Item.module.css";
+import css from "./ImageBox.module.css";
 import FullView from "./FullView/FullView";
 import {donwload0,fullscreen0} from "assets";
 import {Folder} from "estate";
 
 
-export default function Item(props){
-    const {parent,ref=useRef("item"),view}=props;
-    parent.insertAdjacentHTML("beforeend",`<div id="${ref}" class="${css.item}"></div>`);
-    const item=parent.querySelector(`#${ref}`);
+export default function ImageBox(props){
+    const {parent,ref=useRef("item"),image}=props;
+    parent.insertAdjacentHTML("beforeend",`<div id="${ref}" class="${css.imagebox}"></div>`);
+    const imagebox=parent.querySelector(`#${ref}`);
 
-    item.innerHTML=`
+    imagebox.innerHTML=`
         <div class="${css.row0}">
             ${map(icons,icon=>`
                 <img id="${icon.ref}" class="${css.icon}" alt="${icon.alt}" src="${icon.src}"/>
             `)}
         </div>
-        <img alt="" class="${css.view}" src="${view.path}"/>
+        <img alt="" class="${css.image}" src="${image.path}"/>
     `;
 
-    const expandbtn=item.querySelector(`#expand.${css.icon}`);
+    const expandbtn=imagebox.querySelector(`#expand.${css.icon}`);
     expandbtn.onclick=()=>{
         console.log("expand"),
-        FullView({parent:app,target:view});
+        FullView({parent:app,target:image});
     }
 
-    const downloadbtn=item.querySelector(`#download.${css.icon}`);
+    const downloadbtn=imagebox.querySelector(`#download.${css.icon}`);
     downloadbtn.onclick=()=>{
         const imagesfolder=new Folder("Images");
-        imagesfolder.add(view.key,(image)=>{
+        imagesfolder.add(image.key,(image)=>{
             alert("image saved successfully");
         });
         alert("downloading");
     }
-    //item.style FullView() Fullview()
+    //imagebox.style FullView() Fullview()
 }
 
 const icons=[

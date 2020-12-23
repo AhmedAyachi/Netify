@@ -50,6 +50,7 @@ export default function Navigator(props){
         navigator.remove();
     }
     
+    appcontent.style.paddingBottom="4.75rem";
     fadeIn(navigator,"flex",2);
 };
 

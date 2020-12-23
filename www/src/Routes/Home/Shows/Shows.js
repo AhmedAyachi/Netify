@@ -1,6 +1,6 @@
 import {useRef} from "vanilla";
 import css from "./Shows.module.css";
-import {Header,ShowsList} from "components";
+import {Header,ShowsList,Navigator} from "components";
 import {loadSearch,loadWatchList} from "actions";
 
 
@@ -12,6 +12,13 @@ export default function Shows(props){
         searcher:useRef("searcher"),
     }
 
+    Header({parent:shows,searcherRef:refs.searcher});
+    ShowsList({parent:shows,searcherRef:refs.searcher});
+    
+    if(!store.elements.navigator){
+        Navigator({parent:app});
+    }
+
     const showStore=store.show;
     if(!showStore.searchvalues){
         loadSearch();
@@ -19,7 +26,4 @@ export default function Shows(props){
     if(!showStore.watchlist){
         loadWatchList();
     }
-
-    Header({parent:shows,searcherRef:refs.searcher});
-    ShowsList({parent:shows,searcherRef:refs.searcher});
 }

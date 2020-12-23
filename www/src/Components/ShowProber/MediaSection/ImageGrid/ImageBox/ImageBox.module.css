@@ -1,4 +1,4 @@
-.item{
+.imagebox{
     position:relative;
     display:block;
     font-size:1rem;
@@ -30,7 +30,7 @@
     max-width:1.5em;
     margin:0.25em 0.5em;
 }
-.view{
+.image{
     max-width:100%;
     border-top-left-radius:inherit;
     border-top-right-radius:inherit;
@@ -42,7 +42,7 @@
         cursor:pointer;
         opacity:1;
     }
-    .row0:hover ~ .view{
+    .row0:hover ~ .image{
         filter:brightness(0.5);
         opacity:0.7;
     }
@@ -55,14 +55,14 @@
     .row0{
         opacity:0.8;
     }
-    .row0:active ~ .view{
+    .row0:active ~ .image{
         filter:brightness(0.5);
         opacity:0.7;
     }
 }
 
 @media(max-width:25cm){
-    .item{
+    .imagebox{
         width:95%;
     }
 }
