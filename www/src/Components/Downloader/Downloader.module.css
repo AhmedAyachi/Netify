@@ -1,0 +1,48 @@
+.downloader{
+    position:absolute;
+    width:100%;
+    height:100%;
+    top:0;
+    left:0;right:0;margin:0 auto;
+    font-size:1.1em;
+    z-index:3;
+}
+.background{
+    position:absolute;
+    width:100%;
+    height:100%;
+    background-color:black;
+    opacity:0.65;
+    overflow:hidden;
+    z-index:0;
+}
+.row0{
+    position:relative;
+    width:100%;
+    height:100%;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    z-index:1;
+}
+.anim{
+    max-width:3em;
+}
+.bar{
+    width:25%;
+    height:10px;
+    margin-top:10px;
+    padding:1px 0;
+    border:2px solid #cc0000;
+    text-align:left;
+}
+.progress{
+    width:0;
+    height:inherit;
+    background-color:#cc0000;
+}
+.error{
+    margin:10px 0;
+    font-size:0.85em;
+}

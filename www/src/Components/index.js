@@ -15,3 +15,4 @@ export {default as CreditSection} from "./ShowProber/CreditSection/CreditSection
 export {default as RateStars} from "./RateStars/RateStars";
 export {default as OfflineAlert} from "./OfflineAlert/OfflineAlert";
 export {default as Navigator} from "./Navigator/Navigator";
+export {default as Downloader} from "./Downloader/Downloader";

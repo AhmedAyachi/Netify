@@ -1,8 +1,8 @@
 import {map,useRef} from "vanilla";
 import css from "./ImageBox.module.css";
 import FullView from "./FullView/FullView";
-import {donwload0,fullscreen0,loadinganim} from "assets";
-import {Folder} from "estate";
+import {Downloader} from "components";
+import {donwload0,fullscreen0} from "assets";
 
 
 export default function ImageBox(props){
@@ -27,18 +27,10 @@ export default function ImageBox(props){
 
     const downloadbtn=imagebox.querySelector(`#download.${css.icon}`);
     downloadbtn.onclick=()=>{
-        imagebox.insertAdjacentHTML("beforeend",`<img alt="Dowloading" class="${css.loading}" src="${loadinganim}"/>`);
-        const loading=imagebox.querySelector(`.${css.loading}`);
-        const imgEl=imagebox.querySelector(`.${css.image}`);
-        imgEl.className+=` ${css.downloading}`;
-        const images=new Folder({
-            name:"Netify",
-            location:cordova.file.externalRootDirectory,
-        },(folder)=>{
-            new FileTransfer().download(image.path,`${folder.nativeURL}/${image.key}`,(file)=>{
-                loading.remove();
-                imgEl.className=css.image;
-            });
+        Downloader({
+            parent:imagebox,
+            url:image.path,
+            name:image.key,
         });
     }
 }

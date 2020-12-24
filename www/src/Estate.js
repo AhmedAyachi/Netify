@@ -123,6 +123,9 @@ export class Folder{
     get nativeURL(){
         return this.path;
     }
+    onOpened(onFulfilled=()=>{},onRejected=alert){
+        window.resolveLocalFileSystemURL(this.path,onFulfilled,onRejected);
+    }
     add(filename="",onFulfilled=()=>{},onRejected=alert){
         window.resolveLocalFileSystemURL(this.path,(folder)=>{
             folder.getFile(filename,{create:true},onFulfilled,onRejected);
