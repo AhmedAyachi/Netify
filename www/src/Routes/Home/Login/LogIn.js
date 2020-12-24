@@ -67,9 +67,9 @@ export default function Login(props){
         }
     }
 
-    login.querySelector(`.${css.tmdblink}`).onclick=()=>{
+    /*login.querySelector(`.${css.tmdblink}`).onclick=()=>{
 
-    }
+    }*/
 }
 
 const logincode=(account,password,type)=>`{

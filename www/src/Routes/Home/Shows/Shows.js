@@ -6,7 +6,7 @@ import {loadSearch,loadWatchList} from "actions";
 
 export default function Shows(props){
     const {parent}=props;
-    parent.insertAdjacentHTML("beforeend",`<div class="${css.shows} activeroute"></div>`);
+    parent.insertAdjacentHTML("beforeend",`<div class="${css.shows}" style="${styles.shows}"></div>`);
     const shows=parent.querySelector(`.${css.shows}`);
     const refs={
         searcher:useRef("searcher"),
@@ -26,4 +26,10 @@ export default function Shows(props){
     if(!showStore.watchlist){
         loadWatchList();
     }
+}
+
+const styles={
+    shows:`
+        padding-top:${cordova.platformId!=="browser"?"2rem":"0"};
+    `,
 }

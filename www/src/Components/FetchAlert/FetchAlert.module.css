@@ -6,23 +6,24 @@
     left:0;right:0;margin:0 auto;
     overflow:hidden;
     text-align:center;
+    font-family:fredokaone;
     z-index:30;
 }
 .background{
-    position:absolute;
-    width:100%;
-    height:100%;
+    position:fixed;
+    top:0;
+    left:0;right:0;margin:0 auto;
+    width:100vw;
+    height:100vh;
     background-color:black;
     opacity:0.8;
-    z-index:0;
+    z-index:-1;
 }
 .row0{
     position:relative;
-    font-size:0.95em;
-    font-family:fredokaone;
+    font-size:1.25em;
     color:white;
     text-align:center;
-    z-index:1;
 }
 .row1{
     display:flex;

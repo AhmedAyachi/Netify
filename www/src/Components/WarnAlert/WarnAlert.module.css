@@ -10,7 +10,8 @@
 }
 .alertbackdrop{
     position:fixed;
-    top:0;left:0;
+    top:0;
+    left:0;right:0;margin:0 auto;
     width:100vw;
     height:100vh;
     z-index:0;
@@ -18,13 +19,16 @@
     opacity:0.8;
     z-index:-1;
 }
-.row0,.row1{
+.row0{
     text-align:center;
     margin:20px;
+    font-size:1.25em;
 }
 .row1{
     display:flex;
     justify-content:center;
+    text-align:center;
+    margin:20px;
     z-index:3;
 }
 .button{
