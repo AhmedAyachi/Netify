@@ -16,7 +16,7 @@ export default function ImageBox(props){
                 <img id="${icon.ref}" class="${css.icon}" alt="${icon.alt}" src="${icon.src}"/>
             `)}
         </div>
-        <img alt="" class="${css.image}" src="${image.path}"/>
+        <img alt="Could not display image" class="${css.image}" src="${image.path}"/>
     `;
 
     const expandbtn=imagebox.querySelector(`#expand.${css.icon}`);
@@ -27,13 +27,21 @@ export default function ImageBox(props){
 
     const downloadbtn=imagebox.querySelector(`#download.${css.icon}`);
     downloadbtn.onclick=()=>{
-        const imagesfolder=new Folder("Images");
-        imagesfolder.add(image.key,(image)=>{
-            alert("image saved successfully");
+        const documents=new Folder({name:"Documents",location:cordova.file.applicationDirectory},(folder)=>{
+            /*new FileTransfer().download(image.path,`${folder.nativeURL}/${image.key}`,(file)=>{
+                alert("image downloaded");
+                window.Base64ImageSaverPlugin.saveImageDataToLibrary();
+                folder.createReader().readEntries(entries=>{
+                    alert(folder.nativeURL);
+                    entries.forEach(entry=>{
+                        imagebox.insertAdjacentText("afterend",`${entry.name}\n`);
+                    });
+                })
+            });*/
         });
-        alert("downloading");
+        //documents.clear();
+        //const imagesfolder=new Folder({name:"Images"});
     }
-    //imagebox.style FullView() Fullview()
 }
 
 const icons=[

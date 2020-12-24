@@ -91,15 +91,16 @@ export class File{
             });
         });
     };
-    onRead(resolve=()=>{},reject=(error)=>{alert(error)}){
+    onRead(onFulfilled=()=>{},onRejected=alert){
         window.resolveLocalFileSystemURL(this.path,(file)=>{
+            //file
             file.file(file=>{
                 const reader=new FileReader();
                 reader.onloadend=function(){
-                    resolve(this.result);
+                    onFulfilled(this.result);
                 }
                 reader.readAsText(file);
-            },reject);
+            },onRejected);
         });
     };
     remove(resolve=()=>{},reject=(error)=>{alert(error)}){
@@ -116,16 +117,41 @@ export class Folder{
         this.path=location+name;
         this.created=false;
         window.resolveLocalFileSystemURL(location,(folder)=>{
-            folder.getDirectory(name,{create:true},(directory)=>{  
-                onFulfilled(directory);
-            },onRejected);
+            folder.getDirectory(name,{create:true},onFulfilled,onRejected);
         });
     };
+    get nativeURL(){
+        return this.path;
+    }
     add(filename="",onFulfilled=()=>{},onRejected=alert){
         window.resolveLocalFileSystemURL(this.path,(folder)=>{
+            folder.getFile(filename,{create:true},onFulfilled,onRejected);
+        });
+    };
+    remove(onFulfilled=()=>{},onRejected=alert){
+        window.resolveLocalFileSystemURL(this.path,(folder)=>{
+            folder.remove(onFulfilled,onRejected);
+        });
+    };
+    removeFile(filename="",onFulfilled=()=>{},onRejected=alert){
+        window.resolveLocalFileSystemURL(this.path,(folder)=>{
             folder.getFile(filename,{create:true},(file)=>{
+                file.remove();
                 onFulfilled(file);
             },onRejected);
         });
     };
+    clear(onFulfilled=()=>{},onRejected=alert){
+        window.resolveLocalFileSystemURL(this.path,(folder)=>{
+            const reader=folder.createReader();
+            reader.readEntries((entries)=>{
+                if(entries.length){
+                    entries.forEach(entry=>{
+                        entry.remove();
+                    });
+                }
+                onFulfilled(entries,folder);
+            },onRejected);
+        });
+    }
 }
