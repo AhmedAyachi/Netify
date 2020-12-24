@@ -1,9 +1,9 @@
-import {map,useRef} from "vanilla";
+import {useRef} from "vanilla";
 import css from "./Login.module.css";
 import {netflixlogo,tmdb1} from "assets";
-import {InputField,ShowsBackground,SkipAlert} from "components";
-import {setUsertoken} from "actions";
-import Home from "../Home";
+import {InputField,ShowsBackground,WarnAlert} from "components";
+import {setUsertoken,setIsguest} from "actions";
+import Shows from "../Shows/Shows";
 
 
 export default function Login(props){
@@ -44,7 +44,16 @@ export default function Login(props){
     ShowsBackground({parent:login,ref:refs.showsbackground});
 
     login.querySelector(`.${css.skipbtn}`).onclick=()=>{
-        SkipAlert({parent:login});  
+        WarnAlert({
+            parent:login,
+            message:"If you skip loggin in, data will be stored on the device",
+            onConfirm:()=>{
+                setIsguest();
+                const appcontent=app.querySelector("#content");
+                appcontent.innerHTML="";
+                Shows({parent:appcontent});
+            }
+        });  
     };
 
     login.querySelector(`.${css.signin}`).onclick=()=>{

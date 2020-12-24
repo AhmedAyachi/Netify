@@ -1,11 +1,11 @@
-.skipalert{
+.warnalert{
     position:fixed;
     display:none;
     left:0;right:0;margin:0 auto;
     top:25%;
     width:50%;
-    font-size:1em;
-    z-index:2;
+    font-size:1rem;
+    z-index:30;
     font-family:fredokaone;
 }
 .alertbackdrop{
@@ -43,7 +43,7 @@
 }
 
 @media(max-width:25cm){
-    .skipalert{
+    .warnalert{
         width:85%;
     }
     .row1{

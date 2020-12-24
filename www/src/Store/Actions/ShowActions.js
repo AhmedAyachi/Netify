@@ -1,6 +1,8 @@
 import {Show,apikey} from "estate";
 import {setLoading} from "./index";
+import {FetchAlert} from "components";
 import {shuffle} from "afile";
+
 
 export const setShowStore=(key,value)=>{
     store.show[key]=value;
@@ -115,9 +117,12 @@ export const loadShows=(collection=1,then)=>{
             then(shows);
         }
     }).
-    catch(error=>{
+    catch(()=>{
         setLoading(false);
-        alert(error);
+        FetchAlert({
+            parent:app,
+            onConfirm:()=>{loadShows(collection,then)},
+        });
     });
 };
 
@@ -142,8 +147,11 @@ export const loadShowsByTitle=(title="",then)=>{
             then(shows);
         }
     }).
-    catch(error=>{
+    catch(()=>{
         setLoading(false);
-        alert(error);
+        FetchAlert({
+            parent:app,
+            onConfirm:()=>{loadShowsByTitle(title,then)},
+        });
     });
 }
