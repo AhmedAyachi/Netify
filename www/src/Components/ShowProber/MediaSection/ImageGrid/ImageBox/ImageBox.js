@@ -1,7 +1,7 @@
 import {map,useRef} from "vanilla";
 import css from "./ImageBox.module.css";
 import FullView from "./FullView/FullView";
-import {donwload0,fullscreen0} from "assets";
+import {donwload0,fullscreen0,loadinganim} from "assets";
 import {Folder} from "estate";
 
 
@@ -27,20 +27,19 @@ export default function ImageBox(props){
 
     const downloadbtn=imagebox.querySelector(`#download.${css.icon}`);
     downloadbtn.onclick=()=>{
-        const documents=new Folder({name:"Documents",location:cordova.file.applicationDirectory},(folder)=>{
-            /*new FileTransfer().download(image.path,`${folder.nativeURL}/${image.key}`,(file)=>{
-                alert("image downloaded");
-                window.Base64ImageSaverPlugin.saveImageDataToLibrary();
-                folder.createReader().readEntries(entries=>{
-                    alert(folder.nativeURL);
-                    entries.forEach(entry=>{
-                        imagebox.insertAdjacentText("afterend",`${entry.name}\n`);
-                    });
-                })
-            });*/
+        imagebox.insertAdjacentHTML("beforeend",`<img alt="Dowloading" class="${css.loading}" src="${loadinganim}"/>`);
+        const loading=imagebox.querySelector(`.${css.loading}`);
+        const imgEl=imagebox.querySelector(`.${css.image}`);
+        imgEl.className+=` ${css.downloading}`;
+        const images=new Folder({
+            name:"Netify",
+            location:cordova.file.externalRootDirectory,
+        },(folder)=>{
+            new FileTransfer().download(image.path,`${folder.nativeURL}/${image.key}`,(file)=>{
+                loading.remove();
+                imgEl.className=css.image;
+            });
         });
-        //documents.clear();
-        //const imagesfolder=new Folder({name:"Images"});
     }
 }
 
