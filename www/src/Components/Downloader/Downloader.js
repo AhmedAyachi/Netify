@@ -6,7 +6,7 @@ import {Folder} from "estate";
 
 
 export default function Downloader(props){
-    const {parent,ref=useRef("downloader"),url,location=cordova.file.externalRootDirectory+"Netify/",name,onError}=props;
+    const {parent,ref=useRef("downloader"),url,name,onError}=props;
     parent.insertAdjacentHTML("beforeend",`<div id="${ref}" class="${css.downloader}" style="${styles.downloader}"></div>`);
     const downloader=parent.querySelector(`#${ref}`);
 
@@ -21,6 +21,13 @@ export default function Downloader(props){
         </div>
     `;
 
+    downloader.unmount=()=>{
+        fadeOut(downloader,1000);
+        setTimeout(()=>{
+            downloader.remove();
+        },1350);
+    }
+    
     if(name&&url&&cordova.file.externalRootDirectory){
         const progress=downloader.querySelector(`.${css.progress}`);
         const netify=new Folder({name:"Netify",location:cordova.file.externalRootDirectory},(folder)=>{
@@ -43,13 +50,6 @@ export default function Downloader(props){
     }
     else{
         downloader.unmount();
-    }
-
-    downloader.unmount=()=>{
-        fadeOut(downloader,1000);
-        setTimeout(()=>{
-            downloader.remove();
-        },1350);
     }
 }
 
