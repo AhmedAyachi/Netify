@@ -1,10 +1,11 @@
-import {map,useRef} from "vanilla";
+import {useRef} from "vanilla";
 import css from "./Swiper.module.css";
+import {fadeIn} from "afile";
 
 
 export default function Swiper(props){
     const {parent,ref=useRef("swiper"),length}=props;
-    parent.insertAdjacentHTML("beforeend",`<div id="${ref}" class="${css.swiper}"></div>`);
+    parent.insertAdjacentHTML("beforeend",`<div id="${ref}" class="${css.swiper}" style="${styles.swiper}"></div>`);
     const swiper=parent.querySelector(`#${ref}`);
     const state={
         active:null,
@@ -43,6 +44,14 @@ export default function Swiper(props){
             state.index=i;
         }
     }
+
+    fadeIn(swiper,"flex");
+}
+
+const styles={
+    swiper:`
+        display:none;
+    `,
 }
 
 const getViews=(length)=>{

@@ -1,5 +1,7 @@
 
 //Images:
+export {default as play1} from "./Images/Play_1.png";
+export {default as play2} from "./Images/Play_2.png";
 export {default as list1} from "./Images/List_1.png";
 export {default as closer1} from "./Images/Closer_1.png";
 export {default as fullscreen0} from "./Images/Fullscreen_0.png";

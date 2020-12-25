@@ -5,6 +5,7 @@ import Videoview from "./Videoview/Videoview";
 import Swiper from "./Swiper/Swiper";
 import {check2,check2reversed,plusbtn,checked} from "assets";
 import {addToWatchlist,removeFromWatchList} from "actions";
+import * as H from "./Hooks";
 
 
 export default function ShowSlide(props){
@@ -15,7 +16,7 @@ export default function ShowSlide(props){
         inWatchList:Boolean(showStore.watchlist&&showStore.watchlist.find(show=>show.id===props.show.id)),
         touchX:null,
         colindex:0,
-        swipelength:2,
+        swipelength:5,
     };
     const refs={
         swiper:useRef("swiper"),
@@ -28,31 +29,40 @@ export default function ShowSlide(props){
     `;
     const row1=showslide.querySelector(`.${css.row1}`);
     Overviewer({parent:row1,show});
-    Swiper({parent:showslide,ref:refs.swiper,length:state.swipelength+1});
-    Videoview({parent:row1});
-    Videoview({parent:row1});
     
 
-    const swiper=showslide.querySelector(`#${refs.swiper}`);
-    row1.addEventListener("touchstart",(event)=>{
-        const {pageX}=event.touches[0];
-        state.touchX=pageX;
-    });
+    H.useVideos(show,(videos)=>{
+        if(videos&&videos.length){
+            state.swipelength=videos.length;
 
-    row1.addEventListener("touchend",(event)=>{
-        const {pageX}=event.changedTouches[0],touchLength=state.touchX-pageX;
-        const {colindex,swipelength}=state;
-        if(touchLength>25&&colindex<swipelength){
-            state.colindex++;
-            swiper.next();
+            videos.forEach(video=>{
+                Videoview({parent:row1,video});
+            });
+            Swiper({parent:showslide,ref:refs.swiper,length:state.swipelength+1});
+            const swiper=showslide.querySelector(`#${refs.swiper}`);
+            row1.addEventListener("touchstart",(event)=>{
+                const {pageX}=event.touches[0];
+                state.touchX=pageX;
+            });
+            row1.addEventListener("touchend",(event)=>{
+                const {pageX}=event.changedTouches[0],touchLength=state.touchX-pageX;
+                const {colindex,swipelength}=state;
+                if(touchLength>25&&colindex<swipelength){
+                    state.colindex++;
+                    swiper.next();
+                }
+                else if(touchLength<-25&&colindex){
+                    state.colindex--;
+                    swiper.previous();
+                }
+                showslide.style.backgroundPosition=`${(state.colindex/state.swipelength)*100}% center`;
+                row1.scrollLeft=Math.floor(state.colindex*row1.clientWidth);
+            });
         }
-        else if(touchLength<-25&&colindex){
-            state.colindex--;
-            swiper.previous();
+        else{
+            Swiper({parent:showslide,ref:refs.swiper,length:1});
         }
-        showslide.style.backgroundPosition=`${(state.colindex/state.swipelength)*100}% center`;
-        row1.scrollLeft=Math.floor(state.colindex*row1.clientWidth);
-    })
+    });
 
 
 
