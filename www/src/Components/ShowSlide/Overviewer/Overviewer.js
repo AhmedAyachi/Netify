@@ -21,7 +21,7 @@ export default function Overviewer(props){
             <div class="${css.overview}">${show.overview}</div>
         </div>
     `;
-    RateStars({parent:overviewer.querySelector(`.${css.rating}`),rate:show.vote_average});
+    //RateStars({parent:overviewer.querySelector(`.${css.rating}`),rate:show.vote_average});
 }
 
 

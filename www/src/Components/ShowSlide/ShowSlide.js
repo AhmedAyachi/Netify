@@ -1,6 +1,7 @@
 import {map,useRef} from "vanilla";
 import css from "./ShowSlide.module.css";
 import Overviewer from "./Overviewer/Overviewer";
+import Videoview from "./Videoview/Videoview";
 import {check2,check2reversed,plusbtn,checked} from "assets";
 import {addToWatchlist,removeFromWatchList} from "actions";
 
@@ -22,8 +23,9 @@ export default function ShowSlide(props){
     `;
     const col0=showslide.querySelector(`.${css.col0}`);
     Overviewer({parent:col0,show});
-    Overviewer({parent:col0,show});
-    Overviewer({parent:col0,show});
+    Videoview({parent:col0});
+    Videoview({parent:col0});
+    
 
     col0.addEventListener("touchstart",(event)=>{
         const {pageX}=event.touches[0];

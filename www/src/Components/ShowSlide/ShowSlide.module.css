@@ -24,7 +24,7 @@
     scroll-behavior:smooth;
 }
 
-@media(max-width:25cm){
+@media(max-width:15cm){
     .showslide{
         height:55vh;
     }
