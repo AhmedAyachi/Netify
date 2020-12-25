@@ -1,8 +1,7 @@
 import {map,useRef} from "vanilla";
 import css from "./ShowSlide.module.css";
+import Overviewer from "./Overviewer/Overviewer";
 import {check2,check2reversed,plusbtn,checked} from "assets";
-import {getFormatedDate} from "estate";
-import RateStars from "../RateStars/RateStars";
 import {addToWatchlist,removeFromWatchList} from "actions";
 
 
@@ -12,37 +11,40 @@ export default function ShowSlide(props){
     const showslide=parent.querySelector(`#${ref}`);
     const showStore=store.show,state={
         inWatchList:Boolean(showStore.watchlist&&showStore.watchlist.find(show=>show.id===props.show.id)),
+        touchX:null,
+        colindex:0,
+        swipelength:0,
     };
 
     showslide.innerHTML=`
         <img alt="Add to watchlist" class="${css.watchlistbtn}" src="${state.inWatchList?checked:plusbtn}"/>
-        <div class="${css.row0}">
-            <h3 class="${css.title}">${show.title}</h3>
-            <ul class="${css.list}">
-                <li class="${css.rating}"></li>
-                ${show.tagline?`<li class="${css.tagline}">${show.tagline}</li>`:""}
-                <li>${show.release_date?getFormatedDate(show.release_date):""} | ${show.genres.map(genre=>genre.name).join(", ")}</li>
-                <li>${getDuration(show)}</li>
-            </ul>
-            <div class="${css.overview}">${show.overview}</div>
-        </div>
+        <div class="${css.col0}"></div>
     `;
-    RateStars({parent:showslide.querySelector(`.${css.rating}`),rate:show.vote_average});
+    const col0=showslide.querySelector(`.${css.col0}`);
+    Overviewer({parent:col0,show});
+
+    col0.addEventListener("touchstart",(event)=>{
+        const {pageX}=event.touches[0];
+        state.touchX=pageX;
+    });
+
+    col0.addEventListener("touchend",(event)=>{
+        const {pageX}=event.changedTouches[0],touchLength=state.touchX-pageX;
+        const {colindex,swipelength}=state;
+        if(touchLength>0&&colindex<swipelength){
+            state.colindex++;
+        }
+        else if(touchLength<0&&colindex){
+            state.colindex--;
+        }
+        col0.scrollLeft=Math.floor(state.colindex*col0.clientWidth);
+    })
+
+
 
     const addtowlbtn=showslide.querySelector(`.${css.watchlistbtn}`);
     addtowlbtn.active=state.inWatchList;
-    addtowlbtn.onclick=()=>{
-        addtowlbtn.active=!addtowlbtn.active;
-        state.inWatchList=!state.inWatchList;
-        if(addtowlbtn.active){
-            addtowlbtn.setAttribute("src",check2);
-            addToWatchlist(show);
-        }
-        else{
-            addtowlbtn.setAttribute("src",check2reversed);
-            removeFromWatchList(show);
-        }
-    }
+    addtowlbtn.onclick=()=>{addToList(addtowlbtn,state,show)};
 }
 
 const styles={
@@ -51,17 +53,15 @@ const styles={
     `,
 };
 
-const getDuration=(show)=>{
-    switch(show.type){
-        case "tv":
-            const seasonsnumber=show.number_of_seasons,episodesnumber=show.number_of_episodes,duration=show.episodeRuntime;
-            return (
-                (seasonsnumber>1?`${seasonsnumber} seasons`:"One season")+
-                (episodesnumber>1?` ${episodesnumber} episodes`:"One episode")+
-                (duration?` around ${getDuration({type:"movie",runtime:duration})} each`:"")
-            );
-        default:
-            const {runtime}=show,hours=Math.floor(runtime/60),minutes=Math.round(runtime%60);
-            return (hours?hours+"h ":"")+(minutes?minutes+"min":"");
+const addToList=(addtowlbtn,state,show)=>{
+    addtowlbtn.active=!addtowlbtn.active;
+    state.inWatchList=!state.inWatchList;
+    if(addtowlbtn.active){
+        addtowlbtn.setAttribute("src",check2);
+        addToWatchlist(show);
+    }
+    else{
+        addtowlbtn.setAttribute("src",check2reversed);
+        removeFromWatchList(show);
     }
 }
