@@ -19,20 +19,20 @@ export default function ShowSlide(props){
 
     showslide.innerHTML=`
         <img alt="Add to watchlist" class="${css.watchlistbtn}" src="${state.inWatchList?checked:plusbtn}"/>
-        <div class="${css.col0}"></div>
+        <div class="${css.row0}"></div>
     `;
-    const col0=showslide.querySelector(`.${css.col0}`);
-    Overviewer({parent:col0,show});
-    Videoview({parent:col0});
-    Videoview({parent:col0});
+    const row0=showslide.querySelector(`.${css.row0}`);
+    Overviewer({parent:row0,show});
+    Videoview({parent:row0});
+    Videoview({parent:row0});
     
 
-    col0.addEventListener("touchstart",(event)=>{
+    row0.addEventListener("touchstart",(event)=>{
         const {pageX}=event.touches[0];
         state.touchX=pageX;
     });
 
-    col0.addEventListener("touchend",(event)=>{
+    row0.addEventListener("touchend",(event)=>{
         const {pageX}=event.changedTouches[0],touchLength=state.touchX-pageX;
         const {colindex,swipelength}=state;
         if(touchLength>10&&colindex<swipelength){
@@ -41,7 +41,7 @@ export default function ShowSlide(props){
         else if(touchLength<-10&&colindex){
             state.colindex--;
         }
-        col0.scrollLeft=Math.floor(state.colindex*col0.clientWidth);
+        row0.scrollLeft=Math.floor(state.colindex*row0.clientWidth);
     })
 
 

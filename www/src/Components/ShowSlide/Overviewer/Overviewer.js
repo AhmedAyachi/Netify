@@ -10,18 +10,16 @@ export default function Overviewer(props){
     const overviewer=parent.querySelector(`#${ref}`);
 
     overviewer.innerHTML=`
-        <div class="${css.row0}">
-            <h3 class="${css.title}">${show.title}</h3>
-            <ul class="${css.list}">
-                <li class="${css.rating}"></li>
-                ${show.tagline?`<li class="${css.tagline}">${show.tagline}</li>`:""}
-                <li>${show.release_date?getFormatedDate(show.release_date):""} | ${show.genres.map(genre=>genre.name).join(", ")}</li>
-                <li>${getDuration(show)}</li>
-            </ul>
-            <div class="${css.overview}">${show.overview}</div>
-        </div>
+        <h3 class="${css.title}">${show.title}</h3>
+        <ul class="${css.list}">
+            <li class="${css.rating}"></li>
+            ${show.tagline?`<li class="${css.tagline}">${show.tagline}</li>`:""}
+            <li>${show.release_date?getFormatedDate(show.release_date):""} | ${show.genres.map(genre=>genre.name).join(", ")}</li>
+            <li>${getDuration(show)}</li>
+        </ul>
+        <div class="${css.overview}">${show.overview}</div>
     `;
-    //RateStars({parent:overviewer.querySelector(`.${css.rating}`),rate:show.vote_average});
+    RateStars({parent:overviewer.querySelector(`.${css.rating}`),rate:show.vote_average});
 }
 
 
