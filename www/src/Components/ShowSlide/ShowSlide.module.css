@@ -4,7 +4,7 @@
     height:60vh;
     background-repeat:no-repeat;
     background-size:cover;
-    background-position:0% 0%;/*center left;*/
+    background-position:0% center;
     transition:0.5s;
     overflow:hidden;
 }

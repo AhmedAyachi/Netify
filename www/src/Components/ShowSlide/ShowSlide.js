@@ -2,6 +2,7 @@ import {map,useRef} from "vanilla";
 import css from "./ShowSlide.module.css";
 import Overviewer from "./Overviewer/Overviewer";
 import Videoview from "./Videoview/Videoview";
+import Swiper from "./Swiper/Swiper";
 import {check2,check2reversed,plusbtn,checked} from "assets";
 import {addToWatchlist,removeFromWatchList} from "actions";
 
@@ -16,6 +17,9 @@ export default function ShowSlide(props){
         colindex:0,
         swipelength:2,
     };
+    const refs={
+        swiper:useRef("swiper"),
+    }
 
     showslide.innerHTML=`
         <img alt="Add to watchlist" class="${css.watchlistbtn}" src="${state.inWatchList?checked:plusbtn}"/>
@@ -24,10 +28,12 @@ export default function ShowSlide(props){
     `;
     const row1=showslide.querySelector(`.${css.row1}`);
     Overviewer({parent:row1,show});
+    Swiper({parent:showslide,ref:refs.swiper,length:state.swipelength+1});
     Videoview({parent:row1});
     Videoview({parent:row1});
     
 
+    const swiper=showslide.querySelector(`#${refs.swiper}`);
     row1.addEventListener("touchstart",(event)=>{
         const {pageX}=event.touches[0];
         state.touchX=pageX;
@@ -38,9 +44,11 @@ export default function ShowSlide(props){
         const {colindex,swipelength}=state;
         if(touchLength>25&&colindex<swipelength){
             state.colindex++;
+            swiper.next();
         }
         else if(touchLength<-25&&colindex){
             state.colindex--;
+            swiper.previous();
         }
         showslide.style.backgroundPosition=`${(state.colindex/state.swipelength)*100}% center`;
         row1.scrollLeft=Math.floor(state.colindex*row1.clientWidth);
