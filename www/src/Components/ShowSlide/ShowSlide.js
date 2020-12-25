@@ -42,6 +42,7 @@ export default function ShowSlide(props){
         else if(touchLength<-25&&colindex){
             state.colindex--;
         }
+        showslide.style.backgroundPosition=`${(state.colindex/state.swipelength)*100}% center`;
         row1.scrollLeft=Math.floor(state.colindex*row1.clientWidth);
     })
 
