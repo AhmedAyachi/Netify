@@ -20,28 +20,29 @@ export default function ShowSlide(props){
     showslide.innerHTML=`
         <img alt="Add to watchlist" class="${css.watchlistbtn}" src="${state.inWatchList?checked:plusbtn}"/>
         <div class="${css.row0}"></div>
+        <div class="${css.row1}"></div>
     `;
-    const row0=showslide.querySelector(`.${css.row0}`);
-    Overviewer({parent:row0,show});
-    Videoview({parent:row0});
-    Videoview({parent:row0});
+    const row1=showslide.querySelector(`.${css.row1}`);
+    Overviewer({parent:row1,show});
+    Videoview({parent:row1});
+    Videoview({parent:row1});
     
 
-    row0.addEventListener("touchstart",(event)=>{
+    row1.addEventListener("touchstart",(event)=>{
         const {pageX}=event.touches[0];
         state.touchX=pageX;
     });
 
-    row0.addEventListener("touchend",(event)=>{
+    row1.addEventListener("touchend",(event)=>{
         const {pageX}=event.changedTouches[0],touchLength=state.touchX-pageX;
         const {colindex,swipelength}=state;
-        if(touchLength>10&&colindex<swipelength){
+        if(touchLength>25&&colindex<swipelength){
             state.colindex++;
         }
-        else if(touchLength<-10&&colindex){
+        else if(touchLength<-25&&colindex){
             state.colindex--;
         }
-        row0.scrollLeft=Math.floor(state.colindex*row0.clientWidth);
+        row1.scrollLeft=Math.floor(state.colindex*row1.clientWidth);
     })
 
 

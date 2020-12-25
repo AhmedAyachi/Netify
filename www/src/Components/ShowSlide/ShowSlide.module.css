@@ -1,12 +1,11 @@
 .showslide{
     position:relative;
     width:100%;
-    height:50vh;
+    height:60vh;
     background-repeat:no-repeat;
     background-size:cover;
     background-position:center center;
-    border-bottom:2px solid #cc0000;
-    overflow:hidden;  
+    overflow:hidden;
 }
 .watchlistbtn{
     position:absolute;
@@ -16,17 +15,29 @@
     z-index:3;
 }
 .row0{
-    display:block;
-    white-space:nowrap;
-    overflow:hidden;
+    position:absolute;
+    top:0;
+    left:0;right:0;margin:0 auto;
     max-width:100%;
     height:100%;
+    overflow:hidden;
+    background:linear-gradient(to top,#0f0f0f 5%,transparent 40%);
+    z-index:0;
+}
+.row1{
+    position:relative;
+    display:block;
+    max-width:100%;
+    height:100%;
+    white-space:nowrap;
+    overflow:hidden;
     scroll-behavior:smooth;
+    z-index:1;
 }
 
 @media(max-width:15cm){
     .showslide{
-        height:55vh;
+        height:65vh;
     }
     .watchlistbtn{
         top:3rem;

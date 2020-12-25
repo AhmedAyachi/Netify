@@ -22,7 +22,6 @@ export default function Overviewer(props){
     RateStars({parent:overviewer.querySelector(`.${css.rating}`),rate:show.vote_average});
 }
 
-
 const getDuration=(show)=>{
     switch(show.type){
         case "tv":
