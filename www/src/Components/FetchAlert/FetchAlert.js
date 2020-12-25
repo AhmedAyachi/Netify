@@ -4,7 +4,7 @@ import {fadeIn,fadeOut} from "afile";
 
 
 export default function FetchAlert(props){
-    const {parent,ref=useRef("fetchalert"),event="OK",message="Could not fetch due to slow internet connection",onConfirm}=props;
+    const {parent,ref=useRef("fetchalert"),event="Try again",message="Could not fetch due to slow internet connection",onConfirm}=props;
     parent.insertAdjacentHTML("beforeend",`<div id="${ref}" class="${css.fetchalert}" style="${styles.fetchalert}"></div>`);
     const fetchalert=parent.querySelector(`#${ref}`);
 

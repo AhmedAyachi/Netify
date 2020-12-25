@@ -14,7 +14,7 @@ body{
     background-color:#0f0f0f;
 }
 
-@media(max-width:25cm){
+@media(max-width:15cm){
     :root{
         font-size:3vw;
     }

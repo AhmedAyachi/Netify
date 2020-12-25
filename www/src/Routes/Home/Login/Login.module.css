@@ -67,7 +67,7 @@
     text-decoration:underline;
 }
 
-@media(max-width:25cm){
+@media(max-width:15cm){
     .Login{
         font-size:1rem;
         padding-top:10%;

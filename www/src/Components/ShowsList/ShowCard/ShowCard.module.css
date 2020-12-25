@@ -39,7 +39,7 @@
     display:none;
 }
 
-@media(max-width:25cm){
+@media(max-width:15cm){
     .showcard{
         width:30%;
         height:15rem;

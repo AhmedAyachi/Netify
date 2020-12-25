@@ -26,7 +26,7 @@
     display:block;
 }
 
-@media(max-width:25cm){
+@media(max-width:15cm){
     .seasons{
         flex-direction:column;
         justify-content:center; 

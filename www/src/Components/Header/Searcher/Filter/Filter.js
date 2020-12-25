@@ -102,7 +102,7 @@ const styles={
 
 const getGenresTable=()=>{
     const genres=genresdata.genres;
-    const colsnumber=window.innerWidth>944.88200880403?4:3;
+    const colsnumber=window.innerWidth>566.929?4:3;
     const rowsnumber=genres.length/colsnumber;
     let str=`<table class="${css.categories}">`;
     for(let i=0;i<rowsnumber;i++){

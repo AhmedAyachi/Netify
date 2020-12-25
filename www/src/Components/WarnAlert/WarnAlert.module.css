@@ -46,7 +46,7 @@
     transition:0.3s;
 }
 
-@media(max-width:25cm){
+@media(max-width:15cm){
     .warnalert{
         width:85%;
     }

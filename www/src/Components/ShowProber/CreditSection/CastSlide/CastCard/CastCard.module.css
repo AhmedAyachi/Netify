@@ -1,35 +1,36 @@
 .castcard{
     display:inline-block;
+    width:10rem;max-width:10rem;
     overflow:hidden;
     font-size:1rem;
     font-family:fredokaone;
     background-color:transparent;
-    /*border-bottom:2px solid #cc0000;*/
     margin:5px 3px;
 }
 .row0{
     display:block;
-    width:10rem;
+    max-width:100%;
     height:12rem;
     border-radius:1rem;
+    border-bottom-right-radius:0;
+    border-bottom-left-radius:0;
 }
 .photo{
     width:100%;
     height:100%;
     border-radius:inherit;
-    border-bottom-right-radius:0;
-    border-bottom-left-radius:0;
 }
 .row1{
     display:flex;
     flex-direction:column;
     justify-content:center;
     align-items:center;
+    max-width:100%;
     height:4rem;
     color:whitesmoke;
     border-bottom-left-radius:1rem;
     border-bottom-right-radius:1rem;
-    border-bottom:2px solid #cc0000;
+    border-bottom:1px solid #cc0000;
 }
 .details{
     list-style:none;
@@ -37,7 +38,7 @@
 }
 .details li{
     font-family:Arial, Helvetica, sans-serif;
-    white-space:nowrap;
+    white-space:normal;
     overflow-x:hidden;
     text-overflow:ellipsis;
 }

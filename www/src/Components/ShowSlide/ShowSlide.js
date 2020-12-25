@@ -13,7 +13,7 @@ export default function ShowSlide(props){
         inWatchList:Boolean(showStore.watchlist&&showStore.watchlist.find(show=>show.id===props.show.id)),
         touchX:null,
         colindex:0,
-        swipelength:0,
+        swipelength:2,
     };
 
     showslide.innerHTML=`
@@ -21,6 +21,8 @@ export default function ShowSlide(props){
         <div class="${css.col0}"></div>
     `;
     const col0=showslide.querySelector(`.${css.col0}`);
+    Overviewer({parent:col0,show});
+    Overviewer({parent:col0,show});
     Overviewer({parent:col0,show});
 
     col0.addEventListener("touchstart",(event)=>{
@@ -31,10 +33,10 @@ export default function ShowSlide(props){
     col0.addEventListener("touchend",(event)=>{
         const {pageX}=event.changedTouches[0],touchLength=state.touchX-pageX;
         const {colindex,swipelength}=state;
-        if(touchLength>0&&colindex<swipelength){
+        if(touchLength>10&&colindex<swipelength){
             state.colindex++;
         }
-        else if(touchLength<0&&colindex){
+        else if(touchLength<-10&&colindex){
             state.colindex--;
         }
         col0.scrollLeft=Math.floor(state.colindex*col0.clientWidth);

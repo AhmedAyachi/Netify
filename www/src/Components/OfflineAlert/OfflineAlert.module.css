@@ -23,7 +23,7 @@
     font-family:fredokaone;
 }
 
-@media(max-width:25cm){
+@media(max-width:15cm){
     .offlinealert{
         padding-top:20%;
     }

@@ -16,10 +16,12 @@ export default function SeasonSlide(props){
         </div>
         <div class="${css.col1}">
             <ul class="${css.infolist}">
-               <li>Premiered on ${getFormatedDate(season.air_date)}</li>
-               <li>${season.episode_count>1?`${season.episode_count} episodes`:"One episode"}</li>
-               <li class="${css.overview}">Overview</li>
-               <li class="${css.overviewbody}">${season.overview||"No overview available at the moment"}</li>
+                <li>Premiered on ${getFormatedDate(season.air_date)}</li>
+                <li>${season.episode_count>1?`${season.episode_count} episodes`:"One episode"}</li>
+                ${season.overview?`
+                    <li class="${css.overview}">Overview</li>
+                    <li class="${css.overviewbody}">${season.overview}</li>
+                `:""}
             </ul>
         </div> 
     `;
