@@ -1,8 +1,5 @@
 .videoview{
-    display:inline-flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
+    display:inline-block;
     vertical-align:top;
     font-family:fredokaone;
     font-size:1rem;
@@ -15,29 +12,15 @@
     flex-direction:column;
     justify-content:flex-end;
     align-items:center;
-    width:95%;
-    height:50%;
-    border:1px solid white;
+    width:100%;
+    height:100%;
+    background:linear-gradient(to top,#0f0f0f 20%,transparent 50%);
 }
 .playbtn{
-    /*align-self:center;*/
     max-width:3.5em;
     opacity:0.75;
     margin:5px 0;
     filter:drop-shadow(0 0 10px white);
-}
-.list{
-    list-style:none;
-    color:white;
-}
-.row1{
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-    width:95%;
-    height:20%;
-    border:1px solid white;
 }
 .time{
     color:#cc0000;
@@ -51,6 +34,20 @@
     height:0.5px;
     background-color:#cc0000;
     border:1px solid #cc0000;
+}
+.title{
+    align-self:flex-start;
+    font-size:1.5em;
+    max-width:100%;
+    color:white;
+    margin-top:10px;
+    margin-bottom:4%;
+}
+
+@media(max-width:15cm){
+    .title{
+        margin-bottom:10%;
+    }
 }
 
 @media(any-hover){

@@ -12,14 +12,11 @@ export default function Videoview(props){
     videoview.innerHTML=`
         <div class="${css.row0}">
             <img alt="Play" class="${css.playbtn}" src="${play1}"/>
-            <ul class="${css.list}">
-                <li>${video.name}</li>
-            </ul>
-        </div>
-        <div class="${css.row1}">
             <div class="${css.time}">3:25</div>
             <div class="${css.bar}"></div>
+            <h1 class="${css.title}">${video.name}</h1>
         </div>
     `;
     console.log(video);
 }
+//https://www.themoviedb.org/video/play?key=1j2sXLbzm9U
