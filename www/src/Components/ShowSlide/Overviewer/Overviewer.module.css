@@ -10,6 +10,7 @@
     background:linear-gradient(to top right,#0f0f0f 20%,transparent 40%);
     z-index:1;
     white-space:normal;
+    border-bottom:1px solid blue;
 }
 .title{
     max-width:40%;
@@ -49,7 +50,7 @@
     font-size:0.8rem;
     font-weight:400;
     line-height:1.25rem;
-    margin-bottom:1rem;
+    margin-bottom:2.5rem;
     color:white;
 }
 .overview::-webkit-scrollbar{
@@ -71,7 +72,6 @@
     }
     .overview{
         max-width:60%;
-        margin-bottom:2.5rem;
     }
 }
 

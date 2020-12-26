@@ -48,7 +48,7 @@
     font-weight:500;
     line-height:1.25rem;
     font-family:Arial, Helvetica, sans-serif;
-    max-height:10rem;
+    max-height:4.5rem;
     overflow-y:auto;
 }
 .overviewbody::-webkit-scrollbar{

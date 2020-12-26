@@ -12,8 +12,6 @@ export default function Videoview(props){
     videoview.innerHTML=`
         <div class="${css.row0}">
             <img alt="Play" class="${css.playbtn}" src="${play1}"/>
-            <div class="${css.time}">3:25</div>
-            <div class="${css.bar}"></div>
             <h1 class="${css.title}">${video.name}</h1>
         </div>
     `;

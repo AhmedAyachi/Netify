@@ -29,6 +29,6 @@ export default function DetailSection(props){
         SupportSlide({parent:row1,title:"Production companies",items:show.production_companies});
     }
     if(show.networks&&show.networks.length){
-        SupportSlide({parent:row1,title:"Networks",items:show.networks});
+        SupportSlide({parent:row1,title:"Available on",items:show.networks});
     }
 } 
