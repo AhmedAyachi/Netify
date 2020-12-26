@@ -1,36 +1,43 @@
-.fullview{
+.fullviewer{
     position:fixed;
-    display:flex;
-    justify-content:center;
-    align-items:center;
+    display:block;
     top:0;
     left:0;right:0;margin:0 auto;
     width:100vw;
     height:100vh;
-    background-color:black;
+    background-color:#0f0f0f;
     font-size:1rem;
     z-index:20;
 }
-.view{
-    width:100%;
-    height:100%;
-    background-position:center;
-    background-size:contain;
-    background-repeat:no-repeat;
+.loading{
+    position:absolute;
+    max-width:5rem;
+    top:0;bottom:0;left:0;right:0;margin:auto;
 }
 .quitbtn{
     position:absolute;
-    top:0;
+    bottom:2rem;
     left:0;right:0;margin:0 auto;
     width:fit-content;
-    color:black;
-    background-color:#cc0000;
+    color:#cc0000;
+    border:1px solid #cc0000;
     font-size:1em;
     font-family:fredokaone;
     opacity:0.65;
     padding:5px;
     border-radius:10px;
-    z-index:2;
+    z-index:15;
+}
+.view{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    width:100%;max-width:100%;
+    height:100%;
+}
+.target{
+    width:100%;max-width:100%;
+    height:auto;max-height:100%;
 }
 
 @media(any-hover){
@@ -42,16 +49,17 @@
 
 @media(orientation:portrait){
     .quitbtn{
-        top:2.25em;
         font-size:1em;
     }
 }
 
 @media(orientation:landscape){
+    .view iframe{
+        height:45%;
+    }
     .quitbtn{
-        top:1.5em;
-        font-size:0.5em;
-        opacity:0.5;
+        background-color:#0f0f0f;
+        font-size:1em;
     }
 }
 

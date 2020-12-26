@@ -1,7 +1,7 @@
 import {useRef} from "vanilla";
 import css from "./Videoview.module.css";
 import {play1,play2} from "assets";
-import {capitalize} from "afile";
+import {FullViewer} from "components";
 
 
 export default function Videoview(props){
@@ -10,11 +10,12 @@ export default function Videoview(props){
     const videoview=parent.querySelector(`#${ref}`);
 
     videoview.innerHTML=`
-        <div class="${css.row0}">
-            <img alt="Play" class="${css.playbtn}" src="${play1}"/>
-            <h1 class="${css.title}">${video.name}</h1>
-        </div>
+        <img alt="Play" class="${css.playbtn}" src="${play1}"/>
+        <h1 class="${css.title}">${video.name}</h1>
     `;
-    console.log(video);
+    
+    const playbtn=videoview.querySelector(`.${css.playbtn}`);
+    playbtn.onclick=()=>{
+        FullViewer({isIframe:true,url:`https://www.youtube.com/embed/${video.key}`});
+    };
 }
-//https://www.themoviedb.org/video/play?key=1j2sXLbzm9U

@@ -43,7 +43,7 @@ export default function ShowSlide(props){
             row1.addEventListener("touchstart",(event)=>{
                 const {pageX}=event.touches[0];
                 state.touchX=pageX;
-            });
+            },{passive:true});
             row1.addEventListener("touchend",(event)=>{
                 const {pageX}=event.changedTouches[0],touchLength=state.touchX-pageX;
                 const {colindex,swipelength}=state;
@@ -57,7 +57,7 @@ export default function ShowSlide(props){
                 }
                 showslide.style.backgroundPosition=`${(state.colindex/state.swipelength)*100}% center`;
                 row1.scrollLeft=Math.floor(state.colindex*row1.clientWidth);
-            });
+            },{passive:true});
         }
         else{
             Swiper({parent:showslide,ref:refs.swiper,length:1});

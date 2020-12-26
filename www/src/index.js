@@ -14,9 +14,15 @@ function onDeviceReady(){
         else{
             screen.orientation.lock("landscape");
         }
-        StatusBar.overlaysWebView(true);
-        StatusBar.backgroundColorByHexString("#00000000");
     }
+    StatusBar.mount=()=>{
+        if(cordova.platformId!=="browser"){
+            StatusBar.show();
+            StatusBar.overlaysWebView(true);
+            StatusBar.backgroundColorByHexString("#00000000");
+        }
+    }
+    StatusBar.mount();
     useStore(Reducer);
     App({
         parent:document.getElementById("root"),

@@ -1,7 +1,6 @@
 import {map,useRef} from "vanilla";
 import css from "./ImageBox.module.css";
-import FullView from "./FullView/FullView";
-import {Downloader} from "components";
+import {Downloader,FullViewer} from "components";
 import {donwload0,fullscreen0} from "assets";
 
 
@@ -22,7 +21,7 @@ export default function ImageBox(props){
     const expandbtn=imagebox.querySelector(`#expand.${css.icon}`);
     expandbtn.onclick=()=>{
         console.log("expand"),
-        FullView({parent:app,target:image});
+        FullViewer({parent:app,url:image.path});
     }
 
     const downloadbtn=imagebox.querySelector(`#download.${css.icon}`);

@@ -1,24 +1,20 @@
 .videoview{
-    display:inline-block;
+    position:relative;
+    display:inline-flex;
     vertical-align:top;
+    flex-direction:column;
+    justify-content:flex-end;
+    align-items:center;
     font-size:1rem;
     width:100%;max-width:100%;
     height:100%;
     white-space:normal;
 }
-.row0{
-    display:flex;
-    flex-direction:column;
-    justify-content:flex-end;
-    align-items:center;
-    width:100%;
-    height:100%;
-}
 .playbtn{
     max-width:3.5em;
-    opacity:0.45;
+    opacity:0.85;
     margin-bottom:5rem;
-    filter:drop-shadow(0 0 10px #0f0f0f);
+    filter:drop-shadow(0 0 30px white);
 }
 .title{
     max-width:100%;
@@ -37,9 +33,6 @@
 @media(max-width:15cm){
     .title{
         line-height:1.5em;
-    }
-    .row0:last-child{
-        margin-bottom:2.5rem;
     }
 }
 
