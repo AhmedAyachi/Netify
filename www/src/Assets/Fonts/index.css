@@ -1,13 +1,20 @@
 
 @font-face{
-    font-family:"fredokaone";
-    src:url("./FredokaOne-Regular.ttf") format("opentype");
+    font-family:"ubuntu";
+    src:url("./Ubuntu-Regular.ttf")
 }
+
+@font-face{
+    font-family:"fredokaone";
+    src:url("./FredokaOne-Regular.ttf");
+}
+
 @font-face{
     font-family:"montserrat";
-    src:url("./Montserrat-Black.ttf") format("opentype");
+    src:url("./Montserrat-Black.ttf");
 }
+
 @font-face{
     font-family:"princesssofia";
-    src:url("./PrincessSofia-Regular.ttf") format("opentype");
+    src:url("./PrincessSofia-Regular.ttf");
 }

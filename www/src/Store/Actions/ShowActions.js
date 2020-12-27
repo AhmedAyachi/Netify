@@ -1,6 +1,6 @@
 import {Show,apikey} from "estate";
 import {setLoading} from "./index";
-import {FetchAlert,WarnAlert} from "components";
+import {WarnAlert} from "components";
 import {shuffle} from "afile";
 
 
@@ -8,8 +8,15 @@ export const setShowStore=(key,value)=>{
     store.show[key]=value;
 }
 
-export const setShows=(shows=[])=>{
-    store.show.shows=shows;
+export const setShows=(value=[])=>{
+    store.show.shows=value;
+}
+
+export const addShows=(shows=[])=>{
+    const showStore=store.show;
+    if(showStore.shows&&Array.isArray(shows)){
+        showStore.shows.push(...shows);
+    }
 }
 
 function saveWatchlist(){
@@ -111,17 +118,18 @@ export const loadShows=(collection=1,then)=>{
     }).
     then(data=>{
         const shows=shuffle(data.map(show=>new Show(show)));
-        setShows(shows);
+        addShows(shows);
         setLoading(false);
         if(then){
             then(shows);
         }
     }).
-    catch(()=>{
+    catch(error=>{
         setLoading(false);
-        FetchAlert({
-            parent:app,
-            onConfirm:()=>{loadShows(collection,then)},
+        WarnAlert({
+            message:error.message,
+            proceed:"Try again",
+            onProceed:()=>{loadDayTrending(then)},
         });
     });
 };
@@ -147,11 +155,12 @@ export const loadShowsByTitle=(title="",then)=>{
             then(shows);
         }
     }).
-    catch(()=>{
+    catch(error=>{
         setLoading(false);
-        FetchAlert({
-            parent:app,
-            onConfirm:()=>{loadShowsByTitle(title,then)},
+        WarnAlert({
+            message:error.message,
+            proceed:"Try again",
+            onProceed:()=>{loadDayTrending(then)},
         });
     });
 }

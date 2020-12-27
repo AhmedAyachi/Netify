@@ -1,6 +1,7 @@
 
 //export {default as ...} from "...";
 export {default as BackButton} from "./BackButton/BackButton";
+export {default as Loader} from "./Loader/Loader";
 export {default as FullViewer} from "./FullViewer/FullViewer"
 export {default as ShowsBackground} from "./ShowsBackground/ShowsBackground";
 export {default as EntryAnimation} from "./EntryAnimation/EntryAnimation";

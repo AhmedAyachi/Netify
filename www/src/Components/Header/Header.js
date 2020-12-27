@@ -29,6 +29,7 @@ export default function Header(props){
     else{
         loadDayTrending(trendings=>{setTrendingView(row1,trendings,showStore)});
     }*/
+    return header;
 }
 
 

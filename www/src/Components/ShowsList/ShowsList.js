@@ -1,7 +1,7 @@
 import {useRef} from "vanilla";
 import css from "./ShowsList.module.css";
 import ShowCard from "./ShowCard/ShowCard";
-import {arrow,loadinganim} from "assets";
+import {Loader} from "components";
 import {getFilteredShows} from "../Header/Searcher/Filter/Filter";
 import {loadShows,setSearchValue} from "actions";
 
@@ -10,62 +10,48 @@ export default function ShowsList(props){
     const {parent,ref=useRef("showslist"),searcherRef}=props;
     parent.insertAdjacentHTML("beforeend",`<div id="${ref}" class="${css.showslist}"></div>`);
     const showslist=store.elements.showslist=parent.querySelector(`#${ref}`);
+    const refs={
+        loader:useRef("loader"),
+    }
 
     showslist.innerHTML=`
-        <div class="${css.row0}">
-           <img class="${css.arrows}" id="prevarrow" alt="Previous" title="Previous" style="${styles.prevarrow}" src="${arrow}"/>
-           <img id="loading" alt="Loading" style="${styles.loading}" src="${loadinganim}"/>
-           <img class="${css.arrows}" id="nextarrow" alt="Next" title="Next" src="${arrow}"/>
-        </div>
+        <div class="${css.row0}">Discover</div>
         <div class="${css.row1}"></div>
     `;
 
     const row1=showslist.querySelector(`.${css.row1}`),showStore=store.show;
-    if(showStore.searchvalue){
+    /*if(showStore.searchvalue){
         const searcherInput=document.querySelector(`#${searcherRef} input`);
         searcherInput.value=showStore.searchvalue;
         setShowsCards(row1,showStore.searched);
     }
-    else if(showStore.shows.length){
+    else*/ if(showStore.shows.length){
         setShowsCards(row1,showStore.shows);
     }
     else{
-        loadShowCards(showslist,showStore);
+        loadShowCards(showslist,showStore,refs);
     }
 
-    window.addEventListener("scroll",()=>{
+
+    const onReachBottom=()=>{
         const {scrollY,innerHeight}=window,{offsetHeight}=document.body;
-        if(scrollY+innerHeight>=offsetHeight*0.95){
-            setShowsCards(row1,showStore.shows);
+        const loader=showslist.querySelector(`#${refs.loader}`);
+        if(!loader&&!showStore.searchvalue&&(scrollY+innerHeight>=offsetHeight*0.95)){
+            Loader({parent:showslist,ref:refs.loader});
+            Collection.next(showslist,showStore,refs);
         };
-    });
-
-
-    showslist.querySelector("#prevarrow").onclick=()=>{
-        Collection.previous(showslist,store.show);
-        const searcherInput=document.querySelector(`#${searcherRef} input`);
-        if(searcherInput&&searcherInput.value){
-            searcherInput.value="";
-        }
     }
-    showslist.querySelector("#nextarrow").onclick=()=>{
-        Collection.next(showslist,store.show);
-        const searcherInput=document.querySelector(`#${searcherRef} input`);
-        if(searcherInput&&searcherInput.value){
-            searcherInput.value="";
-        }
-    }
+    window.addEventListener("scroll",onReachBottom);
+    window.addEventListener("hashchange",()=>{
+        window.removeEventListener("scroll",onReachBottom);
+    },{once:true});
 
-    showslist.setShows=(shows=showStore.shows)=>{setShowsCards(row1,shows)};
+
+    showslist.setShows=(shows=showStore.shows)=>{
+        row1.innerHTML="";
+        setShowsCards(row1,shows);
+    };
 }
-const styles={
-    prevarrow:`
-        transform:scaleX(-1);
-    `,
-    loading:`
-        display:none;        
-    `,
-};
 
 const Collection=new (function(){
     this.previous=(showslist,showStore)=>{
@@ -75,33 +61,33 @@ const Collection=new (function(){
             loadShowCards(showslist,showStore);
         }
     }
-    this.next=(showslist,showStore)=>{
+    this.next=(showslist,showStore,refs)=>{
         setSearchValue("");
         if(showStore.collection<250){
             showStore.collection++;
-            loadShowCards(showslist,showStore);
+            loadShowCards(showslist,showStore,refs);
         }
     }
 })();
 
-const loadShowCards=(showslist,showStore)=>{
+const loadShowCards=(showslist,showStore,refs)=>{
     const row1=showslist.querySelector(`.${css.row1}`);
-    const loading=showslist.querySelector("#loading");
-    loading.style.display="block";
+    showslist.querySelector(`.${css.row}`)
     loadShows(showStore.collection,()=>{
-        setShowsCards(row1,getFilteredShows(showStore));
-        loading.style.display="none";
+        const loader=showslist.querySelector(`#${refs.loader}`);
+        loader&&loader.remove();
+        setShowsCards(row1,showStore.shows);
     });
 }
 
-const setShowsCards=(row1,shows)=>{
+const setShowsCards=(container,shows)=>{
     if(shows&&shows.length){
         shows.forEach(show=>{
-            ShowCard({parent:row1,show});
+            ShowCard({parent:container,show});
         });
     }
     else{
-        row1.innerHTML=`
+        container.innerHTML=`
             <p class="${css.noshowmsg}">No shows found in this collection</p>
         `;
     }
