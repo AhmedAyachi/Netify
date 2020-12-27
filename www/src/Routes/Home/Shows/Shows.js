@@ -13,7 +13,7 @@ export default function Shows(props){
     }
 
     Header({parent:shows,searcherRef:refs.searcher});
-    //ShowsList({parent:shows,searcherRef:refs.searcher});
+    ShowsList({parent:shows,searcherRef:refs.searcher});
     
     if(!store.elements.navigator){
         Navigator({parent:app});

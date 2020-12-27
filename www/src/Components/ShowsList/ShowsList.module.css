@@ -1,6 +1,5 @@
 .showslist{
     height:fit-content; 
-    text-align:center;
 }
 .row0{
     display:flex;
@@ -10,6 +9,10 @@
 }
 .row0 img{
     max-width:3rem;
+}
+.row1{
+    display:block;
+    text-align:center;
 }
 .noshowmsg{
     color:white;

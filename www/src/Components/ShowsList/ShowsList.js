@@ -17,10 +17,10 @@ export default function ShowsList(props){
            <img id="loading" alt="Loading" style="${styles.loading}" src="${loadinganim}"/>
            <img class="${css.arrows}" id="nextarrow" alt="Next" title="Next" src="${arrow}"/>
         </div>
-        <div id="row1"></div>
+        <div class="${css.row1}"></div>
     `;
 
-    const row1=showslist.querySelector("#row1"),showStore=store.show;
+    const row1=showslist.querySelector(`.${css.row1}`),showStore=store.show;
     if(showStore.searchvalue){
         const searcherInput=document.querySelector(`#${searcherRef} input`);
         searcherInput.value=showStore.searchvalue;
@@ -32,6 +32,14 @@ export default function ShowsList(props){
     else{
         loadShowCards(showslist,showStore);
     }
+
+    window.addEventListener("scroll",()=>{
+        const {scrollY,innerHeight}=window,{offsetHeight}=document.body;
+        if(scrollY+innerHeight>=offsetHeight*0.95){
+            setShowsCards(row1,showStore.shows);
+        };
+    });
+
 
     showslist.querySelector("#prevarrow").onclick=()=>{
         Collection.previous(showslist,store.show);
@@ -77,7 +85,7 @@ const Collection=new (function(){
 })();
 
 const loadShowCards=(showslist,showStore)=>{
-    const row1=showslist.querySelector("#row1");
+    const row1=showslist.querySelector(`.${css.row1}`);
     const loading=showslist.querySelector("#loading");
     loading.style.display="block";
     loadShows(showStore.collection,()=>{
@@ -87,7 +95,6 @@ const loadShowCards=(showslist,showStore)=>{
 }
 
 const setShowsCards=(row1,shows)=>{
-    row1.innerHTML="";
     if(shows&&shows.length){
         shows.forEach(show=>{
             ShowCard({parent:row1,show});
