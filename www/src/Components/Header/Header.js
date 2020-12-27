@@ -1,7 +1,10 @@
 import {useRef} from "vanilla";
 import css from "./Header.module.css";
-import {netflixlogo} from "assets";
+import {loadinganim} from "assets";
 import Searcher from "./Searcher/Searcher";
+import TrendView from "./TrendView/TrendView";
+import {loadDayTrending} from "actions";
+import {Swiper} from "components";
 
 
 export default function Header(props){
@@ -10,7 +13,42 @@ export default function Header(props){
     const header=parent.querySelector(`#${ref}`);
 
     header.innerHTML=`
-        <img class="${css.logo}" alt="Netlix" src="${netflixlogo}"/>
+        <div class="${css.row0}"></div>
+        <div class="${css.row1}">
+            <img alt="" class="${css.loading}" src="${loadinganim}"/> 
+        </div>
     `;
-    Searcher({parent:header,ref:props.searcherRef});
+    Searcher({parent:header.querySelector(`.${css.row0}`),ref:props.searcherRef});
+    const row1=header.querySelector(`.${css.row1}`);
+    Swiper({parent:row1,length:20});
+
+    /*const showStore=store.show,{trendings}=showStore;
+    if(trendings){
+        setTrendingView(row1,trendings,showStore);
+    }
+    else{
+        loadDayTrending(trendings=>{setTrendingView(row1,trendings,showStore)});
+    }*/
+}
+
+
+const setTrendingView=(row1,trendings,showStore)=>{
+    row1.querySelector(`.${css.loading}`).remove();
+    if(trendings&&trendings.length){
+        const {length}=trendings,{trendindex}=showStore; 
+        trendings.forEach(show=>{
+            TrendView({parent:row1,show});
+        });
+        row1.scrollLeft=Math.floor(showStore.trendindex*row1.clientWidth);
+        const sliding=setInterval(()=>{
+            showStore.trendindex++;
+            if(showStore.trendindex>length){
+                showStore.trendindex=0;
+            }
+            row1.scrollLeft=Math.floor(showStore.trendindex*row1.clientWidth);
+        },10000);
+        window.addEventListener("hashchange",()=>{
+            clearInterval(sliding);
+        })
+    }
 }

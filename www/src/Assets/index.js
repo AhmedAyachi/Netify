@@ -1,5 +1,6 @@
 
 //Images:
+export {default as arrowpoint} from "./Images/Arrow_1.png";
 export {default as play1} from "./Images/Play_1.png";
 export {default as play2} from "./Images/Play_2.png";
 export {default as list1} from "./Images/List_1.png";

@@ -1,7 +1,7 @@
 
 export {
     setShows,loadShows,setSearchValues,addSearchValue,setSearchedShows,loadShowsByTitle,deleteSearchValue,setSearchValue,
-    setWatchlist,addToWatchlist,removeFromWatchList
+    setWatchlist,addToWatchlist,removeFromWatchList,loadDayTrending
 } from "./ShowActions";
 
 export {loadSearch,loadWatchList} from "./FileActions";

@@ -2,35 +2,22 @@
     position:relative;
     display:block;
     font-size:1rem;
-    width:100%;
-    overflow:hidden;
-    margin:0 auto;
-    margin-bottom:5px;
-    border-bottom:3px solid #cc0000;
-}
-.background{
-    position:absolute;
-    top:0;
-    left:0;right:0;margin:0 auto;
-    width:100%;
-    height:100%;
     background-position:center;
     background-repeat:no-repeat;
     background-size:cover;
-    z-index:0;
-}
-.row1,.row2,.row3{
-    display:block;
+    width:100%;
+    overflow:hidden;
 }
 .row0{
     position:relative;
     display:flex;
     justify-content:space-around;
     align-items:center;
+    background:linear-gradient(to top,#0f0f0f 5%,transparent 10%);
     backdrop-filter:blur(10px);
-    -webkit-backdrop-filter:blur(7px);
+    -webkit-backdrop-filter:blur(10px);
     padding:4rem 0;
-    z-index:10;
+    z-index:1;
 }
 .col0{
     display:flex;
@@ -39,7 +26,7 @@
 }
 .poster{
     max-width:10em;
-    filter:drop-shadow(0 0 5px #2e2e2e);
+    filter:drop-shadow(0 0 5px #0f0f0f);
 }
 .col1{
     display:flex;

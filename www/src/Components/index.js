@@ -1,5 +1,6 @@
 
 //export {default as ...} from "...";
+export {default as BackButton} from "./BackButton/BackButton";
 export {default as FullViewer} from "./FullViewer/FullViewer"
 export {default as ShowsBackground} from "./ShowsBackground/ShowsBackground";
 export {default as EntryAnimation} from "./EntryAnimation/EntryAnimation";
@@ -10,6 +11,7 @@ export {default as ShowsList} from "./ShowsList/ShowsList";
 export {default as ShowCard} from "./ShowsList/ShowCard/ShowCard";
 export {default as ShowRow} from "./ShowsList/ShowRow/ShowRow";
 export {default as ShowSlide} from "./ShowSlide/ShowSlide";
+export {default as ShowAlikes} from "./ShowAlikes/ShowAlikes";
 export {default as ShowView} from "./ShowView/ShowView";
 export {default as ShowProber} from "./ShowProber/ShowProber";
 export {default as CreditSection} from "./ShowProber/CreditSection/CreditSection";
@@ -18,3 +20,4 @@ export {default as OfflineAlert} from "./OfflineAlert/OfflineAlert";
 export {default as Navigator} from "./Navigator/Navigator";
 export {default as Downloader} from "./Downloader/Downloader";
 export {default as FetchAlert} from "./FetchAlert/FetchAlert";
+export {default as Swiper} from "./Swiper/Swiper";

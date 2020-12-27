@@ -5,11 +5,10 @@ import {RateStars} from "components";
 
 export default function ShowView(props){
     const {parent,ref=useRef("showview"),show={}}=props;
-    parent.insertAdjacentHTML("beforeend",`<div id="${ref}" class="${css.showview}"></div>`);
+    parent.insertAdjacentHTML("beforeend",`<div id="${ref}" class="${css.showview}" style="${styles.showview(show.backdrop_path)}"></div>`);
     const showview=parent.querySelector(`#${ref}`);
 
     showview.innerHTML=`
-        <div class="${css.background}" style="${styles.background(show.backdrop_path)}"></div>
         <div class="${css.row0}">
             <div class="${css.col0}">
                 <img alt="" class="${css.poster}" src="${show.poster_path}"/>
@@ -27,7 +26,7 @@ export default function ShowView(props){
 }
 
 const styles={
-    background:(backdrop_path)=>`
+    showview:(backdrop_path)=>`
         background-image:url('${backdrop_path}');
     `,
 }

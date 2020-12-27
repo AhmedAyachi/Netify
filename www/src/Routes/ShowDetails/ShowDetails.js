@@ -1,6 +1,6 @@
 import {} from "vanilla";
 import css from "./ShowDetails.module.css";
-import {ShowSlide,ShowProber} from "components";
+import {ShowSlide,ShowProber,ShowAlikes,BackButton} from "components";
 import {Show} from "estate";
 import * as H from "./Hooks";
 import {loadinganim} from "assets";
@@ -15,11 +15,13 @@ export default function ShowDetails(props){
     showdetails.innerHTML=`
         <img id="loading" alt="Loading" style="${styles.loading}" src="${loadinganim}"/>
     `;
+    BackButton();
     
     if(show){
         H.useDetails(show,(details)=>{
             const show=new Show(details);
             ShowSlide({parent:showdetails,show});
+            ShowAlikes({parent:showdetails,show});
             ShowProber({parent:showdetails,show});
             showdetails.querySelector("#loading").remove();
         });

@@ -5,7 +5,7 @@ import {capitalize} from "afile";
 
 
 export default function WarnAlert(props){
-    const {parent,ref=useRef("warnalert"),message="This may cause unwelcome behaviour",onConfirm}=props;
+    const {parent=app,ref=useRef("warnalert"),message="This may cause unwelcome behaviour",onCancel,onProceed}=props;
     parent.insertAdjacentHTML("beforeend",`<div id="${ref}" class="${css.warnalert}"></div>`);
     const warnalert=parent.querySelector(`#${ref}`);
 
@@ -14,7 +14,7 @@ export default function WarnAlert(props){
         <div class="${css.row0}">${message}</div>
         <div class="${css.row1}">
             ${map(["cancel","proceed"],msg=>`
-                <button id="${msg}btn" class="${css.button}">${capitalize(msg)}</button> 
+                <button id="${msg}btn" class="${css.button}">${capitalize(props[msg]||msg)}</button> 
             `)}
         </div>
     `
@@ -22,10 +22,14 @@ export default function WarnAlert(props){
     fadeIn(warnalert,"block",0.4);
     warnalert.querySelector("#cancelbtn").onclick=()=>{
         warnalert.remove();
+        if(onCancel){
+            onCancel();
+        }
     }
     warnalert.querySelector("#proceedbtn").onclick=()=>{
-        if(onConfirm){
-            onConfirm();
+        warnalert.remove();
+        if(onProceed){
+            onProceed();
         }
     }
 }

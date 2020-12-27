@@ -7,6 +7,16 @@ export const guestsessionid="658c6fe570030590b466e8161795e685";
 export const bottoken="1488125893:AAE0f-kShsXSVQUqnZWKzQ9IoqgT_tJ9wwo";
 export const netlixgroupid="465525889";
 
+export const back=()=>{
+    const current=location.hash.slice(1);
+    if(current){
+        const next="#"+current.substring(0,current.indexOf("#"));
+        history.replace(next);
+    }
+    else{
+        navigator.app.exitApp();
+    }
+}
 
 const months=["January","February","March","April","May","June","July","August","September","October","November","December"];
 export const getFormatedDate=(date="")=>{

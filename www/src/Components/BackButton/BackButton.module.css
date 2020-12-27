@@ -1,0 +1,21 @@
+.backbutton{
+    position:absolute;
+    top:3rem;
+    left:1.5rem;
+    width:fit-content;
+    opacity:0.85;
+    padding:5px;
+    z-index:15;
+}
+.backbtn{
+    display:inline;
+    vertical-align:center;
+    max-width:1rem;
+}
+
+@media(any-hover){
+    .backbutton:hover .backbtn{
+        cursor:pointer;
+        filter:brightness(0.65);
+    }
+}

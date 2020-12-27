@@ -1,6 +1,6 @@
 import {Show,apikey} from "estate";
 import {setLoading} from "./index";
-import {FetchAlert} from "components";
+import {FetchAlert,WarnAlert} from "components";
 import {shuffle} from "afile";
 
 
@@ -154,4 +154,22 @@ export const loadShowsByTitle=(title="",then)=>{
             onConfirm:()=>{loadShowsByTitle(title,then)},
         });
     });
+}
+
+export const loadDayTrending=(then=()=>{})=>{
+    Promise.all(["tv","movie"].map(type=>fetch(`https://api.themoviedb.org/3/trending/${type}/day?api_key=${apikey}&language=en-US`))).
+    then(responses=>responses.map(response=>response.json())).
+    then(async function(promises){
+        const tvs=(await promises[0]).results||[],movies=(await promises[1]).results||[];
+        const shows=[...tvs.map(tv=>new Show(tv)),...movies.map(movie=>new Show(movie))];
+        store.show.trendings=shows;
+        then(shows);
+    }).
+    catch(error=>{
+        WarnAlert({
+            message:error.message,
+            proceed:"Try again",
+            onProceed:()=>{loadDayTrending(then)},
+        });
+    })
 }

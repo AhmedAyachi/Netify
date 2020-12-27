@@ -2,6 +2,7 @@ import {useStore} from "vanilla";
 import "./index.css";
 import App from "./App";
 import Reducer from "./Store";
+import {back} from "./Components/BackButton/BackButton";
 
 
 document.addEventListener("deviceready",onDeviceReady,false);
@@ -29,8 +30,4 @@ function onDeviceReady(){
     });
 };
 
-document.addEventListener("backbutton",()=>{
-    if(!location.hash){
-        navigator.app.exitApp();
-    }
-},false);
+document.addEventListener("backbutton",back,false);
