@@ -1,6 +1,6 @@
 import {useRef} from "vanilla";
 import css from "./Shows.module.css";
-import {Header,ShowsList,Navigator} from "components";
+import {Header,ShowsList,Navigator,UpButton} from "components";
 import {loadSearch,loadWatchList} from "actions";
 
 
@@ -14,6 +14,7 @@ export default function Shows(props){
 
     Header({parent:shows,searcherRef:refs.searcher});
     ShowsList({parent:shows,searcherRef:refs.searcher});
+    UpButton();
     
     if(!store.elements.navigator){
         Navigator({parent:app});

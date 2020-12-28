@@ -15,7 +15,7 @@ export default function ShowDetails(props){
     showdetails.innerHTML=`
         <img id="loading" alt="Loading" style="${styles.loading}" src="${loadinganim}"/>
     `;
-    BackButton();
+    BackButton()
     
     if(show){
         H.useDetails(show,(details)=>{

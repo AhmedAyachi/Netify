@@ -33,7 +33,7 @@ export default function Header(props){
 }
 
 
-const setTrendingView=(row1,trendings,showStore)=>{
+/*const setTrendingView=(row1,trendings,showStore)=>{
     row1.querySelector(`.${css.loading}`).remove();
     if(trendings&&trendings.length){
         const {length}=trendings,{trendindex}=showStore; 
@@ -52,4 +52,4 @@ const setTrendingView=(row1,trendings,showStore)=>{
             clearInterval(sliding);
         })
     }
-}
+}*/
