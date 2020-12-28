@@ -10,7 +10,9 @@ export default function ShowsList(props){
     const {parent,ref=useRef("showslist"),searcherRef}=props;
     parent.insertAdjacentHTML("beforeend",`<div id="${ref}" class="${css.showslist}"></div>`);
     const showslist=store.elements.showslist=parent.querySelector(`#${ref}`);
-    const refs={
+    const state={
+        shows:null,
+    },refs={
         loader:useRef("loader"),
     }
 
@@ -54,13 +56,13 @@ export default function ShowsList(props){
 }
 
 const Collection=new (function(){
-    this.previous=(showslist,showStore)=>{
+    /*this.previous=(showslist,showStore)=>{
         setSearchValue("");
         if(showStore.collection>1){
             showStore.collection--;
             loadShowCards(showslist,showStore);
         }
-    }
+    }*/
     this.next=(showslist,showStore,refs)=>{
         setSearchValue("");
         if(showStore.collection<250){
@@ -73,10 +75,10 @@ const Collection=new (function(){
 const loadShowCards=(showslist,showStore,refs)=>{
     const row1=showslist.querySelector(`.${css.row1}`);
     showslist.querySelector(`.${css.row}`)
-    loadShows(showStore.collection,()=>{
+    loadShows(showStore.collection,(shows)=>{
         const loader=showslist.querySelector(`#${refs.loader}`);
         loader&&loader.remove();
-        setShowsCards(row1,showStore.shows);
+        setShowsCards(row1,shows);
     });
 }
 
