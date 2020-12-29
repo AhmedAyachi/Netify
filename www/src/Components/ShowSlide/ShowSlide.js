@@ -12,14 +12,13 @@ export default function ShowSlide(props){
     const {parent,ref=useRef("showslide"),show}=props;
     parent.insertAdjacentHTML("beforeend",`<div id="${ref}" class="${css.showslide}" style="${styles.showslide(show.backdrop_path)}"></div>`);
     const showslide=parent.querySelector(`#${ref}`);
+
     const showStore=store.show,state={
         inWatchList:Boolean(showStore.watchlist&&showStore.watchlist.find(show=>show.id===props.show.id)),
         touchX:null,
         colindex:0,
         swipelength:5,
-    },refs={
-        swiper:useRef("swiper"),
-    }
+    };
 
     showslide.innerHTML=`
         <img alt="Add to watchlist" class="${css.watchlistbtn}" src="${state.inWatchList?checked:plusbtn}"/>
@@ -28,10 +27,12 @@ export default function ShowSlide(props){
     `;
     Overviewer({parent:showslide.querySelector(`.${css.row0}`),show});
     
-    H.useVideos(show,(videos)=>{setVideos(showslide,videos,state,refs)});
+    H.useVideos(show,(videos)=>{setVideos(showslide,videos,state)});
     const addtowlbtn=showslide.querySelector(`.${css.watchlistbtn}`);
     addtowlbtn.active=state.inWatchList;
     addtowlbtn.onclick=()=>{addToList(addtowlbtn,state,show)};
+
+    return showslide;
 }
 
 const styles={
@@ -53,18 +54,15 @@ const addToList=(addtowlbtn,state,show)=>{
     }
 }
 
-const setVideos=(showslide,videos,state,refs)=>{
+const setVideos=(showslide,videos,state)=>{
     if(videos&&videos.length){
         const row0=showslide.querySelector(`.${css.row0}`);
         state.swipelength=videos.length;
         videos.forEach(video=>{
             Videoview({parent:row0,video});
         });
+        const swiper=Swiper({parent:showslide,length:state.swipelength+1});
 
-        Swiper({parent:showslide,ref:refs.swiper,length:state.swipelength+1});
-        const swiper=showslide.querySelector(`#${refs.swiper}`);
-
-        
         const onTouchStart=(event)=>{
             const {pageX}=event.touches[0];
             state.touchX=pageX;
@@ -93,6 +91,6 @@ const setVideos=(showslide,videos,state,refs)=>{
         },{once:true});
     }
     else{
-        Swiper({parent:showslide,ref:refs.swiper,length:1});
+        Swiper({parent:showslide,length:1});
     }
 }

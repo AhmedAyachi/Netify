@@ -89,6 +89,8 @@ export default function Filter(props){
             store.elements.showslist.setShows(getFilteredShows(store.show));
         });
     });
+
+    return filter;
 }
 
 const styles={

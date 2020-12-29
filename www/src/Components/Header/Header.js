@@ -3,7 +3,6 @@ import css from "./Header.module.css";
 import {loadinganim} from "assets";
 import Searcher from "./Searcher/Searcher";
 import TrendView from "./TrendView/TrendView";
-import {loadDayTrending} from "actions";
 import {Swiper} from "components";
 
 
@@ -22,13 +21,7 @@ export default function Header(props){
     const row1=header.querySelector(`.${css.row1}`);
     Swiper({parent:row1,length:20});
 
-    /*const showStore=store.show,{trendings}=showStore;
-    if(trendings){
-        setTrendingView(row1,trendings,showStore);
-    }
-    else{
-        loadDayTrending(trendings=>{setTrendingView(row1,trendings,showStore)});
-    }*/
+    //TrendView({parent:row1});
     return header;
 }
 

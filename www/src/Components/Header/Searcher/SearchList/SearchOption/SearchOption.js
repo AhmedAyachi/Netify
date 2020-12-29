@@ -1,8 +1,7 @@
 import {useRef} from "vanilla";
 import css from "./SearchOption.module.css";
 import {closer} from "assets";
-import {setSearchValue,deleteSearchValue} from "actions";
-import {loadSearchedShows} from "../../Searcher";
+import {handleOnChange} from "../../Searcher";
 import {fadeOut} from "afile";
 
 
@@ -12,19 +11,18 @@ export default function SearchOption(props){
     const searchoption=parent.querySelector(`#${ref}`);
 
     searchoption.innerHTML=`
-        <input value="${value}" readonly spellcheck="false"/>
-        <img alt="delete" src="${closer}"/>
+        <div class="${css.input}">${value}</div>
+        <img class="${css.image}" alt="delete" src="${closer}"/>
     `;
 
     searchoption.querySelector("img").onclick=()=>{
         searchoption.remove();
-        deleteSearchValue(value);
+        parent.delete(value);
     };
-    searchoption.querySelector("input").onclick=()=>{
+    searchoption.querySelector(`.${css.input}`).onclick=()=>{
         if(inputfield.value.trim()!==value){
-            setSearchValue(value);
             inputfield.value=value;
-            loadSearchedShows(value,store);
+            handleOnChange(inputfield,parent);
         }
         fadeOut(parent);
     };

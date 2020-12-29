@@ -19,4 +19,6 @@ export default function ShowRow(props){
     showrow.onclick=()=>{
         history.push("#show",{show});
     }
+
+    return showrow;
 }

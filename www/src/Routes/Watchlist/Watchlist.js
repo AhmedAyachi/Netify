@@ -2,6 +2,7 @@ import {map} from "vanilla";
 import css from "./WatchList.module.css";
 import {ShowCard,ShowRow,ShowView} from "components";
 import {squares0,list0,popcorn1} from "assets";
+import * as H from "./Hooks";
 
 
 export default function WatchList(props){
@@ -21,20 +22,21 @@ export default function WatchList(props){
         </div>
     `;
 
-    const shows=showStore.watchlist;
-    if(shows.length){
-        ShowView({parent:watchlist.querySelector(`.${css.row0}`),show:shows[0]});
-    }
-    const row3=watchlist.querySelector(`.${css.row3}`);
-    setList(shows,row3,showStore.listdisplay);
-
-    const displayer=watchlist.querySelector(`.${css.displayer}`);
-    displayer.onclick=()=>{
-        showStore.listdisplay=!showStore.listdisplay;
-        displayer.setAttribute("src",showStore.listdisplay?squares0:list0);
-        row3.innerHTML="";
+    H.useWatchList((shows)=>{
+        if(shows.length){
+            ShowView({parent:watchlist.querySelector(`.${css.row0}`),show:shows[0]});
+        }
+        const row3=watchlist.querySelector(`.${css.row3}`);
         setList(shows,row3,showStore.listdisplay);
-    }
+    
+        const displayer=watchlist.querySelector(`.${css.displayer}`);
+        displayer.onclick=()=>{
+            showStore.listdisplay=!showStore.listdisplay;
+            displayer.setAttribute("src",showStore.listdisplay?squares0:list0);
+            row3.innerHTML="";
+            setList(shows,row3,showStore.listdisplay);
+        }
+    });
 };
 
 const styles={

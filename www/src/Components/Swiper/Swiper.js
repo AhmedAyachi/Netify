@@ -46,6 +46,7 @@ export default function Swiper(props){
     }
 
     fadeIn(swiper,"flex");
+    return swiper;
 }
 
 const styles={

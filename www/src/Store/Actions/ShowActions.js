@@ -1,7 +1,5 @@
 import {Show,apikey} from "estate";
-import {setLoading} from "./index";
 import {WarnAlert} from "components";
-import {shuffle} from "afile";
 
 
 export const setShowStore=(key,value)=>{
@@ -103,67 +101,9 @@ export const deleteSearchValue=(value)=>{
     saveSearchedValues();
 }
 
-export const loadShows=(collection=1,then)=>{
-    setLoading(true);
-    const fetchs=["movie","tv"].map(type=>fetch(`https://api.themoviedb.org/3/discover/${type}?api_key=${apikey}&language=en&page=${collection}`));
-    Promise.all(fetchs).
-    then(responses=>responses.map(response=>response.json())).
-    then(async function(promises){
-        const shows=[];
-        for(let i=0;i<fetchs.length;i++){
-            const data=await promises[i];
-            shows.push(...data.results);
-        }
-        return shows;
-    }).
-    then(data=>{
-        const shows=shuffle(data.map(show=>new Show(show)));
-        addShows(shows);
-        setLoading(false);
-        if(then){
-            then(shows);
-        }
-    }).
-    catch(error=>{
-        setLoading(false);
-        WarnAlert({
-            message:error.message,
-            proceed:"Try again",
-            onProceed:()=>{loadDayTrending(then)},
-        });
-    });
-};
 
-export const loadShowsByTitle=(title="",then)=>{
-    setLoading(true);
-    title=title.trim().replace(/" "/g,"+");
-    const fetchs=["movie","tv"].map(type=>fetch(`https://api.themoviedb.org/3/search/${type}?api_key=${apikey}&query=${title}`))
-    Promise.all(fetchs).
-    then(responses=>responses.map(response=>response.json())).
-    then(async function(promises){
-        const shows=[];
-        for(let i=0;i<fetchs.length;i++){
-            const data=await promises[i];
-            shows.push(...data.results);
-        }
-        return shows;
-    }).
-    then(data=>{
-        const shows=data.map(show=>new Show(show));
-        setLoading(false);
-        if(then){
-            then(shows);
-        }
-    }).
-    catch(error=>{
-        setLoading(false);
-        WarnAlert({
-            message:error.message,
-            proceed:"Try again",
-            onProceed:()=>{loadDayTrending(then)},
-        });
-    });
-}
+
+
 
 export const loadDayTrending=(then=()=>{})=>{
     Promise.all(["tv","movie"].map(type=>fetch(`https://api.themoviedb.org/3/trending/${type}/day?api_key=${apikey}&language=en-US`))).

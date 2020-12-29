@@ -3,7 +3,6 @@ import css from "./ShowsList.module.css";
 import ShowCard from "./ShowCard/ShowCard";
 import {Loader} from "components";
 import {getFilteredShows} from "../Header/Searcher/Filter/Filter";
-import {loadShows,setSearchValue} from "actions";
 import * as H from "./Hooks";
 
 
@@ -35,15 +34,32 @@ export default function ShowsList(props){
     }
     window.addEventListener("scroll",onReachBottom);
 
-    showslist.setShows=(shows=showStore.shows)=>{
-        row1.innerHTML="";
-        shows.forEach(show=>{ ShowCard({parent:row1,show})});
+    showslist.setShows=(shows=state.shows)=>{
+        if(shows&&shows.length){
+            row1.innerHTML="";
+            shows.forEach(show=>{ShowCard({parent:row1,show})});
+        }
     };
+    showslist.swipe=(value=true)=>{
+       window.removeEventListener("scroll",onReachBottom);
+       if(value){
+           window.addEventListener("scroll",onReachBottom);
+       }
+    }
+    showslist.load=()=>{
+        row1.innerHTML="";
+        Loader({parent:row1,ref:refs.loader});
+    }
+    showslist.unload=()=>{
+        const loader=row1.querySelector(`#${refs.loader}`);
+        loader&&loader.remove();
+    }
 }
 
 const setShowsCards=(container,state,onReachBottom)=>{
     const loader=Loader({parent:container});
-    H.useShows(state.collection,shows=>{
+    setTimeout(()=>{
+        H.useShows(state.collection,shows=>{
         loader.remove();
         if(shows&&shows.length){
             state.collection++;
@@ -59,4 +75,5 @@ const setShowsCards=(container,state,onReachBottom)=>{
             `;
         }
     });
+    },1000);
 }

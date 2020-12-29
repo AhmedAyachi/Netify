@@ -19,14 +19,6 @@ export default function Shows(props){
     if(!store.elements.navigator){
         Navigator({parent:app});
     }
-
-    const showStore=store.show;
-    if(!showStore.searchvalues){
-        loadSearch();
-    }
-    if(!showStore.watchlist){
-        loadWatchList();
-    }
 }
 
 const styles={

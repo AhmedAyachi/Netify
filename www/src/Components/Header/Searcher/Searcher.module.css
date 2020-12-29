@@ -30,7 +30,7 @@
     font-weight:200;
     opacity:0.85;
 }
-.filter{
+.filtericon{
     max-width:2em;
     margin-right:1%;
     transition:0.5s;
@@ -41,14 +41,14 @@
 }
 
 @media(any-hover){
-    .filter:hover{
+    .filtericon:hover{
         filter:brightness(0.65);
         cursor:pointer;
     }
 }
 
 @media(hover:none){
-    .filter:active{
+    .filtericon:active{
         filter:brightness(0.65);
     }
 }

@@ -21,5 +21,6 @@ export default function ShowCard(props){
     showcard.onclick=()=>{
         history.push("#show",{show});
     }
-    
+
+    return showcard
 }

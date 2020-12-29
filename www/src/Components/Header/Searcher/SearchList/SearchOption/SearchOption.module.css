@@ -5,22 +5,25 @@
     margin:5px;
     font-size:1rem;
 }
-.searchoption input{
+.input{
     height:inherit;
     width:85%;
+    font-family:fredokaone;
+    font-size:1.25em;
+    text-align:left;
 }
-.searchoption>img{
+.image{
     max-width:1em;
 }
 
 @media(any-hover){
-    .searchoption>input:hover,.searchoption>img:hover{
+    .input:hover,.image:hover{
         filter:brightness(0.65);
         cursor:pointer;
     }
 }
 @media(hover:none){
-    .searchoption>img:active{
+    .image:active{
         filter:brightness(0.65);
     }
 }

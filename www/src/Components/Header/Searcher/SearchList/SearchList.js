@@ -2,20 +2,24 @@ import {useRef} from "vanilla";
 import css from "./SearchList.module.css";
 import SearchOption from "./SearchOption/SearchOption";
 import {fadeIn,fadeOut} from "afile";
+import * as H from "./Hooks";
 
 
 export default function SearchList(props){
-    const {parent,ref=useRef("searchlist"),inputfield,filterRef}=props;
+    const {parent,ref=useRef("searchlist"),inputfield,filter}=props;
     parent.insertAdjacentHTML("beforeend",`<div id="${ref}" class="${css.searchlist}" style="${styles.searchlist}"></div>`);
     const searchlist=parent.querySelector(`#${ref}`);
+    const state={
+        search:null,
+    }
     
-    const showState=store.show;
+    H.useSearch((history)=>{state.search=history});
+
     inputfield.onfocus=()=>{
         searchlist.innerHTML="";
-        showState.searchvalues.forEach(value=>{
+        state.search&&state.search.forEach(value=>{
             SearchOption({parent:searchlist,value,inputfield});
         }); 
-        const filter=parent.querySelector(`#${filterRef}`);
         if(filter.style.display==="none"){
             fadeIn(searchlist);
         }
@@ -28,12 +32,29 @@ export default function SearchList(props){
         fadeOut(searchlist);
     };
     inputfield.onkeyup=()=>{
-        const values=showState.searchvalues.filter(value=>value.includes(inputfield.value.trim()));
+        const {search}=state;
+        const values=search&&search.filter(value=>value.includes(inputfield.value.trim()));
         searchlist.innerHTML="";
         values.forEach(value=>{
             SearchOption({parent:searchlist,value,inputfield});
         });
     }
+
+    searchlist.add=(value)=>{
+        if(value&&!state.search.includes(value)){
+            value=value.trim();
+            state.search.unshift(value);
+        }
+    }
+    searchlist.delete=(value)=>{
+        if(value){
+            value=value.trim();
+            const index=state.search.indexOf(value);
+            state.search.splice(index,1);
+        }
+    }
+
+    return searchlist;
 }
 
 const styles={

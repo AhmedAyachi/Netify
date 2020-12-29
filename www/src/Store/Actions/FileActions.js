@@ -33,35 +33,3 @@ export function loadWatchList(onFulfilled=()=>{},onRejected=()=>{}){
         }
     }
 };
-
-export function loadSearch(onFulfilled=()=>{},onRejected=()=>{}){
-    const store=window.store;
-    if(store){
-        const cordova=window.cordova;
-        if(cordova&&cordova.platformId!=="browser"&&cordova.file){
-            setLoading();
-            const file=new File({name:"search.json"},()=>{
-                store.file.search=file;
-            });
-            file.onRead(content=>{
-                store.show.searchvalues=content?JSON.parse(content):[];
-                setLoading(false);
-                onFulfilled();
-            });
-        }
-        else{
-            try{
-                const searchvalues=localStorage.getItem("searchvalues");
-                if(searchvalues){
-                    store.show.searchvalues=JSON.parse(searchvalues);
-                }
-                else{
-                    localStorage.setItem("searchvalues","");
-                    store.show.searchvalues=[];
-                }
-                onFulfilled();
-            }
-            catch{onRejected};
-        }
-    }
-}

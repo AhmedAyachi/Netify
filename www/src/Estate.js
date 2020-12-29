@@ -94,7 +94,6 @@ export class File{
     };
     onRead(onFulfilled=()=>{},onRejected=alert){
         window.resolveLocalFileSystemURL(this.path,(file)=>{
-            //file
             file.file(file=>{
                 const reader=new FileReader();
                 reader.onloadend=function(){
