@@ -1,5 +1,10 @@
 
 //Images:
+export {default as zoom0} from "./Images/Zoom_0.png";
+export {default as zoom1} from "./Images/Zoom_1.png";
+export {default as zoom2} from "./Images/Zoom_2.png";
+export {default as zoom3} from "./Images/Zoom_3.png";
+export {default as liquid0} from "./Images/Liquid_0.png";
 export {default as arrowpoint} from "./Images/Arrow_1.png";
 export {default as play1} from "./Images/Play_1.png";
 export {default as play2} from "./Images/Play_2.png";

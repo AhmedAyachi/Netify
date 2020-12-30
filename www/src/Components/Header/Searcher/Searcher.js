@@ -3,20 +3,15 @@ import css from "./Searcher.module.css";
 import {filtericon} from "assets";
 import * as H from "./Hooks";
 import SearchList from "./SearchList/SearchList";
-import Filter,{getFilteredShows} from "./Filter/Filter";
+import FilterList,{getFilteredShows} from "./FilterList/FilterList";
 import {toggle} from "afile";
 import {File} from "estate";
 
 
 export default function Searcher(props){
-    const {parent,ref=useRef("searcher")}=props;
+    const {parent,ref=useRef("searcher"),onSearch,onFilter}=props;
     parent.insertAdjacentHTML("beforeend",`<div id="${ref}" class="${css.searcher}"></div>`);
     const searcher=parent.querySelector(`#${ref}`);
-    const refs={
-        searchlist:useRef("searchlist"),
-        filter:useRef("filter"),
-        searchfile:new File("search.txt"),
-    };
 
     searcher.innerHTML=`
         <div id="row0" class="${css.row0}">
@@ -27,38 +22,27 @@ export default function Searcher(props){
     `;
     const input=searcher.querySelector("input");
     const row1=searcher.querySelector(`.${css.row1}`);
-    const filter=Filter({parent:row1});
-    const searchlist=SearchList({parent:row1,inputfield:input,filter});
+    const filterlist=FilterList({parent:row1,onFilter});
+    const searchlist=SearchList({parent:row1,inputfield:input,filterlist,onSearch});
     
     
-    input.onchange=()=>{handleOnChange(input,searchlist)};
-    searcher.querySelector(`.${css.filtericon}`).onclick=function(){
+    input.onchange=()=>{
+        const value=input.value.toLowerCase().trim();
+        if(value){
+            searchlist.add(value);
+            onSearch&&onSearch(input);
+        }
+    };
+
+    searcher.querySelector(`.${css.filtericon}`).onclick=()=>{
         if(searchlist.style.display==="none"){
-            toggle(filter);
+            toggle(filterlist);
         }
         else{
-            setTimeout(()=>{toggle(filter)},200);
+            setTimeout(()=>{toggle(filterlist)},200);
         }
     }
 
 
     return searcher;
-}
-
-export const handleOnChange=(input,searchlist)=>{
-    const showslist=store.elements.showslist;
-    const value=input.value.toLowerCase().trim();
-    if(value){
-        searchlist.add(value);
-        showslist.load();
-        H.useTitle(value,(shows)=>{
-            showslist.unload();
-            showslist.swipe(false);
-            showslist.setShows(shows);
-        });
-    }
-    else{
-        showslist.swipe();
-        showslist.setShows();
-    }
 }

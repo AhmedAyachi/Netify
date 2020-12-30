@@ -100,25 +100,3 @@ export const deleteSearchValue=(value)=>{
     showStore.searchvalues.splice(index,1);
     saveSearchedValues();
 }
-
-
-
-
-
-export const loadDayTrending=(then=()=>{})=>{
-    Promise.all(["tv","movie"].map(type=>fetch(`https://api.themoviedb.org/3/trending/${type}/day?api_key=${apikey}&language=en-US`))).
-    then(responses=>responses.map(response=>response.json())).
-    then(async function(promises){
-        const tvs=(await promises[0]).results||[],movies=(await promises[1]).results||[];
-        const shows=[...tvs.map(tv=>new Show(tv)),...movies.map(movie=>new Show(movie))];
-        store.show.trendings=shows;
-        then(shows);
-    }).
-    catch(error=>{
-        WarnAlert({
-            message:error.message,
-            proceed:"Try again",
-            onProceed:()=>{loadDayTrending(then)},
-        });
-    })
-}

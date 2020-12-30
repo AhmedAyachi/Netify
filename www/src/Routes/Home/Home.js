@@ -1,7 +1,7 @@
 import {} from "vanilla";
 import css from "./Home.module.css";
 import Login from "./Login/Login";
-import Shows from "./Shows/Shows";
+import Discover from "./Discover/Discover";
 
 
 export default function Home(props){
@@ -10,7 +10,7 @@ export default function Home(props){
     const home=parent.querySelector(`#${ref}`);
     
     if(store.sessiontoken||store.isguest){
-        Shows({parent:home});
+        Discover({parent:home});
     }
     else{
         Login({parent:home});

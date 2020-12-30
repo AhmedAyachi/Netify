@@ -2,16 +2,22 @@
     position:relative;
     display:inline-block;
     border:1.5px solid #cc0000;
-    width:9%;
+    width:9rem;
     height:13rem;
     margin:5px;
+    white-space:normal;
     font-size:0.85rem;
+    overflow:hidden;
 }
-.showcard>img{
+.background{
     width:100%;
     height:100%;
 }
-.details{
+.background>img{
+    width:100%;
+    height:100%;
+}
+.foreground{
     display:flex;
     flex-direction:column;
     align-items:center;
@@ -34,6 +40,7 @@
     overflow-x:hidden;
     overflow-y:auto;
     padding:0 0.1em;
+    opacity:0.75;
 }
 .title::-webkit-scrollbar{
     display:none;
@@ -41,14 +48,14 @@
 
 @media(max-width:15cm){
     .showcard{
-        width:30%;
+        width:10rem;
         height:15rem;
         margin:2px;
     }
-    .details{
+    .foreground{
         font-size:1.5em;
     }
-    .details:active{
+    .foreground:active{
         opacity:1;
         transition:0.5s;
     }
@@ -57,7 +64,7 @@
     .showcard:hover{
         cursor:pointer;
     }
-    .details:hover{
+    .foreground:hover{
         opacity:1;
         transition:0.5s;
     }   

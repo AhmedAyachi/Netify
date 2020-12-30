@@ -1,10 +1,7 @@
-.filter{
+.filterlist{
     position:relative;
     display:block;
     margin-top:3px;
-    /*overflow-y:auto;
-    max-height:10rem;
-    padding:5px;*/
     background-color:rgba(0,0,0,0.65);
     border-bottom:3px solid #cc0000;
     font-size:1rem;
@@ -38,6 +35,10 @@ table.categories{
 table.categories td{
     text-align:center;
     padding:5px 10px;
+}
+.active{
+    color:#cc0000;
+    text-decoration:underline;
 }
 
 @media(any-hover){

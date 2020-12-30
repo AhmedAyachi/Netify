@@ -1,10 +1,10 @@
 
 export {
-    setShows,addShows,loadShows,setSearchValues,addSearchValue,setSearchedShows,loadShowsByTitle,deleteSearchValue,setSearchValue,
-    setWatchlist,addToWatchlist,removeFromWatchList,loadDayTrending
+    setShows,addShows,setSearchValues,addSearchValue,setSearchedShows,deleteSearchValue,setSearchValue,
+    setWatchlist,addToWatchlist,removeFromWatchList,
 } from "./ShowActions";
 
-export {loadSearch,loadWatchList} from "./FileActions";
+export {loadWatchList} from "./FileActions";
 
 
 export const setLoading=(value=true)=>{

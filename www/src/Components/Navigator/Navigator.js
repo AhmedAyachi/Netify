@@ -1,6 +1,6 @@
 import {map,useRef} from "vanilla";
 import css from "./Navigator.module.css";
-import {home2,monitor1,list1,defaultcover} from "assets";
+import {home2,zoom3,list1,defaultcover} from "assets";
 import {fadeIn} from "afile";
 
 
@@ -62,5 +62,6 @@ const styles={
 
 const icons=[
     {id:"tohome",alt:"Home",src:home2,hash:""},
+    {id:"tosearch",alt:"Find",src:zoom3,hash:"#find"},
     {id:"tofavourites",alt:"Favourites",src:list1,hash:"#watchlist"},
 ];

@@ -1,0 +1,15 @@
+.discover{
+    display:block;
+    color:white;
+    font-size:1rem;
+}
+.row0,.row1,.row3{
+    font-size:1em;
+}
+.row2{
+    margin:10px 0;
+    text-align:center;
+    color:#cc0000;
+    font-size:2em;
+    font-family:fredokaone;
+}

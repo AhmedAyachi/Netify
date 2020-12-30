@@ -3,7 +3,7 @@ import css from "./Login.module.css";
 import {netflixlogo,tmdb1} from "assets";
 import {InputField,ShowsBackground,WarnAlert} from "components";
 import {setUsertoken,setIsguest} from "actions";
-import Shows from "../Shows/Shows";
+import Discover from "../Discover/Discover";
 
 
 export default function Login(props){
@@ -51,7 +51,7 @@ export default function Login(props){
                 setIsguest();
                 const appcontent=app.querySelector("#content");
                 appcontent.innerHTML="";
-                Shows({parent:appcontent});
+                Discover({parent:appcontent});
             }
         });  
     };

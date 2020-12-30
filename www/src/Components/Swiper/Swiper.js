@@ -4,7 +4,7 @@ import {fadeIn} from "afile";
 
 
 export default function Swiper(props){
-    const {parent,ref=useRef("swiper"),length}=props;
+    const {parent,ref=useRef("swiper"),length=1}=props;
     parent.insertAdjacentHTML("beforeend",`<div id="${ref}" class="${css.swiper}" style="${styles.swiper}"></div>`);
     const swiper=parent.querySelector(`#${ref}`);
     const state={
@@ -13,7 +13,7 @@ export default function Swiper(props){
     }
 
     swiper.innerHTML=`
-        ${getViews(length)}
+        ${getViews(length||1)}
     `;
     const views=swiper.querySelectorAll(`.${css.view}`);
     state.active=views[0];

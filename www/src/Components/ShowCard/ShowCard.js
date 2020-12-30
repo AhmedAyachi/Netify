@@ -1,6 +1,6 @@
 import {useRef} from "vanilla";
 import css from "./ShowCard.module.css";
-import RateStars from "../../RateStars/RateStars";
+import {RateStars} from "components";
 
 
 export default function ShowCard(props){
@@ -10,13 +10,15 @@ export default function ShowCard(props){
 
     const {title,poster_path,vote_average}=show;
     showcard.innerHTML=`
-        <div class="${css.details}">
-            <div class="${css.title}">${title}</div>
-            <div id="rating" class="${css.rating}"></div>
+        <div class="${css.background}">
+            <img alt="" src="${poster_path}"/>
         </div>
-        <img alt="" src="${poster_path}"/>
+        <div class="${css.foreground}">
+            <div class="${css.title}">${title}</div>
+        </div>
     `;
-    RateStars({parent:showcard.querySelector(`#rating.${css.rating}`),rate:vote_average});
+    const foreground=showcard.querySelector(`.${css.foreground}`);
+    RateStars({parent:foreground,rate:vote_average});
 
     showcard.onclick=()=>{
         history.push("#show",{show});

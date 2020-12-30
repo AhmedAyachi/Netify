@@ -1,13 +1,12 @@
 import {useRef} from "vanilla";
 import css from "./ShowsList.module.css";
-import ShowCard from "./ShowCard/ShowCard";
-import {Loader} from "components";
-import {getFilteredShows} from "../Header/Searcher/Filter/Filter";
+import {Loader,ShowCard} from "components";
+import {getFilteredShows} from "../Header/Searcher/FilterList/FilterList";
 import * as H from "./Hooks";
 
 
 export default function ShowsList(props){
-    const {parent,ref=useRef("showslist"),searcherRef}=props;
+    const {parent,ref=useRef("showslist"),shows,swipe=false}=props;
     parent.insertAdjacentHTML("beforeend",`<div id="${ref}" class="${css.showslist}"></div>`);
     const showslist=store.elements.showslist=parent.querySelector(`#${ref}`);
     const state={

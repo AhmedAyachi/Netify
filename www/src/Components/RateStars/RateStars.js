@@ -4,48 +4,25 @@ import {fullstar,emptystar,halfstar,quarterstar,quarterhalfstar} from "assets";
 
 
 export default function RateStars(props){
-    const {parent,rate=10,ref=useRef("ratestars"),style,editable=false}=props;
+    const {parent,ref=useRef("ratestars"),style,editable=false,onChange}=props;
     parent.insertAdjacentHTML("beforeend",`<div id="${ref}" class="${css.ratestars}" style="${style}"></div>`);
     const ratestars=parent.querySelector(`#${ref}`);
+    const state=ratestars.state={
+        rate:(Math.abs(props.rate)||1)*5,
+    };
 
     ratestars.innerHTML=`
-        ${getRateStars(Math.abs(rate/2))}
+        ${getRateStars(state.rate)}
     `;
     if(editable){
-        const {state}=props;
         const stars=ratestars.querySelectorAll("img");
         stars.forEach((star,index)=>{
             star.setAttribute("src",emptystar);
-            Object.assign(star,{
-                active:false,
-                value:2*(index+1),
-            });
+            Object.assign(star,{active:false,value:index+1});
             star.onclick=()=>{
-                if(state.rate!==star.value){
-                    state.rate=star.value;
-                    for(let i=0;i<=index;i++){
-                        if(!stars[i].active){
-                            stars[i].active=true;
-                            stars[i].setAttribute("src",fullstar);
-                        }
-                    }
-                    for(let i=stars.length-1;i>index;i--){
-                        if(stars[i].active){
-                            stars[i].active=false;
-                            stars[i].setAttribute("src",emptystar);
-                        }
-                    }
-                }
-                else{
-                    state.rate=0;
-                    for(let i=0;i<=index;i++){
-                        if(stars[i].active){
-                            stars[i].active=false;
-                            stars[i].setAttribute("src",emptystar);
-                        }
-                    }
-                }
-            }
+                setRateStars(star,index,stars,state);
+                onChange&&onChange(state);
+            };
         });
     }
 }
@@ -69,4 +46,31 @@ const getRateStars=(rate=3)=>{
         }
     }
     return rating.join("");
+}
+
+const setRateStars=(star,index,stars,state)=>{
+    if(state.rate!==star.value){
+        state.rate=star.value;
+        for(let i=0;i<=index;i++){
+            if(!stars[i].active){
+                stars[i].active=true;
+                stars[i].setAttribute("src",fullstar);
+            }
+        }
+        for(let i=stars.length-1;i>index;i--){
+            if(stars[i].active){
+                stars[i].active=false;
+                stars[i].setAttribute("src",emptystar);
+            }
+        }
+    }
+    else{
+        state.rate=0;
+        for(let i=0;i<=index;i++){
+            if(stars[i].active){
+                stars[i].active=false;
+                stars[i].setAttribute("src",emptystar);
+            }
+        }
+    }
 }

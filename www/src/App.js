@@ -2,7 +2,7 @@ import {useRef} from "vanilla";
 import {Router} from "vanilla-router";
 import css from "./App.module.css";
 import {EntryAnimation,OfflineAlert} from "components";
-import {Home,ShowDetails,WatchList} from "routes";
+import {Home,ShowDetails,WatchList,Find} from "routes";
 import {fadeOut} from "afile";
 
 
@@ -20,8 +20,9 @@ export default function App(props){
     const appcontent=window.appcontent=app.querySelector("#content");
     Router(appcontent,[
         {component:Home,path:""},
-        {component:ShowDetails,path:"#show"},
+        {component:Find,path:"#find"},
         {component:WatchList,path:"#watchlist"},
+        {component:ShowDetails,path:"#show"},
     ]);
 
     window.addEventListener("offline",()=>{

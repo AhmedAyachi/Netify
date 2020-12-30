@@ -6,25 +6,28 @@ import * as H from "./Hooks";
 
 
 export default function SearchList(props){
-    const {parent,ref=useRef("searchlist"),inputfield,filter}=props;
+    const {parent,ref=useRef("searchlist"),inputfield,filterlist,onSearch}=props;
     parent.insertAdjacentHTML("beforeend",`<div id="${ref}" class="${css.searchlist}" style="${styles.searchlist}"></div>`);
     const searchlist=parent.querySelector(`#${ref}`);
     const state={
         search:null,
     }
     
+    searchlist.innerHTML=`
+    `;
+
     H.useSearch((history)=>{state.search=history});
 
     inputfield.onfocus=()=>{
         searchlist.innerHTML="";
         state.search&&state.search.forEach(value=>{
-            SearchOption({parent:searchlist,value,inputfield});
+            SearchOption({parent:searchlist,value,inputfield,onSearch});
         }); 
-        if(filter.style.display==="none"){
+        if(filterlist.style.display==="none"){
             fadeIn(searchlist);
         }
         else{
-            fadeOut(filter);
+            fadeOut(filterlist);
             setTimeout(()=>{fadeIn(searchlist)},200);
         }
     }
@@ -36,13 +39,13 @@ export default function SearchList(props){
         const values=search&&search.filter(value=>value.includes(inputfield.value.trim()));
         searchlist.innerHTML="";
         values.forEach(value=>{
-            SearchOption({parent:searchlist,value,inputfield});
+            SearchOption({parent:searchlist,value,inputfield,onSearch});
         });
     }
 
     searchlist.add=(value)=>{
+        value=value.trim();
         if(value&&!state.search.includes(value)){
-            value=value.trim();
             state.search.unshift(value);
         }
     }
