@@ -4,11 +4,11 @@ import {fullstar,emptystar,halfstar,quarterstar,quarterhalfstar} from "assets";
 
 
 export default function RateStars(props){
-    const {parent,ref=useRef("ratestars"),style,editable=false,onChange}=props;
+    const {parent,rate,ref=useRef("ratestars"),style,editable=false,onChange}=props;
     parent.insertAdjacentHTML("beforeend",`<div id="${ref}" class="${css.ratestars}" style="${style}"></div>`);
     const ratestars=parent.querySelector(`#${ref}`);
     const state=ratestars.state={
-        rate:(Math.abs(props.rate)||1)*5,
+        rate:editable?0.9:(rate&&rate<=1?Math.abs(rate):0.9),
     };
 
     ratestars.innerHTML=`
@@ -18,39 +18,51 @@ export default function RateStars(props){
         const stars=ratestars.querySelectorAll("img");
         stars.forEach((star,index)=>{
             star.setAttribute("src",emptystar);
-            Object.assign(star,{active:false,value:index+1});
+            Object.assign(star,{active:false,index});
             star.onclick=()=>{
-                setRateStars(star,index,stars,state);
+                setRateStars(star,stars,state);
                 onChange&&onChange(state);
             };
         });
+        ratestars.reset=()=>{
+            stars.forEach(star=>{
+                star.setAttribute("src",emptystar);
+                star.active=false;
+            });
+        }
+        ratestars.setRate=(rate)=>{
+            setRateStars(stars[Math.floor(rate*4)],stars,state);
+        }
     }
+
+    return ratestars;
 }
 
-const getRateStars=(rate=3)=>{
-    const rating=[];
-    const length=Math.floor(rate);
-    for(let i=0;i<length;i++){
+const getRateStars=(rate=3/5)=>{
+    const rating=[],outOf5=rate*5;
+    const integer=Math.floor(outOf5);
+    for(let i=0;i<integer;i++){
         rating.push(`<img id="star_${i}" src="${fullstar}"/>`);
     }
-    const fraction=rate-length;
+    const fraction=outOf5-integer;
     if(fraction){
         if(fraction<=0.25){
-            rating.push(`<img id="star_${length}" src="${quarterstar}"/>`);
+            rating.push(`<img id="star_${integer}" src="${quarterstar}"/>`);
         }
         else if(fraction<=0.5){
-            rating.push(`<img id="star_${length}" src="${halfstar}"/>`);
+            rating.push(`<img id="star_${integer}" src="${halfstar}"/>`);
         }
         else{
-            rating.push(`<img id="star_${length}" src="${quarterhalfstar}"/>`);
+            rating.push(`<img id="star_${integer}" src="${quarterhalfstar}"/>`);
         }
     }
     return rating.join("");
 }
 
-const setRateStars=(star,index,stars,state)=>{
-    if(state.rate!==star.value){
-        state.rate=star.value;
+const setRateStars=(star,stars,state)=>{
+    const index=star?star.index:-1,value=index+1;
+    if(state.rate*5!==value){
+        state.rate=value/stars.length;
         for(let i=0;i<=index;i++){
             if(!stars[i].active){
                 stars[i].active=true;

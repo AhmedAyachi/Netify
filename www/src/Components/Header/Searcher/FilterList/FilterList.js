@@ -5,7 +5,7 @@ import genresdata from "./Genres.json";
 
 
 export default function FilterList(props){
-    const {parent,ref=useRef("filterlist"),onFilter}=props;
+    const {parent,ref=useRef("filterlist"),onFilter,header}=props;
     parent.insertAdjacentHTML("beforeend",`<div id="${ref}" class="${css.filterlist}" style="${styles.filterlist}"></div>`);
     const filterlist=parent.querySelector(`#${ref}`);
     const state=filterlist.state={
@@ -38,10 +38,11 @@ export default function FilterList(props){
             </li>
         </ul>
     `;
-    RateStars({
+    const ratestars=RateStars({
         parent:filterlist.querySelector(`#rate .${css.col3}`),
         style:styles.ratestars,
         editable:true,
+        rate:3/5,
         onChange:({rate})=>{state.params.rate=rate},
     });
 
@@ -59,6 +60,14 @@ export default function FilterList(props){
             onFilter&&onFilter(state.params);
         });
     });
+    header.resetFilter=()=>{
+        state.params={type:"tvmovie",rate:0,genres:[]};
+        filterlist.querySelectorAll(`.${css.active}`).forEach(element=>{
+            element.active=false;
+            element.className="";
+        });
+        ratestars.reset();
+    }
 
     return filterlist;
 }

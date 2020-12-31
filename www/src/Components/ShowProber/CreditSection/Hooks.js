@@ -1,5 +1,5 @@
 import {apikey} from "estate";
-import {FetchAlert} from "components";
+import {WarnAlert} from "components";
 
 
 export const useCredits=({id,type},then=()=>{})=>{
@@ -7,10 +7,10 @@ export const useCredits=({id,type},then=()=>{})=>{
     then(response=>response.json()).
     then(then).
     catch((error)=>{
-        FetchAlert({
+        WarnAlert({
             parent:app,
             message:error.message,
-            onConfirm:()=>{useCredits({id,type},then)},
+            onProceed:()=>{useCredits({id,type},then)},
         });
     });
 }

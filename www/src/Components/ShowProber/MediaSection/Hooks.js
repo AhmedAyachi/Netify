@@ -1,6 +1,6 @@
 import {setLoading} from "actions";
 import {apikey} from "estate";
-import {FetchAlert} from "components";
+import {WarnAlert} from "components";
 
 
 export const useImages=({id,type},then=()=>{})=>{
@@ -24,10 +24,10 @@ export const useImages=({id,type},then=()=>{})=>{
         then(images);
     }).
     catch((error)=>{
-        FetchAlert({
+        WarnAlert({
             parent:app,
             message:error.message,
-            onConfirm:()=>{useImages({id,type},then)},
+            onProceed:()=>{useImages({id,type},then)},
         });
     });
 }

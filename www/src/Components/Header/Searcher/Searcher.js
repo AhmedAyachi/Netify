@@ -1,11 +1,9 @@
 import {useRef} from "vanilla";
 import css from "./Searcher.module.css";
 import {filtericon} from "assets";
-import * as H from "./Hooks";
 import SearchList from "./SearchList/SearchList";
-import FilterList,{getFilteredShows} from "./FilterList/FilterList";
+import FilterList from "./FilterList/FilterList";
 import {toggle} from "afile";
-import {File} from "estate";
 
 
 export default function Searcher(props){
@@ -22,7 +20,7 @@ export default function Searcher(props){
     `;
     const input=searcher.querySelector("input");
     const row1=searcher.querySelector(`.${css.row1}`);
-    const filterlist=FilterList({parent:row1,onFilter});
+    const filterlist=FilterList({parent:row1,onFilter,header:parent});
     const searchlist=SearchList({parent:row1,inputfield:input,filterlist,onSearch});
     
     
@@ -42,6 +40,8 @@ export default function Searcher(props){
             setTimeout(()=>{toggle(filterlist)},200);
         }
     }
+
+    parent.input=input;
 
 
     return searcher;
