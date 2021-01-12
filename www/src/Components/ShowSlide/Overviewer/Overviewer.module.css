@@ -56,9 +56,6 @@
 }
 
 @media(max-width:15cm){
-    .overviewer{
-        background:linear-gradient(to top right,#0f0f0f 20%,transparent 65%);
-    }
     .watchlistbtn{
         top:3rem;
     }

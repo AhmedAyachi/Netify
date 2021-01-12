@@ -8,7 +8,7 @@
     align-items:center;
     width:100%;max-width:100%;
     font-size:1rem;
-    z-index:1;
+    z-index:10;
 }
 .view{
     width:0.5rem;
