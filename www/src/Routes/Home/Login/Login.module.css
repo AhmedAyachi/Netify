@@ -28,6 +28,7 @@
 }
 .applogo{
     max-width:4em;
+    filter:brightness(0.9);
 }
 .signin{
     width:60%;
@@ -37,7 +38,7 @@
     color:white;
     font-weight:bold;
     font-size:2rem;
-    background-color:#cf0909;
+    background-color:#cc0000;
 }
 .tmdblogo{
     display:block;

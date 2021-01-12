@@ -17,9 +17,22 @@
 }
 .row0{
     position:relative;
-    display:block;
-    max-width:100%;
+    width:100%;max-width:100%;
     height:100%;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-around;
+    align-items:center;
+    white-space:nowrap;
+    overflow:hidden;
+    background:linear-gradient(to top right,#0f0f0f 20%,transparent 100%);
+    z-index:1;
+}
+.row1{
+    position:relative;
+    display:block;
+    width:100%;max-width:100%;
+    height:90%;
     white-space:nowrap;
     overflow:hidden;
     scroll-behavior:smooth;

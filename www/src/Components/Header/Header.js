@@ -1,6 +1,7 @@
 import {useRef} from "vanilla";
 import css from "./Header.module.css";
 import Searcher from "./Searcher/Searcher";
+import {border0} from "assets";
 
 
 export default function Header(props){
@@ -9,6 +10,7 @@ export default function Header(props){
     const header=parent.querySelector(`#${ref}`);
 
     header.innerHTML=`  
+        <img alt="" class="${css.topborder}" src="${border0}"/>
     `;
     Searcher({parent:header,ref:props.searcherRef,onSearch,onFilter});
 

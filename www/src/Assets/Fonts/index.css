@@ -1,5 +1,10 @@
 
 @font-face{
+    font-family:"signikalight";
+    src:url("./Signika-Light.ttf");
+}
+
+@font-face{
     font-family:"ubuntu";
     src:url("./Ubuntu-Regular.ttf")
 }

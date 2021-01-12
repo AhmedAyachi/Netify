@@ -74,7 +74,7 @@ function saveSearchedValues(){
 export const setSearchValues=(values=[])=>{
     const showStore=store.show;
     showStore.searchvalues=values;
-    //saveSearchedValues();
+    saveSearchedValues();
 }
 
 export const setSearchValue=(value=null)=>{

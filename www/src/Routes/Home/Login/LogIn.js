@@ -1,6 +1,6 @@
 import {useRef} from "vanilla";
 import css from "./Login.module.css";
-import {netflixlogo,tmdb1} from "assets";
+import {applogo,tmdb1} from "assets";
 import {InputField,ShowsBackground,WarnAlert} from "components";
 import {setUsertoken,setIsguest} from "actions";
 import Discover from "../Discover/Discover";
@@ -8,7 +8,7 @@ import Discover from "../Discover/Discover";
 
 export default function Login(props){
     const {parent}=props;
-    parent.insertAdjacentHTML("beforeend",`<div class="${css.login} activeroute"></div>`);
+    parent.insertAdjacentHTML("beforeend",`<div class="${css.login}" style="${styles.find}"></div>`);
     const login=parent.querySelector(`.${css.login}`);
     const refs={
         inputfields:["username","password"].map(prop=>useRef(prop)),
@@ -17,7 +17,7 @@ export default function Login(props){
     login.innerHTML=`
         <div class="${css.row0}">
             <span class="${css.skipbtn}">Skip</span>
-            <img class="${css.applogo}" alt="Aflex" src="${netflixlogo}" draggable="false"/>
+            <img class="${css.applogo}" alt="Aflex" src="${applogo}" draggable="false"/>
         </div>
         <div class="${css.row1}"></div>
         <div class="${css.row2}">
@@ -47,12 +47,11 @@ export default function Login(props){
         WarnAlert({
             parent:login,
             message:"If you skip loggin in, data will be stored on the device",
-            onConfirm:()=>{
+            onProceed:()=>{
                 setIsguest();
-                const appcontent=app.querySelector("#content");
                 appcontent.innerHTML="";
                 Discover({parent:appcontent});
-            }
+            },
         });  
     };
 
@@ -71,6 +70,13 @@ export default function Login(props){
 
     }*/
 }
+
+const styles={
+    find:`
+        padding-top:${cordova.platformId!=="browser"?"3rem":"0"};
+    `,
+};
+
 
 const logincode=(account,password,type)=>`{
     account:${account},

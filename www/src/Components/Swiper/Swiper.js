@@ -4,45 +4,51 @@ import {fadeIn} from "afile";
 
 
 export default function Swiper(props){
-    const {parent,ref=useRef("swiper"),length=1}=props;
-    parent.insertAdjacentHTML("beforeend",`<div id="${ref}" class="${css.swiper}" style="${styles.swiper}"></div>`);
+    const {parent,ref=useRef("swiper"),target,onSwipe,style=""}=props;
+    parent.insertAdjacentHTML("beforeend",`<div id="${ref}" class="${css.swiper}" style="${style};${styles.swiper}"></div>`);
     const swiper=parent.querySelector(`#${ref}`);
     const state={
+        touchX:null,
+        index:0,
+        length:props.length||1,
         active:null,
-        index:-1,
     }
 
     swiper.innerHTML=`
-        ${getViews(length||1)}
+        ${getViews(state.length||1)}
     `;
+
     const views=swiper.querySelectorAll(`.${css.view}`);
     state.active=views[0];
     state.active.className+=` ${css.active}`;
-    state.index=0;
-    
 
-    swiper.next=()=>{
-        if(state.active){
-            state.active.className=css.view;
-        }
-        if(state.index<length-1){
-            const i=state.index+1;
-            state.active=views[i];
-            state.active.className+=` ${css.active}`;
-            state.index=i;
-        }
-    }
+    swiper.next=()=>{next(state,views)};
+    swiper.previous=()=>{previous(state,views)};
 
-    swiper.previous=()=>{
-        if(state.active){
-            state.active.className=css.view;
+    if(target){
+        const onTouchStart=(event)=>{
+            const {pageX}=event.touches[0];
+            state.touchX=pageX;
         }
-        if(state.index){
-            const i=state.index-1;
-            state.active=views[i];
-            state.active.className+=` ${css.active}`;
-            state.index=i;
+        target.addEventListener("touchstart",onTouchStart,{passive:true});
+
+        const onTouchEnd=(event)=>{
+            const {pageX}=event.changedTouches[0],touchLength=state.touchX-pageX;
+            if(touchLength>25){
+                swiper.next();
+            }
+            else if(touchLength<-25){
+                swiper.previous();
+            }
+            onSwipe&&onSwipe({index:state.index,length:state.length});
+            target.scrollLeft=Math.floor(state.index*target.clientWidth);
         }
+        target.addEventListener("touchend",onTouchEnd,{passive:true});
+
+        window.addEventListener("hashchange",()=>{
+            target.removeEventListener("touchstart",onTouchStart);
+            target.removeEventListener("touchend",onTouchEnd);
+        },{once:true});
     }
 
     fadeIn(swiper,"flex");
@@ -61,4 +67,28 @@ const getViews=(length)=>{
         str+=`<div id="view_${i}" class="${css.view}"></div>`;
     }
     return str;
+}
+
+const next=(state,views)=>{
+    if(state.index<state.length-1){
+        if(state.active){
+            state.active.className=css.view;
+        }
+        const i=state.index+1;
+        state.active=views[i];
+        state.active.className+=` ${css.active}`;
+        state.index=i;
+    }
+}
+
+const previous=(state,views)=>{
+    if(state.index){
+        if(state.active){
+            state.active.className=css.view;
+        }
+        const i=state.index-1;
+        state.active=views[i];
+        state.active.className+=` ${css.active}`;
+        state.index=i;
+    }
 }

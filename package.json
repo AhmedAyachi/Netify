@@ -6,11 +6,11 @@
   "main": "index.js",
   "scripts": {
     "start": "webpack --config webpack.config.js",
-    "prepare": "phonegap prepare",
+    "prepare": "cordova prepare",
     "build": "webpack --config webpack.config.js --mode production",
-    "gap": "phonegap",
-    "plugin": "phonegap plugin",
-    "platform": "phonegap platform"
+    "gap": "cordova",
+    "plugin": "cordova plugin",
+    "platform": "cordova platform"
   },
   "author": "Ahmed Ayachi",
   "license": "ISC",

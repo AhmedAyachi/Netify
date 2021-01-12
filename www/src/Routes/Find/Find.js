@@ -1,7 +1,7 @@
 import {} from "vanilla";
 import css from "./Find.module.css";
 import {Header,ShowCard,Loader} from "components";
-import {liquid0} from "assets";
+import {applogo} from "assets";
 import {setSearchValue} from "actions";
 import * as H from "./Hooks";
 
@@ -17,22 +17,28 @@ export default function Find(props){
     find.innerHTML=`
         <div class="${css.row0}"></div>
         <div class="${css.row1}">
-            <img alt="" class="${css.searchicon}" src="${liquid0}"/>
+            <img alt="" class="${css.applogo}" src="${applogo}"/>
         </div>
     `;
+    const row1=find.querySelector(`.${css.row1}`);
     const header=Header({
         parent:find.querySelector(`.${css.row0}`),
-        onFilter:(filter)=>{filterShows(filter,find)},
+        onFilter:(filter)=>{filterShows(filter,row1,state)},
         onSearch:(input)=>{
-            setSearchValue(input.value);
+            const value=input.value.trim();
+            setSearchValue(value);
             header.resetFilter();
-            findShows(input.value,find);
+            value?findShows(value,row1,state):row1.innerHTML=`<img alt="" class="${css.applogo}" src="${applogo}"/>`;
         },
     });
+    const {input}=header;
     const showStore=store.show,{searchvalue}=showStore;
     if(searchvalue){
-        header.input.value=searchvalue;
-        findShows(searchvalue,find);
+        input.value=searchvalue;
+        findShows(searchvalue,row1,state);
+    }
+    else{
+        input.focus();
     }
 }
 
@@ -43,21 +49,17 @@ const styles={
 };
 
 
-const findShows=(value,find)=>{
-    const row1=find.querySelector(`.${css.row1}`);
-    row1.innerHTML="";
-    const loader=Loader({parent:row1});
+const findShows=(value,row1,state)=>{
+    const loader=Loader({parent:row1,style:"position:absolute"});
     H.useTitle(value.trim(),shows=>{
-        find.state.shows=shows&&shows.length?shows:null;
+        state.shows=shows&&shows.length?shows:null;
         loader.remove();
         setShowsCards(shows,row1);
     });
 }
 
-export const filterShows=(filter,find)=>{
-    const row1=find.querySelector(`.${css.row1}`);
-    row1.innerHTML="";
-    const {shows}=find.state,{type,rate,genres}=filter;
+export const filterShows=(filter,row1,state)=>{
+    const {shows}=state,{type,rate,genres}=filter;
     const filtered=shows?shows.filter(show=>
         show.vote_average>=rate &&
         type.includes(show.type) &&
@@ -67,12 +69,13 @@ export const filterShows=(filter,find)=>{
 }
 
 const setShowsCards=(shows,container)=>{
+    container.innerHTML="";
     if(shows&&shows.length){
         shows.forEach(show=>{
             ShowCard({parent:container,show});
         });
     }
     else{
-        container.innerHTML=`<img alt="" class="${css.searchicon}" src="${liquid0}"/>`;
+        container.innerHTML=`<img alt="" class="${css.applogo}" src="${applogo}"/>`;
     }
 }

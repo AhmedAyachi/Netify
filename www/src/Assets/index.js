@@ -1,5 +1,7 @@
 
 //Images:
+export {default as applogo} from "./Images/AppLogo.png";
+export {default as border0} from "./Images/Border_0.png";
 export {default as zoom0} from "./Images/Zoom_0.png";
 export {default as zoom1} from "./Images/Zoom_1.png";
 export {default as zoom2} from "./Images/Zoom_2.png";

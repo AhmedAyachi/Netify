@@ -17,20 +17,12 @@ export default function GenreList(props){
         </div>
     `;
     const row1=genrelist.querySelector(`.${css.row1}`);
-    const loader=Loader({parent:row1})
+    const loader=Loader({parent:row1});
 
-    if(genre&&genre.id){
-        H.useShowsByGenre(genre.id,shows=>{
-            loader.remove();
-            setShows(shows,genrelist);
-        });
-    }
-    else if(genre&&!genre.id){
-        H.usePopular(shows=>{
-            loader.remove();
-            setShows(shows,genrelist);
-        }); 
-    }
+    H.useShowsByGenre(genre.id,shows=>{
+        loader.remove();
+        setShows(shows,genrelist);
+    });
 
     return genrelist;
 }

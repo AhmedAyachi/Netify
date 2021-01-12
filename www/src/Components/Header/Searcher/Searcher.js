@@ -28,8 +28,8 @@ export default function Searcher(props){
         const value=input.value.toLowerCase().trim();
         if(value){
             searchlist.add(value);
-            onSearch&&onSearch(input);
         }
+        onSearch&&onSearch(input);
     };
 
     searcher.querySelector(`.${css.filtericon}`).onclick=()=>{

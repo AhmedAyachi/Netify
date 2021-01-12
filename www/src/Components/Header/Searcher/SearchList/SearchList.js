@@ -16,7 +16,12 @@ export default function SearchList(props){
     searchlist.innerHTML=`
     `;
 
-    H.useSearch((history)=>{state.search=history});
+    H.useSearch((history)=>{
+        state.search=history;
+        state.search&&state.search.forEach(value=>{
+            SearchOption({parent:searchlist,value,inputfield,onSearch});
+        });
+    });
 
     inputfield.onfocus=()=>{
         searchlist.innerHTML="";
@@ -47,6 +52,7 @@ export default function SearchList(props){
         value=value.trim();
         if(value&&!state.search.includes(value)){
             state.search.unshift(value);
+            H.saveSearch(state.search||"");
         }
     }
     searchlist.delete=(value)=>{
