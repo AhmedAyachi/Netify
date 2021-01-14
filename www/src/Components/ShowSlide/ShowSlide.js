@@ -69,7 +69,7 @@ const setVideos=(showslide,videos)=>{
             style:styles.swiper,
             target:row1,
             onSwipe:({index,length})=>{
-                showslide.style.backgroundPosition=`${(index/length)*100}% center`;
+                showslide.style.backgroundPosition=`${(index/(length-1))*100}% center`;
             }
         });
     }

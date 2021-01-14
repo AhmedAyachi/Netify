@@ -24,7 +24,7 @@ export {default as tmdb1} from "./Images/TMDB_1.png";
 export {default as plusbtn} from "./Images/Check0.png";
 export {default as johnwick1} from "./Images/JohnWick_1.jpg";
 export {default as lucifer1} from "./Images/Lucifer_1.png";
-export {default as netflixlogo} from "./Images/Netflix_0.png";
+export {default as netifylogo} from "./Images/Netify_0.png";
 export {default as googlelogo} from "./Images/Google_0.png";
 export {default as filtericon} from "./Images/Filter_0.png";
 export {default as openeye} from "./Images/OpenedEye_0.png";
@@ -46,7 +46,7 @@ export {default as heart0} from "./Images/Heart_0.png";
 
 //Gifs:
 export {default as netflixentry} from "./Gifs/Netflix_0.gif";
-export {default as loadinganim} from "./Gifs/Loading_1.gif";
+export {default as loadinganim} from "./Gifs/Loading_2.gif";
 export {default as check2} from "./Gifs/Check_2.gif";
 export {default as check2reversed} from "./Gifs/Check_2_reversed.gif";
 

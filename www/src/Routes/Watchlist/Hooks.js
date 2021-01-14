@@ -20,6 +20,22 @@ export function useWatchList(onFulfilled=()=>{},onRejected=()=>{}){
                 onFulfilled(shows);
             }
         }
-        catch{onRejected};
+        catch{(error=>{
+            WarnAlert({
+                message:error.message,
+                proceed:"Try again",
+                onProceed:()=>{useTitle(title,then)},
+            });
+            onRejected(error);
+        })};
     }
 };
+/*
+catch(error=>{
+        WarnAlert({
+            message:error.message,
+            proceed:"Try again",
+            onProceed:()=>{useTitle(title,then)},
+        });
+    });
+*/

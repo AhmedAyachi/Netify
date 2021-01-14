@@ -4,8 +4,8 @@ import {home2,zoom3,list1,defaultcover} from "assets";
 import {fadeIn} from "afile";
 
 
-export default function Navigator(props){
-    const {parent,ref=useRef("navigator")}=props;
+export default function Navigator(props={}){
+    const {parent=app,ref=useRef("navigator")}=props;
     parent.insertAdjacentHTML("beforeend",`<div id="${ref}" class="${css.navigator}" style="${styles.navigator}"></div>`);
     const navigator=store.elements.navigator=parent.querySelector(`#${ref}`);
     const state={
@@ -50,13 +50,14 @@ export default function Navigator(props){
         navigator.remove();
     }
     
-    appcontent.style.paddingBottom="4.75rem";
+    appcontent.style.marginBottom=navigator.style.height;
     fadeIn(navigator,"flex",2);
 };
 
 const styles={
     navigator:`
         display:none;
+        height:4rem;
     `,
 }
 

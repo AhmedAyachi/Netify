@@ -18,6 +18,8 @@
    display:block;
 }
 .title{
+    font-family:signikalight;
+    font-weight:bold;
     font-size:2em;
     margin-left:5px;
     color:#cc0000;
@@ -34,7 +36,7 @@
 .emptylistsign{
     max-width:50%;
     margin:0 auto;
-    opacity:0.5;
+    opacity:0.25;
     transform:rotate(15deg);
 }
 

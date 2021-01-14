@@ -2,9 +2,8 @@
     position:relative;
     background-color:#0f0f0f;
     max-width:100%;
-    overflow:hidden;
+    overflow-x:hidden;
 }
-
 .content{
     font-size:1rem;
 }

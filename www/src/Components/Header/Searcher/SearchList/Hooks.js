@@ -7,7 +7,6 @@ export function useSearch(onFulfilled=()=>{}){
     try{
         if(cordova&&cordova.platformId!=="browser"&&cordova.file){
             const file=new File({name:"search.json"});
-            file.write("");
             file.onRead(content=>{
                 const history=content?JSON.parse(content):[];
                 onFulfilled(history);

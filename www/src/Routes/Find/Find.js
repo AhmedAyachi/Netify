@@ -1,7 +1,7 @@
 import {} from "vanilla";
 import css from "./Find.module.css";
 import {Header,ShowCard,Loader} from "components";
-import {applogo} from "assets";
+import {netifylogo} from "assets";
 import {setSearchValue} from "actions";
 import * as H from "./Hooks";
 
@@ -17,7 +17,7 @@ export default function Find(props){
     find.innerHTML=`
         <div class="${css.row0}"></div>
         <div class="${css.row1}">
-            <img alt="" class="${css.applogo}" src="${applogo}"/>
+            <img alt="" class="${css.applogo}" src="${netifylogo}"/>
         </div>
     `;
     const row1=find.querySelector(`.${css.row1}`);
@@ -28,7 +28,7 @@ export default function Find(props){
             const value=input.value.trim();
             setSearchValue(value);
             header.resetFilter();
-            value?findShows(value,row1,state):row1.innerHTML=`<img alt="" class="${css.applogo}" src="${applogo}"/>`;
+            value?findShows(value,row1,state):row1.innerHTML=`<img alt="" class="${css.applogo}" src="${netifylogo}"/>`;
         },
     });
     const {input}=header;
@@ -76,6 +76,6 @@ const setShowsCards=(shows,container)=>{
         });
     }
     else{
-        container.innerHTML=`<img alt="" class="${css.applogo}" src="${applogo}"/>`;
+        container.innerHTML=`<img alt="" class="${css.applogo}" src="${netifylogo}"/>`;
     }
 }

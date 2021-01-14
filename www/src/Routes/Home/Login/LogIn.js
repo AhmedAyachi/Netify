@@ -1,6 +1,6 @@
 import {useRef} from "vanilla";
 import css from "./Login.module.css";
-import {applogo,tmdb1} from "assets";
+import {netifylogo,tmdb1} from "assets";
 import {InputField,ShowsBackground,WarnAlert} from "components";
 import {setUsertoken,setIsguest} from "actions";
 import Discover from "../Discover/Discover";
@@ -17,7 +17,7 @@ export default function Login(props){
     login.innerHTML=`
         <div class="${css.row0}">
             <span class="${css.skipbtn}">Skip</span>
-            <img class="${css.applogo}" alt="Aflex" src="${applogo}" draggable="false"/>
+            <img class="${css.applogo}" alt="Aflex" src="${netifylogo}" draggable="false"/>
         </div>
         <div class="${css.row1}"></div>
         <div class="${css.row2}">

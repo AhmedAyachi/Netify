@@ -25,6 +25,6 @@ export default function Discover(props){
     });
 
     if(!store.elements.navigator){
-        Navigator({parent:app});
+        Navigator();
     }
 }
