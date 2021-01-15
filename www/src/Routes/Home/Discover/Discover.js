@@ -23,7 +23,7 @@ export default function Discover(props){
         TrendingList({parent:discover.querySelector(`.${css.row0}`),shows:trends});
         discover.querySelector(`.${css.row2}`).innerHTML="Discover";
         genres.forEach(genre=>{
-            ShowList({parent:row3,genre});
+            ShowList({parent:row3,data:genre,withMore:true});
         });
         if(!store.elements.navigator){
             store.elements.navigator=Navigator();

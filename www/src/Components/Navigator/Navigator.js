@@ -6,7 +6,7 @@ import {fadeIn} from "afile";
 
 export default function Navigator(props={}){
     const {parent=app,ref=useRef("navigator")}=props;
-    parent.insertAdjacentHTML("beforeend",`<div id="${ref}" class="${css.navigator}"></div>`);
+    parent.insertAdjacentHTML("beforeend",`<div id="${ref}" class="${css.navigator}" style="${styles.navigator}"></div>`);
     const navigator=parent.querySelector(`#${ref}`);
     const state={
         activeicon:null,
@@ -53,6 +53,12 @@ export default function Navigator(props={}){
     appcontent.style.marginBottom=navigator.style.height;
     return navigator;
 };
+
+const styles={
+    navigator:`
+        height:4rem;
+    `,
+}
 
 const icons=[
     {id:"tohome",alt:"Home",src:home2,hash:""},

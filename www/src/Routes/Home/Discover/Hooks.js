@@ -4,7 +4,7 @@ import {shuffle} from "afile";
 import data from "./Genres.json";
 
 
-export async function useShowsByGenres(onFulfilled=()=>{},onRejected=()=>{}){
+export async function useShowsByGenres(onFulfilled=()=>{}){
     const {genres}=data,{length}=genres,discover={genres};
     let i=0;
     try{

@@ -3,32 +3,32 @@
         {
             "id":"",
             "key":"popular",
-            "name":"Popular"
+            "title":"Popular"
         },
         {
             "id":"28,12",
             "key":"action",
-            "name": "Action & Adventure"
+            "title": "Action & Adventure"
         },
         {
             "id":"27,80",
             "key":"horror",
-            "name": "Horror & Crime"
+            "title": "Horror & Crime"
         },
         {
             "id":"35,10751",
             "key":"comedy",
-            "name": "Comedy & Family"
+            "title": "Comedy & Family"
         },
         {
             "id":"18,10749",
             "key":"drama",
-            "name": "Drama & Romance"
+            "title": "Drama & Romance"
         },
         {
             "id":"14,9648",
             "key":"fantasy",
-            "name": "Fantasy & Mystery"
+            "title": "Fantasy & Mystery"
         }
     ]
 }

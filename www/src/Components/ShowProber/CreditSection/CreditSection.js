@@ -26,5 +26,6 @@ export default function CreditSection(props){
         if(show.created_by&&show.created_by.length){
             CastSlide({parent:creditsection,title:"Created by",casts:show.created_by});
         }
+        creditsection.scrollIntoView({block:"start",behavior:"smooth"});
     });
 }

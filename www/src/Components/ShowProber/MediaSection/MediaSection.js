@@ -19,6 +19,7 @@ export default function MediaSection(props){
         const row0=mediasection.querySelector(`.${css.row0}`);
         loader.remove();
         ImageGrid({parent:row0,title:"Posters",images});
+        mediasection.scrollIntoView({block:"start",behavior:"smooth"});
     });
 }
 

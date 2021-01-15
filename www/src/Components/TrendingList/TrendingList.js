@@ -8,9 +8,6 @@ export default function TrendingList(props){
     const {parent,ref=useRef("trendinglist"),shows}=props;
     parent.insertAdjacentHTML("beforeend",`<div id="${ref}" class="${css.trendinglist}"></div>`);
     const trendinglist=parent.querySelector(`#${ref}`);
-    const state={
-        forwards:true,
-    }
 
     trendinglist.innerHTML=`
         <h3 class="${css.title}">Day Trending</h3>

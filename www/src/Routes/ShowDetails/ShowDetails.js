@@ -1,6 +1,6 @@
 import {} from "vanilla";
 import css from "./ShowDetails.module.css";
-import {ShowSlide,ShowProber,ShowAlikes,BackButton,Loader} from "components";
+import {ShowSlide,ShowList,ShowProber,BackButton,Loader} from "components";
 import {Show} from "estate";
 import * as H from "./Hooks";
 
@@ -15,12 +15,11 @@ export default function ShowDetails(props){
     `;
     const loader=Loader({style:"position:fixed;"});
     if(show){
-        H.useDetails(show,(details)=>{
+        H.useDetails(show,({details,recos})=>{
             loader.remove();
-            const show=new Show(details);
-            ShowSlide({parent:showdetails,show});
-            ShowAlikes({parent:showdetails,show});
-            ShowProber({parent:showdetails,show});
+            ShowSlide({parent:showdetails,show:details});
+            ShowList({parent:showdetails,data:{title:"Recommendations",shows:recos},style:"margin:1rem 0;"});
+            ShowProber({parent:showdetails,show:details});
             BackButton();
         });
     }

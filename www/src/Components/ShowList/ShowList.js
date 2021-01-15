@@ -4,19 +4,19 @@ import {ShowCard} from "components";
 
 
 export default function ShowList(props){
-    const {parent,ref=useRef("showlist"),genre}=props;
-    parent.insertAdjacentHTML("beforeend",`<div id="${ref}" class="${css.showlist}"></div>`);
+    const {parent,ref=useRef("showlist"),data,withMore=false,style=""}=props;
+    parent.insertAdjacentHTML("beforeend",`<div id="${ref}" class="${css.showlist}" style="${style}"></div>`);
     const showlist=parent.querySelector(`#${ref}`);
 
     showlist.innerHTML=`
-        <div class="${css.row0}">${genre.name}</div>
+        <div class="${css.row0}">${data.title}</div>
         <div class="${css.row1}">
             <div class="${css.col0}"></div>
-            <div class="${css.col1}"></div>
+            ${withMore?`<div class="${css.col1}"></div>`:""}
         </div>
     `;
 
-    setShows(genre.shows,showlist);
+    setShows(data.shows,showlist);
 
     return showlist;
 }
@@ -27,6 +27,8 @@ const setShows=(shows,showlist)=>{
         shows.forEach(show=>{
             ShowCard({parent:col0,show});
         });
-        col1.innerHTML="More";
+        if(col1){
+            col1.innerHTML="More";
+        }
     }
 }

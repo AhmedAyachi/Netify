@@ -1,15 +1,22 @@
-import {apikey,File} from "estate";
+import {apikey,Show,File} from "estate";
 import {FetchAlert} from "components";
 
 
 export const useDetails=({id,type},onFulfilled=()=>{},onRejected=()=>{})=>{
+    const data={details:null,recos:null};
     fetch(`https://api.themoviedb.org/3/${type}/${id}?api_key=${apikey}`).
     then(response=>response.json()).
     then(details=>{
+        data.details=new Show(details);
         isInWatchList({id,type},inWatchList=>{
-            details.inWatchList=inWatchList;
-            onFulfilled(details);
+            data.details.inWatchList=inWatchList;
         });
+    }).
+    then(async ()=>{
+        const response=await fetch(`https://api.themoviedb.org/3/${type}/${id}/recommendations?api_key=${apikey}&language=en-US&page=1`);
+        const result=await response.json();
+        data.recos=result.results.map(show=>new Show(show));
+        onFulfilled(data);
     }).
     catch((error)=>{
         FetchAlert({
