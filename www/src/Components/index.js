@@ -23,5 +23,4 @@ export {default as RateStars} from "./RateStars/RateStars";
 export {default as OfflineAlert} from "./OfflineAlert/OfflineAlert";
 export {default as Navigator} from "./Navigator/Navigator";
 export {default as Downloader} from "./Downloader/Downloader";
-export {default as FetchAlert} from "./FetchAlert/FetchAlert";
 export {default as Swiper} from "./Swiper/Swiper";
