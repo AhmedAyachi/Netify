@@ -1,9 +1,5 @@
 
-export {
-    setSearchValue,addToWatchlist,removeFromWatchList,
-} from "./ShowActions";
-
-export {loadWatchList} from "./FileActions";
+export {setSearchValue} from "./ShowActions";
 
 
 export const setLoading=(value=true)=>{

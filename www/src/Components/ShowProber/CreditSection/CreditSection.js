@@ -1,7 +1,7 @@
 import {useRef} from "vanilla";
 import css from "./CreditSection.module.css";
 import CastSlide from "./CastSlide/CastSlide";
-import {loadinganim} from "assets";
+import {Loader} from "components";
 import * as H from "./Hooks";
 
 
@@ -11,10 +11,11 @@ export default function CreditSection(props){
     const creditsection=parent.querySelector(`#${ref}`);
 
     creditsection.innerHTML=`
-        <img id="loading" alt="Loading" style="${styles.loading}" src="${loadinganim}"/>
     `;
+    const loader=Loader({parent:creditsection,style:"position:relative;"});
+
     H.useCredits(show,credits=>{
-        creditsection.querySelector("#loading").remove();
+        loader.remove();
         const casts=credits.cast,crews=credits.crew;
         if(casts&&casts.length){
             CastSlide({parent:creditsection,title:"Cast",casts});
@@ -27,11 +28,3 @@ export default function CreditSection(props){
         }
     });
 }
-
-const styles={
-    loading:`
-        display:block;
-        max-width:3rem;
-        margin:1rem auto;
-    `,
-};

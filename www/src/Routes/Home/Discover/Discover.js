@@ -1,6 +1,6 @@
 import {} from "vanilla";
 import css from "./Discover.module.css";
-import {TrendingList,GenreList,Navigator} from "components";
+import {TrendingList,ShowList,Navigator} from "components";
 import data from "./Genres.json";
 
 
@@ -21,7 +21,7 @@ export default function Discover(props){
 
     const row3=discover.querySelector(`.${css.row3}`);
     data.genres.forEach(genre=>{
-        GenreList({parent:row3,genre});
+        ShowList({parent:row3,genre});
     });
 
     if(!store.elements.navigator){

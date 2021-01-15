@@ -7,7 +7,7 @@ export {default as TrendingList} from "./TrendingList/TrendingList";
 export {default as FullViewer} from "./FullViewer/FullViewer"
 export {default as ShowsBackground} from "./ShowsBackground/ShowsBackground";
 export {default as EntryAnimation} from "./EntryAnimation/EntryAnimation";
-export {default as GenreList} from "./GenreList/GenreList";
+export {default as ShowList} from "./ShowList/ShowList";
 export {default as Header} from "./Header/Header";
 export {default as InputField} from "./InputField/InputField";
 export {default as WarnAlert} from "./WarnAlert/WarnAlert";
