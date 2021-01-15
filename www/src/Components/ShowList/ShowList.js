@@ -1,7 +1,6 @@
 import {useRef} from "vanilla";
 import css from "./ShowList.module.css";
-import {ShowCard,Loader} from "components";
-import * as H from "./Hooks";
+import {ShowCard} from "components";
 
 
 export default function ShowList(props){
@@ -16,13 +15,8 @@ export default function ShowList(props){
             <div class="${css.col1}"></div>
         </div>
     `;
-    const row1=showlist.querySelector(`.${css.row1}`);
-    const loader=Loader({parent:row1});
 
-    H.useShowsByGenre(genre.id,shows=>{
-        loader.remove();
-        setShows(shows,showlist);
-    });
+    setShows(genre.shows,showlist);
 
     return showlist;
 }

@@ -6,8 +6,8 @@ import {fadeIn} from "afile";
 
 export default function Navigator(props={}){
     const {parent=app,ref=useRef("navigator")}=props;
-    parent.insertAdjacentHTML("beforeend",`<div id="${ref}" class="${css.navigator}" style="${styles.navigator}"></div>`);
-    const navigator=store.elements.navigator=parent.querySelector(`#${ref}`);
+    parent.insertAdjacentHTML("beforeend",`<div id="${ref}" class="${css.navigator}"></div>`);
+    const navigator=parent.querySelector(`#${ref}`);
     const state={
         activeicon:null,
     }
@@ -22,18 +22,18 @@ export default function Navigator(props={}){
     `;
 
     const imgs=[...navigator.querySelectorAll(`.${css.icon}`)];
-    setTimeout(()=>{
-        imgs.forEach((img,i)=>{
-            img.hash=i<icons.length?icons[i].hash:"#settings";
-            img.active=false;
-            img.onclick=()=>{
-                history.replace(img.hash);
-            }
-        });
-        state.activeicon=imgs.find(img=>!img.hash);
-        state.activeicon.active=true;
-        state.activeicon.className+=` ${css.active}`;
-    },2000)
+    imgs.forEach((img,i)=>{
+        img.hash=i<icons.length?icons[i].hash:"#settings";
+        img.active=false;
+        img.onclick=()=>{
+            history.replace(img.hash);
+        }
+    });
+    state.activeicon=imgs.find(img=>!img.hash);
+    state.activeicon.active=true;
+    state.activeicon.className+=` ${css.active}`;
+
+
     const onHashChange=()=>{
         if(state.activeicon){
             state.activeicon.className=css.icon;
@@ -51,15 +51,8 @@ export default function Navigator(props={}){
     }
     
     appcontent.style.marginBottom=navigator.style.height;
-    fadeIn(navigator,"flex",2);
+    return navigator;
 };
-
-const styles={
-    navigator:`
-        display:none;
-        height:4rem;
-    `,
-}
 
 const icons=[
     {id:"tohome",alt:"Home",src:home2,hash:""},
