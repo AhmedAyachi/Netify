@@ -1,37 +1,27 @@
 import {} from "vanilla";
 import css from "./ShowDetails.module.css";
-import {ShowSlide,ShowProber,ShowAlikes,BackButton} from "components";
+import {ShowSlide,ShowProber,ShowAlikes,BackButton,Loader} from "components";
 import {Show} from "estate";
 import * as H from "./Hooks";
-import {loadinganim} from "assets";
 
 
 export default function ShowDetails(props){
-    const {parent,ref="showdetails",state}=props;
+    const {parent,ref="showdetails",show}=props;
     parent.insertAdjacentHTML("beforeend",`<div id="${ref}" class="${css.showdetails}"></div>`);
     const showdetails=parent.querySelector(`#${ref}.${css.showdetails}`);
 
-    const {show}=state;
     showdetails.innerHTML=`
-        <img id="loading" alt="Loading" style="${styles.loading}" src="${loadinganim}"/>
+        
     `;
-    BackButton()
-    
+    const loader=Loader({style:"position:fixed;"});
     if(show){
         H.useDetails(show,(details)=>{
+            loader.remove();
             const show=new Show(details);
             ShowSlide({parent:showdetails,show});
             ShowAlikes({parent:showdetails,show});
             ShowProber({parent:showdetails,show});
-            showdetails.querySelector("#loading").remove();
+            BackButton();
         });
     }
 }
-
-const styles={
-    loading:`
-        display:block;
-        max-width:5rem;
-        margin:5rem auto;
-    `,
-};

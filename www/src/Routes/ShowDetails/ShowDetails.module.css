@@ -11,9 +11,9 @@
     color:white;
 }
 .loadinganim{
-    display:block;
-    margin:0 auto;
-    max-width:20em;
+    position:fixed;
+    inset:0;margin:auto;
+    max-width:5em;
 }
 .casttext{
     color:white;

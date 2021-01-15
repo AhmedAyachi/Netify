@@ -11,7 +11,7 @@ export {default as GenreList} from "./GenreList/GenreList";
 export {default as Header} from "./Header/Header";
 export {default as InputField} from "./InputField/InputField";
 export {default as WarnAlert} from "./WarnAlert/WarnAlert";
-export {default as ShowsList} from "./ShowsList/ShowsList";
+export {default as ShowGrid} from "./ShowGrid/ShowGrid";
 export {default as ShowCard} from "./ShowCard/ShowCard";
 export {default as ShowRow} from "./ShowRow/ShowRow";
 export {default as ShowSlide} from "./ShowSlide/ShowSlide";

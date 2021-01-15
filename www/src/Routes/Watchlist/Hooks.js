@@ -4,8 +4,8 @@ import {WarnAlert} from "components";
 
 export function useWatchList(onFulfilled=()=>{},onRejected=()=>{}){
     const store=window.store;
-    if(store&&store.isguest){
-        try{
+    try{
+        if(store.isguest){
             const cordova=window.cordova;
             if(cordova&&cordova.file&&cordova.platformId!=="browser"){
                 const file=new File({name:"watchlist.json"});
@@ -20,15 +20,18 @@ export function useWatchList(onFulfilled=()=>{},onRejected=()=>{}){
                 onFulfilled(shows);
             }
         }
-        catch{(error=>{
-            WarnAlert({
-                message:error.message,
-                proceed:"Try again",
-                onProceed:()=>{useTitle(title,then)},
-            });
-            onRejected(error);
-        })};
+        else if(store.sessiontoken){
+ 
+        }
     }
+    catch{(error=>{
+        WarnAlert({
+            message:error.message,
+            proceed:"Try again",
+            onProceed:()=>{useTitle(title,then)},
+        });
+        onRejected(error);
+    })};
 };
 /*
 catch(error=>{

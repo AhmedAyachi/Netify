@@ -1,42 +1,37 @@
-import {Show,apikey} from "estate";
+import {Show,File,apikey} from "estate";
 import {WarnAlert} from "components";
 
 
-export const setShowStore=(key,value)=>{
-    store.show[key]=value;
-}
-
-export const setShows=(value=[])=>{
-    store.show.shows=value;
-}
-
-export const addShows=(shows=[])=>{
-    const showStore=store.show;
-    if(showStore.shows&&Array.isArray(shows)){
-        showStore.shows.push(...shows);
+export const addToWatchlist=(show,onFulfilled=()=>{},onRejected=()=>{})=>{
+    try{
+        if(store.isguest){
+            if(cordova.platformId!=="browser"){
+                const file=new File({name:"watchlist.json"});
+                file.onRead(content=>{
+                    const watchlist=content?JSON.parse(content):[];
+                    if(Array.isArray(watchlist)){
+                        const {id,type,title,backdrop_path,poster_path,vote_average}=show;
+                        watchlist.push({id,type,title,backdrop_path,poster_path,vote_average});
+                        file.write(JSON.stringify(watchlist),onFulfilled);
+                    }
+                });
+            }
+            else{
+                const content=JSON.parse(localStorage.getItem("watchlist"));
+                const watchlist=Array.isArray(content)?content:[];
+                const {id,type,title,backdrop_path,poster_path,vote_average}=show;
+                watchlist.push({id,type,title,backdrop_path,poster_path,vote_average});
+                localStorage.setItem("watchlist",JSON.stringify(watchlist));
+                onFulfilled();
+            }
+        }
+        else if(store.sessiontoken){
+            
+        }
     }
-}
-
-function saveWatchlist(){
-    const showStore=store.show,fileStore=store.file;
-    if(fileStore.watchlist){
-        fileStore.watchlist.write(JSON.stringify(showStore.watchlist));
+    catch(error){
+        onRejected(error);
     }
-    else{
-        localStorage.setItem("watchlist",JSON.stringify(showStore.watchlist));
-    }
-}
-
-export const setWatchlist=(list=[])=>{
-    const showStore=store.show;
-    showStore.watchlist=list;
-    saveWatchlist();
-}
-
-export const addToWatchlist=(show)=>{
-    const showStore=store.show;
-    showStore.watchlist.unshift(show);
-    saveWatchlist();
 }
 
 export const removeFromWatchList=(show)=>{
@@ -57,46 +52,9 @@ export const removeFromWatchList=(show)=>{
     }
 }
 
-export const setSearchedShows=(shows=[])=>{
-    store.show.searched=shows;
-}
-
-function saveSearchedValues(){
-    const showStore=store.show,fileStore=store.file;
-    if(fileStore.search){
-        fileStore.search.write(JSON.stringify(showStore.searchvalues));
-    }
-    else{
-        localStorage.setItem("searchvalues",JSON.stringify(showStore.searchvalues));
-    }
-}
-
-export const setSearchValues=(values=[])=>{
-    const showStore=store.show;
-    showStore.searchvalues=values;
-    saveSearchedValues();
-}
-
 export const setSearchValue=(value=null)=>{
     const showStore=store.show;
     if(showStore.searchvalue!==value){
         showStore.searchvalue=value;
     }
-}
-
-export const addSearchValue=(value)=>{
-    value=value.trim();
-    const showStore=store.show;
-    if(!showStore.searchvalues.includes(value)){
-        showStore.searchvalues.unshift(value);
-        saveSearchedValues();
-    }
-}
-
-export const deleteSearchValue=(value)=>{
-    value=value.trim();
-    const showStore=store.show;
-    const index=showStore.searchvalues.indexOf(value);
-    showStore.searchvalues.splice(index,1);
-    saveSearchedValues();
 }

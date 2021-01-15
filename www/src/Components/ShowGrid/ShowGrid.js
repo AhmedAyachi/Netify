@@ -1,14 +1,13 @@
 import {useRef} from "vanilla";
-import css from "./ShowsList.module.css";
+import css from "./ShowGrid.module.css";
 import {Loader,ShowCard} from "components";
-import {getFilteredShows} from "../Header/Searcher/FilterList/FilterList";
 import * as H from "./Hooks";
 
 
-export default function ShowsList(props){
-    const {parent,ref=useRef("showslist"),shows,swipe=false}=props;
-    parent.insertAdjacentHTML("beforeend",`<div id="${ref}" class="${css.showslist}"></div>`);
-    const showslist=store.elements.showslist=parent.querySelector(`#${ref}`);
+export default function ShowGrid(props){
+    const {parent,ref=useRef("showgrid")}=props;
+    parent.insertAdjacentHTML("beforeend",`<div id="${ref}" class="${css.showgrid}"></div>`);
+    const showgrid=store.elements.showgrid=parent.querySelector(`#${ref}`);
     const state={
         collection:1,
         shows:[],
@@ -17,11 +16,11 @@ export default function ShowsList(props){
         loader:useRef("loader"),
     }
 
-    showslist.innerHTML=`
+    showgrid.innerHTML=`
         <div class="${css.row0}">Discover</div>
         <div class="${css.row1}"></div>
     `;
-    const row1=showslist.querySelector(`.${css.row1}`);
+    const row1=showgrid.querySelector(`.${css.row1}`);
     setShowsCards(row1,state);
 
     const onReachBottom=()=>{
@@ -33,23 +32,23 @@ export default function ShowsList(props){
     }
     window.addEventListener("scroll",onReachBottom);
 
-    showslist.setShows=(shows=state.shows)=>{
+    showgrid.setShows=(shows=state.shows)=>{
         if(shows&&shows.length){
             row1.innerHTML="";
             shows.forEach(show=>{ShowCard({parent:row1,show})});
         }
     };
-    showslist.swipe=(value=true)=>{
+    showgrid.swipe=(value=true)=>{
        window.removeEventListener("scroll",onReachBottom);
        if(value){
            window.addEventListener("scroll",onReachBottom);
        }
     }
-    showslist.load=()=>{
+    showgrid.load=()=>{
         row1.innerHTML="";
         Loader({parent:row1,ref:refs.loader});
     }
-    showslist.unload=()=>{
+    showgrid.unload=()=>{
         const loader=row1.querySelector(`#${refs.loader}`);
         loader&&loader.remove();
     }

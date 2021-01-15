@@ -23,12 +23,18 @@ export default function Find(props){
     const row1=find.querySelector(`.${css.row1}`);
     const header=Header({
         parent:find.querySelector(`.${css.row0}`),
-        onFilter:(filter)=>{filterShows(filter,row1,state)},
+        onFilter:(filter)=>{state.shows&&state.shows.length&&filterShows(filter,row1,state)},
         onSearch:(input)=>{
             const value=input.value.trim();
             setSearchValue(value);
             header.resetFilter();
-            value?findShows(value,row1,state):row1.innerHTML=`<img alt="" class="${css.applogo}" src="${netifylogo}"/>`;
+            if(value){
+                findShows(value,row1,state);
+            }
+            else{
+                state.shows=null;
+                row1.innerHTML=`<img alt="" class="${css.applogo}" src="${netifylogo}"/>`;
+            }
         },
     });
     const {input}=header;

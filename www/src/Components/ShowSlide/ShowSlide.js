@@ -3,8 +3,7 @@ import css from "./ShowSlide.module.css";
 import Overviewer from "./Overviewer/Overviewer";
 import Videoview from "./Videoview/Videoview";
 import {Swiper} from "components";
-import {check2,check2reversed,plusbtn,checked} from "assets";
-import {addToWatchlist,removeFromWatchList} from "actions";
+import {check2,check2reversed,plusbtn,checked,loadinganim} from "assets";
 import * as H from "./Hooks";
 
 
@@ -13,13 +12,12 @@ export default function ShowSlide(props){
     parent.insertAdjacentHTML("beforeend",`<div id="${ref}" class="${css.showslide}" style="${styles.showslide(show.backdrop_path)}"></div>`);
     const showslide=parent.querySelector(`#${ref}`);
 
-    const showStore=store.show,state=showslide.state={
-        inWatchList:Boolean(showStore.watchlist&&showStore.watchlist.find(show=>show.id===props.show.id)),
+    const state=showslide.state={
+        inWatchList:show.inWatchList,
     };
-
+    
     showslide.innerHTML=`
         <img alt="Add to watchlist" class="${css.watchlistbtn}" src="${state.inWatchList?checked:plusbtn}"/>
-        <div class="${css.shadow}"></div>
         <div class="${css.row0}">
             <div class="${css.row1}"></div>
         </div>
@@ -27,9 +25,11 @@ export default function ShowSlide(props){
     Overviewer({parent:showslide.querySelector(`.${css.row1}`),show});
     
     H.useVideos(show,(videos)=>{setVideos(showslide,videos)});
+
     const addtowlbtn=showslide.querySelector(`.${css.watchlistbtn}`);
     addtowlbtn.active=state.inWatchList;
     addtowlbtn.onclick=()=>{addToList(addtowlbtn,state,show)};
+
 
     return showslide;
 }
@@ -45,15 +45,22 @@ const styles={
 };
 
 const addToList=(addtowlbtn,state,show)=>{
-    addtowlbtn.active=!addtowlbtn.active;
-    state.inWatchList=!state.inWatchList;
+    addtowlbtn.onclick=null;
+    addtowlbtn.setAttribute("src",loadinganim);
     if(addtowlbtn.active){
-        addtowlbtn.setAttribute("src",check2);
-        addToWatchlist(show);
+        H.removeFromWatchList(show,()=>{
+            console.log("removed");
+            addtowlbtn.setAttribute("src",check2reversed);
+            addtowlbtn.active=state.active=false;
+            addtowlbtn.onclick=()=>{addToList(addtowlbtn,state,show)};
+        });
     }
     else{
-        addtowlbtn.setAttribute("src",check2reversed);
-        removeFromWatchList(show);
+        H.addToWatchlist(show,()=>{
+            addtowlbtn.setAttribute("src",check2);
+            addtowlbtn.active=state.active=true;
+            addtowlbtn.onclick=()=>{addToList(addtowlbtn,state,show)};
+        }); 
     }
 }
 

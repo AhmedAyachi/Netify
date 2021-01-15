@@ -1,4 +1,4 @@
-import {useRef} from "vanilla";
+import {useRef} from "nanilla";
 import css from "./DetailSection.module.css";
 import SeasonSlide from "./SeasonSlide/SeasonSlide";
 import SupportSlide from "./SupportSlide/SupportSlide";

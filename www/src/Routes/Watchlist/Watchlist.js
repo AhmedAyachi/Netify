@@ -1,6 +1,6 @@
-import {map} from "vanilla";
+import {} from "vanilla";
 import css from "./WatchList.module.css";
-import {ShowCard,ShowRow,ShowView} from "components";
+import {ShowCard,ShowRow,ShowView,Loader} from "components";
 import {squares0,list0,popcorn1} from "assets";
 import * as H from "./Hooks";
 
@@ -14,22 +14,27 @@ export default function WatchList(props){
     watchlist.innerHTML=`
         <div class="${css.row0}"></div>
         <div class="${css.row1}" style="${styles.row1}">
-            <div class="${css.row2}">
-                <h3 class="${css.title}">Watchlist</h3>
-                <img alt="" class="${css.displayer}" src="${showStore.listdisplay?squares0:list0}"/>
-            </div>
+            <div class="${css.row2}"></div>
             <div class="${css.row3}"></div>
         </div>
     `;
+    const loader=Loader({parent:watchlist,style:"position:fixed;"});
+
+    const row2=watchlist.querySelector(`.${css.row2}`);
+    const row3=watchlist.querySelector(`.${css.row3}`);
 
     H.useWatchList((shows)=>{
+        loader.remove();
         if(shows.length){
             ShowView({parent:watchlist.querySelector(`.${css.row0}`),show:shows[0]});
         }
-        const row3=watchlist.querySelector(`.${css.row3}`);
+        row2.insertAdjacentHTML("beforeend",`
+            <h3 class="${css.title}">Watchlist</h3>
+            <img alt="" class="${css.displayer}" src="${showStore.listdisplay?squares0:list0}"/>
+        `);
         setList(shows,row3,showStore.listdisplay);
     
-        const displayer=watchlist.querySelector(`.${css.displayer}`);
+        const displayer=row2.querySelector(`.${css.displayer}`);
         displayer.onclick=()=>{
             showStore.listdisplay=!showStore.listdisplay;
             displayer.setAttribute("src",showStore.listdisplay?squares0:list0);
