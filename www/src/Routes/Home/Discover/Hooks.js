@@ -15,6 +15,7 @@ export async function useShowsByGenres(onFulfilled=()=>{}){
                 useShowsByGenre(genre.id,(shows)=>{
                     genre.shows=shows;
                     if(i>=length-1){
+                        store.show.discover=discover;
                         onFulfilled(discover);
                     }
                     else{
@@ -39,7 +40,7 @@ export const useDayTrending=(onFulfilled=()=>{})=>{
     then(responses=>responses.map(response=>response.json())).
     then(async function(promises){
         const tvs=(await promises[0]).results||[],movies=(await promises[1]).results||[];
-        const shows=shuffle([...tvs,...movies].filter(show=>show.vote_average>=8.25).map(show=>new Show(show)).slice(0,10));
+        const shows=[...tvs,...movies].filter(show=>show.vote_average>=8.25).map(show=>new Show(show)).slice(0,10);
         onFulfilled(shows);
     });
 }

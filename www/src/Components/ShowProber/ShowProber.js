@@ -4,6 +4,7 @@ import {capitalize} from "afile";
 import DetailSection from "./DetailSection/DetailSection";
 import CreditSection from "./CreditSection/CreditSection";
 import MediaSection from "./MediaSection/MediaSection";
+import SocialSection from "./SocialSection/SocialSection";
 
 
 export default function ShowProber(props){
@@ -36,7 +37,7 @@ const sections=[
     {title:"details",component:DetailSection},
     {title:"credits",component:CreditSection},
     {title:"media",component:MediaSection},
-    {title:"social",component:null},
+    {title:"social",component:SocialSection},
 ];
 
 const onSectionSelect=(sectionbtn,row1,state,show)=>{

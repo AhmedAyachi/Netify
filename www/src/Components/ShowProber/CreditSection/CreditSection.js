@@ -28,4 +28,5 @@ export default function CreditSection(props){
         }
         creditsection.scrollIntoView({block:"start",behavior:"smooth"});
     });
+    return creditsection;
 }

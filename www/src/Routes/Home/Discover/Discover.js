@@ -2,6 +2,7 @@ import {} from "vanilla";
 import css from "./Discover.module.css";
 import {TrendingList,ShowList,Navigator,Loader} from "components";
 import * as H from "./Hooks";
+import {shuffle} from "afile";
 
 
 export default function Discover(props){
@@ -17,16 +18,34 @@ export default function Discover(props){
         </div>
     `;
     const loader=Loader({style:"position:fixed;"});
-    const row3=discover.querySelector(`.${css.row3}`);
-    H.useShowsByGenres(({trends,genres})=>{
-        loader.remove();
-        TrendingList({parent:discover.querySelector(`.${css.row0}`),shows:trends});
-        discover.querySelector(`.${css.row2}`).innerHTML="Discover";
-        genres.forEach(genre=>{
-            ShowList({parent:row3,data:genre,withMore:true});
+
+    const content=store.show.discover;
+    if(content){
+        setTimeout(()=>{
+            setDiscover(discover,content);
+            loader.remove();
+        },250+Math.random()*500);
+    }else{
+        H.useShowsByGenres(({trends,genres})=>{
+            loader.remove();
+            setDiscover(discover,{trends,genres});
         });
-        if(!store.elements.navigator){
-            store.elements.navigator=Navigator();
-        }
+    }
+    
+}
+
+const setDiscover=(discover,{trends,genres})=>{
+    const row3=discover.querySelector(`.${css.row3}`);
+    trends=shuffle(trends);
+    genres.forEach(genre=>{
+        genre.shows=shuffle(genre.shows);
     });
+    TrendingList({parent:discover.querySelector(`.${css.row0}`),shows:trends});
+    discover.querySelector(`.${css.row2}`).innerHTML="Discover";
+    genres.forEach(genre=>{
+        ShowList({parent:row3,data:genre,withMore:true});
+    });
+    if(!store.elements.navigator){
+        store.elements.navigator=Navigator();
+    }
 }

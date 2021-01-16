@@ -18,7 +18,7 @@ export default function ShowDetails(props){
         H.useDetails(show,({details,recos})=>{
             loader.remove();
             ShowSlide({parent:showdetails,show:details});
-            ShowList({parent:showdetails,data:{title:"Recommendations",shows:recos},style:"margin:1rem 0;"});
+            recos&&recos.length&&ShowList({parent:showdetails,data:{title:"Recommendations",shows:recos},style:"margin:1rem 0;"});
             ShowProber({parent:showdetails,show:details});
             BackButton();
         });

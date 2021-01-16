@@ -4,7 +4,7 @@ import {loadinganim} from "assets";
 
 
 export default function Loader(props={}){
-    const {parent=app,ref=useRef("loader"),style=""}=props;
+    const {parent=appcontent,ref=useRef("loader"),style=""}=props;
     parent.insertAdjacentHTML("beforeend",`<div id="${ref}" class="${css.loader}" style="${style}"></div>`);
     const loader=parent.querySelector(`#${ref}`);
 

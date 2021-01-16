@@ -17,6 +17,7 @@ export default function BackButton(props={}){
 
 export const back=()=>{
     const current=location.hash.slice(1);
+    console.log(current);
     if(current){
         const next="#"+current.substring(0,current.indexOf("#"));
         history.replace(next);

@@ -31,4 +31,5 @@ export default function DetailSection(props){
     if(show.networks&&show.networks.length){
         SupportSlide({parent:row1,title:"Available on",items:show.networks});
     }
+    return detailsection;
 } 

@@ -21,6 +21,7 @@ export default function MediaSection(props){
         ImageGrid({parent:row0,title:"Posters",images});
         mediasection.scrollIntoView({block:"start",behavior:"smooth"});
     });
+    return mediasection;
 }
 
 //https://www.themoviedb.org/video/play?key=yzXglr5bc3w
