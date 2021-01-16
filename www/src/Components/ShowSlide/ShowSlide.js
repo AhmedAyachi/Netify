@@ -8,8 +8,8 @@ import * as H from "./Hooks";
 
 
 export default function ShowSlide(props){
-    const {parent,ref=useRef("showslide"),show}=props;
-    parent.insertAdjacentHTML("beforeend",`<div id="${ref}" class="${css.showslide}" style="${styles.showslide(show.backdrop_path)}"></div>`);
+    const {parent,ref=useRef("showslide"),show,style=""}=props;
+    parent.insertAdjacentHTML("beforeend",`<div id="${ref}" class="${css.showslide}" style="${style};${styles.showslide(show.backdrop_path)}"></div>`);
     const showslide=parent.querySelector(`#${ref}`);
 
     const state=showslide.state={

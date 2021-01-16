@@ -18,7 +18,7 @@
 .row0{
     position:relative;
     width:100%;max-width:100%;
-    height:100%;
+    height:100.1%;
     display:flex;
     flex-direction:column;
     justify-content:flex-end;

@@ -2,21 +2,13 @@
     font-size:1rem;
     font-family:fredokaone;
 }
-.row0,.row1,.row3{
-    display:block;
-}
-.row2{
+.row0{
+    height:100vh;
     display:flex;
-    justify-content:space-evenly;
-    color:white;
+    flex-direction:column;
+    justify-content:flex-start;
+    align-items:flex-start;
 }
-.loadinganim{
-    position:fixed;
-    inset:0;margin:auto;
-    max-width:5em;
-}
-.casttext{
-    color:white;
-    font-size:3em;
-    margin:5px;
+.row1{
+    font-size:1em;
 }

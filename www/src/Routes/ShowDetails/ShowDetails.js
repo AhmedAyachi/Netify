@@ -1,7 +1,6 @@
 import {} from "vanilla";
 import css from "./ShowDetails.module.css";
 import {ShowSlide,ShowList,ShowProber,BackButton,Loader} from "components";
-import {Show} from "estate";
 import * as H from "./Hooks";
 
 
@@ -10,9 +9,13 @@ export default function ShowDetails(props){
     parent.insertAdjacentHTML("beforeend",`<div id="${ref}" class="${css.showdetails}"></div>`);
     const showdetails=parent.querySelector(`#${ref}.${css.showdetails}`);
 
-    showdetails.innerHTML=` 
+    showdetails.innerHTML=`
+        <div class="${css.row0}"></div>
+        <div class="${css.row1}"></div>
     `;
     const loader=Loader({style:"position:fixed;"});
+    const row0=showdetails.querySelector(`.${css.row0}`),row1=showdetails.querySelector(`.${css.row1}`);
+
     if(typeid){
         const showid={
             type:typeid.startsWith("m")?"movie":"tv",
@@ -20,9 +23,17 @@ export default function ShowDetails(props){
         };
         H.useDetails(showid,({details,recos})=>{
             loader.remove();
-            ShowSlide({parent:showdetails,show:details});
-            recos&&recos.length&&ShowList({parent:showdetails,data:{title:"Recommendations",shows:recos},style:"margin:1rem 0;"});
-            ShowProber({parent:showdetails,show:details});
+            ShowSlide({parent:row0,style:"height:100%;",show:details});
+            recos&&recos.length&&ShowList({
+                parent:row0,
+                data:{title:"Recommendations",shows:recos},
+                style:`
+                    max-width:100%;
+                    margin-top:1rem;
+                    margin-bottom:5rem;
+                `,
+            });
+            ShowProber({parent:row1,show:details});
             BackButton();
         });
     }

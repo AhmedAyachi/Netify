@@ -24,6 +24,7 @@
     vertical-align:middle;
     white-space:nowrap;
     text-align:left;
+    overflow-x:auto;
 }
 .col1{
     display:inline-block;
