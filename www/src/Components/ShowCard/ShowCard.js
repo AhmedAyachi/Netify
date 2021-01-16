@@ -21,7 +21,7 @@ export default function ShowCard(props){
     RateStars({parent:foreground,rate:vote_average});
 
     showcard.onclick=()=>{
-        history.push("#show",{show});
+        history.replace(`#${show.type}${show.id}`,{show});
     }
 
     return showcard

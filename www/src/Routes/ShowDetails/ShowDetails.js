@@ -10,8 +10,8 @@ export default function ShowDetails(props){
     parent.insertAdjacentHTML("beforeend",`<div id="${ref}" class="${css.showdetails}"></div>`);
     const showdetails=parent.querySelector(`#${ref}.${css.showdetails}`);
 
-    showdetails.innerHTML=`
-        
+    console.log(props);
+    showdetails.innerHTML=` 
     `;
     const loader=Loader({style:"position:fixed;"});
     if(show){

@@ -22,6 +22,8 @@ export default function App(props){
         {component:Home,path:""},
         {component:Find,path:"#find"},
         {component:WatchList,path:"#watchlist"},
+        {component:null,path:"#settings"},
+        {component:ShowDetails,path:"#:typeid"},
         {component:ShowDetails,path:"#show"},
     ]);
 
