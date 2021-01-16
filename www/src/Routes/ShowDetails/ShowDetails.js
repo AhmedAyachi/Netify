@@ -6,16 +6,19 @@ import * as H from "./Hooks";
 
 
 export default function ShowDetails(props){
-    const {parent,ref="showdetails",show}=props;
+    const {parent,ref="showdetails",typeid=""}=props;
     parent.insertAdjacentHTML("beforeend",`<div id="${ref}" class="${css.showdetails}"></div>`);
     const showdetails=parent.querySelector(`#${ref}.${css.showdetails}`);
 
-    console.log(props);
     showdetails.innerHTML=` 
     `;
     const loader=Loader({style:"position:fixed;"});
-    if(show){
-        H.useDetails(show,({details,recos})=>{
+    if(typeid){
+        const showid={
+            type:typeid.startsWith("m")?"movie":"tv",
+            id:typeid.substring(1),
+        };
+        H.useDetails(showid,({details,recos})=>{
             loader.remove();
             ShowSlide({parent:showdetails,show:details});
             recos&&recos.length&&ShowList({parent:showdetails,data:{title:"Recommendations",shows:recos},style:"margin:1rem 0;"});

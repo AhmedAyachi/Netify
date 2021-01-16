@@ -17,7 +17,7 @@ export default function ShowRow(props){
     RateStars({parent:showrow.querySelector(`.${css.col1}`),rate:show.vote_average});
 
     showrow.onclick=()=>{
-        history.replace(`#${show.type}${show.id}`,{show});
+        history.replace(`#${show.type[0]}${show.id}`);
     }
 
     return showrow;
