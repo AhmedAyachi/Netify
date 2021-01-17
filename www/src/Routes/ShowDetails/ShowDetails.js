@@ -19,11 +19,11 @@ export default function ShowDetails(props){
     if(typeid){
         const showid={
             type:typeid.startsWith("m")?"movie":"tv",
-            id:typeid.substring(1),
+            id:parseInt(typeid.substring(1)),
         };
         H.useDetails(showid,({details,recos})=>{
             loader.remove();
-            ShowSlide({parent:row0,style:"height:100%;",show:details});
+            ShowSlide({parent:row0,style:"height:90%;",show:details});
             recos&&recos.length&&ShowList({
                 parent:row0,
                 data:{title:"Recommendations",shows:recos},
