@@ -1,6 +1,6 @@
 import {useRef} from "vanilla";
 import css from "./OfflineAlert.module.css";
-import {cryfuldog,bear0} from "assets";
+import {cryfuldog,netifylogo} from "assets";
 import {fadeIn} from "afile";
 
 
@@ -10,9 +10,8 @@ export default function OfflineAlert(props){
     const offlinealert=parent.querySelector(`#${ref}`);
 
     offlinealert.innerHTML=`
-        <p>Whoops!</p>
-        <img alt="" src="${bear0}"/>
         <p>Please check your internet connection</p>
+        <img alt="" src="${netifylogo}"/>
     `;
     fadeIn(offlinealert,"flex",1);
 }

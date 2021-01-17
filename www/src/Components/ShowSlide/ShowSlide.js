@@ -49,7 +49,6 @@ const addToList=(addtowlbtn,state,show)=>{
     addtowlbtn.setAttribute("src",loadinganim);
     if(addtowlbtn.active){
         H.removeFromWatchList(show,()=>{
-            console.log("removed");
             addtowlbtn.setAttribute("src",check2reversed);
             addtowlbtn.active=state.active=false;
             addtowlbtn.onclick=()=>{addToList(addtowlbtn,state,show)};

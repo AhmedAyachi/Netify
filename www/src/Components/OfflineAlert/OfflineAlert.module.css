@@ -2,17 +2,13 @@
     position:fixed;
     display:flex;
     flex-direction:column;
+    justify-content:space-around;
     align-items:center;
-    justify-content:flex-start;
-    top:0;
-    left:0;right:0;
-    margin:0 auto;
-    backdrop-filter:brightness(0.8) blur(3px);
+    inset:0;margin:auto;
+    backdrop-filter:brightness(0.3) blur(3px);
     width:100vw;
     height:100vh;
-    padding-top:5%;
     font-size:1.5rem;
-    color:white;
     z-index:20;
 }
 .offlinealert img{
@@ -20,11 +16,14 @@
     max-width:7.5em;
 }
 .offlinealert p{
-    font-family:fredokaone;
+    font-family:signikalight;
+    font-weight:bold;
+    color:#cc0000;
+    margin-bottom:3em;
 }
 
-@media(max-width:15cm){
+/*@media(max-width:15cm){
     .offlinealert{
         padding-top:20%;
     }
-}
+}*/

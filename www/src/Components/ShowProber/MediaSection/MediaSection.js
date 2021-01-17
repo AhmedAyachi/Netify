@@ -13,13 +13,17 @@ export default function MediaSection(props){
     mediasection.innerHTML=`
         <div class="${css.row0}"></div>
     `;
-    const loader=Loader({parent:mediasection,style:"position:relative;"});
+    const loader=Loader({parent:mediasection,style:"position:relative;"}),row0=mediasection.querySelector(`.${css.row0}`);;
     
     H.useImages(show,images=>{
-        const row0=mediasection.querySelector(`.${css.row0}`);
         loader.remove();
-        ImageGrid({parent:row0,title:"Posters",images});
-        mediasection.scrollIntoView({block:"start",behavior:"smooth"});
+        if(images&&images.length){
+            ImageGrid({parent:row0,title:"Posters",images});
+            mediasection.scrollIntoView({block:"start",behavior:"smooth"});
+        }
+        else{
+            row0.innerHTML=`<span class="${css.nomedia}">No media yet</span>`;
+        }
     });
     return mediasection;
 }

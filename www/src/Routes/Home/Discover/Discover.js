@@ -22,9 +22,9 @@ export default function Discover(props){
     const content=store.show.discover;
     if(content){
         setTimeout(()=>{
-            setDiscover(discover,content);
             loader.remove();
-        },250+Math.random()*500);
+            setDiscover(discover,content);
+        },500+Math.random()*500);
     }else{
         H.useShowsByGenres(({trends,genres})=>{
             loader.remove();

@@ -1,5 +1,6 @@
 .castslide{
     display:block;
+    font-size:1rem;
     margin:1rem 0;
 }
 .row0{
@@ -12,6 +13,7 @@
     padding-top:5px;
 }
 .title{
+    font-family:signikalight;
+    font-size:1.5em;
     color:#b8000f;
-    font-size:1.25rem;
 }

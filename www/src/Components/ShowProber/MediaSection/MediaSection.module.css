@@ -5,5 +5,14 @@
 }
 .row0{
     display:block;
+    text-align:center;
     overflow:hidden;
+}
+.nomedia{
+    display:block;
+    font-family:signikalight;
+    font-size:3rem;
+    color:#cc0000;
+    opacity:0.45;
+    margin:3em 0;
 }

@@ -18,8 +18,10 @@
     align-items:flex-end;
 }
 .seasontext{
+    font-family:signikalight;
+    font-size:1.5em;
+    font-weight:500;
     color:#cc0000;
-    font-size:1.5rem;
     text-align:center;
 }
 .row1{

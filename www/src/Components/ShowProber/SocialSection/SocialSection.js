@@ -21,10 +21,15 @@ export default function SocialSection(props){
     const row1=socialsection.querySelector(`.${css.row1}`),row2=socialsection.querySelector(`.${css.row2}`);
     H.useSocial(show,reviews=>{
         loader.remove();
-        row1.innerHTML="Reviews";
-        reviews.forEach(review=>{
-            Review({parent:row2,data:review});
-        });
+        if(reviews&&reviews.length){
+            row1.innerHTML="Reviews";
+            reviews.forEach(review=>{
+                Review({parent:row2,data:review});
+            });
+        }
+        else{
+            row1.innerHTML=`<span class="${css.noreviews}">No reviews yet</span>`;
+        }
     });
     
     return socialsection;

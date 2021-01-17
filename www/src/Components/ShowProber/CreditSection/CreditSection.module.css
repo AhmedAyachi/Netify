@@ -4,3 +4,11 @@
     display:block;
     font-size:1rem;
 }
+.nocredits{
+    display:block;
+    font-family:signikalight;
+    font-size:3rem;
+    color:#cc0000;
+    opacity:0.45;
+    margin:3em 0;
+}
