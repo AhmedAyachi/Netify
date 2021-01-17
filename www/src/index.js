@@ -25,6 +25,7 @@ function onDeviceReady(){
     }
     StatusBar.mount();
     useStore(Reducer);
+    window.location.hash="";
     App({
         parent:document.getElementById("root"),
     });
