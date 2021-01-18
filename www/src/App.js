@@ -33,10 +33,9 @@ export default function App(props){
     window.addEventListener("online",()=>{
         const offlinealert=app.querySelector(`#${refs.offlinealert}`);
         fadeOut(offlinealert,0.5);
-        const {hash}=window.location;
         setTimeout(()=>{
             offlinealert.remove();
-            hash?window.location.replace(`#${hash}`):window.location.reload();
+            location.refresh();
         },600);
     });
 }
