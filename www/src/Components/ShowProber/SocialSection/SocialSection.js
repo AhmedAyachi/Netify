@@ -30,6 +30,7 @@ export default function SocialSection(props){
         else{
             row1.innerHTML=`<span class="${css.noreviews}">No reviews yet</span>`;
         }
+        socialsection.scrollIntoView({block:"start",behavior:"smooth"});
     });
     
     return socialsection;

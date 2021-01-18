@@ -45,18 +45,11 @@ export const wave=(element,duration=2)=>{
     }
 */}
 
-export function randomColor(colors){
-    if(colors){
-        return colors[Math.floor(Math.random()*colors.length)];
-    }
-    else{
-        return `rgb(
-            ${Math.floor(Math.random()*255)},
-            ${Math.floor(Math.random()*255)},
-            ${Math.floor(Math.random()*255)}
-        )`
-    }
-}
+export const randomColor=(colors)=>colors?colors[Math.floor(Math.random()*colors.length)]:`rgb(
+    ${Math.floor(Math.random()*255)},
+    ${Math.floor(Math.random()*255)},
+    ${Math.floor(Math.random()*255)}
+)`;
 
 export const replaceAt=(index=0,replaceValue="",targetString="")=>targetString.substr(0,index-1)+replaceValue+targetString.substr(index+1,targetString.length);
 
