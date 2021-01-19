@@ -1,16 +1,20 @@
 .backbutton{
     position:absolute;
+    display:flex;
+    justify-content:center;
+    align-items:center;
     top:3rem;
     left:1.5rem;
-    width:fit-content;
+    width:1rem;
+    height:1rem;
+    background-color:transparent;
+    border-radius:50%;
     opacity:0.85;
-    padding:5px;
+    padding:10px;
     z-index:15;
 }
 .backbtn{
-    display:inline;
-    vertical-align:center;
-    max-width:1rem;
+    max-width:100%;
 }
 
 @media(any-hover){

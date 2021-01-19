@@ -1,6 +1,7 @@
 import {} from "vanilla";
 import css from "./Discover.module.css";
 import {TrendingList,ShowList,Navigator,Loader} from "components";
+import data from "./Genres.json";
 import * as H from "./Hooks";
 import {shuffle} from "afile";
 
@@ -26,7 +27,7 @@ export default function Discover(props){
             setDiscover(discover,content);
         },500+Math.random()*500);
     }else{
-        H.useShowsByGenres(({trends,genres})=>{
+        H.useShowsByGenres(data.genres,({trends,genres})=>{
             loader.remove();
             setDiscover(discover,{trends,genres});
         });

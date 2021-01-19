@@ -1,5 +1,5 @@
 import {apikey,Show,File} from "estate";
-import {FetchAlert} from "components";
+import {WarnAlert} from "components";
 
 
 export const useDetails=({id,type},onFulfilled=()=>{},onRejected=()=>{})=>{
@@ -14,15 +14,15 @@ export const useDetails=({id,type},onFulfilled=()=>{},onRejected=()=>{})=>{
     }).
     then(async ()=>{
         const response=await fetch(`https://api.themoviedb.org/3/${type}/${id}/recommendations?api_key=${apikey}&language=en-US&page=1`);
-        const result=await response.json();
-        data.recos=result.results.map(show=>new Show(show));
+        const {results}=await response.json();
+        data.recos=(results&&results.length)?results.map(show=>new Show(show)):null;
         onFulfilled(data);
     }).
     catch((error)=>{
-        FetchAlert({
+        WarnAlert({
             parent:app,
             message:error.message,
-            onConfirm:()=>{useDetails({id,type},onFulfilled)},
+            onProceed:()=>{useDetails({id,type},onFulfilled)},
         });
         onRejected(error);
     });

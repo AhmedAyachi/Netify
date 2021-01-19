@@ -15,20 +15,17 @@ export default function ShowList(props){
             ${withMore?`<div class="${css.col1}"></div>`:""}
         </div>
     `;
-
-    setShows(data.shows,showlist);
-
-    return showlist;
-}
-
-const setShows=(shows,showlist)=>{
-    const col0=showlist.querySelector(`.${css.col0}`),col1=showlist.querySelector(`.${css.col1}`);
+    const col0=showlist.querySelector(`.${css.col0}`),{shows}=data;
     if(shows&&shows.length){
-        shows.forEach(show=>{
-            ShowCard({parent:col0,show});
-        });
-        if(col1){
+        shows.forEach(show=>{ShowCard({parent:col0,show})});
+        if(withMore){
+            const col1=showlist.querySelector(`.${css.col1}`);
             col1.innerHTML="More";
+            col1.onclick=()=>{
+                history.push(`#genres#${data.id.replace(",","_")}`);
+            }
         }
     }
+
+    return showlist;
 }

@@ -1,20 +1,19 @@
 import {apikey,Show} from "estate";
 import {WarnAlert} from "components";
 import {shuffle} from "afile";
-import data from "./Genres.json";
 
 
-export async function useShowsByGenres(onFulfilled=()=>{}){
-    const {genres}=data,{length}=genres,discover={genres};
+export async function useShowsByGenres(genres,onFulfilled=()=>{}){
+    const {length}=genres,discover={genres};
     let i=0;
     try{
         useDayTrending(trends=>{
             discover.trends=trends;
             !function setGenreShows(){
                 const genre=genres[i];
-                useShowsByGenre(genre.id,(shows)=>{
+                useShowsByGenre({id:genre.id},(shows)=>{
                     genre.shows=shows;
-                    if(i>=length-1){
+                    if(i>=(length-1)){
                         store.show.discover=discover;
                         onFulfilled(discover);
                     }
@@ -45,10 +44,10 @@ export const useDayTrending=(onFulfilled=()=>{})=>{
     });
 }
 
-const useShowsByGenre=(id,onFulfilled=()=>{})=>{
-    const fetchs=["movie","tv"].map(type=>id?
-        fetch(`https://api.themoviedb.org/3/discover/${type}?api_key=${apikey}&language=en&with_genres=${id}&without_genres=16&&vote_average.gte=6`):
-        fetch(`https://api.themoviedb.org/3/${type}/popular?api_key=${apikey}&without_genres=16&language=en`)
+export const useShowsByGenre=({id,page=1},onFulfilled=()=>{})=>{
+    const fetchs=["movie","tv"].map(type=>id!=="p"?
+        fetch(`https://api.themoviedb.org/3/discover/${type}?api_key=${apikey}&page=${page}&language=en&with_genres=${id}&without_genres=16&&vote_average.gte=6`):
+        fetch(`https://api.themoviedb.org/3/${type}/popular?api_key=${apikey}&page=${page}&language=en&without_genres=16`)
     );
     Promise.all(fetchs).
     then(responses=>responses.map(response=>response.json())).

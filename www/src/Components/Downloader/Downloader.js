@@ -37,6 +37,7 @@ export default function Downloader(props){
             }
             transfer.download(url,`${folder.nativeURL}/${name}`,()=>{
                 downloader.unmount();
+                navigator.notification.beep();
             },(error)=>{
                 const errorEl=downloader.querySelector(`.${css.error}`);
                 errorEl.innerText="Download error occurred";

@@ -24,7 +24,7 @@ export default function ShowDetails(props){
         H.useDetails(showid,({details,recos})=>{
             loader.remove();
             ShowSlide({parent:row0,style:"height:90%;",show:details});
-            recos&&recos.length&&ShowList({
+            ShowList({
                 parent:row0,
                 data:{title:"Recommendations",shows:recos},
                 style:`

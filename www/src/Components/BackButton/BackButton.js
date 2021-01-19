@@ -4,8 +4,8 @@ import {arrowpoint} from "assets";
 
 
 export default function BackButton(props={}){
-    const {parent=window.appcontent,ref=useRef("backbutton")}=props;
-    parent.insertAdjacentHTML("beforeend",`<div id="${ref}" class="${css.backbutton}"></div>`);
+    const {parent=window.appcontent,ref=useRef("backbutton"),style}=props;
+    parent.insertAdjacentHTML("beforeend",`<div id="${ref}" class="${css.backbutton}" style="${style}"></div>`);
     const backbutton=parent.querySelector(`#${ref}`);
 
     backbutton.innerHTML=`
