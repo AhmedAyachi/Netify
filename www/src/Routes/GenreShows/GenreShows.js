@@ -1,7 +1,7 @@
 import {useRef} from "vanilla";
 import css from "./GenreShows.module.css";
 import data from "../Home/Discover/Genres.json";
-import{ShowCard,BackButton,ShowGrid} from "components";
+import{ShowCard,BackButton,ShowGrid,Loader} from "components";
 import {useShowsByGenre} from "../Home/Discover/Hooks";
 
 
@@ -20,19 +20,23 @@ export default function GenreShows(props){
         <div class="${css.row0}"></div>
     `;
     BackButton({style:styles.backbutton});
-    
     const row0=genreshows.querySelector(`.${css.row0}`);
-    ShowGrid({
-        parent:row0,shows,
-        onBottom:({showgrid,loader})=>{
-            state.page++;
-            useShowsByGenre({id:state.genre.id,page:state.page},(shows)=>{
-                loader.remove();
-                shows&&shows.length&&shows.forEach(show=>{ShowCard({parent:showgrid,show})});
-                showgrid.setScroll();
-            });
-        },
-    });
+    const loader=Loader({parent:row0,style:"position:fixed;"});
+    
+    setTimeout(()=>{
+        loader.remove();
+        ShowGrid({
+            parent:row0,shows,
+            onBottom:({showgrid,loader})=>{
+                state.page++;
+                (state.page<500)&&useShowsByGenre({id:state.genre.id,page:state.page},(shows)=>{
+                    loader.remove();
+                    shows&&shows.length&&shows.forEach(show=>{ShowCard({parent:showgrid,show})});
+                    showgrid.setScroll();
+                });
+            },
+        });
+    },1000);
 
 }
 

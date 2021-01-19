@@ -16,7 +16,7 @@
 }
 .activebtn{
     color:#cc0000;
-    text-decoration:underline;
+    border-bottom:1px solid #cc0000;
 }
 .row1{
     display:block;
@@ -26,6 +26,5 @@
     .sectiontitle:hover{
         cursor:pointer;
         filter:brightness(0.65);
-        text-decoration:underline;
     }
 }

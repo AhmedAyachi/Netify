@@ -10,9 +10,13 @@ export default function ShowGrid(props){
 
     showgrid.innerHTML=`
     `;
-    
     if(shows&&shows.length){
         shows.forEach(show=>{ShowCard({parent:showgrid,show})});
+    }
+
+    if(document.body.offsetHeight<=window.innerHeight){
+        const loader=Loader({parent:showgrid,style:"position:fixed;"});
+        onBottom&&onBottom({showgrid,loader});
     }
 
     const onReachBottom=()=>{
@@ -32,10 +36,8 @@ export default function ShowGrid(props){
         }
     };
     showgrid.setScroll=(value=true)=>{
-       window.removeEventListener("scroll",onReachBottom);
-       if(value){
-           window.addEventListener("scroll",onReachBottom);
-       }
+        window.removeEventListener("scroll",onReachBottom);
+        value&&window.addEventListener("scroll",onReachBottom);
     }
     return showgrid;
 }

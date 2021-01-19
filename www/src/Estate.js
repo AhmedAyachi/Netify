@@ -31,9 +31,9 @@ export class Show{
             seasons:props.seasons?props.seasons.reverse():null,
             episodeRuntime:props.episode_run_time&&props.episode_run_time.length?props.episode_run_time.reduce((f,n)=>f+n)/props.episode_run_time.length:null,
         });
-        if(props.backdrop_path){
-            this.backdrop_path=`https://image.tmdb.org/t/p/w1920_and_h800_multi_faces/${this.backdrop_path}`;  
-        }
+        //if(props.backdrop_path){
+        this.backdrop_path=props.backdrop_path?`https://image.tmdb.org/t/p/w1920_and_h800_multi_faces/${props.backdrop_path}`:defaultcover;  
+        //}
         this.keywords=this.title+this.original_title+this.overview;
         if(this.production_companies){
             this.production_companies.forEach(company=>{
