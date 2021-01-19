@@ -14,7 +14,7 @@ export default function Overviewer(props){
         <ul class="${css.list}">
             <li class="${css.rating}"></li>
             ${show.tagline?`<li class="${css.tagline}">${show.tagline}</li>`:""}
-            <li>${show.release_date?getFormatedDate(show.release_date):""} | ${show.genres.map(genre=>genre.name).join(", ")}</li>
+            <li>${show.release_date?getFormatedDate(show.release_date):""} | ${""/*show.genres.map(genre=>genre.name).join(", ")*/}</li>
             <li>${getDuration(show)}</li>
         </ul>
         <div class="${css.overview}">${show.overview}</div>

@@ -60,6 +60,7 @@ export default function SearchList(props){
             value=value.trim();
             const index=state.search.indexOf(value);
             state.search.splice(index,1);
+            H.saveSearch(state.search||"");
         }
     }
 

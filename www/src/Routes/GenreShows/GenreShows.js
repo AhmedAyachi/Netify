@@ -27,14 +27,8 @@ export default function GenreShows(props){
         loader.remove();
         ShowGrid({
             parent:row0,shows,
-            onBottom:({showgrid,loader})=>{
-                state.page++;
-                (state.page<500)&&useShowsByGenre({id:state.genre.id,page:state.page},(shows)=>{
-                    loader.remove();
-                    shows&&shows.length&&shows.forEach(show=>{ShowCard({parent:showgrid,show})});
-                    showgrid.setScroll();
-                });
-            },
+            onMounted:(showgrid)=>{onGridMounted(showgrid,state)},
+            onBottom:(showgrid)=>{onToBottomSroll(showgrid,state)},
         });
     },1000);
 
@@ -49,3 +43,23 @@ const styles={
         background-color:#0f0f0f;
     `,
 };
+
+const onGridMounted=(showgrid,state)=>{
+    const {innerHeight}=window,{offsetHeight}=document.body;
+    if(offsetHeight<=innerHeight){
+        onToBottomSroll(showgrid,state,()=>{onGridMounted(showgrid,state)});
+    }
+}
+
+const onToBottomSroll=(showgrid,state,then)=>{
+    if(state.page<500){
+        const loader=Loader({parent:showgrid,style:"position:relative;margin:5px;"});
+        state.page++;
+        useShowsByGenre({id:state.genre.id,page:state.page},(shows)=>{
+            loader.remove();
+            shows&&shows.length&&shows.forEach(show=>{ShowCard({parent:showgrid,show})});
+            showgrid.setScroll();
+            then&&then();
+        });
+    }
+}

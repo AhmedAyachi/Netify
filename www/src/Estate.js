@@ -24,7 +24,7 @@ export class Show{
         Object.assign(this,{...props,
             title:props.title||props.name,
             original_title:props.original_title||props.original_name,
-            vote_average:props.vote_average/10,
+            vote_average:props.vote_average?props.vote_average/10:0,
             type:props.release_date?"movie":"tv",
             release_date:props.release_date||props.first_air_date,
             poster_path:props.poster_path?`https://image.tmdb.org/t/p/w500/${props.poster_path}`:defaultcover,

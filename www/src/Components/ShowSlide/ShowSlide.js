@@ -23,7 +23,6 @@ export default function ShowSlide(props){
         </div>
     `;
     Overviewer({parent:showslide.querySelector(`.${css.row1}`),show});
-    
     H.useVideos(show,(videos)=>{setVideos(showslide,videos)});
 
     const addtowlbtn=showslide.querySelector(`.${css.watchlistbtn}`);

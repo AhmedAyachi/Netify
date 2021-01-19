@@ -1,10 +1,10 @@
 import {useRef} from "vanilla";
 import css from "./ShowGrid.module.css";
-import {Loader,ShowCard} from "components";
+import {ShowCard} from "components";
 
 
 export default function ShowGrid(props){
-    const {parent,ref=useRef("showgrid"),shows,onBottom}=props;
+    const {parent,ref=useRef("showgrid"),shows,onMounted,onBottom}=props;
     parent.insertAdjacentHTML("beforeend",`<div id="${ref}" class="${css.showgrid}"></div>`);
     const showgrid=store.elements.showgrid=parent.querySelector(`#${ref}`);
 
@@ -13,31 +13,27 @@ export default function ShowGrid(props){
     if(shows&&shows.length){
         shows.forEach(show=>{ShowCard({parent:showgrid,show})});
     }
+    onMounted&&onMounted(showgrid);
 
-    if(document.body.offsetHeight<=window.innerHeight){
-        const loader=Loader({parent:showgrid,style:"position:fixed;"});
-        onBottom&&onBottom({showgrid,loader});
-    }
-
-    const onReachBottom=()=>{
-        const {scrollY,innerHeight}=window,{offsetHeight}=document.body;
-        if((scrollY+innerHeight>=offsetHeight*0.95)){
-            const loader=Loader({parent:showgrid,style:"position:relative;margin:5px;"});
-            window.removeEventListener("scroll",onReachBottom);
-            onBottom&&onBottom({showgrid,loader});
-        };
-    }
-    window.addEventListener("scroll",onReachBottom);
-
-    showgrid.setShows=(shows)=>{
-        if(shows&&shows.length){
-            showgrid.innerHTML="";
-            shows.forEach(show=>{ShowCard({parent:showgrid,show})});
+    if(onBottom){
+        const onReachBottom=()=>{
+            const {scrollY,innerHeight}=window,{offsetHeight}=document.body;
+            if((scrollY+innerHeight)>=offsetHeight*0.95){
+                window.removeEventListener("scroll",onReachBottom);
+                onBottom(showgrid);
+            };
         }
-    };
-    showgrid.setScroll=(value=true)=>{
-        window.removeEventListener("scroll",onReachBottom);
-        value&&window.addEventListener("scroll",onReachBottom);
+        window.addEventListener("scroll",onReachBottom);
+    
+        showgrid.setScroll=(value=true)=>{
+            window.removeEventListener("scroll",onReachBottom);
+            value&&window.addEventListener("scroll",onReachBottom);
+        }
     }
+    
+    showgrid.setShows=(shows)=>{
+        showgrid.innerHTML="";
+        shows&&shows.lengthshows.forEach(show=>{ShowCard({parent:showgrid,show})});
+    };
     return showgrid;
 }

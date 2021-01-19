@@ -19,10 +19,7 @@ export default function ImageBox(props){
     `;
 
     const expandbtn=imagebox.querySelector(`#expand.${css.icon}`);
-    expandbtn.onclick=()=>{
-        console.log("expand"),
-        FullViewer({parent:app,url:image.path});
-    }
+    expandbtn.onclick=()=>{FullViewer({parent:app,url:image.path})};
 
     const downloadbtn=imagebox.querySelector(`#download.${css.icon}`);
     downloadbtn.onclick=()=>{

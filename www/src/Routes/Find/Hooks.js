@@ -16,7 +16,7 @@ export const useTitle=(title="",then)=>{
         return shows;
     }).
     then(data=>{
-        const shows=data.map(show=>new Show(show));
+        const shows=data.filter(show=>show.vote_count>100).map(show=>new Show(show));
         if(then){
             then(shows);
         }
