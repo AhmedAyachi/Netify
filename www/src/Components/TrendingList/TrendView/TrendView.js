@@ -14,7 +14,7 @@ export default function TrendView(props){
         </div>
     `;
     trendview.onclick=()=>{
-        history.replace(`#${show.type[0]}${show.id}`);
+        history.replace(`#shows#${show.type[0]}${show.id}`);
     }
 
     return trendview;

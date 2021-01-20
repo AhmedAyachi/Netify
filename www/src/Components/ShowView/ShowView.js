@@ -21,7 +21,7 @@ export default function ShowView(props){
     RateStars({parent:showview.querySelector(`.${css.col1}`),rate:show.vote_average});
     
     showview.onclick=()=>{
-        history.replace(`#${show.type[0]}${show.id}`);
+        history.replace(`#shows#${show.type[0]}${show.id}`);
     }
 }
 

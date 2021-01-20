@@ -16,6 +16,9 @@ const Reducer={
     elements:{},
     sessiontoken,
     isguest:JSON.parse(isguest),
+    settings:{
+        datasaver:false,
+    },
 }
 
 export default Reducer;

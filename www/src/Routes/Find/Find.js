@@ -58,9 +58,16 @@ const styles={
 const findShows=(value,row1,state)=>{
     const loader=Loader({parent:row1,style:"position:absolute"});
     H.useTitle(value.trim(),shows=>{
-        state.shows=shows&&shows.length?shows:null;
-        loader.remove();
-        setShowsCards(shows,row1);
+        if(shows&&shows.length){
+            state.shows=shows
+            loader.remove();
+            setShowsCards(shows,row1);
+        }
+        else{
+            state.shows=null;
+            row1.innerHTML=`<span class="${css.noshows}">No shows found</span>`;
+        }
+        
     });
 }
 

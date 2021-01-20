@@ -8,7 +8,7 @@ import Discover from "../Discover/Discover";
 
 export default function Login(props){
     const {parent}=props;
-    parent.insertAdjacentHTML("beforeend",`<div class="${css.login}" style="${styles.find}"></div>`);
+    parent.insertAdjacentHTML("beforeend",`<div class="${css.login}"></div>`);
     const login=parent.querySelector(`.${css.login}`);
     const refs={
         inputfields:["username","password"].map(prop=>useRef(prop)),
@@ -70,12 +70,6 @@ export default function Login(props){
 
     }*/
 }
-
-const styles={
-    find:`
-        padding-top:${cordova.platformId!=="browser"?"3rem":"0"};
-    `,
-};
 
 
 const logincode=(account,password,type)=>`{

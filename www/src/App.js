@@ -23,7 +23,7 @@ export default function App(props){
         {component:Find,path:"#find"},
         {component:WatchList,path:"#watchlist"},
         {component:null,path:"#settings"},
-        {component:ShowDetails,path:"#:typeid"},
+        {component:ShowDetails,path:"#shows#:typeid"},
         {component:GenreShows,path:"#genres#:id"},
     ]);
 
