@@ -1,0 +1,55 @@
+.profile{
+    font-size:1rem;
+    color:white;
+    padding-top:2.5rem;
+}
+.row0{
+    text-align:center;
+}
+.row1{
+    text-align:left;
+    padding:10px 0;
+}
+.profileimage{
+    display:inline-block;
+    width:15em;
+    height:15em;
+    border-radius:50%;
+    background-position:center;
+    background-repeat:no-repeat;
+    background-size:cover;
+    /*border-bottom:3px solid #cc0000;*/
+}
+.username{
+    font-family:fredokaone;
+    font-weight:lighter;
+    font-size:2.5em;
+    color:#cc0000;
+    margin:10px 0;
+}
+.seticon{
+    max-width:1.5em;
+    margin-right:10px;
+}
+.row1>ul{
+    margin:10px 0;
+}
+.listitle{
+    font-family:ubuntu;
+    font-size:1.75em;
+    color:#cc0000;
+    opacity:0.6;
+    margin-bottom:10px;
+    padding:0 15px;
+}
+.set{
+    display:flex;
+    align-items:center;
+    text-align:left;
+    font-family:Arial, Helvetica, sans-serif;
+    font-size:1.25em;
+    /*background-color:rgba(255, 255, 255, 0.1);*/
+    padding:0.5em 10px;
+    margin:5px 0;
+}
+

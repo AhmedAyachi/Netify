@@ -1,4 +1,4 @@
-import {defaultcover} from "assets";
+import {defaultcover,applogo} from "assets";
 
 
 export const apikey="aae71d5d8af4086bbd44a5c4602200a5";
@@ -8,6 +8,15 @@ export const bottoken="1488125893:AAE0f-kShsXSVQUqnZWKzQ9IoqgT_tJ9wwo";
 export const netlixgroupid="465525889";
 
 
+export class User{
+    constructor(props={}){
+        Object.assign(this,{...props,
+            photo:props.photopath||applogo,
+            name:props.name,
+            username:props.name,
+        });
+    }
+}
 
 const months=["January","February","March","April","May","June","July","August","September","October","November","December"];
 export const getFormatedDate=(date="")=>{

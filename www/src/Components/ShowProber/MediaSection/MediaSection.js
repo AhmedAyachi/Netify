@@ -22,10 +22,8 @@ export default function MediaSection(props){
             mediasection.scrollIntoView({block:"start",behavior:"smooth"});
         }
         else{
-            row0.innerHTML=`<span class="${css.nomedia}">No media yet</span>`;
+            row0.innerHTML=`<span class="${css.nomedia}">No media found</span>`;
         }
     });
     return mediasection;
 }
-
-//https://www.themoviedb.org/video/play?key=yzXglr5bc3w

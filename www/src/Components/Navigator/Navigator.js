@@ -1,7 +1,6 @@
 import {map,useRef} from "vanilla";
 import css from "./Navigator.module.css";
 import {home2,zoom3,list1,defaultcover} from "assets";
-import {fadeIn} from "afile";
 
 
 export default function Navigator(props={}){
@@ -10,20 +9,20 @@ export default function Navigator(props={}){
     const navigator=parent.querySelector(`#${ref}`);
     const state={
         activeicon:null,
-    }
+    },{user}=store;
 
     navigator.innerHTML=`
         ${map(icons,icon=>`
             <img id="${icon.id}" alt="${icon.alt}" class="${css.icon}" src="${icon.src}"/>
         `)}
-        <div id="settings" class="${css.icon}">
-            <img alt="settings" src="${defaultcover}" class="${css.usericon}"/>
+        <div id="toprofile" class="${css.icon}">
+            <img alt="profile" src="${user.photo}" class="${css.profileimage}"/>
         </div>
     `;
 
     const imgs=[...navigator.querySelectorAll(`.${css.icon}`)];
     imgs.forEach((img,i)=>{
-        img.hash=i<icons.length?icons[i].hash:"#settings";
+        img.hash=i<icons.length?icons[i].hash:"#profile";
         img.active=false;
         img.onclick=()=>{
             history.replace(img.hash);
@@ -63,5 +62,5 @@ const styles={
 const icons=[
     {id:"tohome",alt:"Home",src:home2,hash:""},
     {id:"tosearch",alt:"Find",src:zoom3,hash:"#find"},
-    {id:"tofavourites",alt:"Favourites",src:list1,hash:"#watchlist"},
+    {id:"towatchlist",alt:"Favourites",src:list1,hash:"#watchlist"},
 ];

@@ -46,7 +46,7 @@ export default function Login(props){
     login.querySelector(`.${css.skipbtn}`).onclick=()=>{
         WarnAlert({
             parent:login,
-            message:"If you skip loggin in, data will be stored on the device",
+            message:"If you skip loggin in, some additional data will be stored on the device",
             onProceed:()=>{
                 setIsguest();
                 appcontent.innerHTML="";

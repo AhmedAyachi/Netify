@@ -1,4 +1,5 @@
 import {ShowReducer} from "./Reducers";
+import {User} from "estate";
 
 //localStorage.clear();
 const sessiontoken=localStorage.getItem("sessiontoken");
@@ -11,12 +12,12 @@ if(!isguest){
 }
 
 const Reducer={
-    show:ShowReducer,
-    loading:false,
-    elements:{},
     sessiontoken,
     isguest:JSON.parse(isguest),
-    settings:{
+    show:ShowReducer,
+    elements:{},
+    user:new User({name:"Ahmed Ayachi"}),
+    preferences:{
         datasaver:false,
     },
 }

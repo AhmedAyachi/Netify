@@ -1,5 +1,9 @@
 
 //Images:
+export {default as photomedia0} from "./Images/Photomedia_0.png";
+export {default as door0} from "./Images/Door_0.png";
+export {default as donwload1} from "./Images/Download_1.png";
+export {default as datasaver0} from "./Images/Datasaver_0.png";
 export {default as applogo} from "./Images/AppLogo.png";
 export {default as border0} from "./Images/Border_0.png";
 export {default as zoom0} from "./Images/Zoom_0.png";
