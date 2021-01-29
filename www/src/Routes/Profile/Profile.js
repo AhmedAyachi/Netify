@@ -20,7 +20,10 @@ export default function Profile(props){
                     <li class="${css.listitle}">${title}</li>
                     ${map(items,({name,icon,key})=>`
                         <li ${key?`key="${key}"`:""} class="${css.set}">
-                            <img alt="" class="${css.seticon}" src="${icon}"/>
+                            <div class="${css.seticon}">
+                                <img alt="" src="${icon}"/>
+                            </div>
+                            <!--<img alt="" class="${css.seticon}" src="${icon}"/>-->
                             <span class="${css.setname}">${capitalize(name)}</span>
                         </li>
                     `)}
@@ -41,6 +44,9 @@ export default function Profile(props){
 const styles={
     profileimage:(image)=>`
         background-image:url('${image}');
+    `,
+    seticon:(icon)=>`
+        background-image:url('${icon}');
     `,
 }
 
