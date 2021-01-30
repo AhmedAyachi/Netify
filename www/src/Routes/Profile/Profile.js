@@ -1,5 +1,6 @@
 import {map,useRef} from "vanilla";
 import css from "./Profile.module.css";
+import {PopupTextArea} from "components";
 import {message0,warn0,datasaver0,photomedia0,sleep0} from "assets";
 
 
@@ -22,7 +23,6 @@ export default function Profile(props){
                             <div class="${css.seticon}">
                                 <img alt="" src="${icon}"/>
                             </div>
-                            <!--<img alt="" class="${css.seticon}" src="${icon}"/>-->
                             <span class="${css.setname}">${name}</span>
                         </li>
                     `)}
@@ -31,11 +31,19 @@ export default function Profile(props){
         </div>
     `;
 
-    const sets=profile.querySelectorAll(`.${css.row1} #Preferences .${css.set}[key]`);
-    sets.forEach(setEl=>{
+    const prefsets=profile.querySelectorAll(`.${css.row1} #preferences .${css.set}[key]`);
+    prefsets.forEach(setEl=>{
         const key=setEl.getAttribute("key");
         setEl.onclick=()=>{
             history.push(`#${key}`);
+        }
+    });
+
+    const repsets=profile.querySelectorAll(`.${css.row1} #account .${css.set}[key]`);
+    repsets.forEach(setEl=>{
+        const key=setEl.getAttribute("key");
+        setEl.onclick=()=>{
+            PopupTextArea({parent:appcontent,title:key,placeholder:"Write your message here..."});
         }
     });
 }
@@ -51,18 +59,18 @@ const styles={
 
 const lists=[
     {
-        title:"Preferences",
+        title:"preferences",
         items:[
             {name:"Data Saver",icon:datasaver0,key:"datasaver"},
             {name:"Photo & Media",icon:photomedia0,key:"photomedia"},
         ],
     },
     {
-        title:"Account",
+        title:"account",
         items:[
             {name:"Log Out",icon:sleep0},
-            {name:"Report Technical Problem",icon:warn0},
-            {name:"Send Feedback",icon:message0},
+            {name:"Report Technical Problem",icon:warn0,key:"Report"},
+            {name:"Send Feedback",icon:message0,key:"Feedback"},
         ],
     },
 ];

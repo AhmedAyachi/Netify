@@ -15,6 +15,7 @@ export {default as ShowGrid} from "./ShowGrid/ShowGrid";
 export {default as ShowCard} from "./ShowCard/ShowCard";
 export {default as ShowRow} from "./ShowRow/ShowRow";
 export {default as ShowSlide} from "./ShowSlide/ShowSlide";
+export {default as PopupTextArea} from "./PopupTextArea/PopupTextArea";
 export {default as ShowView} from "./ShowView/ShowView";
 export {default as ShowProber} from "./ShowProber/ShowProber";
 export {default as CreditSection} from "./ShowProber/CreditSection/CreditSection";
