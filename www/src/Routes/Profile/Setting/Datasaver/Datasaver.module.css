@@ -1,0 +1,30 @@
+.datasaver{
+    font-size:1rem;
+}
+.datasaver>ul{
+    list-style:none;
+    margin:5px 0;
+}
+.datasaver>ul li{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin:10px;
+    padding:0 15px;
+    font-family:Arial, Helvetica, sans-serif;
+    font-size:1.5em;
+}
+.status{
+    letter-spacing:0.1em;
+}
+.switcher{
+    max-width:4em;
+}
+.description{
+    font-family:Arial, Helvetica, sans-serif;
+    font-size:1em;
+    color:white;
+    opacity:0.5;
+    margin:10px 0;
+    padding:0 5px;
+}

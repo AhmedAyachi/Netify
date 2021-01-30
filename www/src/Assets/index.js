@@ -47,12 +47,16 @@ export {default as popcorn0} from "./Images/PopCorn_0.png";
 export {default as settings0} from "./Images/Settings_0.png";
 export {default as home1} from "./Images/Home_1.png";
 export {default as heart0} from "./Images/Heart_0.png";
+export {default as switchoff0} from "./Images/SwitchOff_0.png";
+export {default as switchon0} from "./Images/SwitchOn_0.png";
 
 //Gifs:
 export {default as netflixentry} from "./Gifs/Netflix_0.gif";
 export {default as loadinganim} from "./Gifs/Loading_2.gif";
 export {default as check2} from "./Gifs/Check_2.gif";
 export {default as check2reversed} from "./Gifs/Check_2_reversed.gif";
+export {default as switch0} from "./Gifs/Switcher_0.gif";
+export {default as switch0reversed} from "./Gifs/Switcher_0_reversed.gif";
 
 
 //videos:

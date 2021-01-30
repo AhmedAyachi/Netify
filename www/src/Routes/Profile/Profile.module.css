@@ -29,6 +29,7 @@
 }
 .row1>ul{
     margin:10px 0;
+    list-style:none;
 }
 .listitle{
     font-family:ubuntu;

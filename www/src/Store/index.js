@@ -17,7 +17,7 @@ const Reducer={
     show:ShowReducer,
     elements:{},
     user:new User({name:"Ahmed Ayachi"}),
-    preferences:{
+    prefs:{
         datasaver:false,
     },
 }

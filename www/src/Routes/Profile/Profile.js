@@ -36,7 +36,7 @@ export default function Profile(props){
     sets.forEach(setEl=>{
         const key=setEl.getAttribute("key");
         setEl.onclick=()=>{
-            history.replace(`#profile#${key}`);
+            history.push(`#${key}`);
         }
     });
 }
