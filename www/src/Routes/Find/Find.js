@@ -12,12 +12,12 @@ export default function Find(props){
     const find=parent.querySelector(`#find.${css.find}`);
     const state=find.state={
         shows:null,
-    }
+    },showStore=store.show,{searchvalue}=showStore;
 
     find.innerHTML=`
         <div class="${css.row0}"></div>
         <div class="${css.row1}">
-            <img alt="" class="${css.applogo}" src="${netifylogo}"/>
+            ${!searchvalue?`<img alt="" class="${css.applogo}" src="${netifylogo}"/>`:""}
         </div>
     `;
     const row1=find.querySelector(`.${css.row1}`);
@@ -38,7 +38,6 @@ export default function Find(props){
         },
     });
     const {input}=header;
-    const showStore=store.show,{searchvalue}=showStore;
     if(searchvalue){
         input.value=searchvalue;
         findShows(searchvalue,row1,state);

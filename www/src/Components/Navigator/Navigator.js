@@ -34,13 +34,16 @@ export default function Navigator(props={}){
 
 
     const onHashChange=()=>{
-        if(state.activeicon){
-            state.activeicon.className=css.icon;
-            state.activeicon.active=false;
+        const nexticon=imgs.find(img=>location.hash?img.hash&&location.hash.startsWith(img.hash):!img.hash);
+        if(nexticon){
+            if(state.activeicon){
+                state.activeicon.className=css.icon;
+                state.activeicon.active=false;
+            }
+            nexticon.active=true;
+            nexticon.className+=` ${css.active}`;
+            state.activeicon=nexticon;
         }
-        state.activeicon=imgs.find((img,i)=>img.hash&&location.hash.startsWith(img.hash))||imgs[0];
-        state.activeicon.active=true;
-        state.activeicon.className+=` ${css.active}`;
     }
     window.addEventListener("hashchange",onHashChange);
 

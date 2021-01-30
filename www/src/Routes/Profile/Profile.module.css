@@ -45,9 +45,9 @@
     text-align:left;
     font-family:Arial, Helvetica, sans-serif;
     font-size:1.25em;
-    background-color:rgba(255, 255, 255, 0.1);
     padding:0.5em 10px;
     margin:5px 0;
+    transition:0.3s;
 }
 .seticon{
     display:flex;
@@ -62,5 +62,17 @@
     overflow:hidden;
 }
 .seticon>img{
-    max-width:100%;
+    max-width:80%;
+}
+
+@media(any-hover){
+    .set:hover{
+        background-color:rgba(255, 255, 255, 0.1);
+    }
+}
+
+@media(hover:none){
+    .set:active{
+        background-color:rgba(255, 255, 255, 0.1);
+    }
 }

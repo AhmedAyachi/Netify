@@ -19,6 +19,7 @@ const Reducer={
     user:new User({name:"Ahmed Ayachi"}),
     prefs:{
         datasaver:false,
+        highqualitydownload:true,
     },
 }
 

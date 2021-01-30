@@ -5,7 +5,7 @@ export const apikey="aae71d5d8af4086bbd44a5c4602200a5";
 export const guestsessionid="658c6fe570030590b466e8161795e685";
 
 export const bottoken="1488125893:AAE0f-kShsXSVQUqnZWKzQ9IoqgT_tJ9wwo";
-export const netlixgroupid="465525889";
+export const netifygroupid="465525889";
 
 
 export class User{

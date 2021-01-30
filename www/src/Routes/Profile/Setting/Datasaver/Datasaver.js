@@ -15,7 +15,7 @@ export default function Datasaver(props){
                 <img class="${css.switcher}" alt="switcher" src="${prefs.datasaver?switchon0:switchoff0}"/>
             </li>
         </ul>
-        <p class="${css.description}">When On, shows'posters and backdrops will be displayed in lower quality to save data.</p>
+        <p class="${css.description}">When On, shows' posters and backdrops will be displayed in lower quality to save data.</p>
     `;
 
     const switcher=datasaver.querySelector(`.${css.switcher}`);

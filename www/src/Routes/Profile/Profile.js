@@ -1,7 +1,6 @@
 import {map,useRef} from "vanilla";
 import css from "./Profile.module.css";
-import {capitalize} from "afile";
-import {datasaver0,photomedia0,door0} from "assets";
+import {message0,warn0,datasaver0,photomedia0,sleep0} from "assets";
 
 
 export default function Profile(props){
@@ -16,7 +15,7 @@ export default function Profile(props){
         </div>
         <div class="${css.row1}">
             ${map(lists,({title,items})=>`
-                <ul>
+                <ul id="${title}">
                     <li class="${css.listitle}">${title}</li>
                     ${map(items,({name,icon,key})=>`
                         <li ${key?`key="${key}"`:""} class="${css.set}">
@@ -24,7 +23,7 @@ export default function Profile(props){
                                 <img alt="" src="${icon}"/>
                             </div>
                             <!--<img alt="" class="${css.seticon}" src="${icon}"/>-->
-                            <span class="${css.setname}">${capitalize(name)}</span>
+                            <span class="${css.setname}">${name}</span>
                         </li>
                     `)}
                 </ul>
@@ -32,7 +31,7 @@ export default function Profile(props){
         </div>
     `;
 
-    const sets=profile.querySelectorAll(`.${css.row1} .${css.set}[key]`);
+    const sets=profile.querySelectorAll(`.${css.row1} #Preferences .${css.set}[key]`);
     sets.forEach(setEl=>{
         const key=setEl.getAttribute("key");
         setEl.onclick=()=>{
@@ -54,14 +53,16 @@ const lists=[
     {
         title:"Preferences",
         items:[
-            {name:"data saver",icon:datasaver0,key:"datasaver"},
-            {name:"Photo & media",icon:photomedia0,key:"photomedia"},
+            {name:"Data Saver",icon:datasaver0,key:"datasaver"},
+            {name:"Photo & Media",icon:photomedia0,key:"photomedia"},
         ],
     },
     {
         title:"Account",
         items:[
-            {name:"Log out",icon:door0},
+            {name:"Log Out",icon:sleep0},
+            {name:"Report Technical Problem",icon:warn0},
+            {name:"Send Feedback",icon:message0},
         ],
     },
 ];

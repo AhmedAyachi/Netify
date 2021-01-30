@@ -1,8 +1,6 @@
 
 //Images:
 export {default as photomedia0} from "./Images/Photomedia_0.png";
-export {default as door0} from "./Images/Door_0.png";
-export {default as donwload1} from "./Images/Download_1.png";
 export {default as datasaver0} from "./Images/Datasaver_0.png";
 export {default as applogo} from "./Images/AppLogo.png";
 export {default as border0} from "./Images/Border_0.png";
@@ -49,6 +47,9 @@ export {default as home1} from "./Images/Home_1.png";
 export {default as heart0} from "./Images/Heart_0.png";
 export {default as switchoff0} from "./Images/SwitchOff_0.png";
 export {default as switchon0} from "./Images/SwitchOn_0.png";
+export {default as message0} from "./Images/Message_0.png";
+export {default as warn0} from "./Images/Warn_0.png";
+export {default as sleep0} from "./Images/Sleep_0.png";
 
 //Gifs:
 export {default as netflixentry} from "./Gifs/Netflix_0.gif";
