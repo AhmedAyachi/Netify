@@ -1,7 +1,8 @@
 import {map,useRef} from "vanilla";
 import css from "./Profile.module.css";
-import {PopupTextArea} from "components";
+import {PopupTextArea,Loader} from "components";
 import {message0,warn0,datasaver0,photomedia0,sleep0} from "assets";
+import * as H from "./Hooks";
 
 
 export default function Profile(props){
@@ -43,7 +44,18 @@ export default function Profile(props){
     repsets.forEach(setEl=>{
         const key=setEl.getAttribute("key");
         setEl.onclick=()=>{
-            PopupTextArea({parent:appcontent,title:key,placeholder:"Write your message here..."});
+            PopupTextArea({
+                parent:appcontent,
+                title:key,
+                onSend:(message,sendbtn,component)=>{
+                    const btnscontainer=sendbtn.parentNode;
+                    btnscontainer.innerHTML="";
+                    Loader({parent:btnscontainer,style:styles.loader});
+                    H.useSendMessage({key,text:message},()=>{
+                        component.unmount();
+                    });
+                }
+            });
         }
     });
 }
@@ -54,6 +66,11 @@ const styles={
     `,
     seticon:(icon)=>`
         background-image:url('${icon}');
+    `,
+    loader:`
+        position:relative;
+        margin:0;
+        width:2em;
     `,
 }
 

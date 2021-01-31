@@ -40,7 +40,7 @@ module.exports={
             "assets":path.resolve(__dirname,"www/src/Assets"),
             "components":path.resolve(__dirname,"www/src/Components"),
             "routes":path.resolve(__dirname,"www/src/Routes"),
-            "afile":path.resolve(__dirname,"www/src/Afile"),
+            "afile":path.resolve(__dirname,"Afile.js"),
             "actions":path.resolve(__dirname,"www/src/Store/Actions"),
         },
     },

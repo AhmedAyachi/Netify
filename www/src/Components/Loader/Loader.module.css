@@ -1,12 +1,12 @@
 .loader{
     position:absolute;
     text-align:center;
-    width:100%;
+    width:5em;
     height:fit-content;
     inset:0;margin:auto;
     font-size:1rem;
     z-index:5;
 }
 .loading{
-    max-width:5em;
+    max-width:100%;
 }
