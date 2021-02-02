@@ -1,5 +1,6 @@
 import {} from "vanilla";
 import css from "./Photomedia.module.css";
+import {setHQDownload} from "actions";
 
 
 export default function Photomedia(props){
@@ -19,7 +20,7 @@ export default function Photomedia(props){
 
     const qualityEl=photomedia.querySelector(`.${css.quality}`);
     qualityEl.onclick=()=>{
-        prefs.highqualitydownload=!prefs.highqualitydownload;
+        setHQDownload(!prefs.highqualitydownload);
         qualityEl.innerHTML=prefs.highqualitydownload?"High":"Low";
     }
 

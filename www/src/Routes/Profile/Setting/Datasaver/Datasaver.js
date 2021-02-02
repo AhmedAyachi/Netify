@@ -1,6 +1,7 @@
 import {} from "vanilla";
 import css from "./Datasaver.module.css";
 import {switchon0,switchoff0,switch0,switch0reversed} from "assets";
+import {setDataSaver} from "actions";
 
 
 export default function Datasaver(props){
@@ -22,7 +23,7 @@ export default function Datasaver(props){
     const statusEl=datasaver.querySelector(`.${css.status}`);
 
     switcher.onclick=()=>{
-        prefs.datasaver=!prefs.datasaver;
+        setDataSaver(!prefs.datasaver);
         switcher.setAttribute("src",prefs.datasaver?switch0:switch0reversed);
         statusEl.innerHTML=prefs.datasaver?"On":"Off"; 
     }
