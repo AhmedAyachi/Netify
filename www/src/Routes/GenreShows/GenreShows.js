@@ -53,7 +53,7 @@ const onGridMounted=(showgrid,state)=>{
 
 const onToBottomSroll=(showgrid,state,then)=>{
     if(state.page<500){
-        const loader=Loader({parent:showgrid,style:"position:relative;margin:5px;"});
+        const loader=Loader({parent:showgrid,style:"position:relative;margin:5px auto;"});
         state.page++;
         useShowsByGenre({id:state.genre.id,page:state.page},(shows)=>{
             loader.remove();

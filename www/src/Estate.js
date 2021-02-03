@@ -30,20 +30,18 @@ export const getFormatedDate=(date="")=>{
 
 export class Show{
     constructor(props){
+        const {datasaver}=store.prefs;
         Object.assign(this,{...props,
             title:props.title||props.name,
             original_title:props.original_title||props.original_name,
             vote_average:props.vote_average?props.vote_average/10:0,
             type:props.release_date?"movie":"tv",
             release_date:props.release_date||props.first_air_date,
-            poster_path:props.poster_path?`https://image.tmdb.org/t/p/w500/${props.poster_path}`:defaultcover,
+            poster_path:props.poster_path?`https://image.tmdb.org/t/p/w${datasaver?"154":"500"}/${props.poster_path}`:defaultcover,
             seasons:props.seasons?props.seasons.reverse():null,
             episodeRuntime:props.episode_run_time&&props.episode_run_time.length?props.episode_run_time.reduce((f,n)=>f+n)/props.episode_run_time.length:null,
         });
-        //if(props.backdrop_path){
-        this.backdrop_path=props.backdrop_path?`https://image.tmdb.org/t/p/w1920_and_h800_multi_faces/${props.backdrop_path}`:defaultcover;  
-        //}
-        this.keywords=this.title+this.original_title+this.overview;
+        this.backdrop_path=props.backdrop_path?`https://image.tmdb.org/t/p/w${datasaver?"300":"1280"}/${props.backdrop_path}`:defaultcover;  
         if(this.production_companies){
             this.production_companies.forEach(company=>{
                 if(company.logo_path){

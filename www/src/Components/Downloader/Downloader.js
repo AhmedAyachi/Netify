@@ -20,17 +20,10 @@ export default function Downloader(props){
             <div class="${css.error}"></div>
         </div>
     `;
-
-    downloader.unmount=()=>{
-        fadeOut(downloader,1000);
-        setTimeout(()=>{
-            downloader.remove();
-        },1350);
-    }
     
     if(name&&url&&cordova.file.externalRootDirectory){
         const progress=downloader.querySelector(`.${css.progress}`);
-        const netify=new Folder({name:"Netify",location:cordova.file.externalRootDirectory},(folder)=>{
+        new Folder({name:"Netify",location:cordova.file.externalRootDirectory},(folder)=>{
             const transfer=new FileTransfer();
             transfer.onprogress=(event)=>{
                 progress.style.width=`${(event.loaded/event.total)*100}%`;
@@ -52,6 +45,12 @@ export default function Downloader(props){
     else{
         downloader.unmount();
     }
+    downloader.unmount=()=>{
+        fadeOut(downloader,1000);
+        setTimeout(()=>{downloader.remove()},1350);
+    }
+
+    return downloader;
 }
 
 const styles={
@@ -59,21 +58,3 @@ const styles={
         display:none;
     `,
 }
-
-/*imagebox.insertAdjacentHTML("beforeend",`<img alt="Dowloading" class="${css.loading}" src="${loadinganim}"/>`);
-        const loading=imagebox.querySelector(`.${css.loading}`);
-        const imgEl=imagebox.querySelector(`.${css.image}`);
-        imgEl.className+=` ${css.downloading}`;
-        const images=new Folder({
-            name:"Netify",
-            location:cordova.file.externalRootDirectory,
-        },(folder)=>{
-            const transfer=new FileTransfer();
-            transfer.onprogress=(event)=>{
-                event.total
-            }
-            transfer.download(image.path,`${folder.nativeURL}/${image.key}`,(file)=>{
-                loading.remove();
-                imgEl.className=css.image;
-            });
-        });*/
