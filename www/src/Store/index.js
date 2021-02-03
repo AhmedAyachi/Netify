@@ -10,6 +10,7 @@ const Reducer={
     user:new User({name:"Ahmed Ayachi"}),
     prefs:{
         datasaver:false,
+        mobilenetworksaver:false,
         highqualitydownload:true,
     },
 }
@@ -44,7 +45,9 @@ catch{
 try{
     const prefs=JSON.parse(localStorage.getItem("prefs"));
     if(prefs&&(typeof(prefs)==="object")){
-        Reducer.prefs.datasaver=prefs.datasaver;
+        const connectiontype=navigator.connection.type;
+        Reducer.prefs.datasaver=connectiontype.trim().endsWith("g")?(prefs.mobilenetworksaver||prefs.datasaver):prefs.datasaver;
+        Reducer.prefs.mobilenetworksaver=prefs.mobilenetworksaver;
         Reducer.prefs.highqualitydownload=prefs.highqualitydownload;
     }
     else{

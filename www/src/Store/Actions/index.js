@@ -21,3 +21,8 @@ export const setHQDownload=(value=true)=>{
     store.prefs.highqualitydownload=value;
     localStorage.setItem("prefs",JSON.stringify(store.prefs));
 }
+
+export const setMobileNetworkSaver=(value=true)=>{
+    store.prefs.mobilenetworksaver=value;
+    localStorage.setItem("prefs",JSON.stringify(store.prefs));
+}
