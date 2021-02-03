@@ -11,11 +11,14 @@ export const useImages=({id,type},onFulfilled=()=>{})=>{
         ["poster","backdrop"].forEach(type=>{
             const items=data[`${type}s`];
             if(items&&items.length&&items.forEach){
-                const {datasaver}=store.prefs;
+                const {datasaver,highqualitydownload}=store.prefs;
                 items.forEach(item=>{
-                    item.type=type;
-                    item.path=`https://image.tmdb.org/t/p/w${datasaver?"533_and_h300_bestv2":"1920_and_h800_multi_faces"}/${item.file_path}`;
-                    item.key=useRef()+item.file_path.replace(/\//g,"");
+                    Object.assign(item,{
+                        type,
+                        key:useRef()+item.file_path.replace(/\//g,""),
+                        displaypath:`https://image.tmdb.org/t/p/w${datasaver?"533_and_h300_bestv2":"1920_and_h800_multi_faces"}/${item.file_path}`,
+                        downloadpath:`https://image.tmdb.org/t/p/w${highqualitydownload?"1920_and_h800_multi_faces":"533_and_h300_bestv2"}/${item.file_path}`,
+                    });
                 });
                 images.push(...items);
             };

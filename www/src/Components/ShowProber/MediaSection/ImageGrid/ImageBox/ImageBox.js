@@ -15,7 +15,7 @@ export default function ImageBox(props){
                 <img id="${icon.ref}" class="${css.icon}" alt="${icon.alt}" src="${icon.src}"/>
             `)}
         </div>
-        <img alt="Could not display image" class="${css.image}" src="${image.path}"/>
+        <img alt="Could not display image" class="${css.image}" src="${image.displaypath}"/>
     `;
 
     const expandbtn=imagebox.querySelector(`#expand.${css.icon}`);
@@ -25,7 +25,7 @@ export default function ImageBox(props){
     downloadbtn.onclick=()=>{
         Downloader({
             parent:imagebox,
-            url:image.path,
+            url:image.downloadpath,
             name:image.key,
         });
     }
