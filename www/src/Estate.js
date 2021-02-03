@@ -41,11 +41,11 @@ export class Show{
             seasons:props.seasons?props.seasons.reverse():null,
             episodeRuntime:props.episode_run_time&&props.episode_run_time.length?props.episode_run_time.reduce((f,n)=>f+n)/props.episode_run_time.length:null,
         });
-        this.backdrop_path=props.backdrop_path?`https://image.tmdb.org/t/p/w${datasaver?"300":"1280"}/${props.backdrop_path}`:defaultcover;  
+        this.backdrop_path=props.backdrop_path?`https://image.tmdb.org/t/p/w${datasaver?"300":"1920_and_h800_multi_faces"}/${props.backdrop_path}`:defaultcover;  
         if(this.production_companies){
             this.production_companies.forEach(company=>{
                 if(company.logo_path){
-                    company.logo_path=`https://image.tmdb.org/t/p/w500/${company.logo_path}`;
+                    company.logo_path=`https://image.tmdb.org/t/p/w${datasaver?"154":"500"}/${company.logo_path}`;
                 }
             });
         }
