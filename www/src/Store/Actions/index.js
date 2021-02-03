@@ -12,12 +12,12 @@ export const setIsguest=(value=true)=>{
 }
 
 export const setDataSaver=(value=true)=>{
-    localStorage.setItem("prefs",JSON.stringify(store.prefs));
-    store.show.discover=null;
     store.prefs.datasaver=value;
+    store.show.discover=null;
+    localStorage.setItem("prefs",JSON.stringify(store.prefs));
 }
 
 export const setHQDownload=(value=true)=>{
-    localStorage.setItem("prefs",JSON.stringify(store.prefs));
     store.prefs.highqualitydownload=value;
+    localStorage.setItem("prefs",JSON.stringify(store.prefs));
 }
