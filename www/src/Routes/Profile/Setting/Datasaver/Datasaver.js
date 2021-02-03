@@ -13,14 +13,14 @@ export default function Datasaver(props){
         <ul>
             <li id="status">
                 <div class="${css.row0}">
-                    <span class="${css.pref}">${prefs.datasaver?"On":"Off"}</span>
+                    <span class="${css.prefname}">${prefs.datasaver?"On":"Off"}</span>
                     <img class="${css.switcher}" alt="switcher" src="${prefs.datasaver?switchon0:switchoff0}"/>
                 </div>
                 <p class="${css.row1}">When On, shows' posters and backdrops will be displayed in lower quality to save data.</p>
             </li>
             <li id="onmnstatus">
                 <div class="${css.row0}">
-                    <span class="${css.pref}">On mobile network</span>
+                    <span class="${css.prefname}">On mobile network</span>
                     <span class="${css.status}">${prefs.mobilenetworksaver?"On":"Off"}</span>
                 </div>
                 <p class="${css.row1}">When On, data saver will be automatically On when using mobile network.</p>
@@ -30,7 +30,7 @@ export default function Datasaver(props){
 
     const switcher=datasaver.querySelector(`#status .${css.switcher}`);
     switcher.onclick=()=>{
-        const statusEl=datasaver.querySelector(`#status .${css.pref}`);
+        const statusEl=datasaver.querySelector(`#status .${css.prefname}`);
         setDataSaver(!prefs.datasaver);
         switcher.setAttribute("src",prefs.datasaver?switch0:switch0reversed);
         statusEl.innerHTML=prefs.datasaver?"On":"Off"; 
@@ -40,7 +40,7 @@ export default function Datasaver(props){
     onmnstatusbtn.onclick=()=>{
         setMobileNetworkSaver(!prefs.mobilenetworksaver);
         onmnstatusbtn.innerHTML=prefs.mobilenetworksaver?"On":"Off";
-        const connectiontype=navigator.connection.type,statusEl=datasaver.querySelector(`#status .${css.pref}`);;
+        const connectiontype=navigator.connection.type,statusEl=datasaver.querySelector(`#status .${css.prefname}`);;
         if(prefs.mobilenetworksaver&&(!prefs.datasaver)&&connectiontype.trim().endsWith("g")){
             prefs.datasaver=true;
             switcher.setAttribute("src",switch0);

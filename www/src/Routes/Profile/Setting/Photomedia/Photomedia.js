@@ -11,7 +11,7 @@ export default function Photomedia(props){
     photomedia.innerHTML=`
         <ul>
             <li>
-                <span>Download quality</span>
+                <span class="${css.prefname}">Download quality</span>
                 <span class="${css.quality}">${prefs.highqualitydownload?"High":"Low"}</span>
             </li>
         </ul>
