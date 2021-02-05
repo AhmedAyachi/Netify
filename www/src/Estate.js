@@ -185,5 +185,5 @@ export const onLogOut=()=>{
     store.sessiontoken="";
     store.isguest=false;
     localStorage.clear();
-    history.replace("");
+    location.hash?history.replace(""):location.reload("");
 }

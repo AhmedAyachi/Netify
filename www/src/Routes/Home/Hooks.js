@@ -8,13 +8,21 @@ export const useUserAccount=(onFulfilled)=>{
     fetch(`https://api.themoviedb.org/3/account?api_key=${apikey}&session_id=${sessiontoken}`).
     then(response=>response.json()).
     then(data=>{
-        store.user=new User(data);
-        onFulfilled&&onFulfilled(store.user);
+        if(data.id){
+            store.user=new User(data);
+            onFulfilled&&onFulfilled(store.user);
+        }
+        else{
+            onRejected();
+        }
     }).
-    catch(error=>{
-        WarnAlert({
-            message:"logging in failed, you are about to be redirected to the login page",
-            onProceed:onLogOut,
-        });
+    catch(onRejected);
+}
+
+const onRejected=()=>{
+    WarnAlert({
+        message:"logging in failed, you are about to be redirected to the login page",
+        onProceed:onLogOut,
+        onCancel:onLogOut,
     });
 }

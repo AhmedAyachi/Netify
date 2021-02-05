@@ -35,12 +35,15 @@ export const useSessionId=({username,password},onFulfilled)=>{
         };
         const response=await fetch(`https://api.themoviedb.org/3/authentication/session/new?api_key=${apikey}`,options);
         const data=await response.json();
-        (typeof(onFulfilled)==="function")&&onFulfilled(data.session_id);
+        onFulfilled&&onFulfilled(data.session_id);
     }).
     catch(error=>{
         WarnAlert({
-            message:error.message,//"Problem occured, You want to try again?",
+            message:error.message,
             onProceed:()=>{useSessionId({username,password},onFulfilled)},
+            onCancel:()=>{
+                location.reload();
+            }
         })
     });
 }

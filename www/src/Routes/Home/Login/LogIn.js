@@ -1,7 +1,8 @@
 import {} from "vanilla";
 import css from "./Login.module.css";
+import {Home} from "routes";
 import {netifylogo,tmdb1} from "assets";
-import {InputField,WarnAlert} from "components";
+import {InputField,WarnAlert,Loader} from "components";
 import {setSessionToken,setIsguest} from "actions";
 import Discover from "../Discover/Discover";
 import {checkUsername,checkPassword} from "estate";
@@ -76,10 +77,13 @@ export default function Login(props){
         if(navigator.onLine){
             const fineUsername=checkUsername(userlogininfo.username),finePassword=checkPassword(userlogininfo.password);
             if(fineUsername&&finePassword){
+                appcontent.innerHTML="";
+                const loader=Loader({appcontent,style:"position:fixed;inset:0;"});
                 H.useSessionId(userlogininfo,(sessionid)=>{
-                    setSessionToken(encrypt(sessionid),21);
-                    appcontent.innerHTML="";
-                    Home({parent:app.querySelector("#content")});
+                    alert("sessionid: "+sessionid);
+                    loader.remove();
+                    setSessionToken(sessionid,21);
+                    Home({parent:appcontent});
                 });
             }
             else{
