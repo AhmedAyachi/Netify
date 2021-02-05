@@ -4,7 +4,7 @@ export {setSearchValue} from "./ShowActions";
 
 export const setSessionToken=(value="")=>{
     store.usertoken=value;
-    localStorage.setItem("usertoken",value);
+    localStorage.setItem("sessiontoken",value);
 }
 export const setIsguest=(value=true)=>{
     store.isguest=value;

@@ -20,12 +20,14 @@ export default function App(props){
     const appcontent=window.appcontent=app.querySelector("#content");
     Router(appcontent,[
         {component:Home,path:""},
-        {component:Find,path:"#find"},
-        {component:WatchList,path:"#watchlist"},
-        {component:Profile,path:"#profile"},
-        {component:Setting,path:"#profile#:setname"},
-        {component:ShowDetails,path:"#shows#:typeid"},
-        {component:GenreShows,path:"#genres#:id"},
+        ...[
+            {component:Find,path:"#find"},
+            {component:WatchList,path:"#watchlist"},
+            {component:Profile,path:"#profile"},
+            {component:Setting,path:"#profile#:setname"},
+            {component:ShowDetails,path:"#shows#:typeid"},
+            {component:GenreShows,path:"#genres#:id"}
+        ].map(route=>({...route,restricted:()=>store.isguest||store.sessiontoken})),
     ]);
 
     window.addEventListener("offline",()=>{

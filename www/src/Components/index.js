@@ -5,7 +5,6 @@ export {default as UpButton} from "./UpButton/UpButton";
 export {default as Loader} from "./Loader/Loader";
 export {default as TrendingList} from "./TrendingList/TrendingList";
 export {default as FullViewer} from "./FullViewer/FullViewer"
-export {default as ShowsBackground} from "./ShowsBackground/ShowsBackground";
 export {default as EntryAnimation} from "./EntryAnimation/EntryAnimation";
 export {default as ShowList} from "./ShowList/ShowList";
 export {default as Header} from "./Header/Header";

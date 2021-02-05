@@ -1,7 +1,8 @@
 import {map,useRef} from "vanilla";
 import css from "./Profile.module.css";
-import {PopupTextArea,Loader} from "components";
+import {PopupTextArea,Loader,WarnAlert} from "components";
 import {message0,warn0,datasaver0,photomedia0,sleep0} from "assets";
+import {onLogOut} from "estate";
 import * as H from "./Hooks";
 
 
@@ -19,8 +20,8 @@ export default function Profile(props){
             ${map(lists,({title,items})=>`
                 <ul id="${title}">
                     <li class="${css.listitle}">${title}</li>
-                    ${map(items,({name,icon,key})=>`
-                        <li ${key?`key="${key}"`:""} class="${css.set}">
+                    ${map(items,({name,icon,ref,key})=>`
+                        <li ${ref?`id="${ref}"`:""} ${key?`key="${key}"`:""} class="${css.set}">
                             <div class="${css.seticon}">
                                 <img alt="" src="${icon}"/>
                             </div>
@@ -35,29 +36,22 @@ export default function Profile(props){
     const prefsets=profile.querySelectorAll(`.${css.row1} #preferences .${css.set}[key]`);
     prefsets.forEach(setEl=>{
         const key=setEl.getAttribute("key");
-        setEl.onclick=()=>{
-            history.push(`#${key}`);
-        }
+        setEl.onclick=()=>{history.push(`#${key}`)};
     });
-
-    const repsets=profile.querySelectorAll(`.${css.row1} #account .${css.set}[key]`);
+    const repsets=profile.querySelectorAll(`.${css.row1} #account .${css.set}[key=send]`);
     repsets.forEach(setEl=>{
-        const key=setEl.getAttribute("key");
-        setEl.onclick=()=>{
-            PopupTextArea({
-                parent:appcontent,
-                title:key,
-                onSend:(message,sendbtn,component)=>{
-                    const btnscontainer=sendbtn.parentNode;
-                    btnscontainer.innerHTML="";
-                    Loader({parent:btnscontainer,style:styles.loader});
-                    H.useSendMessage({key,text:message},()=>{
-                        component.unmount();
-                    });
-                }
-            });
-        }
+        const ref=setEl.id;
+        setEl.onclick=()=>{setTextArea(ref)};
     });
+    
+    const logoutbtn=profile.querySelector(`.${css.row1} #account #logout`);
+    logoutbtn.onclick=()=>{
+        WarnAlert({
+            message:"You're about to be logged out",
+            onProceed:onLogOut,
+        })
+    }
+
 }
 
 const styles={
@@ -85,9 +79,25 @@ const lists=[
     {
         title:"account",
         items:[
-            {name:"Log Out",icon:sleep0},
-            {name:"Report Technical Problem",icon:warn0,key:"Report"},
-            {name:"Send Feedback",icon:message0,key:"Feedback"},
+            {name:"Log Out",icon:sleep0,ref:"logout"},
+            {name:"Report Technical Problem",icon:warn0,ref:"report",key:"send",},
+            {name:"Send Feedback",icon:message0,ref:"feedback",key:"send"},
         ],
     },
 ];
+
+const setTextArea=(key)=>{
+    PopupTextArea({
+        parent:appcontent,
+        title:key,
+        onSend:(message,sendbtn,component)=>{
+            const btnscontainer=sendbtn.parentNode;
+            btnscontainer.innerHTML="";
+            Loader({parent:btnscontainer,style:styles.loader});
+            H.useSendMessage({key,text:message},()=>{
+                component.unmount();
+            });
+        }
+    });
+}
+

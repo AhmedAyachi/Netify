@@ -10,11 +10,15 @@ export const netifygroupid="465525889";
 
 export class User{
     constructor(props={}){
-        Object.assign(this,{...props,
-            photo:props.photopath||applogo,
-            name:props.name,
-            username:props.name,
-        });
+        const {avatar}=props;
+        let photo=null;
+        try{
+            photo=`https://image.tmdb.org/t/p/w500/${avatar.tmdb.avatar_path||avatar.gravatar.hash}`;
+        }
+        catch{
+            photo=applogo;
+        }
+        Object.assign(this,{...props,photo});
     }
 }
 
@@ -165,4 +169,21 @@ export class Folder{
             },onRejected);
         });
     }
+}
+
+
+export const checkUsername=(username)=>username&&!username.includes(" ");
+
+export const checkPassword=(password)=>password.length>3;
+
+export const onLogOut=()=>{
+    const {navigator}=store.elements;
+    if(navigator){
+        store.elements.navigator.unmount();
+        delete store.elements.navigator;
+    }
+    store.sessiontoken="";
+    store.isguest=false;
+    localStorage.clear();
+    history.replace("");
 }

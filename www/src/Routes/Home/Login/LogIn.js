@@ -1,17 +1,19 @@
-import {useRef} from "vanilla";
+import {} from "vanilla";
 import css from "./Login.module.css";
 import {netifylogo,tmdb1} from "assets";
-import {InputField,ShowsBackground,WarnAlert} from "components";
-import {setUsertoken,setIsguest} from "actions";
+import {InputField,WarnAlert} from "components";
+import {setSessionToken,setIsguest} from "actions";
 import Discover from "../Discover/Discover";
+import {checkUsername,checkPassword} from "estate";
+import {shake,encrypt} from "afile";
+import * as H from "./Hooks";
 
 
 export default function Login(props){
     const {parent}=props;
-    parent.insertAdjacentHTML("beforeend",`<div class="${css.login}"></div>`);
-    const login=parent.querySelector(`.${css.login}`);
-    const refs={
-        inputfields:["username","password"].map(prop=>useRef(prop)),
+    parent.insertAdjacentHTML("beforeend",`<div id="login"class="${css.login}"></div>`);
+    const login=parent.querySelector(`.${css.login}`),state={
+        inputfields:[],
     };
 
     login.innerHTML=`
@@ -29,19 +31,28 @@ export default function Login(props){
             <ul>
                 <li>Made by Ahmed Ayachi</li>
                 <li>Email: aayachi032@gmail.com</li>
-                <li>API: <span class="${css.tmdblink}">The Movie Database</span></li>
             </ul>
         </details>
     `;
     ["username","password"].forEach((prop,i)=>{
-        InputField({
+        const inputfield=InputField({
             parent:login.querySelector(`.${css.row1}`),
             placeholder:prop,
-            ref:refs.inputfields[i],
             type:prop,
         });
+        state.inputfields.push(inputfield);
+        const input=inputfield.querySelector("input");
+        if(i){
+            input.oninput=()=>{
+                input.style.color=checkPassword(input.value)?"white":"#cc0000";
+            }
+        }
+        else{
+            input.oninput=()=>{
+                input.style.color=checkUsername(input.value)?"white":"#cc0000";
+            }
+        }
     });
-    ShowsBackground({parent:login,ref:refs.showsbackground});
 
     login.querySelector(`.${css.skipbtn}`).onclick=()=>{
         WarnAlert({
@@ -55,25 +66,25 @@ export default function Login(props){
         });  
     };
 
-    login.querySelector(`.${css.signin}`).onclick=()=>{
+    const signinbtn=login.querySelector(`.${css.signin}`);
+    signinbtn.onclick=()=>{
+        const inputs=state.inputfields.map(inputfield=>inputfield.querySelector("input"));
+        const userlogininfo={
+            username:inputs[0].value.trim(),
+            password:inputs[1].value,
+        }
         if(navigator.onLine){
-            /*const inputvalues=refs.inputfields.map(ref=>login.querySelector(`#${ref} input`).value);*/
-            if(false){
-                setUsertoken();
-                appcontent.innerHTML="";
-                Home({parent:app.querySelector("#content")});
+            const fineUsername=checkUsername(userlogininfo.username),finePassword=checkPassword(userlogininfo.password);
+            if(fineUsername&&finePassword){
+                H.useSessionId(userlogininfo,(sessionid)=>{
+                    setSessionToken(encrypt(sessionid),21);
+                    appcontent.innerHTML="";
+                    Home({parent:app.querySelector("#content")});
+                });
+            }
+            else{
+                shake(signinbtn);
             }
         }
     }
-
-    /*login.querySelector(`.${css.tmdblink}`).onclick=()=>{
-
-    }*/
 }
-
-
-const logincode=(account,password,type)=>`{
-    account:${account},
-    password:${password},
-    type:${type},
-}`;

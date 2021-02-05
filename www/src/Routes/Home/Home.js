@@ -2,6 +2,7 @@ import {} from "vanilla";
 import css from "./Home.module.css";
 import Login from "./Login/Login";
 import Discover from "./Discover/Discover";
+import * as H from "./Hooks";
 
 
 export default function Home(props){
@@ -9,7 +10,12 @@ export default function Home(props){
     parent.insertAdjacentHTML("beforeend",`<div id="${ref}" class="${css.home}"></div>`);
     const home=parent.querySelector(`#${ref}`);
     
-    if(store.sessiontoken||store.isguest){
+    if(store.sessiontoken){
+        H.useUserAccount(()=>{
+            Discover({parent:home});
+        });
+    }
+    else if(store.isguest){
         Discover({parent:home});
     }
     else{

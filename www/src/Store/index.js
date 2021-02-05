@@ -1,13 +1,14 @@
 import {ShowReducer} from "./Reducers";
 import {User} from "estate";
+import {decrypt} from "afile";
 
-//localStorage.clear();
+
 const Reducer={
     sessiontoken:"",
     isguest:false,
     show:ShowReducer,
     elements:{},
-    user:new User({name:"Ahmed Ayachi"}),
+    user:new User(({name:"Guest"})),
     prefs:{
         datasaver:false,
         mobilenetworksaver:false,
@@ -16,12 +17,12 @@ const Reducer={
 }
 
 try{
-    const sessiontoken=JSON.parse(localStorage.getItem("sessiontoken"));
-    if(sessiontoken&&typeof(sessiontoken)==="string"){
-        Reducer.sessiontoken=sessiontoken;
+    const sessiontoken=localStorage.getItem("sessiontoken");
+    if(sessiontoken){
+        Reducer.sessiontoken=decrypt(sessiontoken,21);
     }
     else{
-        localStorage.setItem("sessiontoken","");
+        localStorage.setItem("sessiontoken","");   
     }
 }
 catch{

@@ -4,9 +4,9 @@
     color:white;
     text-align:center;
     font-size:1.5rem;
-    padding-top:2%;
+    padding-top:3rem;
 }
-.row0,.row2{
+.row0{
     position:relative;
     font-size:1em;
     z-index:2;
@@ -16,6 +16,12 @@
     flex-direction:column;
     align-items:center;
     z-index:2;
+}
+.row2{
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+    align-items:center;
 }
 .skipbtn{
     position:absolute;
@@ -33,17 +39,16 @@
 .signin{
     width:60%;
     height:2.5em;
-    margin:10px 0;
+    margin:10px auto;
     border:none;
-    color:white;
+    font-family:Arial, Helvetica, sans-serif;
     font-weight:bold;
     font-size:2rem;
+    color:white;
     background-color:#cc0000;
 }
 .tmdblogo{
-    display:block;
     max-width:3rem;
-    margin:0 auto;
 }
 .signin:active{
     opacity:0.65;
@@ -59,6 +64,7 @@
     list-style:none;
     color:white;
     font-size:0.7em;
+    opacity:0.5;
 }
 .details li{
     margin:3px;
