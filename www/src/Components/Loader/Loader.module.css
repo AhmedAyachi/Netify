@@ -1,12 +1,15 @@
 .loader{
+    display:flex;
+    justify-content:center;
+    align-items:center;
     position:absolute;
     text-align:center;
-    width:5em;
+    width:fit-content;
     height:fit-content;
     inset:0;margin:auto;
     font-size:1rem;
     z-index:5;
 }
 .loading{
-    max-width:100%;
+    max-width:5em;
 }

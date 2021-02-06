@@ -14,7 +14,7 @@ export default function Profile(props){
     profile.innerHTML=`
         <div class="${css.row0}">
             <div class="${css.profileimage}" style="${styles.profileimage(user.photo)}"></div>
-            <p class="${css.username}">${user.name}</p>
+            <p class="${css.username}">${user.name||user.username}</p>
         </div>
         <div class="${css.row1}">
             ${map(lists,({title,items})=>`
@@ -48,7 +48,19 @@ export default function Profile(props){
     logoutbtn.onclick=()=>{
         WarnAlert({
             message:"You're about to be logged out",
-            onProceed:onLogOut,
+            onProceed:()=>{
+                if(store.sessiontoken){
+                    appcontent.innerHTML="";
+                    const loader=Loader({parent:appcontent,style:"position:fixed;inset:0;"})
+                    H.useDeleteSession(()=>{
+                        loader.remove();
+                        onLogOut();
+                    });
+                }
+                else{
+                    onLogOut();
+                }
+            },
         })
     }
 

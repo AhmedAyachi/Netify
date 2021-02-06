@@ -13,7 +13,15 @@ export class User{
         const {avatar}=props;
         let photo=null;
         try{
-            photo=`https://image.tmdb.org/t/p/w500/${avatar.tmdb.avatar_path||avatar.gravatar.hash}`;
+            if(avatar.tmdb.avatar_path){
+                photo=`https://image.tmdb.org/t/p/w500/${avatar.tmdb.avatar_path}`; 
+            }
+            else if(avatar.gravatar.hash){
+                photo=`https://secure.gravatar.com/avatar/${avatar.tmdb.avatar_path}.jpg?s=64`;
+            }
+            else{
+                photo=applogo;  
+            }
         }
         catch{
             photo=applogo;
@@ -182,8 +190,10 @@ export const onLogOut=()=>{
         store.elements.navigator.unmount();
         delete store.elements.navigator;
     }
+    store.reset();
     store.sessiontoken="";
     store.isguest=false;
+    store.user=new User({name:"Guest",username:"Guest"});
     localStorage.clear();
     location.hash?history.replace(""):location.reload("");
 }

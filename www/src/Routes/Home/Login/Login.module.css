@@ -33,8 +33,15 @@
     opacity:0.5;
 }
 .applogo{
-    max-width:8em;
+    max-width:7em;
     filter:brightness(0.9);
+}
+.signup{
+    min-width:75%;width:fit-content;max-width:90%;
+    font-size:0.9em;
+    font-family:signikalight;
+    color:white;
+    text-align:right;
 }
 .signin{
     width:60%;
@@ -48,7 +55,7 @@
     background-color:#cc0000;
 }
 .tmdblogo{
-    max-width:3rem;
+    max-width:2em;
 }
 .signin:active{
     opacity:0.65;
@@ -77,10 +84,9 @@
 @media(max-width:15cm){
     .Login{
         font-size:1rem;
-        padding-top:10%;
     }
-    .applogo{
-        max-width:7.5em;
+    .signup{
+        font-size:0.75em;
     }
     .skipbtn{
         right:1.5rem;

@@ -24,6 +24,7 @@ export default function Login(props){
         </div>
         <div class="${css.row1}"></div>
         <div class="${css.row2}">
+            <p class="${css.signup}">Sign up?</p>
             <button class="${css.signin}">Sign in</button>
             <img class="${css.tmdblogo}" alt="" src="${tmdb1}"/>
         <div>
@@ -44,18 +45,19 @@ export default function Login(props){
         state.inputfields.push(inputfield);
         const input=inputfield.querySelector("input");
         if(i){
-            input.oninput=()=>{
-                input.style.color=checkPassword(input.value)?"white":"#cc0000";
-            }
+            input.oninput=()=>{input.style.color=checkPassword(input.value)?"white":"#cc0000"};
         }
         else{
-            input.oninput=()=>{
-                input.style.color=checkUsername(input.value)?"white":"#cc0000";
+            input.oninput=()=>{input.style.color=checkUsername(input.value)?"white":"#cc0000"};
+            input.onblur=()=>{
+                input.value=input.value.trim();
+                input.oninput();
             }
         }
     });
 
-    login.querySelector(`.${css.skipbtn}`).onclick=()=>{
+    const skipbtn=login.querySelector(`.${css.skipbtn}`);
+    skipbtn.onclick=()=>{
         WarnAlert({
             parent:login,
             message:"If you skip loggin in, some additional data will be stored on the device",
@@ -67,6 +69,11 @@ export default function Login(props){
         });  
     };
 
+    const signup=login.querySelector(`.${css.signup}`);
+    signup.onclick=()=>{
+        cordova.InAppBrowser.open("https://www.themoviedb.org/signup","_system","location=no,zoom=no,fullscreen=yes");
+    }
+
     const signinbtn=login.querySelector(`.${css.signin}`);
     signinbtn.onclick=()=>{
         const inputs=state.inputfields.map(inputfield=>inputfield.querySelector("input"));
@@ -77,13 +84,16 @@ export default function Login(props){
         if(navigator.onLine){
             const fineUsername=checkUsername(userlogininfo.username),finePassword=checkPassword(userlogininfo.password);
             if(fineUsername&&finePassword){
-                appcontent.innerHTML="";
-                const loader=Loader({appcontent,style:"position:fixed;inset:0;"});
+                const loader=Loader({appcontent,style:styles.loader});
                 H.useSessionId(userlogininfo,(sessionid)=>{
-                    alert("sessionid: "+sessionid);
                     loader.remove();
-                    setSessionToken(sessionid,21);
+                    appcontent.innerHTML="";
+                    sessionid&&setSessionToken(sessionid,21);
                     Home({parent:appcontent});
+                },()=>{
+                    loader.remove();
+                    signup.innerHTML="Can't find an account with these credentials, sign up?";
+                    signup.style.color="#cc0000";
                 });
             }
             else{
@@ -91,4 +101,14 @@ export default function Login(props){
             }
         }
     }
+}
+
+const styles={
+    loader:`
+        width:100vw;
+        height:100vh;
+        position:fixed;
+        inset:0;
+        background-color:rgba(0,0,0,0.8);
+    `,
 }

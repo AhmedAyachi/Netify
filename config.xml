@@ -9,5 +9,6 @@
     <preference name="StatusBarBackgroundColor" value="#000000" />
     <preference name="StatusBarStyle" value="lightcontent" />
     <preference name="phonegap-version" value="cli-9.0.0" />
-    <preference name="AndroidPersistentFileLocation" value="Compatibility" /> 
+    <preference name="AndroidPersistentFileLocation" value="Compatibility"/> 
+    <allow-navigation href="https://www.themoviedb.org/signup"/>
 </widget>
