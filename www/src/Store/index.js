@@ -20,6 +20,8 @@ try{
     const sessiontoken=localStorage.getItem("sessiontoken");
     if(sessiontoken){
         Reducer.sessiontoken=decrypt(sessiontoken,21);
+        Reducer.isguest=false;
+        localStorage.setItem("isguest",false);
     }
     else{
         localStorage.setItem("sessiontoken","");   
@@ -33,6 +35,10 @@ try{
     const isguest=JSON.parse(localStorage.getItem("isguest"));
     if(typeof(isguest)==="boolean"){
         Reducer.isguest=isguest;
+        if(isguest){
+            Reducer.sessiontoken=null;
+            localStorage.setItem("sessiontoken","");
+        }
     }
     else{
         localStorage.setItem("isguest","false");

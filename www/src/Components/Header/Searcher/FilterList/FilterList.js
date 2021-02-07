@@ -42,7 +42,7 @@ export default function FilterList(props){
         parent:filterlist.querySelector(`#rate .${css.col3}`),
         style:styles.ratestars,
         editable:true,
-        rate:3/5,
+        rate:0,
         onChange:({rate})=>{state.params.rate=rate},
     });
 

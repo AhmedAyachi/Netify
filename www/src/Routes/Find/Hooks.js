@@ -4,12 +4,12 @@ import {WarnAlert} from "components";
 
 export const useTitle=(title="",then)=>{
     title=title.trim().replace(/" "/g,"+");
-    const fetchs=["movie","tv"].map(type=>fetch(`https://api.themoviedb.org/3/search/${type}?api_key=${apikey}&query=${title}`))
+    const fetchs=["movie","tv"].map(type=>fetch(`https://api.themoviedb.org/3/search/${type}?api_key=${apikey}&query=${title}`));
     Promise.all(fetchs).
     then(responses=>responses.map(response=>response.json())).
     then(async function(promises){
         const shows=[];
-        for(let i=0;i<fetchs.length;i++){
+        for(let i=0;i<promises.length;i++){
             const data=await promises[i];
             shows.push(...data.results);
         }

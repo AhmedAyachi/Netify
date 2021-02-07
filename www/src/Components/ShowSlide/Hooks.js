@@ -1,5 +1,5 @@
 import {apikey,File} from "estate";
-import {FetchAlert} from "components";
+import {WarnAlert} from "components";
 
 
 export const useVideos=({id,type},then=()=>{})=>{
@@ -10,16 +10,31 @@ export const useVideos=({id,type},then=()=>{})=>{
         then(videos);
     }).
     catch((error)=>{
-        FetchAlert({
-            parent:app,
+        WarnAlert({
             message:error.message,
-            onConfirm:()=>{useVideos({id,type},then)},
+            onProceed:()=>{useVideos({id,type},then)},
         });
     });
 }
-export const addToWatchlist=(show,onFulfilled=()=>{},onRejected=()=>{})=>{
+export const addToWatchlist=(show,onFulfilled=()=>{},onRejected)=>{
     try{
-        if(store.isguest){
+        if(store.sessiontoken){
+            const headers=new Headers();
+            headers.append("Content-Type","application/json");
+            const raw=JSON.stringify({media_id:show.id,media_type:show.type,watchlist:true});
+            const options={
+                method:"POST",
+                headers:headers,
+                body:raw,
+                redirect:"follow",
+            }
+            fetch(`https://api.themoviedb.org/3/account/${store.user.id}/watchlist?api_key=${apikey}&session_id=${store.sessiontoken}`,options).
+            then(response=>response.json()).
+            then(({success})=>{
+                success?onFulfilled():onRejected(data);
+            });
+        }
+        else if(store.isguest){
             if(cordova&&cordova.file&&cordova.platformId!=="browser"){
                 const file=new File({name:"watchlist.json"});
                 file.onRead(content=>{
@@ -42,19 +57,34 @@ export const addToWatchlist=(show,onFulfilled=()=>{},onRejected=()=>{})=>{
                 }
             }
         }
-        else if(store.sessiontoken){
-            
-        }
     }
     catch(error){
-        alert(error.message);
-        onRejected(error);
+        WarnAlert({
+            message:error.message,
+        });
+        onRejected&&onRejected(error);
     }
 }
 
 export const removeFromWatchList=({id,type},onFulfilled=()=>{},onRejected=()=>{})=>{
     try{
-        if(store.isguest){
+        if(store.sessiontoken){
+            const headers=new Headers();
+            headers.append("Content-Type","application/json");
+            const raw=JSON.stringify({media_id:id,media_type:type,watchlist:false});
+            const options={
+                method:"POST",
+                headers:headers,
+                body:raw,
+                redirect:"follow",
+            }
+            fetch(`https://api.themoviedb.org/3/account/${store.user.id}/watchlist?api_key=${apikey}&session_id=${store.sessiontoken}`,options).
+            then(response=>response.json()).
+            then(data=>{
+                data.success?onFulfilled():onRejected(data);
+            });
+        }
+        else if(store.isguest){
             if(cordova&&cordova.file&&cordova.platformId!=="browser"){
                 const file=new File({name:"watchlist.json"});
                 file.onRead(content=>{
@@ -87,9 +117,6 @@ export const removeFromWatchList=({id,type},onFulfilled=()=>{},onRejected=()=>{}
                 }
             }
         }
-        else if(store.sessiontoken){
-            
-        } 
     }
     catch(error){
         alert(error.message);

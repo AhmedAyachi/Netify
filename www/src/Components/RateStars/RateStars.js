@@ -29,6 +29,7 @@ export default function RateStars(props){
                 star.setAttribute("src",emptystar);
                 star.active=false;
             });
+            state.rate=0;
         }
         ratestars.setRate=(rate)=>{
             setRateStars(stars[Math.floor(rate*4)],stars,state);

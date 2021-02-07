@@ -8,15 +8,13 @@ export const useDetails=({id,type},onFulfilled=()=>{},onRejected=()=>{})=>{
     then(response=>response.json()).
     then(details=>{
         data.details=new Show(details);
-        isInWatchList({id,type},inWatchList=>{
+        setIsInWatchList({id,type},async (inWatchList)=>{
             data.details.inWatchList=inWatchList;
+            const response=await fetch(`https://api.themoviedb.org/3/${type}/${id}/recommendations?api_key=${apikey}&language=en-US&page=1`);
+            const {results}=await response.json();
+            data.recos=(results&&results.length)?results.map(show=>new Show(show)):null;
+            onFulfilled(data);
         });
-    }).
-    then(async ()=>{
-        const response=await fetch(`https://api.themoviedb.org/3/${type}/${id}/recommendations?api_key=${apikey}&language=en-US&page=1`);
-        const {results}=await response.json();
-        data.recos=(results&&results.length)?results.map(show=>new Show(show)):null;
-        onFulfilled(data);
     }).
     catch((error)=>{
         WarnAlert({
@@ -28,10 +26,16 @@ export const useDetails=({id,type},onFulfilled=()=>{},onRejected=()=>{})=>{
     });
 }
 
-const isInWatchList=({id,type},onFulfilled=()=>{})=>{
-    const {store}=window;
+const setIsInWatchList=({id,type},onFulfilled=()=>{})=>{
     try{
-        if(store.isguest){
+        if(store.sessiontoken){
+            fetch(`https://api.themoviedb.org/3/${type}/${id}/account_states?api_key=${apikey}&session_id=${store.sessiontoken}`).
+            then(response=>response.json()).
+            then(({watchlist})=>{
+                onFulfilled&&onFulfilled(watchlist);
+            });
+        }
+        else if(store.isguest){
             const {cordova}=window;
             if(cordova&&cordova.file&&cordova.platformId!=="browser"){
                 const file=new File({name:"watchlist.json"});
