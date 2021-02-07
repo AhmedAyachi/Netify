@@ -11,9 +11,14 @@ export default function Home(props){
     const home=parent.querySelector(`#${ref}`);
     
     if(store.sessiontoken){
-        H.useUserAccount(()=>{
-            Discover({parent:home});
-        });
+        if(store.user.id){
+            Discover({parent:home}); 
+        }
+        else{
+            H.useUserAccount(()=>{
+                Discover({parent:home});
+            });
+        }
     }
     else if(store.isguest){
         Discover({parent:home});

@@ -24,8 +24,7 @@ export default function Find(props){
     const header=Header({
         parent:find.querySelector(`.${css.row0}`),
         onFilter:(filter)=>{state.shows&&state.shows.length&&filterShows(filter,row1,state)},
-        onSearch:(input)=>{
-            const value=input.value.trim();
+        onSearch:(value)=>{
             setSearchValue(value);
             header.resetFilter();
             if(value){

@@ -10,7 +10,7 @@ export default function SearchOption(props){
     const searchoption=parent.querySelector(`#${ref}`);
 
     searchoption.innerHTML=`
-        <div class="${css.input}">${value}</div>
+        <div class="${css.input}"></div>
         <img class="${css.image}" alt="delete" src="${closer}"/>
     `;
 
@@ -18,10 +18,11 @@ export default function SearchOption(props){
         searchoption.remove();
         parent.delete(value);
     };
-    searchoption.querySelector(`.${css.input}`).onclick=()=>{
+    const input=searchoption.querySelector(`.${css.input}`);input.innerText=value;
+    input.onclick=()=>{
         if(inputfield.value.trim()!==value){
             inputfield.value=value;
-            onSearch&&onSearch(inputfield);
+            onSearch&&onSearch(value,inputfield);
         }
         fadeOut(parent);
     };

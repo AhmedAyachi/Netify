@@ -3,7 +3,7 @@ import css from "./Searcher.module.css";
 import {filtericon} from "assets";
 import SearchList from "./SearchList/SearchList";
 import FilterList from "./FilterList/FilterList";
-import {toggle} from "afile";
+import {toggle,clean} from "afile";
 
 
 export default function Searcher(props){
@@ -25,11 +25,11 @@ export default function Searcher(props){
     
     
     input.onchange=()=>{
-        const value=input.value.toLowerCase().trim();
+        const value=clean(input.value).toLowerCase().trim();
         if(value){
             searchlist.add(value);
         }
-        onSearch&&onSearch(input);
+        onSearch&&onSearch(value,input);
     };
 
     searcher.querySelector(`.${css.filtericon}`).onclick=()=>{

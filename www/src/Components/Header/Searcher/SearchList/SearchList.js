@@ -1,7 +1,7 @@
 import {useRef} from "vanilla";
 import css from "./SearchList.module.css";
 import SearchOption from "./SearchOption/SearchOption";
-import {fadeIn,fadeOut} from "afile";
+import {fadeIn,fadeOut,clean} from "afile";
 import * as H from "./Hooks";
 
 
@@ -49,7 +49,7 @@ export default function SearchList(props){
     }
 
     searchlist.add=(value)=>{
-        value=value.trim();
+        value=clean(value.trim());
         if(value&&!state.search.includes(value)){
             state.search.unshift(value);
             H.saveSearch(state.search||"");
