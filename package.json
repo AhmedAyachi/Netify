@@ -8,7 +8,7 @@
     "start": "webpack --config webpack.config.js",
     "prepare": "cordova prepare",
     "build": "webpack --config webpack.config.js --mode production",
-    "gap": "cordova",
+    "cordova": "cordova",
     "plugin": "cordova plugin",
     "platform": "cordova platform"
   },

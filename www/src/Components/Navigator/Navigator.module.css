@@ -28,6 +28,7 @@
     width:2.25em;
     height:2.25em;
     border-radius:50%;
+    border:1px solid #cc0000;
 }
 
 @media(any-hover){

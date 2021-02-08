@@ -25,7 +25,7 @@ export default function Searcher(props){
     
     
     input.onchange=()=>{
-        const value=clean(input.value).toLowerCase().trim();
+        const value=input.value.toLowerCase().trim();
         if(value){
             searchlist.add(value);
         }

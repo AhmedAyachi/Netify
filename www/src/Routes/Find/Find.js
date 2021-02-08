@@ -2,6 +2,7 @@ import {} from "vanilla";
 import css from "./Find.module.css";
 import {Header,ShowCard,Loader} from "components";
 import {netifylogo} from "assets";
+import {clean} from "afile";
 import {setSearchValue} from "actions";
 import * as H from "./Hooks";
 
@@ -25,6 +26,7 @@ export default function Find(props){
         parent:find.querySelector(`.${css.row0}`),
         onFilter:(filter)=>{state.shows&&state.shows.length&&filterShows(filter,row1,state)},
         onSearch:(value)=>{
+            value=clean(value);
             setSearchValue(value);
             header.resetFilter();
             if(value){

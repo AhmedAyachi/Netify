@@ -46,7 +46,4 @@ const setDiscover=(discover,{trends,genres})=>{
     genres.forEach(genre=>{
         ShowList({parent:row3,data:genre,withMore:true});
     });
-    if(!store.elements.navigator){
-        store.elements.navigator=Navigator();
-    }
 }

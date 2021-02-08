@@ -49,7 +49,7 @@ export default function SearchList(props){
     }
 
     searchlist.add=(value)=>{
-        value=clean(value.trim());
+        value=value.trim();
         if(value&&!state.search.includes(value)){
             state.search.unshift(value);
             H.saveSearch(state.search||"");
