@@ -8,7 +8,7 @@ const Reducer={
     isguest:false,
     show:ShowReducer,
     elements:{},
-    user:new User(({name:"Guest"})),
+    user:null,
     prefs:{
         datasaver:false,
         mobilenetworksaver:false,

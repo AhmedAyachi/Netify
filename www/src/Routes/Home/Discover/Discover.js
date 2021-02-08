@@ -4,6 +4,7 @@ import {TrendingList,ShowList,Navigator,Loader} from "components";
 import data from "./Genres.json";
 import * as H from "./Hooks";
 import {shuffle} from "afile";
+import {setNavigator} from "estate";
 
 
 export default function Discover(props){
@@ -46,4 +47,5 @@ const setDiscover=(discover,{trends,genres})=>{
     genres.forEach(genre=>{
         ShowList({parent:row3,data:genre,withMore:true});
     });
+    setNavigator();
 }

@@ -3,6 +3,7 @@ import {Router} from "vanilla-router";
 import css from "./App.module.css";
 import {EntryAnimation,OfflineAlert,Navigator} from "components";
 import {Home,Find,WatchList,Profile,Setting,ShowDetails,GenreShows} from "routes";
+import {setNavigator} from "estate";
 import {fadeOut} from "afile";
 
 
@@ -19,14 +20,7 @@ export default function App(props){
     
     const appcontent=window.appcontent=app.querySelector("#content");
     Router(appcontent,[
-        {component:Home,path:"",
-            onLoad:()=>{
-                const {isguest,sessiontoken,user}=store;
-                if(isguest||(sessiontoken&&user.id)){
-                    onRouteLoaded();
-                }
-            }
-        },
+        {component:Home,path:""},
         ...[
             {component:Find,path:"#find"},
             {component:WatchList,path:"#watchlist"},
@@ -37,9 +31,9 @@ export default function App(props){
         ].map(route=>({...route,
             restricted:()=>{
                 const {isguest,sessiontoken,user}=store;
-                return isguest||(sessiontoken&&user.id);
+                return isguest||(sessiontoken&&user&&user.id);
             },
-            onLoad:onRouteLoaded,
+            onLoad:setNavigator,
         })),
     ]);
 
@@ -54,18 +48,5 @@ export default function App(props){
             location.refresh();
         },600);
     });
-}
-
-const onRouteLoaded=()=>{
-    const {elements}=store;
-    if(elements.navigator){
-        const navigator=document.querySelector(`#app>#${elements.navigator.id}`);
-        if(!navigator){
-            window.app.appendChild(elements.navigator);
-        }
-    }
-    else{
-        elements.navigator=Navigator(); 
-    }
 }
 

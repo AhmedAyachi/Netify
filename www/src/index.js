@@ -8,6 +8,7 @@ import {back} from "./Components/BackButton/BackButton";
 document.addEventListener("deviceready",onDeviceReady,false);
 
 function onDeviceReady(){
+    const date=new Date()
     if(cordova.platformId!=="browser"){
         if(screen.height>=screen.width){
             screen.orientation.lock("portrait-primary");

@@ -5,7 +5,7 @@ import {netifylogo,tmdb1} from "assets";
 import {InputField,WarnAlert,Loader} from "components";
 import {setSessionToken,setIsguest} from "actions";
 import Discover from "../Discover/Discover";
-import {checkUsername,checkPassword} from "estate";
+import {checkUsername,checkPassword,User} from "estate";
 import {shake,encrypt} from "afile";
 import * as H from "./Hooks";
 
@@ -62,6 +62,7 @@ export default function Login(props){
             parent:login,
             message:"If you skip loggin in, some additional data will be stored on the device",
             onProceed:()=>{
+                store.user=new User({name:"Guest"});
                 setIsguest();
                 appcontent.innerHTML="";
                 Discover({parent:appcontent});

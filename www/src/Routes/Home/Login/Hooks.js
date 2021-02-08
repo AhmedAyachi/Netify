@@ -41,7 +41,6 @@ export const useSessionId=({username,password},onFulfilled,onRejected)=>{
         else{
             onRejected();
         }
-        return success;
     }).
     catch(error=>{
         onRejected();

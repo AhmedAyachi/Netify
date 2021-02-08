@@ -1,3 +1,4 @@
+import {Navigator} from "components";
 import {defaultcover,applogo} from "assets";
 
 
@@ -193,7 +194,21 @@ export const onLogOut=()=>{
     store.reset();
     store.sessiontoken="";
     store.isguest=false;
-    store.user=new User({name:"Guest",username:"Guest"});
+    store.user=null;
     localStorage.clear();
-    location.hash?history.replace(""):location.reload("");
+    location.hash?history.replace(""):location.reload();
 }
+
+export const setNavigator=()=>{
+    const {elements}=store;
+    if(elements.navigator){
+        const navigator=document.querySelector(`#app>#${elements.navigator.id}`);
+        if(!navigator){
+            window.app.appendChild(elements.navigator);
+        }
+    }
+    else{
+        elements.navigator=Navigator(); 
+    }
+}
+
