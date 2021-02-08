@@ -2,7 +2,7 @@ import {map,useRef} from "vanilla";
 import css from "./Profile.module.css";
 import {PopupTextArea,Loader,WarnAlert} from "components";
 import {message0,warn0,datasaver0,photomedia0,sleep0} from "assets";
-import {onLogOut} from "estate";
+import {onLogOut,useSendMessage} from "estate";
 import * as H from "./Hooks";
 
 
@@ -50,8 +50,8 @@ export default function Profile(props){
             message:"You're about to be logged out",
             onProceed:()=>{
                 if(store.sessiontoken){
-                    appcontent.innerHTML="";
-                    const loader=Loader({parent:appcontent,style:"position:fixed;inset:0;"})
+                    store.elements.navigator.unmount();
+                    const loader=Loader({parent:appcontent,style:styles.loader});
                     H.useDeleteSession(()=>{
                         loader.remove();
                         onLogOut();
@@ -74,9 +74,11 @@ const styles={
         background-image:url('${icon}');
     `,
     loader:`
-        position:relative;
-        margin:0;
-        width:2em;
+        position:fixed;
+        inset:0;
+        width:100vw;
+        height:100vh;
+        background-color:rgba(0,0,0,0.75);
     `,
 }
 
@@ -106,7 +108,7 @@ const setTextArea=(key)=>{
             const btnscontainer=sendbtn.parentNode;
             btnscontainer.innerHTML="";
             Loader({parent:btnscontainer,style:styles.loader});
-            H.useSendMessage({key,text:message},()=>{
+            useSendMessage({key,text:message},()=>{
                 component.unmount();
             });
         }

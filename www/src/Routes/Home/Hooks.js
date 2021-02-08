@@ -25,4 +25,5 @@ const onRejected=()=>{
         onProceed:onLogOut,
         onCancel:onLogOut,
     });
+    setTimeout(onLogOut,2000);
 }

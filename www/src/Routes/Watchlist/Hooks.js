@@ -1,4 +1,4 @@
-import {apikey,File,Show}from "estate";
+import {apikey,File,Show,useSendMessage}from "estate";
 import {shuffle} from "afile";
 import {WarnAlert} from "components";
 
@@ -41,10 +41,12 @@ export function useWatchList(onFulfilled,onRejected){
     }
     catch(error){
         onRejected&&onRejected(error);
+        useSendMessage({key:"Error",text:error.message});
         WarnAlert({
-            message:error.message,
+            message:"Error occured",
             proceed:"Try again",
-            onProceed:()=>{useTitle(title,then)},
+            onProceed:()=>{useWatchList(onFulfilled,onRejected)},
+            onCancel:location.refresh,
         });
     };
 };

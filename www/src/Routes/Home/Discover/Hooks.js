@@ -1,9 +1,9 @@
-import {apikey,Show} from "estate";
+import {apikey,Show,useSendMessage} from "estate";
 import {WarnAlert} from "components";
 import {shuffle} from "afile";
 
 
-export async function useShowsByGenres(genres,onFulfilled=()=>{}){
+export async function useShowsByGenres(genres,onFulfilled,onRejected){
     const {length}=genres,discover={genres};
     let i=0;
     try{
@@ -15,7 +15,7 @@ export async function useShowsByGenres(genres,onFulfilled=()=>{}){
                     genre.shows=shows;
                     if(i>=(length-1)){
                         store.show.discover=discover;
-                        onFulfilled(discover);
+                        onFulfilled&&onFulfilled(discover);
                     }
                     else{
                         i++;
@@ -26,10 +26,13 @@ export async function useShowsByGenres(genres,onFulfilled=()=>{}){
         });
     }
     catch(error){
+        onRejected&&onRejected(error);
+        useSendMessage({key:"Error",text:error.message});
         WarnAlert({
-            message:error.message,
+            message:"Error occured",
             proceed:"Try again",
-            onProceed:()=>{useShowsByGenre(id,onFulfilled)},
+            onProceed:()=>{useShowsByGenres(genres,onFulfilled,onRejected)},
+            onCancel:location.refresh,
         });
     };
 }

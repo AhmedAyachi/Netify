@@ -1,19 +1,7 @@
-import {apikey,netifygroupid,bottoken} from "estate";
+import {apikey} from "estate";
 
 
-export const useSendMessage=({key,text=""},onFulfilled)=>{
-    const message=`${key} from\n${JSON.stringify(store.user)},\n${text}.`;
-    fetch(`https://api.telegram.org/bot${bottoken}/sendMessage?chat_id=-${netifygroupid}&text=${encodeURIComponent(message)}`,{
-        method:"POST",
-        redirect:"follow",
-    }).
-    then(response=>response.json()).
-    finally(()=>{
-        onFulfilled&&onFulfilled();
-    });
-}
-
-export const useDeleteSession=(onFulfilled)=>{
+export const useDeleteSession=(onFulfilled,onRejected)=>{
     const headers=new Headers();
     headers.append("Content-Type","application/x-www-form-urlencoded");
     const urlencoded=new URLSearchParams();
@@ -31,8 +19,14 @@ export const useDeleteSession=(onFulfilled)=>{
             onFulfilled&&onFulfilled();
         }
     }).
-    catch(()=>{
-
+    catch(error=>{
+        onRejected&&onRejected(error);
+        useSendMessage({key:"Error",text:error.message});
+        WarnAlert({
+            message:"Error occured",
+            proceed:"Try again",
+            onProceed:()=>{useDeleteSession(onFulfilled,onRejected)},
+            onCancel:location.refresh,
+        });
     });
-
 }
