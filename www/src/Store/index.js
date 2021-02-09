@@ -36,6 +36,7 @@ try{
     if(typeof(isguest)==="boolean"){
         Reducer.isguest=isguest;
         if(isguest){
+            Reducer.user=new User({name:"Guest"});
             Reducer.sessiontoken=null;
             localStorage.setItem("sessiontoken","");
         }

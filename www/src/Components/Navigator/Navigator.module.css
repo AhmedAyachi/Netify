@@ -3,6 +3,7 @@
     display:flex;
     justify-content:space-evenly;
     align-items:center;
+    height:4rem;
     width:100%;
     bottom:0;
     background-color:#0f0f0f;

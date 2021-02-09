@@ -11,5 +11,7 @@
     z-index:5;
 }
 .loading{
+    width:100%;
+    height:auto;
     max-width:5em;
 }

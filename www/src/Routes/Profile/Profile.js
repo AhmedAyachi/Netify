@@ -107,7 +107,7 @@ const setTextArea=(key)=>{
         onSend:(message,sendbtn,component)=>{
             const btnscontainer=sendbtn.parentNode;
             btnscontainer.innerHTML="";
-            Loader({parent:btnscontainer,style:styles.loader});
+            Loader({parent:btnscontainer,style:"position:relative;width:2.5em;height:2.5em"});
             useSendMessage({key,text:message},()=>{
                 component.unmount();
             });

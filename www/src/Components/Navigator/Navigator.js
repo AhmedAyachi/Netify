@@ -5,7 +5,7 @@ import {home2,zoom3,list1,defaultcover} from "assets";
 
 export default function Navigator(props={}){
     const {parent=app,ref=useRef("navigator")}=props;
-    parent.insertAdjacentHTML("beforeend",`<div id="${ref}" class="${css.navigator}" style="${styles.navigator}"></div>`);
+    parent.insertAdjacentHTML("beforeend",`<div id="${ref}" class="${css.navigator}"></div>`);
     const navigator=parent.querySelector(`#${ref}`);
     const state={
         activeicon:null,
@@ -21,17 +21,16 @@ export default function Navigator(props={}){
     `;
 
     const imgs=[...navigator.querySelectorAll(`.${css.icon}`)];
-    imgs.forEach((img,i)=>{
-        img.hash=i<icons.length?icons[i].hash:"#profile";
-        img.active=false;
-        img.onclick=()=>{
-            history.replace(img.hash);
-        }
-    });
-    state.activeicon=imgs.find(img=>!img.hash);
-    state.activeicon.active=true;
-    state.activeicon.className+=` ${css.active}`;
-
+    setTimeout(()=>{
+        imgs.forEach((img,i)=>{
+            img.hash=i<icons.length?icons[i].hash:"#profile";
+            img.active=false;
+            img.onclick=()=>{history.replace(img.hash)};
+        });
+        state.activeicon=imgs.find(img=>!img.hash);
+        state.activeicon.active=true;
+        state.activeicon.className+=` ${css.active}`;
+    },1000);
 
     const onHashChange=()=>{
         const nexticon=imgs.find(img=>location.hash?img.hash&&location.hash.startsWith(img.hash):!img.hash);
@@ -52,15 +51,9 @@ export default function Navigator(props={}){
         navigator.remove();
     }
     
-    appcontent.style.marginBottom=navigator.style.height;
+    appcontent.style.marginBottom=`${navigator.offsetHeight}px`;
     return navigator;
 };
-
-const styles={
-    navigator:`
-        height:4rem;
-    `,
-}
 
 const icons=[
     {id:"tohome",alt:"Home",src:home2,hash:""},
