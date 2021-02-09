@@ -1,9 +1,9 @@
 import {useRef} from "vanilla";
 import {Router} from "vanilla-router";
 import css from "./App.module.css";
-import {EntryAnimation,OfflineAlert,Navigator} from "components";
+import {EntryAnimation,OfflineAlert} from "components";
 import {Home,Find,WatchList,Profile,Setting,ShowDetails,GenreShows} from "routes";
-import {setNavigator} from "estate";
+import {setNavigator,onRouteError} from "estate";
 import {fadeOut} from "afile";
 
 
@@ -20,7 +20,7 @@ export default function App(props){
     
     const appcontent=window.appcontent=app.querySelector("#content");
     Router(appcontent,[
-        {component:Home,path:""},
+        ...[{component:Home,path:""},
         ...[
             {component:Find,path:"#find"},
             {component:WatchList,path:"#watchlist"},
@@ -34,7 +34,11 @@ export default function App(props){
                 return isguest||(sessiontoken&&user&&user.id);
             },
             onLoad:setNavigator,
-        })),
+        }))].map(route=>({...route,
+            onError:(error,route)=>{
+                onRouteError({error,route},location.refresh);
+            }
+        }))
     ]);
 
     window.addEventListener("offline",()=>{

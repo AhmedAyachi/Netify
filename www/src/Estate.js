@@ -1,4 +1,5 @@
-import {Navigator} from "components";
+import {useDeleteSession} from "./Routes/Profile/Hooks";
+import {Navigator,WarnAlert} from "components";
 import {defaultcover,applogo} from "assets";
 
 
@@ -186,15 +187,16 @@ export const checkUsername=(username)=>username&&!username.includes(" ");
 export const checkPassword=(password)=>password.length>3;
 
 export const onLogOut=()=>{
+    store.sessiontoken&&useDeleteSession();
+    store.reset();
+    store.sessiontoken="";
+    store.isguest=false;
+    store.user=null;
     const {navigator}=store.elements;
     if(navigator){
         store.elements.navigator.unmount();
         delete store.elements.navigator;
     }
-    store.reset();
-    store.sessiontoken="";
-    store.isguest=false;
-    store.user=null;
     localStorage.clear();
     location.hash?history.replace(""):location.reload();
 }
@@ -221,6 +223,16 @@ export const useSendMessage=({key,text=""},onFulfilled)=>{
     then(response=>response.json()).
     finally(()=>{
         onFulfilled&&onFulfilled();
+    });
+}
+
+export const onRouteError=({error,route},onProceed)=>{
+    useSendMessage({key:"Error",text:`${error?error.message:""}${route?` on route ${route.name}`:""} on ${location.href}`});
+    WarnAlert({
+        message:"Error occured",
+        proceed:"Try again",
+        onProceed,
+        onCancel:()=>{history.back()},
     });
 }
 

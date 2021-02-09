@@ -1,5 +1,4 @@
-import {apikey,useSendMessage} from "estate";
-import {WarnAlert} from "components";
+import {apikey,onRouteError} from "estate";
 
 
 export const useSessionId=({username,password},onFulfilled,onRejected)=>{
@@ -22,7 +21,8 @@ export const useSessionId=({username,password},onFulfilled,onRejected)=>{
         const data=await response.json();
         return data;
     }).
-    then(async ({success,request_token})=>{
+    then(async (data)=>{
+        const {success,request_token}=data;
         if(success){
             const headers=new Headers();
             headers.append("Content-Type","application/x-www-form-urlencoded");
@@ -40,15 +40,11 @@ export const useSessionId=({username,password},onFulfilled,onRejected)=>{
         }
         else{
             onRejected&&onRejected();
+            onRouteError({error:{message:JSON.stringify(data)}},()=>{useSessionId({username,password},onFulfilled,onRejected)});
         }
     }).
     catch(error=>{
         onRejected&&onRejected();
-        WarnAlert({
-            message:"Problem occurred, try again?",
-            onProceed:()=>{useSessionId({username,password},onFulfilled)},
-            onCancel:()=>{location.reload()},
-        });
-        useSendMessage({key:"Error",text:error.message});
+        onRouteError({error},()=>{useSessionId({username,password},onFulfilled,onRejected)});
     });
 }

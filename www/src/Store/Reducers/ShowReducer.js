@@ -1,7 +1,5 @@
 
 
-//localStorage.clear();
-
 const ShowReducer={
     searchvalue:null,
     discover:null,

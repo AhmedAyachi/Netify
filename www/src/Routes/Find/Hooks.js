@@ -1,8 +1,7 @@
-import{apikey,Show} from "estate";
-import {WarnAlert} from "components";
+import{apikey,Show,onRouteError} from "estate";
 
 
-export const useTitle=(title="",then)=>{
+export const useTitle=(title="",onFulfilled)=>{
     title=title.trim().replace(/" "/g,"+");
     const fetchs=["movie","tv"].map(type=>fetch(`https://api.themoviedb.org/3/search/${type}?api_key=${apikey}&query=${title}`));
     Promise.all(fetchs).
@@ -17,15 +16,9 @@ export const useTitle=(title="",then)=>{
     }).
     then(data=>{
         const shows=data.filter(show=>show.vote_count>50).map(show=>new Show(show));
-        if(then){
-            then(shows);
-        }
+        onFulfilled&&onFulfilled(shows);
     }).
     catch(error=>{
-        WarnAlert({
-            message:error.message,
-            proceed:"Try again",
-            onProceed:()=>{useTitle(title,then)},
-        });
+        onRouteError({error},()=>{useTitle(title,onFulfilled)});
     });
 }

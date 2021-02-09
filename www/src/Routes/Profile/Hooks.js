@@ -1,4 +1,4 @@
-import {apikey} from "estate";
+import {apikey,onRouteError} from "estate";
 
 
 export const useDeleteSession=(onFulfilled,onRejected)=>{
@@ -21,12 +21,6 @@ export const useDeleteSession=(onFulfilled,onRejected)=>{
     }).
     catch(error=>{
         onRejected&&onRejected(error);
-        useSendMessage({key:"Error",text:error.message});
-        WarnAlert({
-            message:"Error occured",
-            proceed:"Try again",
-            onProceed:()=>{useDeleteSession(onFulfilled,onRejected)},
-            onCancel:location.refresh,
-        });
+        onRouteError({error},()=>{useDeleteSession(onFulfilled,onRejected)});
     });
 }

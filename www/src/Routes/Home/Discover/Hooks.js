@@ -1,4 +1,4 @@
-import {apikey,Show,useSendMessage} from "estate";
+import {apikey,Show,onRouteError} from "estate";
 import {WarnAlert} from "components";
 import {shuffle} from "afile";
 
@@ -27,13 +27,7 @@ export async function useShowsByGenres(genres,onFulfilled,onRejected){
     }
     catch(error){
         onRejected&&onRejected(error);
-        useSendMessage({key:"Error",text:error.message});
-        WarnAlert({
-            message:"Error occured",
-            proceed:"Try again",
-            onProceed:()=>{useShowsByGenres(genres,onFulfilled,onRejected)},
-            onCancel:location.refresh,
-        });
+        onRouteError({error},()=>{useShowsByGenres(genres,onFulfilled,onRejected)});
     };
 }
 
