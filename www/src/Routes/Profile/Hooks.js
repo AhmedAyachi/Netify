@@ -16,6 +16,7 @@ export const useDeleteSession=(onFulfilled,onRejected)=>{
     then(response=>response.json()).
     then(({success})=>{
         if(success){
+            store.sessiontoken="";
             onFulfilled&&onFulfilled();
         }
     }).
