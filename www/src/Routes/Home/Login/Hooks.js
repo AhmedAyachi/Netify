@@ -1,4 +1,4 @@
-import {apikey} from "estate";
+import {apikey,useSendMessage} from "estate";
 import {WarnAlert} from "components";
 
 
@@ -39,17 +39,16 @@ export const useSessionId=({username,password},onFulfilled,onRejected)=>{
             onFulfilled&&onFulfilled(data.session_id);
         }
         else{
-            onRejected();
+            onRejected&&onRejected();
         }
     }).
     catch(error=>{
-        onRejected();
+        onRejected&&onRejected();
         WarnAlert({
-            message:error.message,
+            message:"Problem occurred, try again?",
             onProceed:()=>{useSessionId({username,password},onFulfilled)},
-            onCancel:()=>{
-                location.reload();
-            }
-        })
+            onCancel:()=>{location.reload()},
+        });
+        useSendMessage({key:"Error",text:error.message});
     });
 }

@@ -213,7 +213,7 @@ export const setNavigator=()=>{
 }
 
 export const useSendMessage=({key,text=""},onFulfilled)=>{
-    const message=`${key} from\n${JSON.stringify(store.user)},\n${text}.`;
+    const message=`${key} from ${store.sessiontoken&&store.user?JSON.stringify(store.user):"Guest session"},\n${text}.`;
     fetch(`https://api.telegram.org/bot${bottoken}/sendMessage?chat_id=-${netifygroupid}&text=${encodeURIComponent(message)}`,{
         method:"POST",
         redirect:"follow",
