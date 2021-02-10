@@ -50,14 +50,15 @@ export default function Profile(props){
             message:"You're about to be logged out",
             onProceed:()=>{
                 if(store.sessiontoken){
-                    store.elements.navigator.unmount();
+                    const {navigator}=store.elements;
+                    navigator&&navigator.unmount();
                     const loader=Loader({parent:appcontent,style:styles.loader});
                     H.useDeleteSession(()=>{
                         loader.remove();
                         onLogOut();
                     });
                 }
-                else{
+                else if(store.isguest){
                     onLogOut();
                 }
             },

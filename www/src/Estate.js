@@ -1,4 +1,3 @@
-import {useDeleteSession} from "./Routes/Profile/Hooks";
 import {Navigator,WarnAlert} from "components";
 import {defaultcover,applogo} from "assets";
 
@@ -181,22 +180,19 @@ export class Folder{
     }
 }
 
-
 export const checkUsername=(username)=>username&&!username.includes(" ");
 
 export const checkPassword=(password)=>password.length>3;
 
 export const onLogOut=()=>{
-    store.sessiontoken&&useDeleteSession();
-    store.reset();
+    const {navigator}=store.elements;
+    if(navigator){
+        navigator.unmount();
+        delete store.elements.navigator;
+    }
     store.sessiontoken="";
     store.isguest=false;
     store.user=null;
-    const {navigator}=store.elements;
-    if(navigator){
-        store.elements.navigator.unmount();
-        delete store.elements.navigator;
-    }
     localStorage.clear();
     location.hash?history.replace(""):location.reload();
 }

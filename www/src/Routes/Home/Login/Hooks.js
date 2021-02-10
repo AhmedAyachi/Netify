@@ -40,11 +40,9 @@ export const useSessionId=({username,password},onFulfilled,onRejected)=>{
         }
         else{
             onRejected&&onRejected();
-            onRouteError({error:{message:JSON.stringify(data)}},()=>{useSessionId({username,password},onFulfilled,onRejected)});
         }
     }).
     catch(error=>{
-        onRejected&&onRejected();
         onRouteError({error},()=>{useSessionId({username,password},onFulfilled,onRejected)});
     });
 }
