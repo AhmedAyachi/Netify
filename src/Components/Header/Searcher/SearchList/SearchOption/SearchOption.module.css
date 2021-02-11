@@ -2,18 +2,24 @@
     display:flex;
     justify-content:space-between;
     align-items:center;
-    margin:5px;
     font-size:1rem;
+    margin:5px 0;
 }
 .input{
     height:inherit;
-    width:85%;
+    width:100%;max-width:100%;
+    padding:0 5px;
+    overflow-x:auto;
     font-family:fredokaone;
     font-size:1.25em;
     text-align:left;
 }
+.input::-webkit-scrollbar{
+    display:none;
+}
 .image{
     max-width:1em;
+    margin:0 5px;
 }
 
 @media(any-hover){
