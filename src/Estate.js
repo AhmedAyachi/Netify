@@ -3,10 +3,6 @@ import {defaultcover,applogo} from "assets";
 
 
 export const apikey="aae71d5d8af4086bbd44a5c4602200a5";
-export const guestsessionid="658c6fe570030590b466e8161795e685";
-
-export const bottoken="1488125893:AAE0f-kShsXSVQUqnZWKzQ9IoqgT_tJ9wwo";
-export const netifygroupid="465525889";
 
 
 export class User{
@@ -211,15 +207,9 @@ export const setNavigator=()=>{
 }
 
 export const useSendMessage=({key,text=""},onFulfilled)=>{
-    const message=`${key} from ${store.sessiontoken&&store.user?JSON.stringify(store.user):"Guest session"},\n${text}.`;
-    fetch(`https://api.telegram.org/bot${bottoken}/sendMessage?chat_id=-${netifygroupid}&text=${encodeURIComponent(message)}`,{
-        method:"POST",
-        redirect:"follow",
-    }).
-    then(response=>response.json()).
-    finally(()=>{
-        onFulfilled&&onFulfilled();
-    });
+    const message=`${key} from ${store.sessiontoken&&store.user?store.user.username:"Guest session"},\n${text}.`;
+    alert(message);
+    onFulfilled&&onFulfilled();
 }
 
 export const onRouteError=({error,route},onProceed)=>{

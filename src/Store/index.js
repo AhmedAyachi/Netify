@@ -1,6 +1,5 @@
 import {ShowReducer} from "./Reducers";
 import {User} from "estate";
-import {decrypt} from "afile";
 
 
 const Reducer={
@@ -19,7 +18,7 @@ const Reducer={
 try{
     const sessiontoken=localStorage.getItem("sessiontoken");
     if(sessiontoken){
-        Reducer.sessiontoken=decrypt(sessiontoken,21);
+        Reducer.sessiontoken=sessiontoken;
         Reducer.isguest=false;
         localStorage.setItem("isguest",false);
     }

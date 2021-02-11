@@ -1,11 +1,10 @@
-import {encrypt} from "afile"; 
 
 
 export {setSearchValue} from "./ShowActions";
 
 export const setSessionToken=(value="")=>{
     store.sessiontoken=value;
-    localStorage.setItem("sessiontoken",encrypt(value,21));
+    localStorage.setItem("sessiontoken",value);
 }
 export const setIsguest=(value=true)=>{
     store.isguest=value;
