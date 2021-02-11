@@ -6,7 +6,7 @@ import {InputField,WarnAlert,Loader} from "components";
 import {setSessionToken,setIsguest} from "actions";
 import Discover from "../Discover/Discover";
 import {checkUsername,checkPassword,User} from "estate";
-import {shake,encrypt} from "afile";
+import {shake} from "afile";
 import * as H from "./Hooks";
 
 
@@ -28,13 +28,6 @@ export default function Login(props){
             <button class="${css.signin}">Sign in</button>
             <img class="${css.tmdblogo}" alt="" src="${tmdb1}"/>
         <div>
-        <details class="${css.details}">
-            <summary>About</summary>
-            <ul>
-                <li>Made by Ahmed Ayachi</li>
-                <li>Email: aayachi032@gmail.com</li>
-            </ul>
-        </details>
     `;
     ["username","password"].forEach((prop,i)=>{
         const inputfield=InputField({

@@ -60,22 +60,6 @@
 .signin:active{
     opacity:0.65;
 }
-.details{
-    font-family:fredokaone;
-    margin-top:20px;
-    color:#cc0000;
-    width:fit-content;
-    margin:50px auto;
-}
-.details ul{
-    list-style:none;
-    color:white;
-    font-size:0.7em;
-    opacity:0.5;
-}
-.details li{
-    margin:3px;
-}
 .tmdblink{
     color:#cc0000;
     text-decoration:underline;
@@ -90,10 +74,6 @@
     }
     .skipbtn{
         right:1.5rem;
-    }
-    .details{
-        bottom:30px;
-        font-size:1.1em;
     }
 }
 @media(any-hover){

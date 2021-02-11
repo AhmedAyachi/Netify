@@ -2,6 +2,7 @@ import {} from "vanilla";
 import css from "./Setting.module.css";
 import Datasaver from "./Datasaver/Datasaver";
 import Photomedia from "./Photomedia/Photomedia";
+import About from "./About/About";
 import {BackButton} from "components";
 
 
@@ -40,5 +41,9 @@ const getContent=new function(){
         title:"Photo & Media",
         component:Photomedia,
     };
+    this.about={
+        title:"About",
+        component:About,
+    }
     return this;
 }();

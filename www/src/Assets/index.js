@@ -1,6 +1,7 @@
 
 //Images:
 export {default as photomedia0} from "./Images/Photomedia_0.png";
+export {default as mark0} from "./Images/Mark_0.png";
 export {default as datasaver0} from "./Images/Datasaver_0.png";
 export {default as applogo} from "./Images/AppLogo.png";
 export {default as border0} from "./Images/Border_0.png";

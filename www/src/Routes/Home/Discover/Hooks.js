@@ -1,6 +1,4 @@
 import {apikey,Show,onRouteError} from "estate";
-import {WarnAlert} from "components";
-import {shuffle} from "afile";
 
 
 export async function useShowsByGenres(genres,onFulfilled,onRejected){
@@ -57,7 +55,7 @@ export const useShowsByGenre=({id,page=1},onFulfilled=()=>{})=>{
         return shows;
     }).
     then(data=>{
-        const shows=shuffle(data.map(show=>new Show(show)));
+        const shows=data.filter(show=>show.vote_count>50).map(show=>new Show(show));
         onFulfilled&&onFulfilled(shows);
     });
 };

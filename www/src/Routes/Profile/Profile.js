@@ -1,7 +1,7 @@
 import {map,useRef} from "vanilla";
 import css from "./Profile.module.css";
 import {PopupTextArea,Loader,WarnAlert} from "components";
-import {message0,warn0,datasaver0,photomedia0,sleep0} from "assets";
+import {message0,warn0,datasaver0,photomedia0,sleep0,mark0} from "assets";
 import {onLogOut,useSendMessage} from "estate";
 import * as H from "./Hooks";
 
@@ -20,8 +20,8 @@ export default function Profile(props){
             ${map(lists,({title,items})=>`
                 <ul id="${title}">
                     <li class="${css.listitle}">${title}</li>
-                    ${map(items,({name,icon,ref,key})=>`
-                        <li ${ref?`id="${ref}"`:""} ${key?`key="${key}"`:""} class="${css.set}">
+                    ${map(items,({name,icon,ref,key,type})=>`
+                        <li class="${css.set}" ${ref?`id="${ref}"`:""} ${key?`key="${key}"`:""} ${type?`type="${type}"`:""}>
                             <div class="${css.seticon}">
                                 <img alt="" src="${icon}"/>
                             </div>
@@ -33,7 +33,7 @@ export default function Profile(props){
         </div>
     `;
 
-    const prefsets=profile.querySelectorAll(`.${css.row1} #preferences .${css.set}[key]`);
+    const prefsets=profile.querySelectorAll(`.${css.row1} .${css.set}[type="setting"]`);
     prefsets.forEach(setEl=>{
         const key=setEl.getAttribute("key");
         setEl.onclick=()=>{history.push(`#${key}`)};
@@ -87,8 +87,8 @@ const lists=[
     {
         title:"preferences",
         items:[
-            {name:"Data Saver",icon:datasaver0,key:"datasaver"},
-            {name:"Photo & Media",icon:photomedia0,key:"photomedia"},
+            {name:"Data Saver",icon:datasaver0,key:"datasaver",type:"setting"},
+            {name:"Photo & Media",icon:photomedia0,key:"photomedia",type:"setting"},
         ],
     },
     {
@@ -99,6 +99,12 @@ const lists=[
             {name:"Send Feedback",icon:message0,ref:"feedback",key:"send"},
         ],
     },
+    {
+        title:"App",
+        items:[
+            {name:"About",icon:mark0,key:"about",type:"setting"},
+        ],
+    }
 ];
 
 const setTextArea=(key)=>{
