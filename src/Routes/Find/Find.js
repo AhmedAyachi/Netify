@@ -56,7 +56,7 @@ const styles={
 
 
 const findShows=(value,row1,state)=>{
-    const loader=Loader({parent:row1,style:"position:absolute"});
+    const loader=Loader({parent:row1,style:"position:fixed;inset:0;"});
     H.useTitle(value.trim(),shows=>{
         if(shows&&shows.length){
             state.shows=shows
