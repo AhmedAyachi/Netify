@@ -26,7 +26,7 @@ export default function Discover(props){
         setTimeout(()=>{
             loader.remove();
             setDiscover(discover,content);
-        },500+Math.random()*500);
+        },1100+Math.random()*500);
     }else{
         H.useShowsByGenres(data.genres,({trends,genres})=>{
             loader.remove();

@@ -7,7 +7,7 @@
   "scripts": {
     "start": "webpack --config webpack.config.js",
     "prepare": "cordova prepare",
-    "build": "webpack --config webpack.config.js --mode production",
+    "build": "webpack --config webpack.config.js --mode production --watch",
     "cordova": "cordova",
     "plugin": "cordova plugin",
     "platform": "cordova platform"
