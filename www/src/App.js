@@ -17,6 +17,7 @@ export default function App(props){
     app.innerHTML=`
         <div id="content" class="${css.content}"></div>
     `;
+    EntryAnimation({parent:app});
     
     const appcontent=window.appcontent=app.querySelector("#content");
     Router(appcontent,[

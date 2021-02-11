@@ -1,42 +1,26 @@
 import {useRef} from "vanilla";
 import css from "./EntryAnimation.module.css";
-import {netflixlogo,netflixentry} from "assets";
+import {applogo,netflixentry} from "assets";
 import {fadeIn,fadeOut} from "afile";
 
 
 export default function EntryAnimation(props){
     const {parent,ref=useRef("entryanimation"),onFadeOut}=props;
-    parent.insertAdjacentHTML("beforeend",`<div id="${ref}" class="${css.entryanimation}"></div>`);
-    const entryanimation=parent.querySelector(`#${ref}`);
+    parent.insertAdjacentHTML("beforeend",`<div id="${ref}" class="${css.entryanimation}" style="display:flex;"></div>`);
+    const entryanimation=parent.querySelector(`#${ref}`),state={
+        fadeoutin:1500,
+        fadeoutduration:0.5,
+    };
 
-    StatusBar.hide();
     entryanimation.innerHTML=`
-        <img alt="" src="${netflixlogo}"/>
+        <img alt="" src="${applogo}"/>
     `;
-    animate(entryanimation,onFadeOut);
-}
-
-const animate=(entryanimation,onFadeOut)=>{
-    const fadeInDuration=0.25;
-    const image=entryanimation.querySelector("img");
-    fadeIn(entryanimation,"flex",fadeInDuration);
     setTimeout(()=>{
-        const animduration=10;
-        fadeOut(image);
+        fadeOut(entryanimation,state.fadeoutduration);
         setTimeout(()=>{
-            image.setAttribute("src",netflixentry);
-            fadeIn(image);
-        },200);
-        setTimeout(()=>{
-            const fadeOutDuration=0.4;
-            fadeOut(entryanimation,fadeOutDuration);
-            setTimeout(()=>{
-                if(onFadeOut){
-                    onFadeOut(entryanimation);
-                }
-                entryanimation.remove();
-                StatusBar.show();
-            },fadeOutDuration*1000);
-        },animduration*1000+500);
-    },fadeInDuration*1000+500);  
+            entryanimation.remove();
+            onFadeOut&&onFadeOut(entryanimation);
+        },state.fadeoutduration*1000+150);
+    },state.fadeoutin);
+    return entryanimation;
 }
