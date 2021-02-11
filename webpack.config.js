@@ -4,7 +4,7 @@ const path=require("path");
 
 module.exports={
     mode:"development",
-    entry:`./www//src/index.js`,
+    entry:"./src/index.js",
     output:{
         filename:"App.js",
         path:path.resolve(__dirname,"www"),
@@ -36,12 +36,12 @@ module.exports={
         alias:{
             "vanilla":path.resolve(__dirname,"Vanilla.js"),
             "vanilla-router":path.resolve(__dirname,"Vanilla-router.js"),
-            "estate":path.resolve(__dirname,"www/src/Estate.js"),
-            "assets":path.resolve(__dirname,"www/src/Assets"),
-            "components":path.resolve(__dirname,"www/src/Components"),
-            "routes":path.resolve(__dirname,"www/src/Routes"),
+            "estate":path.resolve(__dirname,"src/Estate.js"),
+            "assets":path.resolve(__dirname,"src/Assets"),
+            "components":path.resolve(__dirname,"src/Components"),
+            "routes":path.resolve(__dirname,"src/Routes"),
             "afile":path.resolve(__dirname,"Afile.js"),
-            "actions":path.resolve(__dirname,"www/src/Store/Actions"),
+            "actions":path.resolve(__dirname,"src/Store/Actions"),
         },
     },
 }
