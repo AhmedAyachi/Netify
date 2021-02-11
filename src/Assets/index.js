@@ -33,6 +33,7 @@ export {default as switchon0} from "./Images/SwitchOn_0.png";
 export {default as message0} from "./Images/Message_0.png";
 export {default as warn0} from "./Images/Warn_0.png";
 export {default as sleep0} from "./Images/Sleep_0.png";
+export {default as closer} from "./Images/Wrong_0.png";
 
 //Gifs:
 export {default as loadinganim} from "./Gifs/Loading_2.gif";
