@@ -5,6 +5,9 @@ platforms
 www
 hooks
 **/*.txt
+Vanilla.js
+Afile.js
+Vanilla-router.js
 typings
 jsconfig.json
 .vscode
