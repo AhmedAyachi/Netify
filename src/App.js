@@ -4,7 +4,7 @@ import css from "./App.module.css";
 import {EntryAnimation,OfflineAlert} from "components";
 import {Home,Find,WatchList,Profile,Setting,ShowDetails,GenreShows} from "routes";
 import {setNavigator,onRouteError} from "estate";
-import {fadeOut} from "afile";
+import {fadeIn,fadeOut} from "afile";
 
 
 export default function App(props){
@@ -17,9 +17,12 @@ export default function App(props){
     app.innerHTML=`
         <div id="content" class="${css.content}"></div>
     `;
-    EntryAnimation({parent:app});
-    
     const appcontent=window.appcontent=app.querySelector("#content");
+    appcontent.style.display="none";
+    EntryAnimation({parent:app,onFadeOut:()=>{
+        fadeIn(appcontent);
+    }});
+    
     Router(appcontent,[
         ...[{component:Home,path:""},
         ...[
