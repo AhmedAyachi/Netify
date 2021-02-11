@@ -2,7 +2,7 @@ import {Navigator,WarnAlert} from "components";
 import {defaultcover,applogo} from "assets";
 
 
-export const apikey="aae71d5d8af4086bbd44a5c4602200a5";
+export const apikey="your_api_key";
 
 
 export class User{
