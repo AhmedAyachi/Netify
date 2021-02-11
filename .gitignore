@@ -2,9 +2,7 @@ node_modules
 debug.log
 plugins
 platforms
-www/App.js
-www/index.html
-www/fonts
+www
 hooks
 **/*.txt
 Vanilla.js
